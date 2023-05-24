@@ -4,4 +4,8 @@
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.search {
+  height: 100%;
+}
+</style>
