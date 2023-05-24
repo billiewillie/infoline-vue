@@ -1,7 +1,7 @@
 <template>
     <div class="birthdays-card shadow rounded">
         <header class="birthdays-card-header">
-            <p>Ближайшие дни рождения</p>
+            <p>Ближайшие дни рождения 11</p>
         </header>
         <router-link to="/" class="default-card shadow rounded"></router-link>
     </div>
