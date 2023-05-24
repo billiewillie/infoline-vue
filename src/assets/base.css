@@ -1,0 +1,50 @@
+:root {
+    --blue-dark: #2B365A;
+    --white: #ffffff;
+    --black: #000000;
+    --purple: #A557CA;
+    --gray: #eeeeee;
+    --orange: #E85959;
+    --blue-light: #57E8DF;
+
+    --shadow-color: rgba(0, 0, 0, 0.14);
+
+    --md: 1280px;
+    --lg: 1920px;
+
+    --radius: 3px;
+}
+
+/* semantic color variables for this project */
+:root {
+    --color-background: var(--white);
+    --color-text: var(--black);
+
+    --base-shadow: 0px 1px 5px var(--shadow-color);
+    --secondary-shadow: 3px -2px 15px var(--shadow-color);
+
+    --section-gap: 160px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    font-weight: normal;
+}
+
+body {
+    min-height: 100vh;
+    color: var(--color-text);
+    background: var(--color-background);
+    transition: color 0.5s, background-color 0.5s;
+    line-height: 1.6;
+    font-family: Inter, sans-serif;
+    font-size: 15px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

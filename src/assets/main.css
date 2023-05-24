@@ -1,0 +1,40 @@
+@import './base.css';
+
+#app {
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+ul {
+    list-style: none;
+}
+
+.shadow {
+    box-shadow: var(--base-shadow);
+}
+
+.rounded {
+    -webkit-border-radius: var(--radius);
+    -moz-border-radius: var(--radius);
+    border-radius: var(--radius);
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+@media (min-width: 1280px) {
+    .basepage {
+        padding: 66px 16px 16px 66px;
+    }
+}
+
+@media (min-width: 1920px) {
+    .basepage {
+        padding: 90px 20px 20px 90px;
+    }
+}
