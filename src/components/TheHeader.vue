@@ -14,7 +14,7 @@ import TheSearch from "@/components/TheSearch.vue";
 import HeaderProfile from "@/components/HeaderProfile.vue";
 </script>
 
-<style scoped>
+<style>
 .header {
     position: fixed;
     z-index: 1;
@@ -45,15 +45,19 @@ import HeaderProfile from "@/components/HeaderProfile.vue";
         display: flex;
         column-gap: 10px;
     }
+
+  @media (min-width: 1920px) {
+    column-gap: 50px;
+  }
 }
 
 .header .base-nav__link {
     font-weight: 700;
     color: var(--white);
     padding: 6px 10px;
-    -webkit-border-radius: 50px;
-    -moz-border-radius: 50px;
-    border-radius: 50px;
+    -webkit-border-radius: var(--radius);
+    -moz-border-radius: var(--radius);
+    border-radius: var(--radius);
 
     @media (min-width: 1280px) {
         font-size: 11px;

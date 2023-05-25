@@ -1,7 +1,7 @@
 :root {
     --blue-dark: #2B365A;
     --white: #ffffff;
-    --black: #000000;
+    --black: #0A0A0A;
     --purple: #A557CA;
     --gray: #eeeeee;
     --orange: #E85959;
@@ -12,7 +12,11 @@
     --md: 1280px;
     --lg: 1920px;
 
+    --line-height: 1.21;
+
     --radius: 3px;
+
+    --font-base: 'Inter', sans-serif;
 }
 
 /* semantic color variables for this project */
@@ -34,17 +38,4 @@
     padding: 0;
     position: relative;
     font-weight: normal;
-}
-
-body {
-    min-height: 100vh;
-    color: var(--color-text);
-    background: var(--color-background);
-    transition: color 0.5s, background-color 0.5s;
-    line-height: 1.6;
-    font-family: Inter, sans-serif;
-    font-size: 15px;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }

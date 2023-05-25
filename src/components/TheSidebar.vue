@@ -1,13 +1,13 @@
-<script setup>
-import DocsNav from "@/components/DocsNav.vue";
-</script>
-
 <template>
   <aside class="aside">
-    <DocsNav/>
+    <DocsNav :withIcons="true"/>
     <button class="button-up">UP</button>
   </aside>
 </template>
+
+<script setup>
+import DocsNav from "@/components/DocsNav.vue";
+</script>
 
 <style scoped>
 aside.aside {

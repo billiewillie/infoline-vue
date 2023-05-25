@@ -5,7 +5,8 @@
 </template>
 
 <style scoped>
-.search {
+.search,
+.search input{
   height: 100%;
 }
 </style>
