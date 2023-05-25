@@ -12,6 +12,7 @@ import DocsNav from "@/components/DocsNav.vue";
 <style scoped>
 aside.aside {
   display: none;
+  transition: right 0.3s ease-in-out;
 
   @media (min-width: 1280px) {
     position: fixed;
@@ -30,19 +31,30 @@ aside.aside {
   @media (min-width: 1920px) {
     top: 70px;
     height: calc(100vh - 70px);
-    right: calc(100% - 70px);
+    right: calc(100% - 300px);
+  }
+}
+
+aside.aside:hover {
+  @media (min-width: 1280px) {
+    right: calc(100% - 300px);
   }
 
+  @media (min-width: 1920px) {
+    right: calc(100% - 300px);
+  }
 }
 
 aside.aside .docs-nav__menu {
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: var(--blue-dark);
 
   @media (min-width: 1280px) {
     align-items: flex-end;
     padding: 16px 20px;
+    row-gap: 57px;
   }
 }
 </style>
