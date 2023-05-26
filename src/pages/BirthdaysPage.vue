@@ -4,7 +4,7 @@
 
 <template>
   <div class="basepage">
-    <p>Users</p>
+    <p>Birthdays</p>
   </div>
 </template>
 

@@ -52,7 +52,7 @@ function renderIcon(icon) {
 
   @media (min-width: 1280px) {
     padding: 34px 0 50px 0;
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: calc(25% - 15px) 75%;
     grid-template-rows: repeat(2, 1fr);
     text-align: left;
     row-gap: 16px;
@@ -61,6 +61,7 @@ function renderIcon(icon) {
 
   @media (min-width: 1920px) {
     padding: 56px 0 50px 0;
+    grid-template-columns: calc(25% - 10px) 75%;
     column-gap: 10px;
   }
 }

@@ -30,6 +30,18 @@ const routes = [
         },
     },
     {
+        path: '/users',
+        redirect: '/birthdays',
+    },
+    {
+        path: '/users/:id',
+        components: {
+            default: () => import('@/pages/UserPage.vue'),
+            Header: () => import('@/components/TheHeader.vue'),
+            Sidebar: () => import('@/components/TheSidebar.vue'),
+        },
+    },
+    {
         path: '/news',
         components: {
             default: () => import('@/pages/NewsPage.vue'),
@@ -41,6 +53,14 @@ const routes = [
         path: '/news/:id',
         components: {
             default: () => import('@/pages/NewsDetailPage.vue'),
+            Header: () => import('@/components/TheHeader.vue'),
+            Sidebar: () => import('@/components/TheSidebar.vue'),
+        },
+    },
+    {
+        path: '/birthdays',
+        components: {
+            default: () => import('@/pages/BirthdaysPage.vue'),
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },
