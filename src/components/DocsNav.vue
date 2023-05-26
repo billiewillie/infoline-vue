@@ -6,7 +6,7 @@
           {{ item.title }}
         </span>
         <span class="docs-nav__icon" v-if="withIcons">
-          {{ item.icon }}
+          <component :is="renderIcon(item.icon)"/>
         </span>
       </router-link>
     </li>
@@ -14,8 +14,14 @@
 </template>
 
 <script setup>
+import IconDocs from "@/components/icons/IconDocs.vue";
+import IconInstructions from "@/components/icons/IconInstructions.vue";
+import IconOrdersSmall from "@/components/icons/IconOrdersSmall.vue";
+import IconBooking from "@/components/icons/IconBooking.vue";
+import IconLearning from "@/components/icons/IconLearning.vue";
+import IconMarketingMaterials from "@/components/icons/IconMarketingMaterials.vue";
+import IconOrders from "@/components/icons/IconOrders.vue";
 import {ref} from "vue";
-import IconMarketingDocs from "@/components/icons/IconMarketingDocs.vue";
 
 const props = defineProps({
   withIcons: {
@@ -28,39 +34,49 @@ const navList = ref([
   {
     title: 'Документы',
     path: '/docs',
-    icon: ''
+    icon: 'IconDocs'
   },
   {
     title: 'Инструкции',
     path: '/instructions',
-    icon: ''
+    icon: 'IconInstructions'
   },
   {
     title: 'Заявки',
     path: '/orders',
-    icon: ''
+    icon: 'IconOrders'
   },
   {
     title: 'Бронирование переговорок',
     path: '/conference-room-booking',
-    icon: ''
+    icon: 'IconBooking'
   },
   {
     title: 'Маркетинговые материалы',
     path: '/marketing-materials',
-    icon: ''
+    icon: 'IconMarketingMaterials'
   },
   {
     title: 'Обучение',
     path: '/learning',
-    icon: ''
+    icon: 'IconLearning'
   }
 ])
 
 function renderIcon(icon) {
   switch (icon) {
-    case "IconMarketingDocs":
-      return IconMarketingDocs
+    case "IconDocs":
+      return IconDocs
+    case "IconInstructions":
+      return IconInstructions
+    case "IconOrders":
+      return IconOrdersSmall
+    case "IconBooking":
+      return IconBooking
+    case "IconMarketingMaterials":
+      return IconMarketingMaterials
+    case "IconLearning":
+      return IconLearning
   }
 }
 </script>

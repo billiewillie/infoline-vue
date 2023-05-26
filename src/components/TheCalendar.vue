@@ -58,11 +58,11 @@ const attributes = ref([
   -webkit-border-radius: var(--radius);
   -moz-border-radius: var(--radius);
   border-radius: var(--radius);
-  min-height: 23px;
+  min-height: 13px;
 }
 
 .calendar .vc-day-content {
-  height: 23px;
+  height: auto;
   line-height: 1;
   font-size: 11px;
 }
@@ -80,4 +80,5 @@ const attributes = ref([
 .calendar .vc-week {
   column-gap: 4px;
 }
+
 </style>

@@ -35,21 +35,21 @@ const defaultCards = ref([
     title: "Маркетинговые документы",
     text: "Задокументируй невербальные всполохи бездны в сознании, расщепись на атомы и созерцай незримое.",
     background: '#F2CECE',
-    link: "https://google.com",
+    link: "/marketing-docs",
     component: "IconMarketingDocs"
   },
   {
     title: "Обновления на сайте",
     text: "Задокументируй невербальные всполохи бездны в сознании, расщепись на атомы и созерцай незримое.",
     background: '#E3BBF7',
-    link: "https://google.com",
+    link: "/updates",
     component: "IconUpdates"
   },
   {
     title: "Оформить заявку",
     text: "Задокументируй невербальные всполохи бездны в сознании, расщепись на атомы и созерцай незримое.",
     background: '#BAF7F3',
-    link: "https://google.com",
+    link: "/orders",
     component: "IconOrders"
   },
 ])

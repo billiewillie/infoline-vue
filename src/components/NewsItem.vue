@@ -38,7 +38,6 @@ import IconView from "@/components/icons/IconView.vue";
 import IconLike from "@/components/icons/IconLike.vue";
 import IconCalendar from "@/components/icons/IconCalendar.vue";
 import IconArrow from "@/components/icons/IconArrow.vue";
-import {defineProps} from "vue";
 
 const props = defineProps({
   item: {
