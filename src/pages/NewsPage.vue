@@ -1,10 +1,12 @@
+<template>
+  <div class="basepage">
+    <p>News</p>
+  </div>
+</template>
+
 <script setup>
 
 </script>
-
-<template>
-<p>News</p>
-</template>
 
 <style scoped>
 

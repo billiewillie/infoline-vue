@@ -38,6 +38,14 @@ const routes = [
         },
     },
     {
+        path: '/news/:id',
+        components: {
+            default: () => import('@/pages/NewsDetailPage.vue'),
+            Header: () => import('@/components/TheHeader.vue'),
+            Sidebar: () => import('@/components/TheSidebar.vue'),
+        },
+    },
+    {
         path: '/newbie',
         components: {
             default: () => import('@/pages/NewbiePage.vue'),

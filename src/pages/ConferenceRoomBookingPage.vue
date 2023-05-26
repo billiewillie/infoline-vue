@@ -3,7 +3,9 @@
 </script>
 
 <template>
-<p>Conference Room Booking</p>
+  <div class="basepage">
+    <p>Conference Room Booking</p>
+  </div>
 </template>
 
 <style scoped>

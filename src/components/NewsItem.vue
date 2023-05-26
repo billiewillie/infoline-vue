@@ -2,9 +2,14 @@
   <div class="news-item shadow">
     <span class="news-item__date">
       <span class="icon"><IconCalendar/></span>
-      <span class="news-item__date-text">{{ item.date }}</span>
+      <span class="text">{{ item.date }}</span>
     </span>
-    <img :src="`${item.image}`" alt=""/>
+    <div class="news-item__image">
+      <picture>
+        <source :srcset="`${item.image}`" type="image/webp">
+        <img :src="`${item.image}`" alt=""/>
+      </picture>
+    </div>
     <div class="news-item__content">
       <h2 class="title">{{ item.title }}</h2>
       <p class="text">{{ item.text }}</p>
@@ -24,7 +29,7 @@
           <span class="news-item__footer-stats-digit">{{ item.views }}</span>
         </span>
       </div>
-      <router-link to="/" class="news-item__footer-link">
+      <router-link :to="`/news/${item.id}`" class="news-item__footer-link">
         <span>Читать полностью</span>
         <span><IconArrow/></span>
       </router-link>
@@ -52,6 +57,9 @@ const props = defineProps({
   display: flex;
   flex-direction: column;
   row-gap: 15px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
 }
 
 .news-item__content {
@@ -61,15 +69,80 @@ const props = defineProps({
   padding: 0 17px;
 }
 
+.news-item__content .title {
+  font-weight: 700;
+  font-size: 18px;
+
+  @media (min-width: 1280px) {
+    font-size: 15px;
+  }
+
+  @media (min-width: 1920px) {
+    font-size: 16px;
+  }
+}
+
+.news-item__content .text {
+  font-weight: 400;
+  font-size: 15px;
+
+  @media (min-width: 1280px) {
+    font-size: 13px;
+  }
+
+  @media (min-width: 1920px) {
+    font-size: 14px;
+  }
+}
+
 .news-item__date {
   position: absolute;
+  display: flex;
+  column-gap: 5px;
+  align-items: center;
   z-index: 1;
   color: var(--white);
-  padding: 8px 12px;
+  padding: 6px 12px;
   -webkit-border-radius: 3px 0 3px 0;
   -moz-border-radius: 3px 0 3px 0;
   border-radius: 3px 0 3px 0;
   background-color: var(--purple);
+
+  @media (min-width: 1920px) {
+    padding: 7px 9px;
+  }
+}
+
+.news-item__date .icon {
+  display: flex;
+}
+
+.news-item__date .icon svg {
+  width: 18px;
+  height: 20px;
+
+  @media (min-width: 1280px) {
+    width: 12px;
+    height: 13px;
+  }
+
+  @media (min-width: 1920px) {
+    width: 16px;
+    height: 18px;
+  }
+}
+
+.news-item__date .text {
+  font-weight: 600;
+  font-size: 13px;
+
+  @media (min-width: 1280px) {
+    font-size: 10px;
+  }
+
+  @media (min-width: 1920px) {
+    font-size: 13px;
+  }
 }
 
 .news-item__footer {
@@ -80,9 +153,15 @@ const props = defineProps({
 
 .news-item__footer-stats {
   display: flex;
-  flex: auto;
-  justify-content: space-between;
+  column-gap: 17px;
   padding: 0 17px;
+}
+
+.news-item__footer-stats-digit {
+  line-height: 1;
+  color: var(--gray-dark);
+  font-weight: 400;
+  font-size: 13px;
 }
 
 .news-item__footer-link {
@@ -91,12 +170,16 @@ const props = defineProps({
   column-gap: 16px;
   background-color: var(--blue-light);
   color: var(--white);
-  font-weight: 700;
-  font-size: 13px;
   padding: 16px;
   -webkit-border-radius: 3px 0 3px 0;
   -moz-border-radius: 3px 0 3px 0;
   border-radius: 3px 0 3px 0;
+}
+
+.news-item__footer-link span {
+  font-weight: 700;
+  font-size: 13px;
+  display: flex;
 }
 
 .news-item__footer-item {
@@ -107,5 +190,21 @@ const props = defineProps({
 
 .news-item__footer-item .icon {
   display: flex;
+}
+
+.news-item__image {
+  -webkit-border-radius: 3px 3px 0 0;
+  -moz-border-radius: 3px 3px 0 0;
+  border-radius: 3px 3px 0 0;
+  overflow: hidden;
+  @media (min-width: 1920px) {
+    height: 273px;
+  }
+}
+
+.news-item__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 </style>

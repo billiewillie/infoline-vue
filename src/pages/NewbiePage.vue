@@ -3,7 +3,9 @@
 </script>
 
 <template>
-<p>Newbie</p>
+  <div class="basepage">
+    <p>Newbie</p>
+  </div>
 </template>
 
 <style scoped>

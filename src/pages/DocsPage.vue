@@ -3,7 +3,9 @@
 </script>
 
 <template>
-<p>Docs</p>
+  <div class="basepage">
+    <p>Docs</p>
+  </div>
 </template>
 
 <style scoped>
