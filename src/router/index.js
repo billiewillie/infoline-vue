@@ -35,6 +35,8 @@ const routes = [
     },
     {
         path: '/users/:id',
+        name: 'User',
+        props: true,
         components: {
             default: () => import('@/pages/UserPage.vue'),
             Header: () => import('@/components/TheHeader.vue'),

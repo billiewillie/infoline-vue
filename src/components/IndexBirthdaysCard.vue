@@ -8,14 +8,15 @@
     </header>
     <ul class="birthdays-list">
       <li class="birthdays-item" v-for="item in birthdays" :key="item.id">
-        <router-link to="/" class="birthdays-link">
+        <router-link :to="{name: 'User', params: {id: item.login}}" class="birthdays-link">
           <div class="birthdays-date">
             <span class="name">{{ item.day }}</span> <span class="name">{{ getMonthName(item.month) }}</span>
           </div>
           <div class="birthdays-avatar rounded shadow overflow-hidden">
             <picture>
-              <source type="image/webp" :srcset="`http://users.trifonov.space/images/users/belinovich/belinovich.webp`">
-              <img :src="`http://users.trifonov.space/images/users/belinovich/belinovich.jpg`" alt="">
+              <source type="image/webp"
+                      :srcset="`${USERS_IMAGES_URL}/${item.login}/${item.login}.webp`">
+              <img :src="`${USERS_IMAGES_URL}/${item.login}/${item.login}.jpg`" alt="birthday-avatar">
             </picture>
           </div>
           <p class="birthdays-name">{{ item.firstname }} {{ item.lastname }}</p>
@@ -31,6 +32,8 @@
 <script setup>
 import IconBirthday from "@/components/icons/IconBirthday.vue";
 import {onMounted, ref} from "vue";
+import {getMonthName} from "@/functions/getMonthName";
+import {USERS_IMAGES_URL} from "@/constants";
 
 const birthdays = ref([]);
 
@@ -41,15 +44,6 @@ onMounted(() => {
         birthdays.value = data
       })
 })
-
-function getMonthName(monthNumber) {
-  const date = new Date();
-  date.setMonth(monthNumber - 1);
-
-  return date.toLocaleString('ru', {
-    month: 'long',
-  });
-}
 </script>
 
 <style scoped>

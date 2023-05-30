@@ -2,31 +2,31 @@
   <div class="news-item shadow">
     <span class="news-item__date">
       <span class="icon"><IconCalendar/></span>
-      <span class="text">{{ item.date }}</span>
+      <span class="text">{{ item.published_date }}</span>
     </span>
     <div class="news-item__image">
       <picture>
-        <source :srcset="`${item.image}`" type="image/webp">
-        <img :src="`${item.image}`" alt=""/>
+        <source :srcset="`${NEWS_IMAGES_URL}/${item.id}/${item.preview_image}.webp`" type="image/webp">
+        <img :src="`${NEWS_IMAGES_URL}/${item.id}/${item.preview_image}.jpg`" alt=""/>
       </picture>
     </div>
     <div class="news-item__content">
       <h2 class="title">{{ item.title }}</h2>
-      <p class="text">{{ item.text }}</p>
+      <p class="text">{{ item.description }}</p>
     </div>
     <footer class="news-item__footer">
       <div class="news-item__footer-stats">
         <div class="comments-count news-item__footer-item">
           <span class="icon"><IconComment/></span>
-          <span class="news-item__footer-stats-digit">{{ item.comments }}</span>
+          <span class="news-item__footer-stats-digit">{{ item.comments.length }}</span>
         </div>
         <span class="likes-count news-item__footer-item">
           <span class="icon"><IconLike/></span>
-          <span class="news-item__footer-stats-digit">{{ item.likes }}</span>
+          <span class="news-item__footer-stats-digit">{{ item.like_count }}</span>
         </span>
         <span class="views-count news-item__footer-item">
           <span class="icon"><IconView/></span>
-          <span class="news-item__footer-stats-digit">{{ item.views }}</span>
+          <span class="news-item__footer-stats-digit">{{ item.show_count }}</span>
         </span>
       </div>
       <router-link :to="`/news/${item.id}`" class="news-item__footer-link">
@@ -43,6 +43,7 @@ import IconView from "@/components/icons/IconView.vue";
 import IconLike from "@/components/icons/IconLike.vue";
 import IconCalendar from "@/components/icons/IconCalendar.vue";
 import IconArrow from "@/components/icons/IconArrow.vue";
+import {NEWS_IMAGES_URL} from "@/constants";
 
 const props = defineProps({
   item: {

@@ -3,9 +3,9 @@
 
     <div class="news-cover">
       <picture>
-        <source :srcset="`http://news.trifonov.space/images/posts/${post.id}/${post.preview_image}.webp`"
+        <source :srcset="`${NEWS_IMAGES_URL}/${post.id}/${post.preview_image}.webp`"
                 type="image/webp">
-        <img :src="`http://news.trifonov.space/images/posts/${post.id}/${post.preview_image}.jpg`" :alt="post.title">
+        <img :src="`${NEWS_IMAGES_URL}/${post.id}/${post.preview_image}.jpg`" :alt="post.title">
       </picture>
     </div>
     <h1>{{ post.title }}</h1>
@@ -17,12 +17,13 @@
 <script setup>
 import {onMounted, ref} from "vue";
 import axios from "axios";
+import {NEWS_IMAGES_URL, NEWS_URL} from "@/constants";
 
 const post = ref({});
 
 onMounted(() => {
   axios
-      .get('http://news.trifonov.space/api/posts/1')
+      .get(`${NEWS_URL}/1`)
       .then(res => {
         post.value = res.data;
       })
