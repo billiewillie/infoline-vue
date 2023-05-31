@@ -7,7 +7,7 @@
     <div class="news-item__image">
       <picture>
         <source :srcset="`${NEWS_IMAGES_URL}/${item.id}/${item.preview_image}.webp`" type="image/webp">
-        <img :src="`${NEWS_IMAGES_URL}/${item.id}/${item.preview_image}.jpg`" alt=""/>
+        <img :src="`${NEWS_IMAGES_URL}/${item.id}/${item.preview_image}.jpg`" alt="news" loading="lazy"/>
       </picture>
     </div>
     <div class="news-item__content">
@@ -61,6 +61,7 @@ const props = defineProps({
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
+  background-color: var(--white);
 }
 
 .news-item__content {

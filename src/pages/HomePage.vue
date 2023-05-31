@@ -29,6 +29,8 @@ import IconUpdates from "@/components/icons/IconUpdates.vue";
 import IconOrders from "@/components/icons/IconOrders.vue";
 
 import {ref} from "vue";
+import axios from "axios";
+import {NEWS_URL} from "@/constants";
 
 const defaultCards = ref([
   {
@@ -53,38 +55,13 @@ const defaultCards = ref([
     component: "IconOrders"
   },
 ])
-const news = ref([
-  {
-    id: 1,
-    title: "Новость 1",
-    image: './src/assets/img/news.jpg',
-    text: "Представляем вашему вниманию сводку актуальных новостей отдела оптической микроскопии, анализа изображений и спектрометрии в научных исследованиях.",
-    date: "12.12.22",
-    comments: 9,
-    likes: 12,
-    views: 12
-  },
-  {
-    id: 2,
-    title: "Новость 2",
-    image: './src/assets/img/news.jpg',
-    text: "Представляем вашему вниманию сводку актуальных новостей отдела оптической микроскопии, анализа изображений и спектрометрии в научных исследованиях.",
-    date: "12.12.21",
-    comments: 9,
-    likes: 12,
-    views: 12
-  },
-  {
-    id: 3,
-    title: "Новость 3",
-    image: './src/assets/img/news.jpg',
-    text: "Представляем вашему вниманию сводку актуальных новостей отдела оптической микроскопии, анализа изображений и спектрометрии в научных исследованиях.",
-    date: "12.12.20",
-    comments: 9,
-    likes: 12,
-    views: 12
-  }
-])
+const news = ref([])
+
+axios
+    .get(NEWS_URL)
+    .then(response => {
+      news.value = response.data.data;
+    })
 </script>
 
 <style scoped>
@@ -119,6 +96,7 @@ const news = ref([
 
   @media (min-width: 1920px) {
     row-gap: 20px;
+    padding: 0 1px;
   }
 }
 </style>

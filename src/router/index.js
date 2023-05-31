@@ -139,6 +139,12 @@ const routes = [
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },
     },
+    {
+        path: '/:pathMatch(.*)*',
+        components: {
+            default: () => import('@/pages/NotFoundPage.vue'),
+        },
+    }
 ]
 
 const router = createRouter({

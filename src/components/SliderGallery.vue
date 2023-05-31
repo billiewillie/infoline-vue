@@ -9,11 +9,12 @@
     >
       <SwiperSlide v-for="item in gallery" :key="item.id">
         <picture>
-          <source :srcset="`http://gallery.trifonov.space/upload/galleries/${item.id}/${item.src}.webp`"
+          <source :srcset="`${GALLERY_URL}/${item.id}/${item.src}.webp`"
                   type="image/webp">
-          <img :src="`http://gallery.trifonov.space/upload/galleries/${item.id}/${item.src}.jpg`" :alt="item.title">
+          <img :src="`${GALLERY_URL}/${item.id}/${item.src}.jpg`" :alt="item.title">
         </picture>
       </SwiperSlide>
+
     </swiper>
   </div>
 </template>
@@ -26,13 +27,14 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import {onMounted, ref} from "vue";
 import axios from "axios";
+import {GALLERY_URL, INDEX_PAGE_GALLERY_URL} from "@/constants";
 
 const gallery = ref([]);
 const modules = [Navigation];
 
 onMounted(() => {
   axios
-      .get('http://gallery.trifonov.space/api/gallery/show/hidden-pool')
+      .get(INDEX_PAGE_GALLERY_URL)
       .then(response => {
         gallery.value = response.data;
       })

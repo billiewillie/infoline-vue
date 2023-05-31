@@ -33,12 +33,12 @@
 import IconBirthday from "@/components/icons/IconBirthday.vue";
 import {onMounted, ref} from "vue";
 import {getMonthName} from "@/functions/getMonthName";
-import {USERS_IMAGES_URL} from "@/constants";
+import {USERS_API_URL, USERS_IMAGES_URL} from "@/constants";
 
 const birthdays = ref([]);
 
 onMounted(() => {
-  fetch('http://users.trifonov.space/api/show/upcoming-birthdays/4')
+  fetch(`${USERS_API_URL}/upcoming-birthdays/4`)
       .then(res => res.json())
       .then(data => {
         birthdays.value = data
