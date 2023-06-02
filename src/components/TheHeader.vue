@@ -1,8 +1,15 @@
 <template>
   <header class="header">
-    <TheLogo/>
+    <TheLogo @click="toggleStatusMobileNav(false)"/>
     <BaseNav/>
-    <TheSearch :isActive="isActive" @toggleStatus="toggleStatus"/>
+    <TheSearch
+        :isActive="isActive"
+        @toggleStatus="toggleStatus"
+        @toggleStatusMobileNav="toggleStatusMobileNav"
+    />
+    <HeaderBurger
+        :isActiveMobileNav="isActiveMobileNav"
+        @toggleStatusMobileNav="toggleStatusMobileNav" />
     <HeaderProfile/>
   </header>
 </template>
@@ -13,11 +20,17 @@ import BaseNav from "@/components/BaseNav.vue";
 import TheSearch from "@/components/TheSearch.vue";
 import HeaderProfile from "@/components/HeaderProfile.vue";
 import {ref} from "vue";
+import HeaderBurger from "@/components/HeaderBurger.vue";
 
 const isActive = ref(false);
+const isActiveMobileNav = ref(false);
 
 const toggleStatus = (value) => {
   isActive.value = value;
+}
+
+const toggleStatusMobileNav = (value) => {
+  isActiveMobileNav.value = value;
 }
 
 </script>
@@ -34,6 +47,7 @@ const toggleStatus = (value) => {
   width: 100%;
   height: 56px;
   background-color: var(--blue-dark);
+  column-gap: 2px;
 
   @media (min-width: 1280px) {
     height: 50px;

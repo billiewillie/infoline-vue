@@ -1,5 +1,10 @@
 <template>
-  <div class="search" @click="$emit('toggleStatus', true)">
+  <div
+      class="search"
+      @click="
+        $emit('toggleStatus', true);
+        $emit('toggleStatusMobileNav', false)"
+  >
     <div class="search-button">Поиск...</div>
     <span class="search-icon">
       <IconLoop/>
@@ -82,7 +87,7 @@ const props = defineProps({
   isActive: Boolean,
 })
 
-const emit = defineEmits(['toggleStatus'])
+const emit = defineEmits(['toggleStatus', 'toggleStatusMobileNav'])
 
 </script>
 

@@ -50,6 +50,7 @@ onMounted(() => {
 .birthdays-card {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 
   align-items: center;
   background: linear-gradient(180deg, #57E8DF 16.25%, #A557CA 88.31%);

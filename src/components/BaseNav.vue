@@ -35,7 +35,7 @@ const navList = ref([
     </ul>
 </template>
 
-<style scoped>
+<style>
 .base-nav__menu {
     justify-content: space-between;
 }

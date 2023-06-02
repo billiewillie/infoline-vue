@@ -1,12 +1,15 @@
 <template>
   <aside class="aside">
-    <DocsNav :withIcons="true"/>
+    <DocsNav :withIcons="true" onmouseover="isHovered = true" onmouseout="isHovered = false"/>
     <button class="button-up">UP</button>
   </aside>
 </template>
 
 <script setup>
 import DocsNav from "@/components/DocsNav.vue";
+import {ref} from "vue";
+
+const isHovered = ref(false);
 </script>
 
 <style>
@@ -47,12 +50,23 @@ aside.aside .docs-nav__menu {
 
   @media (min-width: 1280px) {
     align-items: flex-end;
-    padding: 16px;
-    row-gap: 57px;
+    padding: 16px 0;
+    row-gap: 40px;
   }
 
   @media (min-width: 1920px) {
-    padding: 20px;
+    padding: 20px 0;
+  }
+}
+
+aside.aside .docs-nav__item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: flex-end;
+
+  @media (min-width: 1280px) {
+    min-height: 31px;
   }
 }
 
@@ -60,8 +74,19 @@ aside.aside .docs-nav__link {
   display: flex;
   column-gap: 25px;
   align-items: center;
+  justify-content: flex-end;
   color: var(--blue-dark);
+  height: 100%;
+  width: 100%;
+  transition: background-color .3s ease-in-out, color;
 
+  @media (min-width: 1280px) {
+    padding: 0 16px;
+  }
+
+  @media (min-width: 1920px) {
+    padding: 0 20px;
+  }
 }
 
 .aside.aside .docs-nav__title {

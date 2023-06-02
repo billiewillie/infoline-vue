@@ -14,7 +14,6 @@
           <img :src="`${GALLERY_URL}/${item.id}/${item.src}.jpg`" :alt="item.title">
         </picture>
       </SwiperSlide>
-
     </swiper>
   </div>
 </template>

@@ -1,14 +1,14 @@
-<script setup>
-import TheHeader from "@/components/TheHeader.vue";
-import TheSidebar from "@/components/TheSidebar.vue";
-import MobileNav from "@/components/MobileNav.vue";
-</script>
-
 <template>
   <router-view class="wrapper"/>
   <router-view name="Header" class="header"/>
   <router-view name="Sidebar" class="aside"/>
 </template>
+
+<script setup>
+import TheHeader from "@/components/TheHeader.vue";
+import TheSidebar from "@/components/TheSidebar.vue";
+import MobileNav from "@/components/MobileNav.vue";
+</script>
 
 <style scoped>
 main.main {

@@ -1,7 +1,3 @@
-<script setup>
-import IconLogo from "@/components/icons/IconLogo.vue";
-</script>
-
 <template>
   <router-link to="/" class="logo">
     <div class="logo-icon">
@@ -11,14 +7,21 @@ import IconLogo from "@/components/icons/IconLogo.vue";
   </router-link>
 </template>
 
+<script setup>
+import IconLogo from "@/components/icons/IconLogo.vue";
+</script>
+
 <style scoped>
 .logo {
   display: flex;
   align-items: center;
   height: 100%;
   column-gap: 16px;
+  flex: auto;
+
   @media (min-width: 1280px) {
     column-gap: 16px;
+    flex: initial;
   }
   @media (min-width: 1920px) {
     column-gap: 26px;
@@ -32,6 +35,8 @@ import IconLogo from "@/components/icons/IconLogo.vue";
   align-items: center;
   height: 100%;
   background-color: var(--blue-light);
+  width: 56px;
+
   @media (min-width: 1280px) {
     width: 50px;
   }

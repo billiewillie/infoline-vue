@@ -199,6 +199,8 @@ const props = defineProps({
   -moz-border-radius: 3px 3px 0 0;
   border-radius: 3px 3px 0 0;
   overflow: hidden;
+  height: 228px;
+
   @media (min-width: 1920px) {
     height: 273px;
   }

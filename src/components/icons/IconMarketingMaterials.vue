@@ -5,6 +5,8 @@
         stroke="#2B365A" stroke-width="1.67949" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
     <path
         d="M22.8859 11.1531C20.3433 12.9997 17.3742 14.1718 14.2559 14.56M1.41797 11.4577C3.95622 13.195 6.82163 14.2441 9.74344 14.5713M14.2559 13.4093V14.56C14.2559 15.7896 14.2446 16.7937 11.9997 16.7937C9.766 16.7937 9.74344 15.8009 9.74344 14.5713V13.4093C9.74344 12.2812 9.74344 12.2812 10.8716 12.2812H13.1278C14.2559 12.2812 14.2559 12.2812 14.2559 13.4093Z"
-        stroke="#2B365A" stroke-width="1.67949" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        stroke="#2B365A"
+        stroke-width="1.67949"
+        stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>
 </template>

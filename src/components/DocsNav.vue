@@ -81,4 +81,8 @@ function renderIcon(icon) {
 }
 </script>
 
-<style scoped></style>
+<style>
+.docs-nav__item a {
+  color: var(--white);
+}
+</style>
