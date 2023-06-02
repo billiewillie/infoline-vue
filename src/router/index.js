@@ -84,6 +84,14 @@ const routes = [
         },
     },
     {
+        path: '/galleries/:id',
+        components: {
+            default: () => import('@/pages/GalleriesPage.vue'),
+            Header: () => import('@/components/TheHeader.vue'),
+            Sidebar: () => import('@/components/TheSidebar.vue'),
+        },
+    },
+    {
         path: '/team',
         components: {
             default: () => import('@/pages/TeamPage.vue'),

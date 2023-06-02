@@ -55,6 +55,7 @@ input {
 .basepage {
     padding: 66px 10px 10px;
     background-color: var(--gray-light);
+    min-height: 100vh;
 }
 
 
