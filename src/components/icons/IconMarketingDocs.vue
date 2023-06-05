@@ -2,9 +2,9 @@
   <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
         d="M13.7955 10V8.4C13.7955 4.86 13.7955 2 20.3591 2H23.6409C30.2044 2 30.2044 4.86 30.2044 8.4V10M13.7955 42H30.2044C38.4499 42 39.9267 38.78 40.3575 34.86L41.8958 18.86C42.4496 13.98 41.0138 10 32.2556 10H11.7444C2.98618 10 1.5504 13.98 2.1042 18.86L3.64254 34.86C4.07327 38.78 5.55007 42 13.7955 42Z"
-        stroke="#E85959" stroke-width="2.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        stroke="#57E8DF" stroke-width="2.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
     <path
         d="M41.9995 20.4127C37.3397 23.5305 31.8982 25.5096 26.1833 26.1651M2.65527 20.927C7.30712 23.8603 12.5585 25.6317 17.9133 26.1841M26.1833 24.2222V26.1651C26.1833 28.2413 26.1626 29.9365 22.0483 29.9365C17.9547 29.9365 17.9133 28.2603 17.9133 26.1841V24.2222C17.9133 22.3175 17.9133 22.3175 19.9808 22.3175H24.1158C26.1833 22.3175 26.1833 22.3175 26.1833 24.2222Z"
-        stroke="#E85959" stroke-width="2.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        stroke="#57E8DF" stroke-width="2.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>
 </template>

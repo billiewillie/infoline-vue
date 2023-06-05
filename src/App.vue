@@ -1,5 +1,9 @@
 <template>
-  <router-view class="wrapper"/>
+  <router-view class="wrapper" v-slot="{ Component }">
+    <transition name="fade">
+      <component :is="Component"/>
+    </transition>
+  </router-view>
   <router-view name="Header" class="header"/>
   <router-view name="Sidebar" class="aside"/>
 </template>
@@ -21,4 +25,21 @@ main.main {
     gap: 16px;
   }
 }
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .5s;
+}
+
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+
 </style>

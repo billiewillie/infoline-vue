@@ -55,11 +55,6 @@ const navList = ref([
     title: 'Маркетинговые материалы',
     path: '/marketing-materials',
     icon: 'IconMarketingMaterials'
-  },
-  {
-    title: 'Обучение',
-    path: '/learning',
-    icon: 'IconLearning'
   }
 ])
 
@@ -75,8 +70,6 @@ function renderIcon(icon) {
       return IconBooking
     case "IconMarketingMaterials":
       return IconMarketingMaterials
-    case "IconLearning":
-      return IconLearning
   }
 }
 </script>

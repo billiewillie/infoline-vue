@@ -1,8 +1,5 @@
-export function getMonthName(monthNumber) {
-    const date = new Date();
-    date.setMonth(monthNumber - 1);
+import {MONTHS} from "@/constants";
 
-    return date.toLocaleString('ru', {
-        month: 'long',
-    });
+export function getMonthName(monthNumber) {
+    return MONTHS[monthNumber - 1];
 }

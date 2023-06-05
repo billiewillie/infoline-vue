@@ -36,7 +36,7 @@
               <div class="icon">
                 <IconView/>
               </div>
-              <span class="count">40</span>
+              <span class="count">{{ gallery.count_img }}</span>
             </div>
           </div>
         </footer>

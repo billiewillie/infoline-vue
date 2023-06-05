@@ -1,14 +1,13 @@
 <template>
   <router-link
-      to="/" class="default-card shadow rounded"
-      :style="{ background: `linear-gradient(180deg, #FFFFFF 67.11%, ${background} 100%)` }"
+      :to="`${link}`" class="default-card shadow rounded"
   >
     <span class="icon">
       <component :is="renderIcon(component)"/>
     </span>
     <h2 class="title">
       {{ title }}
-      <span class="line" :style="{ backgroundColor: background }"></span>
+      <span class="line"></span>
     </h2>
     <p class="text">
       {{ text }}
@@ -26,7 +25,8 @@ const props = defineProps({
   title: String,
   text: String,
   background: String,
-  component: String
+  component: String,
+  link: String
 })
 
 function renderIcon(icon) {
@@ -126,6 +126,7 @@ h2.title .line {
   -webkit-border-radius: 30px;
   -moz-border-radius: 30px;
   border-radius: 30px;
+  background-color: var(--blue-light);
 
   @media (min-width: 1280px) {
     width: 100%;

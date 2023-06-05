@@ -40,7 +40,7 @@ const attributes = ref([
 }
 
 .calendar .vc-header {
-  background-color: var(--purple);
+  background-color: var(--blue-dark);
   margin-top: 0;
   padding: 0;
   -webkit-border-radius: 3px;

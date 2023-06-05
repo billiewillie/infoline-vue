@@ -5,27 +5,32 @@
         <IconBirthday/>
       </span>
       <span class="text">С Днем Рождения!</span>
+      <div class="birthdays-footer">
+        <router-link to="/" class="birthdays-card-link shadow rounded">все</router-link>
+      </div>
     </header>
     <ul class="birthdays-list">
-      <li class="birthdays-item" v-for="item in birthdays" :key="item.id">
-        <router-link :to="{name: 'User', params: {id: item.login}}" class="birthdays-link">
+      <li class="birthdays-item rounded shadow overflow-hidden" v-for="item in birthdays" :key="item.id">
+        <router-link :to="{name: 'User', params: {id: 'belinovich'}}" class="birthdays-link">
+          <div class="birthdays-avatar overflow-hidden">
+            <picture>
+              <source
+                  type="image/webp"
+                  :srcset="`${USERS_IMAGES_URL}/${item.login}/${item.login}.webp`"
+              >
+              <img
+                  :src="`${USERS_IMAGES_URL}/${item.login}/${item.login}.jpg`"
+                  alt="birthday-avatar"
+              >
+            </picture>
+          </div>
+          <span class="birthdays-name">{{ item.firstname }}<br>{{ item.lastname }}</span>
           <div class="birthdays-date">
             <span class="name">{{ item.day }}</span> <span class="name">{{ getMonthName(item.month) }}</span>
           </div>
-          <div class="birthdays-avatar rounded shadow overflow-hidden">
-            <picture>
-              <source type="image/webp"
-                      :srcset="`${USERS_IMAGES_URL}/${item.login}/${item.login}.webp`">
-              <img :src="`${USERS_IMAGES_URL}/${item.login}/${item.login}.jpg`" alt="birthday-avatar">
-            </picture>
-          </div>
-          <p class="birthdays-name">{{ item.firstname }} {{ item.lastname }}</p>
         </router-link>
       </li>
     </ul>
-    <div class="birthdays-footer">
-      <router-link to="/" class="birthdays-card-link shadow rounded">Все дни рождения</router-link>
-    </div>
   </div>
 </template>
 
@@ -50,23 +55,25 @@ onMounted(() => {
 .birthdays-card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-
   align-items: center;
-  background: linear-gradient(180deg, #57E8DF 16.25%, #A557CA 88.31%);
   padding-bottom: 25px;
 
   @media (min-width: 1280px) {
-    padding-bottom: 10px;
+    padding-bottom: 11px;
+    row-gap: 11px;
+  }
+
+  @media (min-width: 1920px) {
+    padding-bottom: 11px;
+    row-gap: 11px;
   }
 }
 
 .birthdays-card-header {
-  background-color: var(--purple);
+  background-color: var(--blue-dark);
   color: var(--white);
   column-gap: 10px;
   padding: 8px 0;
-  margin-bottom: 60px;
   width: 100%;
   text-align: center;
   -webkit-border-radius: 3px 3px 0 0;
@@ -76,19 +83,16 @@ onMounted(() => {
 
   @media (min-width: 1280px) {
     display: flex;
-    width: auto;
     text-align: left;
     align-self: start;
-    -webkit-border-radius: 3px 0 3px 0;
-    -moz-border-radius: 3px 0 3px 0;
-    border-radius: 3px 0 3px 0;
-    margin-bottom: 13px;
+    -webkit-border-radius: 3px 3px 0 0;
+    -moz-border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0;
     column-gap: 10px;
     padding: 4px 11px 4px 5px;
   }
 
   @media (min-width: 1920px) {
-    margin-bottom: 10px;
     padding: 6px 11px 7px 8px;
     column-gap: 14px;
   }
@@ -144,23 +148,17 @@ onMounted(() => {
 }
 
 .birthdays-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  display: flex;
+  justify-content: center;
   column-gap: 13px;
-  row-gap: 27px;
-  margin-bottom: 34px;
 
   @media (min-width: 1280px) {
-    row-gap: 17px;
-    column-gap: 10px;
-    margin-bottom: 8px;
+    column-gap: 13px;
   }
 
   @media (min-width: 1920px) {
-    margin-bottom: 5px;
-    column-gap: 50px;
-    row-gap: 21px;
+    column-gap: 16px;
+    padding: 0 30px;
   }
 }
 
@@ -169,43 +167,25 @@ onMounted(() => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  row-gap: 10px;
-  padding: 0 30px;
-
-  @media (min-width: 1280px) {
-    row-gap: 6px;
-    padding: 0 10px;
-  }
+  row-gap: 11px;
+  padding-bottom: 11px;
 }
 
 .birthdays-date {
-  position: absolute;
-  color: var(--white);
   font-size: 11px;
-  padding: 5px;
-  min-width: 74px;
   text-align: center;
-  background-color: var(--orange);
-  top: -11px;
-  left: calc(50% + 8px);
-  z-index: 1;
+  color: var(--gray-dark);
   -webkit-border-radius: 3px 3px 3px 0;
   -moz-border-radius: 3px 3px 3px 0;
   border-radius: 3px 3px 3px 0;
 
   @media (min-width: 1280px) {
     font-size: 9px;
-    min-width: 63px;
-    padding: 2px 5px;
-    top: -5px;
   }
 
   @media (min-width: 1920px) {
     font-size: 11px;
     min-width: 74px;
-    padding: 4px 5px;
-    top: -11px;
-    left: calc(50% + 17px);
   }
 }
 
@@ -218,13 +198,13 @@ onMounted(() => {
   height: 90px;
 
   @media (min-width: 1280px) {
-    width: 40px;
-    height: 40px;
+    width: 100px;
+    height: 100px;
   }
 
   @media (min-width: 1920px) {
-    width: 60px;
-    height: 60px;
+    width: 120px;
+    height: 120px;
   }
 }
 
@@ -236,26 +216,23 @@ onMounted(() => {
 
 .birthdays-name {
   display: flex;
-  text-align: center;
-  color: var(--white);
+  flex-wrap: nowrap;
+  color: var(--blue-dark);
   font-weight: 700;
   font-size: 16px;
+  padding: 0 4px;
+  min-height: 43px;
+  border-bottom: 1px solid var(--gray-medium);
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+
   @media (min-width: 1280px) {
     font-size: 11px;
   }
 
   @media (min-width: 1920px) {
-    font-size: 14px;
-  }
-}
-
-.birthdays-footer {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  @media (min-width: 1280px) {
-    padding-right: 10px;
-    justify-content: flex-end;
+    font-size: 13px;
   }
 }
 

@@ -74,6 +74,7 @@ const props = defineProps({
 .news-item__content .title {
   font-weight: 700;
   font-size: 18px;
+  color: var(--blue-dark);
 
   @media (min-width: 1280px) {
     font-size: 15px;

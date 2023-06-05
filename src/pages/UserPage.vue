@@ -14,7 +14,7 @@
                 :srcset="`${USERS_IMAGES_URL}/${params.id}/${item.src}.webp`"
                 type="image/webp">
             <img
-                :src="`${USERS_IMAGES_URL}/${params.id}/${item.src}.jpg`">
+                :src="`${USERS_IMAGES_URL}/${params.id}/${item.src}.jpg`" alt="photo">
           </picture>
         </SwiperSlide>
       </Swiper>
@@ -92,8 +92,8 @@
             <span class="user-position__column-title">Отдел: </span>
             <router-link to="/" class="user-position__column-value">{{ item.department.title }}</router-link>
           </div>
-          <div class="user-position__row">
-            <span class="user-position__column-title">Отдел: </span>
+          <div class="user-position__row" v-show="item.department.groups.title">
+            <span class="user-position__column-title">Группа: </span>
             <span class="user-position__column-value">{{ item.department.groups.title }}</span>
           </div>
           <div class="user-position__row">
@@ -135,6 +135,9 @@ onMounted(() => {
       .then(res => {
         user.value = res.data;
       })
+      .catch(err => {
+        console.log(err);
+      })
 })
 
 </script>
@@ -142,10 +145,9 @@ onMounted(() => {
 <style scoped>
 .userpage {
   display: grid;
-  height: 100vh;
-  min-height: 720px;
   grid-template-columns: repeat(1, 1fr);
   grid-template-rows: repeat(1, 1fr);
+  gap: 10px;
 
   @media (min-width: 1280px) {
     grid-template-columns: repeat(3, 1fr);
@@ -159,14 +161,19 @@ onMounted(() => {
 }
 
 .userpage .gallery {
-  grid-row-start: 1;
-  grid-row-end: 4;
+  @media (min-width: 1280px) {
+    grid-row-start: 1;
+    grid-row-end: 4;
+  }
 }
 
 .userpage .user-header,
 .userpage .user-contacts {
-  grid-column-start: 2;
-  grid-column-end: 4;
+
+  @media (min-width: 1280px) {
+    grid-column-start: 2;
+    grid-column-end: 4;
+  }
 }
 
 .userpage .user-header {
@@ -176,6 +183,11 @@ onMounted(() => {
   row-gap: 10px;
 
   @media (min-width: 1280px) {
+    row-gap: 20px;
+    padding: 30px 40px;
+  }
+
+  @media (min-width: 1920px) {
     row-gap: 20px;
     padding: 50px 64px;
   }
@@ -188,7 +200,12 @@ onMounted(() => {
   font-size: 32px;
 
   @media (min-width: 1280px) {
+    font-size: 40px;
+  }
+
+  @media (min-width: 1920px) {
     font-size: 66px;
+    min-height: 160px;
   }
 }
 
@@ -197,6 +214,25 @@ onMounted(() => {
   display: flex;
   align-items: center;
   column-gap: 14px;
+}
+
+.user-birthday__column-title {
+  font-size: 16px;
+  color: var(--gray-dark);
+
+  @media (min-width: 1280px) {
+    font-size: 20px;
+  }
+}
+
+.user-birthday__column-value {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--orange);
+
+  @media (min-width: 1280px) {
+    font-size: 24px;
+  }
 }
 
 .user-birthday .icon {
@@ -229,6 +265,7 @@ onMounted(() => {
 .userpage .user-contacts {
   display: flex;
   flex-direction: column;
+  row-gap: 25px;
   justify-content: space-between;
   background-color: var(--blue-dark);
   color: var(--white);
@@ -238,6 +275,10 @@ onMounted(() => {
     flex-direction: row;
     align-items: center;
     row-gap: 20px;
+    padding: 40px 44px;
+  }
+
+  @media (min-width: 1920px) {
     padding: 60px 64px;
   }
 }
@@ -254,11 +295,6 @@ onMounted(() => {
   background-color: var(--white);
 }
 
-.user-position .swiper {
-  height: 100%;
-}
-
-
 .user-position__column-title {
   font-size: 13px;
   font-weight: 400;
@@ -268,6 +304,20 @@ onMounted(() => {
 
 .user-position__column-value {
   font-size: 16px;
+
+  @media (min-width: 1280px) {
+    font-size: 12px;
+  }
+
+  @media (min-width: 1920px) {
+    font-size: 16px;
+  }
+}
+
+a.user-position__column-value {
+  color: var(--blue-light);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .user-position__row {
@@ -283,28 +333,24 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   row-gap: 25px;
+  padding: 30px;
 
   @media (min-width: 1280px) {
+    padding: 30px 44px;
+  }
+
+  @media (min-width: 1920px) {
     padding: 60px 64px;
   }
 }
 
-.user-birthday__column-title {
-  font-size: 16px;
-  color: var(--gray-dark);
-
+.user-contacts__column-value span {
   @media (min-width: 1280px) {
-    font-size: 20px;
+    font-size: 12px;
   }
-}
 
-.user-birthday__column-value {
-  font-weight: 700;
-  font-size: 18px;
-  color: var(--blue-dark);
-
-  @media (min-width: 1280px) {
-    font-size: 24px;
+  @media (min-width: 1920px) {
+    font-size: 19px;
   }
 }
 
@@ -312,6 +358,14 @@ onMounted(() => {
   color: var(--blue-light);
   text-decoration: underline;
   text-underline-offset: 3px;
+
+  @media (min-width: 1280px) {
+    font-size: 12px;
+  }
+
+  @media (min-width: 1920px) {
+    font-size: 19px;
+  }
 }
 
 .user-contacts__column {

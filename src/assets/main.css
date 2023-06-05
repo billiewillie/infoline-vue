@@ -55,9 +55,11 @@ input {
 .basepage {
     padding: 66px 10px 10px;
     background-color: var(--gray-light);
-    min-height: 100vh;
 }
 
+.swiper {
+    height: 100%;
+}
 
 .swiper-slide img {
     width: 100%;
@@ -473,6 +475,8 @@ input {
 @media (min-width: 1280px) {
     .basepage {
         padding: 66px 16px 16px 66px;
+        height: 100vh;
+        min-height: 720px;
     }
 }
 
