@@ -194,8 +194,8 @@ onMounted(() => {
 }
 
 .birthdays-avatar {
-  width: 90px;
-  height: 90px;
+  width: 60px;
+  height: 60px;
 
   @media (min-width: 1280px) {
     width: 100px;

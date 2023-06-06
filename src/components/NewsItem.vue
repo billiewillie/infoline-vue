@@ -29,9 +29,8 @@
           <span class="news-item__footer-stats-digit">{{ item.show_count }}</span>
         </span>
       </div>
-      <router-link :to="`/news/${item.id}`" class="news-item__footer-link">
-        <span>Читать полностью</span>
-        <span><IconArrow/></span>
+      <router-link :to="`/news/${item.id}`">
+        <ButtonComponent class="btn">Читать полностью</ButtonComponent>
       </router-link>
     </footer>
   </div>
@@ -44,6 +43,7 @@ import IconLike from "@/components/icons/IconLike.vue";
 import IconCalendar from "@/components/icons/IconCalendar.vue";
 import IconArrow from "@/components/icons/IconArrow.vue";
 import {NEWS_IMAGES_URL} from "@/constants";
+import ButtonComponent from "@/components/UI/ButtonComponent.vue";
 
 const props = defineProps({
   item: {
@@ -167,22 +167,17 @@ const props = defineProps({
   font-size: 13px;
 }
 
-.news-item__footer-link {
-  display: flex;
-  align-items: center;
-  column-gap: 16px;
-  background-color: var(--blue-light);
-  color: var(--white);
-  padding: 16px;
+.btn {
+  padding: 14px 30px;
+  font-size: 11px;
   -webkit-border-radius: 3px 0 3px 0;
   -moz-border-radius: 3px 0 3px 0;
   border-radius: 3px 0 3px 0;
-}
 
-.news-item__footer-link span {
-  font-weight: 700;
-  font-size: 13px;
-  display: flex;
+  @media (min-width: 1280px) {
+    padding: 15px 30px;
+    font-size: 13px;
+  }
 }
 
 .news-item__footer-item {

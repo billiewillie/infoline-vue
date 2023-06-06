@@ -21,12 +21,14 @@ import IconArrow from "@/components/icons/IconArrow.vue";
   position: relative;
   border: none;
   cursor: pointer;
+  padding: 14px;
 }
 
 span.text {
   color: var(--white);
   font-weight: 700;
   text-transform: uppercase;
+  flex: auto;
 }
 
 span.icon {

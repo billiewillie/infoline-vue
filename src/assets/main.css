@@ -57,6 +57,10 @@ input {
     background-color: var(--gray-light);
 }
 
+.title {
+    font-weight: 700;
+}
+
 .swiper {
     height: 100%;
 }
@@ -96,19 +100,23 @@ input {
 
 .custompage {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     height: 100vh;
     background: linear-gradient(180deg, #57E8DF 16.25%, #A557CA 88.31%);
+    padding: 10px;
 }
 
 .custom-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-self: center;
+    align-items: center;
+    row-gap: 20px;
     text-align: center;
     color: var(--white);
-    background-color: var(--blue-dark);
+    padding: 23px 37px;
+    max-width: 481px;
 }
 
 .light {
@@ -241,7 +249,7 @@ input {
         opacity: 1;
     }
     50% {
-        top: 0vh;
+        top: 0;
         opacity: .8;
     }
     75% {
@@ -262,7 +270,7 @@ input {
         opacity: 1;
     }
     50% {
-        top: 0vh;
+        top: 0;
         opacity: .8;
     }
     75% {
@@ -283,7 +291,7 @@ input {
         opacity: 1;
     }
     50% {
-        top: 0vh;
+        top: 0;
         opacity: .8;
     }
     75% {
@@ -304,7 +312,7 @@ input {
         opacity: 1;
     }
     50% {
-        top: 0vh;
+        top: 0;
         opacity: .8;
     }
     75% {
