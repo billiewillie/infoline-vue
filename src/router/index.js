@@ -100,6 +100,16 @@ const routes = [
         },
     },
     {
+        path: '/team/:id',
+        name: 'Team',
+        props: true,
+        components: {
+            default: () => import('@/pages/DepartmentPage.vue'),
+            Header: () => import('@/components/TheHeader.vue'),
+            Sidebar: () => import('@/components/TheSidebar.vue'),
+        },
+    },
+    {
         path: '/docs',
         components: {
             default: () => import('@/pages/DocsPage.vue'),

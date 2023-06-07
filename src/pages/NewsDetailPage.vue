@@ -1,5 +1,5 @@
 <template>
-  <div class="news-detail-page">
+  <div class="news-detail-page basepage">
     <div class="news-container rounded shadow">
       <div class="news-cover">
         <picture>
@@ -95,21 +95,12 @@ onMounted(() => {
 
 <style scoped>
 .news-detail-page {
-  padding: 56px 10px 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   row-gap: 10px;
   background-color: var(--gray-light);
-
-  @media (min-width: 1280px) {
-    padding: 66px 20px 10px;
-  }
-
-  @media (min-width: 1920px) {
-    padding: 90px 20px 10px 90px;
-  }
 }
 
 .news-detail-page .news-container {

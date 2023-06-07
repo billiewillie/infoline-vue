@@ -4,7 +4,12 @@
 
 <template>
   <div class="basepage">
-    <p>Newbie</p>
+    <div class="page-container">
+      <h1 class="title">Новичку</h1>
+      <div class="content">
+контент
+      </div>
+    </div>
   </div>
 </template>
 
