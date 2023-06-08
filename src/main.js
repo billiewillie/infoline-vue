@@ -1,6 +1,5 @@
 import {createApp} from 'vue'
 import {createPinia} from "pinia"
-import { setupCalendar } from 'v-calendar';
 import router from './router'
 import App from './App.vue'
 

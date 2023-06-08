@@ -1,55 +1,108 @@
 <template>
   <div class="basepage centered-page">
     <div class="page-container">
-      <h1 class="title">Отдел продаж</h1>
-      <div class="content">
-        <a href="/users/belinovich" class="card shadow rounded">
-          <div class="image overflow-hidden">
-            <picture>
-              <source srcset="http://users.trifonov.space/images/users/belinovich/1.webp" type="image/webp">
-              <img src="http://users.trifonov.space/images/users/belinovich/1.jpg" alt="Белинович">
-            </picture>
-          </div>
-          <p class="title name"><span class="surname">Белинович</span>Вадим Игоревич</p>
-          <p class="position">Заместитель генерального директора по маркетингу и продажам БиоСистемы</p>
-          <div class="contacts">
-            <div class="contacts-item">
+      <h1 class="title" v-if="users.title">{{ users.title }}</h1>
+      <section>
+        <div class="content">
+          <a href="/users/belinovich" class="card shadow rounded">
+            <div class="image overflow-hidden">
+              <picture>
+                <source srcset="http://users.trifonov.space/images/users/belinovich/1.webp" type="image/webp">
+                <img src="http://users.trifonov.space/images/users/belinovich/1.jpg" alt="Белинович">
+              </picture>
+            </div>
+            <p class="title name"><span class="surname">Белинович</span>Вадим Игоревич</p>
+            <p class="position">Заместитель генерального директора по маркетингу и продажам БиоСистемы</p>
+            <div class="contacts">
+              <div class="contacts-item">
               <span class="icon">
                 <IconPhoneBlue/>
               </span>
-              <span>Мест. телефон:</span>
-              <span>155</span>
-            </div>
-            <div class="contacts-item">
+                <span>Мест. телефон:</span>
+                <span>155</span>
+              </div>
+              <div class="contacts-item">
               <span class="icon">
                 <IconMobileBlue/>
               </span>
-              <span>Мобильный:</span>
-              <a>+7 (921) 222-22-22</a>
-              <span class="icon copy">
+                <span>Мобильный:</span>
+                <a>+7 (921) 222-22-22</a>
+                <span class="icon copy">
                 <IconCopy/>
               </span>
-            </div>
-            <div class="contacts-item">
+              </div>
+              <div class="contacts-item">
               <span class="icon">
                 <IconEmailBlue/>
               </span>
-              <span>E-mail:</span>
-              <a>lidzhi-goryaev@bioline.ru</a>
-              <span class="icon copy">
+                <span>E-mail:</span>
+                <a>lidzhi-goryaev@bioline.ru</a>
+                <span class="icon copy">
                 <IconCopy/>
               </span>
-            </div>
-            <div class="contacts-item">
+              </div>
+              <div class="contacts-item">
               <span class="icon">
                 <IconGiftBlue/>
               </span>
-              <span>День рождения:</span>
-              <span>27 мая</span>
+                <span>День рождения:</span>
+                <span>27 мая</span>
+              </div>
             </div>
-          </div>
-        </a>
-      </div>
+          </a>
+        </div>
+      </section>
+      <section v-for="item in users.groups" :key="item.id">
+        <h2 class="title group-title">{{ item.title }}</h2>
+        <div class="content">
+          <a :href="`/users/${user.login}`" class="card shadow rounded" v-for="user in item.users" :key="user.id">
+            <div class="image overflow-hidden">
+              <picture>
+                <source srcset="http://users.trifonov.space/images/users/belinovich/1.webp" type="image/webp">
+                <img src="http://users.trifonov.space/images/users/belinovich/1.jpg" alt="Белинович">
+              </picture>
+            </div>
+            <p class="title name"><span class="surname">{{ user.lastname }}</span>{{ user.firstname }} {{ user.middlename }}</p>
+            <p class="position">{{ user.position }}</p>
+            <div class="contacts">
+              <div class="contacts-item">
+              <span class="icon">
+                <IconPhoneBlue/>
+              </span>
+                <span>Мест. телефон:</span>
+                <span>{{ user.localphone }}</span>
+              </div>
+              <div class="contacts-item">
+              <span class="icon">
+                <IconMobileBlue/>
+              </span>
+                <span>Мобильный:</span>
+                <a :href="`tel:+${user.phone}`">+{{ user.phone }}</a>
+                <span class="icon copy">
+                <IconCopy/>
+              </span>
+              </div>
+              <div class="contacts-item">
+              <span class="icon">
+                <IconEmailBlue/>
+              </span>
+                <span>E-mail:</span>
+                <a>{{ user.email }}</a>
+                <span class="icon copy">
+                <IconCopy/>
+              </span>
+              </div>
+              <div class="contacts-item">
+              <span class="icon">
+                <IconGiftBlue/>
+              </span>
+                <span>День рождения:</span>
+                <span>{{ user.day }} {{ getMonthName(user.month) }}</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
     </div>
   </div>
 </template>
@@ -63,6 +116,7 @@ import IconPhoneBlue from "@/components/icons/IconPhoneBlue.vue";
 import IconMobileBlue from "@/components/icons/IconMobileBlue.vue";
 import IconEmailBlue from "@/components/icons/IconEmailBlue.vue";
 import IconGiftBlue from "@/components/icons/IconGiftBlue.vue";
+import {getMonthName} from "@/functions/getMonthName";
 
 const users = ref([]);
 
@@ -72,7 +126,7 @@ axios
       users.value = response.data;
     })
     .then(() => {
-      console.log(users);
+      console.log(users.value);
     })
     .catch((error) => {
       console.log(error);
@@ -92,6 +146,19 @@ axios
     justify-content: space-between;
     row-gap: 0;
     align-items: stretch;
+  }
+}
+
+.group-title {
+  font-size: 20px;
+  padding-bottom: 20px;
+  color: var(--gray-dark);
+  text-align: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--gray-medium);
+
+  @media (min-width: 1280px) {
+    font-size: 24px;
   }
 }
 
@@ -153,6 +220,10 @@ axios
 .contacts-item span {
   color: var(--white);
   font-size: 13px;
+
+  @media (min-width: 1280px) {
+    font-size: 14px;
+  }
 }
 
 .contacts-item span.icon.copy {
@@ -165,6 +236,10 @@ axios
 
 .contacts-item span:nth-child(2) {
   width: 110px;
+
+  @media (min-width: 1280px) {
+    width: 130px;
+  }
 }
 
 .contacts-item a {
@@ -172,6 +247,10 @@ axios
   text-decoration: underline;
   text-underline-offset: 3px;
   font-size: 13px;
+
+  @media (min-width: 1280px) {
+    font-size: 14px;
+  }
 }
 
 .name {
@@ -186,9 +265,10 @@ axios
     align-self: center;
     border-right: 1px solid var(--gray-medium);
     border-bottom: none;
-    padding-bottom: 0;
+    padding: 16px 10px 16px 20px;
     text-align: left;
-    width: 26%;
+    font-size: 22px;
+    width: 25%;
   }
 }
 
@@ -212,8 +292,19 @@ axios
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 26%;
+    width: 27%;
     text-align: left;
+    padding: 16px 20px;
   }
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
 }
 </style>
