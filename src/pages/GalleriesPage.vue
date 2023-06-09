@@ -1,19 +1,15 @@
 <template>
   <div class="basepage galleries-page">
     <h1 class="title">Фотогалерея</h1>
-    <nav class="years-nav">
-      <span>2023</span>
-      <span>2022</span>
-    </nav>
     <div class="galleries-grid">
-      <router-link :to="`/gallery/${gallery.url}`" class="gallery-item" v-for="gallery in galleries" :key="gallery.id">
+      <router-link :to="`/gallery/${gallery.url}`" class="gallery-item rounded shadow" v-for="gallery in galleries" :key="gallery.id">
         <div class="gallery-date">
           <span class="icon">
             <IconCalendar/>
           </span>
           <span class="date">{{ gallery.published_date }}</span>
         </div>
-        <div class="gallery-cover">
+        <div class="gallery-cover rounded overflow-hidden">
           <picture>
             <source
                 :srcset="`http://gallery.trifonov.space/upload/galleries/${gallery.id}/${gallery.gallery_cover}.webp`"
@@ -63,6 +59,7 @@ axios
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-flow: row;
+  gap: 20px;
 
   @media (min-width: 1280px) {
     grid-template-columns: repeat(3, 1fr);
@@ -135,11 +132,22 @@ axios
 
 .gallery-footer {
   display: flex;
+  position: relative;
   flex-direction: column;
   row-gap: 10px;
   width: 100%;
   padding: 17px;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.gallery-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 17px;
+  width: 52px;
+  height: 1px;
+  background-color: var(--blue-light);
 }
 
 .gallery-stats {

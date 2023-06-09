@@ -126,6 +126,16 @@ const routes = [
         },
     },
     {
+        path: '/instructions/:id',
+        name: 'Instruction',
+        props: true,
+        components: {
+            default: () => import('@/pages/InstructionDetailPage.vue'),
+            Header: () => import('@/components/TheHeader.vue'),
+            Sidebar: () => import('@/components/TheSidebar.vue'),
+        },
+    },
+    {
         path: '/orders',
         components: {
             default: () => import('@/pages/OrdersPage.vue'),
