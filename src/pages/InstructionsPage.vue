@@ -23,22 +23,28 @@
               :key="category.category"
               @click="activeCategory = category.category"
               v-if="activeDepartment === department.department"
+              :class="{active: activeCategory === category.category}"
           >
             {{ category.category }}
           </div>
         </div>
 
-        <div v-for="category in department.categoriesList" :key="category.category">
+        <div
+            v-for="category in department.categoriesList"
+            :key="category.category"
+            class="docs-container"
+            v-show="activeCategory === category.category"
+        >
           <div
-              class="tab"
+              class="docs-inner"
               v-for="(type, index) in category.typesList"
               :key="index"
               v-if="category.category === activeCategory"
           >
             <h2 class="title" v-if="type.title">{{ type.title }}</h2>
             <ul class="docs">
-              <li v-for="doc in type.docsList" :key="doc.title">
-                <router-link :to="`${doc.link}`">{{ doc.title }}</router-link>
+              <li v-for="doc in type.docsList" :key="doc.title" class="docs__item">
+                <router-link :to="`${doc.link}`" class="docs__link">{{ doc.title }}</router-link>
               </li>
             </ul>
           </div>
@@ -347,12 +353,43 @@ const getActiveDepartment = computed(() => {
 
 .inner-tabs {
   display: flex;
+  padding: 12px 0;
+  column-gap: 20px;
   justify-content: center;
   border-bottom: 1px solid var(--gray-medium);
 }
 
-.docs {
+.inner-tabs .tab.active {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 
+.docs-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  row-gap: 35px;
+}
+
+.content .title {
+  padding: 0 10px 20px;
+  border-bottom: 1px solid var(--gray-medium);
+}
+
+.docs {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  padding: 20px 10px 0 30px;
+  list-style: disc;
+}
+
+.docs__item::marker {
+  color: var(--blue-light);
+}
+
+.docs__link {
+  color: var(--black);
 }
 </style>
 
