@@ -57,6 +57,7 @@ const props = defineProps({
 .news-item {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   row-gap: 15px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;

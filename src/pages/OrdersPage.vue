@@ -4,7 +4,7 @@
 
 <template>
   <div class="basepage">
-    <p>Orders</p>
+    <h1 class="title">Заявки</h1>
   </div>
 </template>
 

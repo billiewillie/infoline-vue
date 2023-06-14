@@ -86,7 +86,7 @@ const routes = [
     {
         path: '/galleries/:id',
         components: {
-            default: () => import('@/pages/GalleriesPage.vue'),
+            default: () => import('@/pages/GalleryDetailPage.vue'),
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },

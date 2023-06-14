@@ -6,7 +6,7 @@
       </span>
       <span class="text">С Днем Рождения!</span>
       <div class="birthdays-footer">
-        <router-link to="/" class="birthdays-card-link shadow rounded">все</router-link>
+        <router-link to="/birthdays" class="birthdays-card-link shadow rounded">все</router-link>
       </div>
     </header>
     <ul class="birthdays-list">

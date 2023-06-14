@@ -353,7 +353,7 @@ const getActiveDepartment = computed(() => {
 
 .inner-tabs {
   display: flex;
-  padding: 12px 0;
+  padding: 12px 10px;
   column-gap: 20px;
   justify-content: center;
   border-bottom: 1px solid var(--gray-medium);
@@ -365,10 +365,19 @@ const getActiveDepartment = computed(() => {
 }
 
 .docs-container {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   padding: 20px 0;
-  row-gap: 35px;
+  gap: 35px;
+
+  @media (min-width: 1280px) {
+    gap: 48px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1920px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .content .title {
