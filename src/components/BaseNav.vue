@@ -23,10 +23,6 @@ const navList = ref([
   {
     title: 'Наша команда',
     path: '/team'
-  },
-  {
-    title: 'Login',
-    path: '/login'
   }
 ]);
 </script>

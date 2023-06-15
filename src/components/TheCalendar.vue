@@ -72,14 +72,23 @@ const attributes = ref([
   -webkit-border-radius: var(--radius);
   -moz-border-radius: var(--radius);
   border-radius: var(--radius);
-  min-height: 13px;
+  min-height: 31px;
+
+  @media (min-width: 1280px) {
+    min-height: auto;
+  }
+}
+
+.calendar .vc-day.is-today {
+  background-color: var(--white);
 }
 
 .calendar .vc-day-content {
-  height: auto;
-  line-height: 1;
+  line-height: 23px;
   font-size: 14px;
   font-weight: 400;
+  width: 23px;
+  height: 23px;
 }
 
 .calendar .vc-highlight {
@@ -129,14 +138,27 @@ const attributes = ref([
 }
 
 .calendar .vc-weekday {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 12px;
+  font-weight: 700;
   line-height: 13px;
-  font-weight: 500;
   padding: 0;
+  min-height: 31px;
+
+  @media (min-width: 1280px) {
+    min-height: auto;
+  }
 }
 
 .calendar .vc-highlight-bg-solid {
   background-color: var(--blue-light);
+}
+
+.calendar .vc-weekday.vc-weekday-7,
+.calendar .vc-weekday.vc-weekday-1 {
+  color: var(--orange);
 }
 
 </style>

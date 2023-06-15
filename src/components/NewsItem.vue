@@ -1,13 +1,13 @@
 <template>
-  <div class="news-item shadow">
+  <div class="news-item shadow rounded">
     <span class="news-item__date">
       <span class="icon"><IconCalendar/></span>
       <span class="text">{{ item.published_date }}</span>
     </span>
     <div class="news-item__image">
       <picture>
-        <source :srcset="`${NEWS_IMAGES_URL}/${item.id}/${item.preview_image}.webp`" type="image/webp">
-        <img :src="`${NEWS_IMAGES_URL}/${item.id}/${item.preview_image}.jpg`" alt="news" loading="lazy"/>
+        <source :srcset="`./src/assets/img/${item.preview_image}.webp`" type="image/webp">
+        <img :src="`./src/assets/img/${item.preview_image}.jpg`" alt="news" loading="lazy"/>
       </picture>
     </div>
     <div class="news-item__content">
@@ -59,9 +59,6 @@ const props = defineProps({
   flex-direction: column;
   justify-content: space-between;
   row-gap: 15px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
   background-color: var(--white);
 }
 
@@ -110,7 +107,7 @@ const props = defineProps({
   -webkit-border-radius: 3px 0 3px 0;
   -moz-border-radius: 3px 0 3px 0;
   border-radius: 3px 0 3px 0;
-  background-color: var(--purple);
+  background-color: var(--blue-dark);
 
   @media (min-width: 1920px) {
     padding: 7px 9px;
@@ -139,6 +136,7 @@ const props = defineProps({
 .news-item__date .text {
   font-weight: 600;
   font-size: 13px;
+  line-height: 1;
 
   @media (min-width: 1280px) {
     font-size: 10px;
@@ -157,7 +155,7 @@ const props = defineProps({
 
 .news-item__footer-stats {
   display: flex;
-  column-gap: 17px;
+  column-gap: 13px;
   padding: 0 17px;
 }
 
@@ -184,7 +182,7 @@ const props = defineProps({
 .news-item__footer-item {
   display: flex;
   align-items: center;
-  column-gap: 6px;
+  column-gap: 8px;
 }
 
 .news-item__footer-item .icon {
@@ -196,10 +194,11 @@ const props = defineProps({
   -moz-border-radius: 3px 3px 0 0;
   border-radius: 3px 3px 0 0;
   overflow: hidden;
-  height: 228px;
+  //min-height: 228px;
+  aspect-ratio: 185 / 114;
 
   @media (min-width: 1920px) {
-    height: 273px;
+    min-height: 273px;
   }
 }
 
