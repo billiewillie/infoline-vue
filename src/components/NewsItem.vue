@@ -197,14 +197,8 @@ const props = defineProps({
   //min-height: 228px;
   aspect-ratio: 185 / 114;
 
-  @media (min-width: 1920px) {
-    min-height: 273px;
+  @media (min-width: 1280px) {
+    aspect-ratio: 2 / 1;
   }
-}
-
-.news-item__image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 </style>

@@ -28,7 +28,6 @@ const attributes = ref([
 .calendar {
   overflow: hidden;
   height: 100%;
-
 }
 
 .calendar .vc-pane-header-wrapper {
@@ -87,19 +86,36 @@ const attributes = ref([
   line-height: 23px;
   font-size: 14px;
   font-weight: 400;
-  width: 23px;
   height: 23px;
+  aspect-ratio: 1 / 1;
+
+  @media (min-width: 1280px) {
+    height: auto;
+    aspect-ratio: initial;
+    font-size: 11px;
+    line-height: 1;
+  }
+
+  @media (min-width: 1920px) {
+    font-size: 14px;
+  }
 }
 
 .calendar .vc-highlight {
   height: 23px;
-  width: 23px;
+  aspect-ratio: 1 / 1;
+
+  @media (min-width: 1280px) {
+    height: 100%;
+    width: auto;
+  }
 }
 
 .calendar .vc-weeks {
   display: grid;
   row-gap: 4px;
-  height: calc(100% - 30px);
+  grid-template-rows: repeat(7, 1fr);
+  height: 100%;
 }
 
 .calendar .vc-week {
@@ -159,6 +175,12 @@ const attributes = ref([
 .calendar .vc-weekday.vc-weekday-7,
 .calendar .vc-weekday.vc-weekday-1 {
   color: var(--orange);
+}
+
+.calendar .vc-pane {
+  display: flex;
+  flex-direction: column;
+  flex: auto;
 }
 
 </style>

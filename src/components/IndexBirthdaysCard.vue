@@ -5,32 +5,25 @@
         <IconBirthday/>
       </span>
       <span class="text">С Днем Рождения!</span>
-      <div class="birthdays-footer">
-        <router-link to="/birthdays" class="birthdays-card-link shadow rounded">все</router-link>
-      </div>
+      <router-link to="/birthdays" class="birthdays-card-link shadow rounded">все</router-link>
     </header>
-    <ul class="birthdays-list">
-      <li class="birthdays-item rounded shadow overflow-hidden" v-for="item in birthdays" :key="item.id">
-        <router-link :to="{name: 'User', params: {id: 'belinovich'}}" class="birthdays-link">
-          <div class="birthdays-avatar overflow-hidden">
-            <picture>
-              <source
-                  type="image/webp"
-                  :srcset="`${USERS_IMAGES_URL}/${item.login}/${item.login}.webp`"
-              >
-              <img
-                  :src="`${USERS_IMAGES_URL}/${item.login}/${item.login}.jpg`"
-                  alt="birthday-avatar"
-              >
-            </picture>
-          </div>
-          <span class="birthdays-name">{{ item.firstname }}<br>{{ item.lastname }}</span>
-          <div class="birthdays-date">
-            <span class="name">{{ item.day }}</span> <span class="name">{{ getMonthName(item.month) }}</span>
-          </div>
-        </router-link>
-      </li>
-    </ul>
+    <div class="birthdays-list">
+      <router-link
+          :to="{name: 'User', params: {id: 'belinovich'}}"
+          class="birthdays-link rounded shadow overflow-hidden"
+          v-for="item in birthdays"
+          :key="item.id"
+      >
+        <div class="birthdays-avatar overflow-hidden">
+          <picture>
+            <source :srcset="`./src/assets/img/${item.login}.webp`" type="image/webp">
+            <img :src="`./src/assets/img/${item.login}.jpg`" alt="news" loading="lazy"/>
+          </picture>
+        </div>
+        <span class="birthdays-name">{{ item.lastname }} {{ item.firstname }}</span>
+        <div class="birthdays-date">{{ item.day }} {{ getMonthName(item.month) }}</div>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -40,15 +33,55 @@ import {onMounted, ref} from "vue";
 import {getMonthName} from "@/functions/getMonthName";
 import {USERS_API_URL, USERS_IMAGES_URL} from "@/constants";
 
-const birthdays = ref([]);
+const birthdays = ref([
+  {
 
-onMounted(() => {
-  fetch(`${USERS_API_URL}/upcoming-birthdays/4`)
-      .then(res => res.json())
-      .then(data => {
-        birthdays.value = data
-      })
-})
+    token: "uvB5Fnc0xm7eJsbR5U2VX8",
+    login: "index-news-img",
+    firstname: "Артем",
+    middlename: "Петрович",
+    lastname: "Ладжи-Горяев",
+    avatar: "index-news-img",
+    month: 8,
+    day: 23
+  },
+  {
+    token: "uvB5Fnc0xm7eJsbR5U2VX8",
+    login: "index-news-img",
+    firstname: "Артем",
+    middlename: "Петрович",
+    lastname: "Трифонов",
+    avatar: "index-news-img",
+    month: 8,
+    day: 23
+  },
+  {
+    token: "uvB5Fnc0xm7eJsbR5U2VX8",
+    login: "index-news-img",
+    firstname: "Артем",
+    middlename: "Петрович",
+    lastname: "Трифонов",
+    avatar: "index-news-img",
+    month: 8,
+    day: 23
+  },
+  {
+    token: "uvB5Fnc0xm7eJsbR5U2VX8",
+    login: "index-news-img",
+    firstname: "Артем",
+    middlename: "Петрович",
+    lastname: "Трифонов",
+    avatar: "index-news-img",
+    month: 8,
+    day: 23
+  },
+]);
+
+// onMounted(() => {
+//   fetch(`${USERS_API_URL}/upcoming-birthdays/4`).then(res => res.json()).then(data => {
+//     birthdays.value = data
+//   })
+// })
 </script>
 
 <style scoped>
@@ -56,23 +89,15 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 25px;
-
-  @media (min-width: 1280px) {
-    padding-bottom: 11px;
-    row-gap: 11px;
-  }
-
-  @media (min-width: 1920px) {
-    padding-bottom: 11px;
-    row-gap: 11px;
-  }
 }
 
 .birthdays-card-header {
+  position: relative;
+  display: flex;
+  justify-content: center;
   background-color: var(--blue-dark);
   color: var(--white);
-  column-gap: 10px;
+  column-gap: 8px;
   padding: 8px 0;
   width: 100%;
   text-align: center;
@@ -89,7 +114,7 @@ onMounted(() => {
     -moz-border-radius: 3px 3px 0 0;
     border-radius: 3px 3px 0 0;
     column-gap: 10px;
-    padding: 4px 11px 4px 5px;
+    padding: 10px 0;
   }
 
   @media (min-width: 1920px) {
@@ -99,11 +124,8 @@ onMounted(() => {
 }
 
 .birthdays-card-header .icon {
-  position: absolute;
   display: flex;
   align-items: center;
-  left: 8px;
-  top: 0;
   height: 100%;
 
   @media (min-width: 1280px) {
@@ -139,79 +161,64 @@ onMounted(() => {
   font-size: 15px;
 
   @media (min-width: 1280px) {
-    font-size: 10px;
-  }
-
-  @media (min-width: 1920px) {
     font-size: 13px;
   }
 }
 
 .birthdays-list {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  column-gap: 13px;
+  padding: 12px;
+  width: 100%;
+  row-gap: 16px;
 
   @media (min-width: 1280px) {
-    column-gap: 13px;
-  }
-
-  @media (min-width: 1920px) {
-    column-gap: 16px;
-    padding: 0 30px;
+    flex-direction: row;
+    column-gap: 12px;
+    padding: 12px;
+    flex: auto;
   }
 }
 
 .birthdays-link {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   align-items: center;
   justify-content: center;
-  row-gap: 11px;
-  padding-bottom: 11px;
+  width: 100%;
+  height: 90px;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr 1fr;
+
+  @media (min-width: 1280px) {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+  }
 }
 
 .birthdays-date {
-  font-size: 11px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--gray-dark);
-  -webkit-border-radius: 3px 3px 3px 0;
-  -moz-border-radius: 3px 3px 3px 0;
-  border-radius: 3px 3px 3px 0;
+  font-weight: 700;
 
   @media (min-width: 1280px) {
-    font-size: 9px;
+    font-size: 13px;
+    flex: auto;
   }
-
-  @media (min-width: 1920px) {
-    font-size: 11px;
-    min-width: 74px;
-  }
-}
-
-.birthdays-date span {
-  font-weight: 700;
 }
 
 .birthdays-avatar {
-  width: 60px;
-  height: 60px;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  grid-row-start: 1;
+  grid-row-end: 3;
 
   @media (min-width: 1280px) {
-    width: 100px;
-    height: 100px;
+    height: auto;
   }
-
-  @media (min-width: 1920px) {
-    width: 120px;
-    height: 120px;
-  }
-}
-
-.birthdays-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .birthdays-name {
@@ -226,9 +233,10 @@ onMounted(() => {
   width: 100%;
   justify-content: center;
   text-align: center;
+  align-items: center;
 
   @media (min-width: 1280px) {
-    font-size: 11px;
+    font-size: 10px;
   }
 
   @media (min-width: 1920px) {
@@ -237,17 +245,19 @@ onMounted(() => {
 }
 
 .birthdays-card-link {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  right: 12px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
   color: var(--white);
   text-decoration: underline;
-  text-underline-offset: 3px;
   font-weight: 500;
   font-size: 15px;
 
   @media (min-width: 1280px) {
-    font-size: 10px;
-  }
-
-  @media (min-width: 1920px) {
     font-size: 13px;
   }
 }

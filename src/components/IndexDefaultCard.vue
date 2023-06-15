@@ -49,6 +49,7 @@ function renderIcon(icon) {
   padding: 40px 30px;
   text-align: center;
   row-gap: 30px;
+  background-color: var(--white);
 
   @media (min-width: 1280px) {
     padding: 34px 0 50px 0;

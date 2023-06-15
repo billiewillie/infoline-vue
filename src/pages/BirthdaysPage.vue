@@ -187,8 +187,7 @@ import IconGift from "@/components/icons/IconGift.vue";
 }
 
 .card {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   grid-template-columns: 1fr;
   row-gap: 30px;
 

@@ -21,6 +21,7 @@ body {
 a {
     text-decoration: none;
     transition: 0.3s;
+    text-underline-offset: 3px;
 }
 
 ul {
