@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="content shadow rounded">
-      <template
+      <div
           v-for="department in departmentsList"
           :key="department.department"
       >
@@ -49,7 +49,7 @@
             </ul>
           </div>
         </div>
-      </template>
+      </div>
     </div>
   </div>
 </template>
@@ -57,12 +57,12 @@
 <script setup>
 import {computed, ref} from "vue";
 
-const activeDepartment = ref('IT отдел');
+const activeDepartment = ref('it-dep');
 const activeCategory = ref('1с');
 
 const departmentsList = ref([
   {
-    department: 'IT отдел',
+    department: 'it-dep',
     categoriesList: [
       {
         category: '1с',
@@ -293,7 +293,7 @@ const departmentsList = ref([
     ]
   },
   {
-    department: 'Госзакупки',
+    department: 'state-orders',
     categoriesList: [
       {
         category: 'Нововведения 2022',

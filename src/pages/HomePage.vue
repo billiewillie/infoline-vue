@@ -15,8 +15,8 @@
         </SwiperSlide>
       </Swiper>
     </div>
-    <SliderGallery/>
     <TheCalendar/>
+    <SliderGallery/>
     <IndexBirthdaysCard/>
     <IndexDefaultCard
         v-for="item in defaultCards"

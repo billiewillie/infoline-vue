@@ -2,7 +2,8 @@
   <div class="basepage galleries-page">
     <h1 class="title">Фотогалерея</h1>
     <div class="galleries-grid">
-      <router-link :to="`/galleries/${gallery.url}`" class="gallery-item rounded shadow" v-for="gallery in galleries" :key="gallery.id">
+      <router-link :to="`/galleries/${gallery.url}`" class="gallery-item rounded shadow" v-for="gallery in galleries"
+                   :key="gallery.id">
         <div class="gallery-date">
           <span class="icon">
             <IconCalendar/>
@@ -11,11 +12,8 @@
         </div>
         <div class="gallery-cover rounded overflow-hidden">
           <picture>
-            <source
-                :srcset="`http://gallery.trifonov.space/upload/galleries/${gallery.id}/${gallery.gallery_cover}.webp`"
-                type="image/webp">
-            <img :src="`http://gallery.trifonov.space/upload/galleries/${gallery.id}/${gallery.gallery_cover}.jpg`"
-                 :alt="gallery.title" loading="lazy">
+            <source :srcset="`./src/assets/img/${gallery.gallery_cover}.webp`" type="image/webp">
+            <img :src="`./src/assets/img/${gallery.gallery_cover}.jpg`" alt="news" loading="lazy"/>
           </picture>
         </div>
         <footer class="gallery-footer">
@@ -47,11 +45,100 @@ import axios from "axios";
 import IconCalendar from "@/components/icons/IconCalendar.vue";
 import IconView from "@/components/icons/IconView.vue";
 
-const galleries = ref([]);
+const galleries = ref([
+  {
+    "id": 1,
+    "title": "Новогодний квартирник",
+    "location": "Москва",
+    "url": "gallery-1",
+    "show_count": 123,
+    "published_date": "2023-05-12",
+    "gallery_cover": "index-news-img",
+    "count_img": 5
+  },
+  {
+    "id": 2,
+    "title": "Детский новогодний спектакль в театре Карлсон хаус",
+    "location": "Москва",
+    "url": "gallery-2",
+    "show_count": 7,
+    "published_date": "2023-05-20",
+    "gallery_cover": "index-news-img",
+    "count_img": 3
+  },
+  {
+    "id": 3,
+    "title": "Новогодний квартирник",
+    "location": "Спб",
+    "url": "gallery-3",
+    "show_count": 9,
+    "published_date": "2023-05-20",
+    "gallery_cover": "index-news-img",
+    "count_img": 3
+  },
+  {
+    "id": 4,
+    "title": "Test 4",
+    "location": "Спб",
+    "url": "gallery-4",
+    "show_count": 1,
+    "published_date": "2023-05-20",
+    "gallery_cover": "index-news-img",
+    "count_img": 3
+  },
+  {
+    "id": 5,
+    "title": "Test 5",
+    "location": "Москва",
+    "url": "gallery-5",
+    "show_count": 1,
+    "published_date": "2023-05-20",
+    "gallery_cover": "index-news-img",
+    "count_img": 2
+  },
+  {
+    "id": 6,
+    "title": "Новогодний квартирник",
+    "location": "Спб",
+    "url": "gallery-6",
+    "show_count": 23,
+    "published_date": "2023-05-20",
+    "gallery_cover": "index-news-img",
+    "count_img": 2
+  },
+  {
+    "id": 7,
+    "title": "Детский новогодний спектакль в театре Карлсон хаус",
+    "location": "Москва",
+    "url": "gallery-7",
+    "show_count": 3,
+    "published_date": "2023-05-20",
+    "gallery_cover": "index-news-img",
+    "count_img": 2
+  },
+  {
+    "id": 8,
+    "title": "Test 6",
+    "location": "Спб",
+    "url": "gallery-8",
+    "show_count": 5,
+    "published_date": "2023-05-20",
+    "gallery_cover": "index-news-img",
+    "count_img": 3
+  },
+  {
+    "id": 9,
+    "title": "Test 9",
+    "location": "Спб",
+    "url": "gallery-9",
+    "show_count": 6,
+    "published_date": "2023-05-20",
+    "gallery_cover": "index-news-img",
+    "count_img": 3
+  }
+]);
 
-axios
-    .get('http://gallery.trifonov.space/api/gallery/show/all')
-    .then(res => galleries.value = res.data);
+// axios.get('http://gallery.trifonov.space/api/gallery/show/all').then(res => galleries.value = res.data);
 </script>
 
 <style scoped>

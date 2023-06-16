@@ -26,51 +26,6 @@
         </div>
       </div>
     </div>
-    <div class="news-container news-container__comments rounded shadow">
-      <header class="comments-header">
-        <div class="comment-container">
-          <p>Комментарии</p>
-        </div>
-      </header>
-      <section class="comments-section">
-        <div class="comment-container">
-          <div class="comment">
-            <div class="avatar overflow-hidden">
-              <picture>
-                <source :srcset="`http://users.trifonov.space/images/users/belinovich/belinovich.webp`"
-                        type="image/webp">
-                <img :src="`http://users.trifonov.space/images/users/belinovich/belinovich.jpg`" :alt="post.title">
-              </picture>
-            </div>
-            <span class="name">Марина Лазарева</span>
-            <span class="date">11.12.1013</span>
-            <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, perferendis. Lorem
-              ipsum dolor sit amet, consectetur adipisicing elit. Molestias, perferendis.Lorem ipsum dolor sit amet,
-              consectetur adipisicing elit. Molestias, perferendis.Lorem ipsum dolor sit amet, consectetur adipisicing
-              elit. Molestias, perferendis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias,
-              perferendis.
-            </div>
-          </div>
-          <div class="comment comment-answer">
-            <div class="avatar overflow-hidden">
-              <picture>
-                <source :srcset="`http://users.trifonov.space/images/users/belinovich/belinovich.webp`"
-                        type="image/webp">
-                <img :src="`http://users.trifonov.space/images/users/belinovich/belinovich.jpg`" :alt="post.title">
-              </picture>
-            </div>
-            <span class="name">Марина Лазарева</span>
-            <span class="date">11.12.1013</span>
-            <div class="text"><span class="remain">@Марина Лазарева</span> Lorem ipsum dolor sit amet, consectetur
-              adipisicing elit. Molestias, perferendis. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Molestias, perferendis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias,
-              perferendis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, perferendis.Lorem ipsum
-              dolor sit amet, consectetur adipisicing elit. Molestias, perferendis.
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
   </div>
 </template>
 

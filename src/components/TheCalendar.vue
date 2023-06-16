@@ -90,7 +90,7 @@ const attributes = ref([
   aspect-ratio: 1 / 1;
 
   @media (min-width: 1280px) {
-    height: auto;
+    height: 100%;
     aspect-ratio: initial;
     font-size: 11px;
     line-height: 1;
@@ -141,12 +141,6 @@ const attributes = ref([
   -webkit-border-radius: 3px 0 0 3px;
   -moz-border-radius: 3px 0 0 3px;
   border-radius: 3px 0 0 3px;
-}
-
-.calendar .vc-focus:focus-within {
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
 }
 
 .calendar .vc-weekdays {

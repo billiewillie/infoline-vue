@@ -6,28 +6,24 @@
         <router-link to="/" class="card shadow rounded">
           <div class="image overflow-hidden">
             <picture>
-              <source srcset="http://users.trifonov.space/images/users/belinovich/1.webp" type="image/webp">
-              <img src="http://users.trifonov.space/images/users/belinovich/1.jpg" alt="Белинович">
+              <source :srcset="`./src/assets/img/lazareva.webp`" type="image/webp">
+              <img :src="`./src/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
             </picture>
           </div>
-          <div class="card-content">
-            <h2 class="name title"><span class="surname">Семенов</span> Александр Владимирович</h2>
-            <p class="position">Генеральный директор БиоЛайн</p>
-          </div>
+          <h2 class="name title"><span class="surname">Семенов</span> Александр Владимирович</h2>
+          <p class="position">Генеральный директор БиоЛайн</p>
         </router-link>
       </div>
       <div class="row">
         <router-link to="/" class="card shadow rounded">
           <div class="image overflow-hidden">
             <picture>
-              <source srcset="http://users.trifonov.space/images/users/belinovich/1.webp" type="image/webp">
-              <img src="http://users.trifonov.space/images/users/belinovich/1.jpg" alt="Белинович">
+              <source :srcset="`./src/assets/img/lazareva.webp`" type="image/webp">
+              <img :src="`./src/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
             </picture>
           </div>
-          <div class="card-content">
-            <h2 class="name title"><span class="surname">Дулаева</span> Оксана Евгеньевна</h2>
-            <p class="position">Заместитель генерального директора по маркетингу и продажам БиоСистемы</p>
-          </div>
+          <h2 class="name title"><span class="surname">Дулаева</span> Оксана Евгеньевна</h2>
+          <p class="position">Заместитель генерального директора по маркетингу и продажам БиоСистемы</p>
         </router-link>
         <div class="department-group">
           <router-link to="/" class="department rounded">Отдел по работе с клиентами БС</router-link>
@@ -39,14 +35,12 @@
         <router-link to="/" class="card shadow rounded">
           <div class="image overflow-hidden">
             <picture>
-              <source srcset="http://users.trifonov.space/images/users/belinovich/1.webp" type="image/webp">
-              <img src="http://users.trifonov.space/images/users/belinovich/1.jpg" alt="Белинович">
+              <source :srcset="`./src/assets/img/lazareva.webp`" type="image/webp">
+              <img :src="`./src/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
             </picture>
           </div>
-          <div class="card-content">
-            <h2 class="name title"><span class="surname">Дмитриева</span> Марина Олеговна</h2>
-            <p class="position">Директор по маркетингу и продажам общелабораторного оборудования</p>
-          </div>
+          <h2 class="name title"><span class="surname">Дмитриева</span> Марина Олеговна</h2>
+          <p class="position">Директор по маркетингу и продажам общелабораторного оборудования</p>
         </router-link>
         <div class="department-group">
           <router-link to="/" class="department rounded">Отдел общелабораторного оборудования</router-link>
@@ -59,14 +53,12 @@
         <router-link to="/" class="card shadow rounded">
           <div class="image overflow-hidden">
             <picture>
-              <source srcset="http://users.trifonov.space/images/users/belinovich/1.webp" type="image/webp">
-              <img src="http://users.trifonov.space/images/users/belinovich/1.jpg" alt="Белинович">
+              <source :srcset="`./src/assets/img/lazareva.webp`" type="image/webp">
+              <img :src="`./src/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
             </picture>
           </div>
-          <div class="card-content">
-            <h2 class="name title"><span class="surname">Солнцева</span> Ольга Станиславовна</h2>
-            <p class="position">Заместитель генерального директора по маркетингу и продажам БиоЛайна</p>
-          </div>
+          <h2 class="name title"><span class="surname">Солнцева</span> Ольга Станиславовна</h2>
+          <p class="position">Заместитель генерального директора по маркетингу и продажам БиоЛайна</p>
         </router-link>
         <div class="department-group">
           <router-link to="/" class="department rounded">Отдел по работе с клиентами БС</router-link>
@@ -81,28 +73,24 @@
         <router-link to="/" class="card shadow rounded">
           <div class="image overflow-hidden">
             <picture>
-              <source srcset="http://users.trifonov.space/images/users/belinovich/1.webp" type="image/webp">
-              <img src="http://users.trifonov.space/images/users/belinovich/1.jpg" alt="Белинович">
+              <source :srcset="`./src/assets/img/lazareva.webp`" type="image/webp">
+              <img :src="`./src/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
             </picture>
           </div>
-          <div class="card-content">
-            <h2 class="name title"><span class="surname">Евтеев</span> Андрей Владимирович</h2>
-            <p class="position">Директор по развитию продукции для научных исследований</p>
-          </div>
+          <h2 class="name title"><span class="surname">Евтеев</span> Андрей Владимирович</h2>
+          <p class="position">Директор по развитию продукции для научных исследований</p>
         </router-link>
       </div>
       <div class="row row-inner">
         <router-link to="/" class="card shadow rounded">
           <div class="image overflow-hidden">
             <picture>
-              <source srcset="http://users.trifonov.space/images/users/belinovich/1.webp" type="image/webp">
-              <img src="http://users.trifonov.space/images/users/belinovich/1.jpg" alt="Белинович">
+              <source :srcset="`./src/assets/img/lazareva.webp`" type="image/webp">
+              <img :src="`./src/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
             </picture>
           </div>
-          <div class="card-content">
-            <h2 class="name title"><span class="surname">Кислов</span> Павел Владимирович</h2>
-            <p class="position">Директор по маркетингу и продажам продукции для гистологии/цитологии</p>
-          </div>
+          <h2 class="name title"><span class="surname">Кислов</span> Павел Владимирович</h2>
+          <p class="position">Директор по маркетингу и продажам продукции для гистологии/цитологии</p>
         </router-link>
         <div class="department-group">
           <router-link to="/" class="department rounded">Отдел цитологии</router-link>
@@ -122,14 +110,12 @@
         <router-link to="/" class="card shadow rounded">
           <div class="image overflow-hidden">
             <picture>
-              <source srcset="http://users.trifonov.space/images/users/belinovich/1.webp" type="image/webp">
-              <img src="http://users.trifonov.space/images/users/belinovich/1.jpg" alt="Белинович">
+              <source :srcset="`./src/assets/img/lazareva.webp`" type="image/webp">
+              <img :src="`./src/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
             </picture>
           </div>
-          <div class="card-content">
-            <h2 class="name title"><span class="surname">Каюкова</span> Людмила Леонидовна</h2>
-            <p class="position">Заместитель генерального директора по сопровождению корпоративного бизнеса</p>
-          </div>
+          <h2 class="name title"><span class="surname">Каюкова</span> Людмила Леонидовна</h2>
+          <p class="position">Заместитель генерального директора по сопровождению корпоративного бизнеса</p>
         </router-link>
         <div class="department-group">
           <router-link to="/" class="department rounded">Отдел персонала</router-link>
@@ -141,8 +127,8 @@
         <router-link to="/" class="card shadow rounded">
           <div class="image overflow-hidden">
             <picture>
-              <source srcset="http://users.trifonov.space/images/users/belinovich/1.webp" type="image/webp">
-              <img src="http://users.trifonov.space/images/users/belinovich/1.jpg" alt="Белинович">
+              <source :srcset="`./src/assets/img/lazareva.webp`" type="image/webp">
+              <img :src="`./src/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
             </picture>
           </div>
           <div class="card-content">
@@ -159,8 +145,8 @@
         <router-link to="/" class="card shadow rounded">
           <div class="image overflow-hidden">
             <picture>
-              <source srcset="http://users.trifonov.space/images/users/belinovich/1.webp" type="image/webp">
-              <img src="http://users.trifonov.space/images/users/belinovich/1.jpg" alt="Белинович">
+              <source :srcset="`./src/assets/img/lazareva.webp`" type="image/webp">
+              <img :src="`./src/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
             </picture>
           </div>
           <div class="card-content">
@@ -179,14 +165,12 @@
         <router-link to="/" class="card shadow rounded">
           <div class="image overflow-hidden">
             <picture>
-              <source srcset="http://users.trifonov.space/images/users/belinovich/1.webp" type="image/webp">
-              <img src="http://users.trifonov.space/images/users/belinovich/1.jpg" alt="Белинович">
+              <source :srcset="`./src/assets/img/lazareva.webp`" type="image/webp">
+              <img :src="`./src/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
             </picture>
           </div>
-          <div class="card-content">
-            <h2 class="name title"><span class="surname">Гусева</span> Наталья Константиновна</h2>
-            <p class="position">Директор по правовым вопросам</p>
-          </div>
+          <h2 class="name title"><span class="surname">Гусева</span> Наталья Константиновна</h2>
+          <p class="position">Директор по правовым вопросам</p>
         </router-link>
         <div class="department-group">
           <router-link to="/" class="department rounded">Отдел регистрации медицинских изделий</router-link>
@@ -197,14 +181,12 @@
         <router-link to="/" class="card shadow rounded">
           <div class="image overflow-hidden">
             <picture>
-              <source srcset="http://users.trifonov.space/images/users/belinovich/1.webp" type="image/webp">
-              <img src="http://users.trifonov.space/images/users/belinovich/1.jpg" alt="Белинович">
+              <source :srcset="`./src/assets/img/lazareva.webp`" type="image/webp">
+              <img :src="`./src/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
             </picture>
           </div>
-          <div class="card-content">
-            <h2 class="name title"><span class="surname">Белинович</span> Вадим Игоревич</h2>
-            <p class="position">Заместитель генерального директора по маркетингу и продажам БиоСистемы</p>
-          </div>
+          <h2 class="name title"><span class="surname">Белинович</span> Вадим Игоревич</h2>
+          <p class="position">Заместитель генерального директора по маркетингу и продажам БиоСистемы</p>
         </router-link>
         <div class="department-group">
           <router-link to="/" class="department rounded">Отдел по работе с клиентами БС</router-link>
@@ -215,14 +197,12 @@
         <router-link to="/" class="card shadow rounded">
           <div class="image overflow-hidden">
             <picture>
-              <source srcset="http://users.trifonov.space/images/users/belinovich/1.webp" type="image/webp">
-              <img src="http://users.trifonov.space/images/users/belinovich/1.jpg" alt="Белинович">
+              <source :srcset="`./src/assets/img/lazareva.webp`" type="image/webp">
+              <img :src="`./src/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
             </picture>
           </div>
-          <div class="card-content">
-            <h2 class="name title"><span class="surname">Гвоздарев</span> Андрей Владимирович</h2>
-            <p class="position">Директор IT</p>
-          </div>
+          <h2 class="name title"><span class="surname">Гвоздарев</span> Андрей Владимирович</h2>
+          <p class="position">Директор IT</p>
         </router-link>
         <div class="department-group">
           <router-link to="/" class="department rounded">IT отдел</router-link>
@@ -232,14 +212,12 @@
         <router-link to="/" class="card shadow rounded">
           <div class="image overflow-hidden">
             <picture>
-              <source srcset="http://users.trifonov.space/images/users/belinovich/1.webp" type="image/webp">
-              <img src="http://users.trifonov.space/images/users/belinovich/1.jpg" alt="Белинович">
+              <source :srcset="`./src/assets/img/lazareva.webp`" type="image/webp">
+              <img :src="`./src/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
             </picture>
           </div>
-          <div class="card-content">
-            <h2 class="name title"><span class="surname">Заруцкий</span> Дмитрий Михайлович</h2>
-            <p class="position">Заместитель генерального директора по маркетингу и продажам БиоСистемы</p>
-          </div>
+          <h2 class="name title"><span class="surname">Заруцкий</span> Дмитрий Михайлович</h2>
+          <p class="position">Заместитель генерального директора по маркетингу и продажам БиоСистемы</p>
         </router-link>
         <div class="department-group">
           <router-link to="/" class="department rounded">Служба технического сервиса</router-link>
@@ -249,14 +227,12 @@
         <router-link to="/" class="card shadow rounded">
           <div class="image overflow-hidden">
             <picture>
-              <source srcset="http://users.trifonov.space/images/users/belinovich/1.webp" type="image/webp">
-              <img src="http://users.trifonov.space/images/users/belinovich/1.jpg" alt="Белинович">
+              <source :srcset="`./src/assets/img/lazareva.webp`" type="image/webp">
+              <img :src="`./src/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
             </picture>
           </div>
-          <div class="card-content">
-            <h2 class="name title"><span class="surname">Абрамов</span> Максим Николаевич</h2>
-            <p class="position">Финансовый директор</p>
-          </div>
+          <h2 class="name title"><span class="surname">Абрамов</span> Максим Николаевич</h2>
+          <p class="position">Финансовый директор</p>
         </router-link>
         <div class="department-group">
           <router-link to="/" class="department rounded">Экономический отдел</router-link>
@@ -277,14 +253,12 @@
         <router-link to="/" class="card shadow rounded">
           <div class="image overflow-hidden">
             <picture>
-              <source srcset="http://users.trifonov.space/images/users/belinovich/1.webp" type="image/webp">
-              <img src="http://users.trifonov.space/images/users/belinovich/1.jpg" alt="Белинович">
+              <source :srcset="`./src/assets/img/lazareva.webp`" type="image/webp">
+              <img :src="`./src/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
             </picture>
           </div>
-          <div class="card-content">
-            <h2 class="name title"><span class="surname">Семенов</span> Алексей Александрович</h2>
-            <p class="position">Генеральный директор БиоСистемы</p>
-          </div>
+          <h2 class="name title"><span class="surname">Семенов</span> Алексей Александрович</h2>
+          <p class="position">Генеральный директор БиоСистемы</p>
         </router-link>
         <div class="department-group">
           <router-link to="/" class="department rounded">ООО "БиоБеби"</router-link>
@@ -315,21 +289,10 @@
 <style scoped>
 .content {
   position: relative;
-  width: 1198px;
   justify-self: center;
   align-self: center;
   display: flex;
   flex-direction: column;
-}
-
-.content::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
 }
 
 .row {
@@ -370,7 +333,6 @@
     flex-direction: column;
   }
 }
-
 
 .row.row-head {
   justify-content: center;
@@ -426,9 +388,8 @@
 }
 
 .card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr;
   row-gap: 20px;
   background-color: var(--white);
   padding-bottom: 20px;
@@ -436,9 +397,12 @@
   transition: box-shadow 0.3s ease-in-out;
 
   @media (min-width: 1280px) {
-    flex-direction: row;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: repeat(2, 1fr);
     padding-bottom: 0;
+    padding-right: 30px;
     row-gap: 0;
+    column-gap: 30px;
     height: 180px;
   }
 
@@ -460,6 +424,8 @@
   border-radius: 3px 3px 0 0;
 
   @media (min-width: 1280px) {
+    grid-row-start: 1;
+    grid-row-end: 3;
     height: 100%;
     display: flex;
     width: 150px;
@@ -482,26 +448,8 @@
   object-position: top center;
 }
 
-.card-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  row-gap: 20px;
-  padding: 0 14px;
-
-  @media (min-width: 1280px) {
-    padding: 20px 30px;
-    width: 350px;
-    align-items: flex-start;
-  }
-
-  @media (min-width: 1920px) {
-    padding: 30px 60px;
-    width: 517px;
-  }
-}
-
 .card .name {
+  display: flex;
   color: var(--blue-dark);
   padding-bottom: 20px;
   font-size: 27px;
@@ -510,8 +458,11 @@
   width: 100%;
 
   @media (min-width: 1280px) {
+    justify-content: center;
+    flex-direction: column;
     text-align: left;
     font-size: 20px;
+    padding-bottom: 0;
   }
 
   @media (min-width: 1920px) {
@@ -530,11 +481,14 @@
 }
 
 .card .position {
+  display: flex;
   font-size: 18px;
   text-align: center;
   color: var(--gray-dark);
 
   @media (min-width: 1280px) {
+    flex-direction: column;
+    justify-content: center;
     text-align: left;
     font-size: 14px;
   }

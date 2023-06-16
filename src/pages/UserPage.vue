@@ -139,7 +139,6 @@ onMounted(() => {
         console.log(err);
       })
 })
-
 </script>
 
 <style scoped>
@@ -150,6 +149,7 @@ onMounted(() => {
   gap: 10px;
 
   @media (min-width: 1280px) {
+    height: 100vh;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, minmax(0, auto));
     gap: 16px;

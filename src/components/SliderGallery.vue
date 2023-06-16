@@ -9,9 +9,8 @@
     >
       <SwiperSlide v-for="item in gallery" :key="item.id">
         <picture>
-          <source :srcset="`${GALLERY_URL}/${item.id}/${item.src}.webp`"
-                  type="image/webp">
-          <img :src="`${GALLERY_URL}/${item.id}/${item.src}.jpg`" :alt="item.title">
+          <source :srcset="`./src/assets/img/${item.src}.webp`" type="image/webp">
+          <img :src="`./src/assets/img/${item.src}.jpg`" alt="news" loading="lazy"/>
         </picture>
       </SwiperSlide>
     </swiper>
@@ -28,16 +27,59 @@ import {onMounted, ref} from "vue";
 import axios from "axios";
 import {GALLERY_URL, INDEX_PAGE_GALLERY_URL} from "@/constants";
 
-const gallery = ref([]);
+const gallery = ref([
+  {
+    "id": 4,
+    "title": "Test 4",
+    "url": "gallery-4",
+    "src": "index-news-img"
+  },
+  {
+    "id": 1,
+    "title": "Test 4",
+    "url": "gallery-4",
+    "src": "index-news-img"
+  },
+  {
+    "id": 1,
+    "title": "Новогодний квартирник",
+    "url": "gallery-1",
+    "src": "index-news-img"
+  },
+  {
+    "id": 6,
+    "title": "Test 4",
+    "url": "gallery-4",
+    "src": "index-news-img"
+  },
+  {
+    "id": 2,
+    "title": "Test 4",
+    "url": "gallery-4",
+    "src": "index-news-img"
+  },
+  {
+    "id": 2,
+    "title": "Новогодний квартирник",
+    "url": "gallery-1",
+    "src": "index-news-img"
+  },
+  {
+    "id": 3,
+    "title": "Test 4",
+    "url": "gallery-4",
+    "src": "index-news-img"
+  }
+]);
 const modules = [Navigation];
 
-onMounted(() => {
-  axios
-      .get(INDEX_PAGE_GALLERY_URL)
-      .then(response => {
-        gallery.value = response.data;
-      })
-});
+// onMounted(() => {
+//   axios
+//       .get(INDEX_PAGE_GALLERY_URL)
+//       .then(response => {
+//         gallery.value = response.data;
+//       })
+// });
 </script>
 
 <style>
