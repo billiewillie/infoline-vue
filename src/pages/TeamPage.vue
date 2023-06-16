@@ -6,8 +6,8 @@
         <router-link to="/" class="card shadow rounded">
           <div class="image overflow-hidden">
             <picture>
-              <source :srcset="`./src/assets/img/lazareva.webp`" type="image/webp">
-              <img :src="`./src/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+              <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
+              <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
             </picture>
           </div>
           <h2 class="name title"><span class="surname">Семенов</span> Александр Владимирович</h2>
@@ -18,8 +18,8 @@
         <router-link to="/" class="card shadow rounded">
           <div class="image overflow-hidden">
             <picture>
-              <source :srcset="`./src/assets/img/lazareva.webp`" type="image/webp">
-              <img :src="`./src/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+              <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
+              <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
             </picture>
           </div>
           <h2 class="name title"><span class="surname">Дулаева</span> Оксана Евгеньевна</h2>
@@ -35,8 +35,8 @@
         <router-link to="/" class="card shadow rounded">
           <div class="image overflow-hidden">
             <picture>
-              <source :srcset="`./src/assets/img/lazareva.webp`" type="image/webp">
-              <img :src="`./src/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+              <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
+              <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
             </picture>
           </div>
           <h2 class="name title"><span class="surname">Дмитриева</span> Марина Олеговна</h2>
@@ -53,8 +53,8 @@
         <router-link to="/" class="card shadow rounded">
           <div class="image overflow-hidden">
             <picture>
-              <source :srcset="`./src/assets/img/lazareva.webp`" type="image/webp">
-              <img :src="`./src/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+              <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
+              <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
             </picture>
           </div>
           <h2 class="name title"><span class="surname">Солнцева</span> Ольга Станиславовна</h2>
@@ -73,8 +73,8 @@
         <router-link to="/" class="card shadow rounded">
           <div class="image overflow-hidden">
             <picture>
-              <source :srcset="`./src/assets/img/lazareva.webp`" type="image/webp">
-              <img :src="`./src/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+              <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
+              <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
             </picture>
           </div>
           <h2 class="name title"><span class="surname">Евтеев</span> Андрей Владимирович</h2>
@@ -85,8 +85,8 @@
         <router-link to="/" class="card shadow rounded">
           <div class="image overflow-hidden">
             <picture>
-              <source :srcset="`./src/assets/img/lazareva.webp`" type="image/webp">
-              <img :src="`./src/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+              <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
+              <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
             </picture>
           </div>
           <h2 class="name title"><span class="surname">Кислов</span> Павел Владимирович</h2>
@@ -110,8 +110,8 @@
         <router-link to="/" class="card shadow rounded">
           <div class="image overflow-hidden">
             <picture>
-              <source :srcset="`./src/assets/img/lazareva.webp`" type="image/webp">
-              <img :src="`./src/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+              <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
+              <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
             </picture>
           </div>
           <h2 class="name title"><span class="surname">Каюкова</span> Людмила Леонидовна</h2>
@@ -127,8 +127,8 @@
         <router-link to="/" class="card shadow rounded">
           <div class="image overflow-hidden">
             <picture>
-              <source :srcset="`./src/assets/img/lazareva.webp`" type="image/webp">
-              <img :src="`./src/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+              <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
+              <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
             </picture>
           </div>
           <div class="card-content">
@@ -145,8 +145,8 @@
         <router-link to="/" class="card shadow rounded">
           <div class="image overflow-hidden">
             <picture>
-              <source :srcset="`./src/assets/img/lazareva.webp`" type="image/webp">
-              <img :src="`./src/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+              <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
+              <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
             </picture>
           </div>
           <div class="card-content">
@@ -165,8 +165,8 @@
         <router-link to="/" class="card shadow rounded">
           <div class="image overflow-hidden">
             <picture>
-              <source :srcset="`./src/assets/img/lazareva.webp`" type="image/webp">
-              <img :src="`./src/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+              <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
+              <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
             </picture>
           </div>
           <h2 class="name title"><span class="surname">Гусева</span> Наталья Константиновна</h2>
@@ -181,8 +181,8 @@
         <router-link to="/" class="card shadow rounded">
           <div class="image overflow-hidden">
             <picture>
-              <source :srcset="`./src/assets/img/lazareva.webp`" type="image/webp">
-              <img :src="`./src/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+              <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
+              <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
             </picture>
           </div>
           <h2 class="name title"><span class="surname">Белинович</span> Вадим Игоревич</h2>
@@ -197,8 +197,8 @@
         <router-link to="/" class="card shadow rounded">
           <div class="image overflow-hidden">
             <picture>
-              <source :srcset="`./src/assets/img/lazareva.webp`" type="image/webp">
-              <img :src="`./src/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+              <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
+              <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
             </picture>
           </div>
           <h2 class="name title"><span class="surname">Гвоздарев</span> Андрей Владимирович</h2>
@@ -212,8 +212,8 @@
         <router-link to="/" class="card shadow rounded">
           <div class="image overflow-hidden">
             <picture>
-              <source :srcset="`./src/assets/img/lazareva.webp`" type="image/webp">
-              <img :src="`./src/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+              <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
+              <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
             </picture>
           </div>
           <h2 class="name title"><span class="surname">Заруцкий</span> Дмитрий Михайлович</h2>
@@ -227,8 +227,8 @@
         <router-link to="/" class="card shadow rounded">
           <div class="image overflow-hidden">
             <picture>
-              <source :srcset="`./src/assets/img/lazareva.webp`" type="image/webp">
-              <img :src="`./src/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+              <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
+              <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
             </picture>
           </div>
           <h2 class="name title"><span class="surname">Абрамов</span> Максим Николаевич</h2>
@@ -253,8 +253,8 @@
         <router-link to="/" class="card shadow rounded">
           <div class="image overflow-hidden">
             <picture>
-              <source :srcset="`./src/assets/img/lazareva.webp`" type="image/webp">
-              <img :src="`./src/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+              <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
+              <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
             </picture>
           </div>
           <h2 class="name title"><span class="surname">Семенов</span> Алексей Александрович</h2>

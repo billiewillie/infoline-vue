@@ -9,8 +9,8 @@
     >
       <SwiperSlide v-for="item in gallery" :key="item.id">
         <picture>
-          <source :srcset="`./src/assets/img/${item.src}.webp`" type="image/webp">
-          <img :src="`./src/assets/img/${item.src}.jpg`" alt="news" loading="lazy"/>
+          <source :srcset="`@/assets/img/${item.src}.webp`" type="image/webp">
+          <img :src="`@/assets/img/${item.src}.jpg`" alt="news" loading="lazy"/>
         </picture>
       </SwiperSlide>
     </swiper>

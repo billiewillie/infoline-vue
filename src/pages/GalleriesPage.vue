@@ -2,8 +2,12 @@
   <div class="basepage galleries-page">
     <h1 class="title">Фотогалерея</h1>
     <div class="galleries-grid">
-      <router-link :to="`/galleries/${gallery.url}`" class="gallery-item rounded shadow" v-for="gallery in galleries"
-                   :key="gallery.id">
+      <router-link
+          :to="`/galleries/${gallery.url}`"
+          class="gallery-item rounded shadow"
+          v-for="gallery in galleries"
+          :key="gallery.id"
+      >
         <div class="gallery-date">
           <span class="icon">
             <IconCalendar/>
@@ -12,8 +16,8 @@
         </div>
         <div class="gallery-cover rounded overflow-hidden">
           <picture>
-            <source :srcset="`./src/assets/img/${gallery.gallery_cover}.webp`" type="image/webp">
-            <img :src="`./src/assets/img/${gallery.gallery_cover}.jpg`" alt="news" loading="lazy"/>
+            <source :srcset="`@/assets/img/${gallery.gallery_cover}.webp`" type="image/webp">
+            <img :src="`@/assets/img/${gallery.gallery_cover}.jpg`" alt="news" loading="lazy"/>
           </picture>
         </div>
         <footer class="gallery-footer">

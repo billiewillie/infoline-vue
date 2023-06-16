@@ -6,8 +6,8 @@
     </span>
     <div class="news-item__image">
       <picture>
-        <source :srcset="`./src/assets/img/${item.preview_image}.webp`" type="image/webp">
-        <img :src="`./src/assets/img/${item.preview_image}.jpg`" alt="news" loading="lazy"/>
+        <source :srcset="`@/assets/img/${item.preview_image}.webp`" type="image/webp">
+        <img :src="`@/assets/img/${item.preview_image}.jpg`" alt="news" loading="lazy"/>
       </picture>
     </div>
     <div class="news-item__content">

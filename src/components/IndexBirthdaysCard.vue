@@ -16,8 +16,8 @@
       >
         <div class="birthdays-avatar overflow-hidden">
           <picture>
-            <source :srcset="`./src/assets/img/${item.login}.webp`" type="image/webp">
-            <img :src="`./src/assets/img/${item.login}.jpg`" alt="news" loading="lazy"/>
+            <source :srcset="`@/assets/img/${item.login}.webp`" type="image/webp">
+            <img :src="`@/assets/img/${item.login}.jpg`" alt="news" loading="lazy"/>
           </picture>
         </div>
         <span class="birthdays-name">{{ item.lastname }} {{ item.firstname }}</span>
