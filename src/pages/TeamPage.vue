@@ -1,290 +1,295 @@
 <template>
-  <div class="basepage">
-    <h1 class="title">Наша команда</h1>
-    <div class="content">
-      <div class="row row-head">
-        <router-link to="/" class="card shadow rounded">
-          <div class="image overflow-hidden">
-            <picture>
-              <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
-              <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
-            </picture>
-          </div>
-          <h2 class="name title"><span class="surname">Семенов</span> Александр Владимирович</h2>
-          <p class="position">Генеральный директор БиоЛайн</p>
-        </router-link>
-      </div>
-      <div class="row">
-        <router-link to="/" class="card shadow rounded">
-          <div class="image overflow-hidden">
-            <picture>
-              <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
-              <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
-            </picture>
-          </div>
-          <h2 class="name title"><span class="surname">Дулаева</span> Оксана Евгеньевна</h2>
-          <p class="position">Заместитель генерального директора по маркетингу и продажам БиоСистемы</p>
-        </router-link>
-        <div class="department-group">
-          <router-link to="/" class="department rounded">Отдел по работе с клиентами БС</router-link>
-          <router-link to="/" class="department rounded">Отдел госпитального оборудования и мебели</router-link>
-          <router-link to="/" class="department rounded">Отдел продукции для материнства и детcтва</router-link>
-        </div>
-      </div>
-      <div class="row">
-        <router-link to="/" class="card shadow rounded">
-          <div class="image overflow-hidden">
-            <picture>
-              <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
-              <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
-            </picture>
-          </div>
-          <h2 class="name title"><span class="surname">Дмитриева</span> Марина Олеговна</h2>
-          <p class="position">Директор по маркетингу и продажам общелабораторного оборудования</p>
-        </router-link>
-        <div class="department-group">
-          <router-link to="/" class="department rounded">Отдел общелабораторного оборудования</router-link>
-          <router-link to="/" class="department rounded">Отдел лабораторной мебели</router-link>
-          <router-link to="/" class="department rounded">Отдел преаналитических систем и расходных материалов
+  <div class="basepage centered-page">
+    <div class="page-container">
+      <h1 class="title">Наша команда</h1>
+      <div class="content">
+        <div class="row row-head">
+          <router-link to="/" class="card shadow rounded">
+            <div class="image overflow-hidden">
+              <picture>
+                <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
+                <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+              </picture>
+            </div>
+            <h2 class="name title"><span class="surname">Семенов</span> Александр Владимирович</h2>
+            <p class="position">Генеральный директор БиоЛайн</p>
           </router-link>
         </div>
-      </div>
-      <div class="row">
-        <router-link to="/" class="card shadow rounded">
-          <div class="image overflow-hidden">
-            <picture>
-              <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
-              <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
-            </picture>
+        <div class="row">
+          <router-link to="/" class="card shadow rounded">
+            <div class="image overflow-hidden">
+              <picture>
+                <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
+                <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+              </picture>
+            </div>
+            <h2 class="name title"><span class="surname">Дулаева</span> Оксана Евгеньевна</h2>
+            <p class="position">Заместитель генерального директора по маркетингу и продажам БиоСистемы</p>
+          </router-link>
+          <div class="department-group">
+            <router-link to="/" class="department rounded">Отдел по работе с клиентами БС</router-link>
+            <router-link to="/" class="department rounded">Отдел госпитального оборудования и мебели</router-link>
+            <router-link to="/" class="department rounded">Отдел продукции для материнства и детcтва</router-link>
           </div>
-          <h2 class="name title"><span class="surname">Солнцева</span> Ольга Станиславовна</h2>
-          <p class="position">Заместитель генерального директора по маркетингу и продажам БиоЛайна</p>
-        </router-link>
-        <div class="department-group">
-          <router-link to="/" class="department rounded">Отдел по работе с клиентами БС</router-link>
-          <router-link to="/" class="department rounded">Отдел госпитального оборудования и мебели</router-link>
-          <router-link to="/" class="department rounded">Отдел продукции для материнства и детcтва</router-link>
-          <router-link to="/" class="department rounded">
-            Отдел оптической микроскопии, анализа изображений и спектрометрии в научных исследованиях
+        </div>
+        <div class="row">
+          <router-link to="/" class="card shadow rounded">
+            <div class="image overflow-hidden">
+              <picture>
+                <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
+                <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+              </picture>
+            </div>
+            <h2 class="name title"><span class="surname">Дмитриева</span> Марина Олеговна</h2>
+            <p class="position">Директор по маркетингу и продажам общелабораторного оборудования</p>
+          </router-link>
+          <div class="department-group">
+            <router-link to="/" class="department rounded">Отдел общелабораторного оборудования</router-link>
+            <router-link to="/" class="department rounded">Отдел лабораторной мебели</router-link>
+            <router-link to="/" class="department rounded">Отдел преаналитических систем и расходных материалов
+            </router-link>
+          </div>
+        </div>
+        <div class="row">
+          <router-link to="/" class="card shadow rounded">
+            <div class="image overflow-hidden">
+              <picture>
+                <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
+                <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+              </picture>
+            </div>
+            <h2 class="name title"><span class="surname">Солнцева</span> Ольга Станиславовна</h2>
+            <p class="position">Заместитель генерального директора по маркетингу и продажам БиоЛайна</p>
+          </router-link>
+          <div class="department-group">
+            <router-link to="/" class="department rounded">Отдел по работе с клиентами БС</router-link>
+            <router-link to="/" class="department rounded">Отдел госпитального оборудования и мебели</router-link>
+            <router-link to="/" class="department rounded">Отдел продукции для материнства и детcтва</router-link>
+            <router-link to="/" class="department rounded">
+              Отдел оптической микроскопии, анализа изображений и спектрометрии в научных исследованиях
+            </router-link>
+          </div>
+        </div>
+        <div class="row row-inner">
+          <router-link to="/" class="card shadow rounded">
+            <div class="image overflow-hidden">
+              <picture>
+                <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
+                <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+              </picture>
+            </div>
+            <h2 class="name title"><span class="surname">Евтеев</span> Андрей Владимирович</h2>
+            <p class="position">Директор по развитию продукции для научных исследований</p>
           </router-link>
         </div>
-      </div>
-      <div class="row row-inner">
-        <router-link to="/" class="card shadow rounded">
-          <div class="image overflow-hidden">
-            <picture>
-              <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
-              <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
-            </picture>
-          </div>
-          <h2 class="name title"><span class="surname">Евтеев</span> Андрей Владимирович</h2>
-          <p class="position">Директор по развитию продукции для научных исследований</p>
-        </router-link>
-      </div>
-      <div class="row row-inner">
-        <router-link to="/" class="card shadow rounded">
-          <div class="image overflow-hidden">
-            <picture>
-              <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
-              <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
-            </picture>
-          </div>
-          <h2 class="name title"><span class="surname">Кислов</span> Павел Владимирович</h2>
-          <p class="position">Директор по маркетингу и продажам продукции для гистологии/цитологии</p>
-        </router-link>
-        <div class="department-group">
-          <router-link to="/" class="department rounded">Отдел цитологии</router-link>
-          <router-link to="/" class="department rounded">Отдел оборудования для клинической микроскопии и цифровой
-            патологии
+        <div class="row row-inner">
+          <router-link to="/" class="card shadow rounded">
+            <div class="image overflow-hidden">
+              <picture>
+                <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
+                <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+              </picture>
+            </div>
+            <h2 class="name title"><span class="surname">Кислов</span> Павел Владимирович</h2>
+            <p class="position">Директор по маркетингу и продажам продукции для гистологии/цитологии</p>
           </router-link>
-          <router-link to="/" class="department rounded">Отдел молекурярной диагностики в патоморфологии</router-link>
-          <router-link to="/" class="department rounded">Отдел иммуногистохимии</router-link>
-          <router-link to="/" class="department rounded">Отдел гистологии</router-link>
-          <router-link to="/" class="department rounded">Отдел продаж гистологических/цитологических расходных
-            материалов,
-            реагентов и оборудования
+          <div class="department-group">
+            <router-link to="/" class="department rounded">Отдел цитологии</router-link>
+            <router-link to="/" class="department rounded">Отдел оборудования для клинической микроскопии и цифровой
+              патологии
+            </router-link>
+            <router-link to="/" class="department rounded">Отдел молекурярной диагностики в патоморфологии</router-link>
+            <router-link to="/" class="department rounded">Отдел иммуногистохимии</router-link>
+            <router-link to="/" class="department rounded">Отдел гистологии</router-link>
+            <router-link to="/" class="department rounded">Отдел продаж гистологических/цитологических расходных
+              материалов,
+              реагентов и оборудования
+            </router-link>
+          </div>
+        </div>
+        <div class="row">
+          <router-link to="/" class="card shadow rounded">
+            <div class="image overflow-hidden">
+              <picture>
+                <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
+                <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+              </picture>
+            </div>
+            <h2 class="name title"><span class="surname">Каюкова</span> Людмила Леонидовна</h2>
+            <p class="position">Заместитель генерального директора по сопровождению корпоративного бизнеса</p>
           </router-link>
-        </div>
-      </div>
-      <div class="row">
-        <router-link to="/" class="card shadow rounded">
-          <div class="image overflow-hidden">
-            <picture>
-              <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
-              <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
-            </picture>
+          <div class="department-group">
+            <router-link to="/" class="department rounded">Отдел персонала</router-link>
+            <router-link to="/" class="department rounded">Отдел рекламы</router-link>
+            <router-link to="/" class="department rounded">Тендерный отдел</router-link>
           </div>
-          <h2 class="name title"><span class="surname">Каюкова</span> Людмила Леонидовна</h2>
-          <p class="position">Заместитель генерального директора по сопровождению корпоративного бизнеса</p>
-        </router-link>
-        <div class="department-group">
-          <router-link to="/" class="department rounded">Отдел персонала</router-link>
-          <router-link to="/" class="department rounded">Отдел рекламы</router-link>
-          <router-link to="/" class="department rounded">Тендерный отдел</router-link>
         </div>
-      </div>
-      <div class="row">
-        <router-link to="/" class="card shadow rounded">
-          <div class="image overflow-hidden">
-            <picture>
-              <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
-              <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
-            </picture>
+        <div class="row">
+          <router-link to="/" class="card shadow rounded">
+            <div class="image overflow-hidden">
+              <picture>
+                <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
+                <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+              </picture>
+            </div>
+            <div class="card-content">
+              <h2 class="name title"><span class="surname">Коденюк</span> Владимир Анатольевич</h2>
+              <p class="position">Директор по административно-хозяйственным вопросам</p>
+            </div>
+          </router-link>
+          <div class="department-group">
+            <router-link to="/" class="department rounded">Автохозяйство</router-link>
+            <router-link to="/" class="department rounded">Секретариат</router-link>
           </div>
-          <div class="card-content">
-            <h2 class="name title"><span class="surname">Коденюк</span> Владимир Анатольевич</h2>
-            <p class="position">Директор по административно-хозяйственным вопросам</p>
+        </div>
+        <div class="row">
+          <router-link to="/" class="card shadow rounded">
+            <div class="image overflow-hidden">
+              <picture>
+                <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
+                <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+              </picture>
+            </div>
+            <div class="card-content">
+              <h2 class="name title"><span class="surname">Шубаев</span> Павел Андреевич</h2>
+              <p class="position">Директор по логистике</p>
+            </div>
+          </router-link>
+          <div class="department-group">
+            <router-link to="/" class="department rounded">Склад</router-link>
+            <router-link to="/" class="department rounded">Отдел логистики</router-link>
+            <router-link to="/" class="department rounded">Отдел импорта</router-link>
+            <router-link to="/" class="department rounded">Отдел закупок</router-link>
           </div>
-        </router-link>
-        <div class="department-group">
-          <router-link to="/" class="department rounded">Автохозяйство</router-link>
-          <router-link to="/" class="department rounded">Секретариат</router-link>
         </div>
-      </div>
-      <div class="row">
-        <router-link to="/" class="card shadow rounded">
-          <div class="image overflow-hidden">
-            <picture>
-              <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
-              <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
-            </picture>
+        <div class="row">
+          <router-link to="/" class="card shadow rounded">
+            <div class="image overflow-hidden">
+              <picture>
+                <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
+                <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+              </picture>
+            </div>
+            <h2 class="name title"><span class="surname">Гусева</span> Наталья Константиновна</h2>
+            <p class="position">Директор по правовым вопросам</p>
+          </router-link>
+          <div class="department-group">
+            <router-link to="/" class="department rounded">Отдел регистрации медицинских изделий</router-link>
+            <router-link to="/" class="department rounded">Юридический отдел</router-link>
           </div>
-          <div class="card-content">
-            <h2 class="name title"><span class="surname">Шубаев</span> Павел Андреевич</h2>
-            <p class="position">Директор по логистике</p>
+        </div>
+        <div class="row">
+          <router-link to="/" class="card shadow rounded">
+            <div class="image overflow-hidden">
+              <picture>
+                <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
+                <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+              </picture>
+            </div>
+            <h2 class="name title"><span class="surname">Белинович</span> Вадим Игоревич</h2>
+            <p class="position">Заместитель генерального директора по маркетингу и продажам БиоСистемы</p>
+          </router-link>
+          <div class="department-group">
+            <router-link to="/" class="department rounded">Отдел по работе с клиентами БС</router-link>
+            <router-link to="/" class="department rounded">Отдел госпитального оборудования и мебели</router-link>
           </div>
-        </router-link>
-        <div class="department-group">
-          <router-link to="/" class="department rounded">Склад</router-link>
-          <router-link to="/" class="department rounded">Отдел логистики</router-link>
-          <router-link to="/" class="department rounded">Отдел импорта</router-link>
-          <router-link to="/" class="department rounded">Отдел закупок</router-link>
         </div>
-      </div>
-      <div class="row">
-        <router-link to="/" class="card shadow rounded">
-          <div class="image overflow-hidden">
-            <picture>
-              <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
-              <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
-            </picture>
+        <div class="row">
+          <router-link to="/" class="card shadow rounded">
+            <div class="image overflow-hidden">
+              <picture>
+                <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
+                <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+              </picture>
+            </div>
+            <h2 class="name title"><span class="surname">Гвоздарев</span> Андрей Владимирович</h2>
+            <p class="position">Директор IT</p>
+          </router-link>
+          <div class="department-group">
+            <router-link to="/" class="department rounded">IT отдел</router-link>
           </div>
-          <h2 class="name title"><span class="surname">Гусева</span> Наталья Константиновна</h2>
-          <p class="position">Директор по правовым вопросам</p>
-        </router-link>
-        <div class="department-group">
-          <router-link to="/" class="department rounded">Отдел регистрации медицинских изделий</router-link>
-          <router-link to="/" class="department rounded">Юридический отдел</router-link>
         </div>
-      </div>
-      <div class="row">
-        <router-link to="/" class="card shadow rounded">
-          <div class="image overflow-hidden">
-            <picture>
-              <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
-              <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
-            </picture>
+        <div class="row">
+          <router-link to="/" class="card shadow rounded">
+            <div class="image overflow-hidden">
+              <picture>
+                <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
+                <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+              </picture>
+            </div>
+            <h2 class="name title"><span class="surname">Заруцкий</span> Дмитрий Михайлович</h2>
+            <p class="position">Заместитель генерального директора по маркетингу и продажам БиоСистемы</p>
+          </router-link>
+          <div class="department-group">
+            <router-link to="/" class="department rounded">Служба технического сервиса</router-link>
           </div>
-          <h2 class="name title"><span class="surname">Белинович</span> Вадим Игоревич</h2>
-          <p class="position">Заместитель генерального директора по маркетингу и продажам БиоСистемы</p>
-        </router-link>
-        <div class="department-group">
-          <router-link to="/" class="department rounded">Отдел по работе с клиентами БС</router-link>
-          <router-link to="/" class="department rounded">Отдел госпитального оборудования и мебели</router-link>
         </div>
-      </div>
-      <div class="row">
-        <router-link to="/" class="card shadow rounded">
-          <div class="image overflow-hidden">
-            <picture>
-              <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
-              <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
-            </picture>
+        <div class="row">
+          <router-link to="/" class="card shadow rounded">
+            <div class="image overflow-hidden">
+              <picture>
+                <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
+                <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+              </picture>
+            </div>
+            <h2 class="name title"><span class="surname">Абрамов</span> Максим Николаевич</h2>
+            <p class="position">Финансовый директор</p>
+          </router-link>
+          <div class="department-group">
+            <router-link to="/" class="department rounded">Экономический отдел</router-link>
+            <router-link to="/" class="department rounded">Финансовый отдел</router-link>
           </div>
-          <h2 class="name title"><span class="surname">Гвоздарев</span> Андрей Владимирович</h2>
-          <p class="position">Директор IT</p>
-        </router-link>
-        <div class="department-group">
-          <router-link to="/" class="department rounded">IT отдел</router-link>
         </div>
-      </div>
-      <div class="row">
-        <router-link to="/" class="card shadow rounded">
-          <div class="image overflow-hidden">
-            <picture>
-              <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
-              <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
-            </picture>
+        <div class="row row-only-department">
+          <div class="department-group">
+            <router-link to="/" class="department rounded">Отдел комплексных проектов и поставок</router-link>
           </div>
-          <h2 class="name title"><span class="surname">Заруцкий</span> Дмитрий Михайлович</h2>
-          <p class="position">Заместитель генерального директора по маркетингу и продажам БиоСистемы</p>
-        </router-link>
-        <div class="department-group">
-          <router-link to="/" class="department rounded">Служба технического сервиса</router-link>
         </div>
-      </div>
-      <div class="row">
-        <router-link to="/" class="card shadow rounded">
-          <div class="image overflow-hidden">
-            <picture>
-              <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
-              <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
-            </picture>
+        <div class="row row-only-department">
+          <div class="department-group">
+            <router-link to="/" class="department rounded">Бухгалтерия</router-link>
           </div>
-          <h2 class="name title"><span class="surname">Абрамов</span> Максим Николаевич</h2>
-          <p class="position">Финансовый директор</p>
-        </router-link>
-        <div class="department-group">
-          <router-link to="/" class="department rounded">Экономический отдел</router-link>
-          <router-link to="/" class="department rounded">Финансовый отдел</router-link>
         </div>
-      </div>
-      <div class="row row-only-department">
-        <div class="department-group">
-          <router-link to="/" class="department rounded">Отдел комплексных проектов и поставок</router-link>
-        </div>
-      </div>
-      <div class="row row-only-department">
-        <div class="department-group">
-          <router-link to="/" class="department rounded">Бухгалтерия</router-link>
-        </div>
-      </div>
-      <div class="row row-special">
-        <router-link to="/" class="card shadow rounded">
-          <div class="image overflow-hidden">
-            <picture>
-              <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
-              <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
-            </picture>
+        <div class="row row-special">
+          <router-link to="/" class="card shadow rounded">
+            <div class="image overflow-hidden">
+              <picture>
+                <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
+                <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+              </picture>
+            </div>
+            <h2 class="name title"><span class="surname">Семенов</span> Алексей Александрович</h2>
+            <p class="position">Генеральный директор БиоСистемы</p>
+          </router-link>
+          <div class="department-group">
+            <router-link to="/" class="department rounded">ООО "БиоБеби"</router-link>
+            <router-link to="/" class="department rounded">Филиал г. Нижний Новгород</router-link>
+            <router-link to="/" class="department rounded">Филиал г. Москва</router-link>
+            <router-link to="/" class="department rounded">Филиал г. Новосибирск</router-link>
+            <router-link to="/" class="department rounded">Филиал г. Ростов-на-Дону</router-link>
+            <router-link to="/" class="department rounded">Филиал г. Казань</router-link>
+            <router-link to="/" class="department rounded">Филиал г. Краснодар</router-link>
+            <router-link to="/" class="department rounded">Филиал г. Уфа</router-link>
+            <router-link to="/" class="department rounded">Филиал г. Хабаровск</router-link>
+            <router-link to="/" class="department rounded">Филиал г. Самара</router-link>
+            <router-link to="/" class="department rounded">Филиал г. ТОО «БиоЛайн-Казахстан»</router-link>
+            <router-link to="/" class="department rounded">Филиал г. Екатеринбург</router-link>
+            <router-link to="/" class="department rounded">БиоЛайн-БС (Республика Беларусь)</router-link>
+            <router-link to="/" class="department rounded">ООО "BLUBIOMEDICAL"</router-link>
           </div>
-          <h2 class="name title"><span class="surname">Семенов</span> Алексей Александрович</h2>
-          <p class="position">Генеральный директор БиоСистемы</p>
-        </router-link>
-        <div class="department-group">
-          <router-link to="/" class="department rounded">ООО "БиоБеби"</router-link>
-          <router-link to="/" class="department rounded">Филиал г. Нижний Новгород</router-link>
-          <router-link to="/" class="department rounded">Филиал г. Москва</router-link>
-          <router-link to="/" class="department rounded">Филиал г. Новосибирск</router-link>
-          <router-link to="/" class="department rounded">Филиал г. Ростов-на-Дону</router-link>
-          <router-link to="/" class="department rounded">Филиал г. Казань</router-link>
-          <router-link to="/" class="department rounded">Филиал г. Краснодар</router-link>
-          <router-link to="/" class="department rounded">Филиал г. Уфа</router-link>
-          <router-link to="/" class="department rounded">Филиал г. Хабаровск</router-link>
-          <router-link to="/" class="department rounded">Филиал г. Самара</router-link>
-          <router-link to="/" class="department rounded">Филиал г. ТОО «БиоЛайн-Казахстан»</router-link>
-          <router-link to="/" class="department rounded">Филиал г. Екатеринбург</router-link>
-          <router-link to="/" class="department rounded">БиоЛайн-БС (Республика Беларусь)</router-link>
-          <router-link to="/" class="department rounded">ООО "BLUBIOMEDICAL"</router-link>
         </div>
-      </div>
-      <div class="row row-only-department">
-        <div class="department-group">
-          <router-link to="/" class="department rounded">ООО «БИОМЕБЕЛЬ»</router-link>
+        <div class="row row-only-department">
+          <div class="department-group">
+            <router-link to="/" class="department rounded">ООО «БИОМЕБЕЛЬ»</router-link>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script setup>
+</script>
 
 <style scoped>
 .content {

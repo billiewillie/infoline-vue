@@ -115,7 +115,7 @@ const birthdays = ref([
 		-moz-border-radius: 3px 3px 0 0;
 		border-radius: 3px 3px 0 0;
 		column-gap: 10px;
-		padding: 10px 0;
+		padding: 5px 0;
 	}
 
 	@media (min-width: 1920px) {
@@ -177,9 +177,13 @@ const birthdays = ref([
 	@media (min-width: 1280px) {
 		flex-direction: row;
 		column-gap: 12px;
-		padding: 12px;
+		padding: 6px;
 		flex: auto;
 	}
+
+  @media (min-width: 1920px) {
+    padding: 12px;
+  }
 }
 
 .birthdays-link {
@@ -206,9 +210,13 @@ const birthdays = ref([
 	font-weight: 700;
 
 	@media (min-width: 1280px) {
-		font-size: 13px;
+		font-size: 11px;
 		flex: auto;
 	}
+
+  @media (min-width: 1920px) {
+    font-size: 13px;
+  }
 }
 
 .birthdays-avatar {

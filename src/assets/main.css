@@ -65,7 +65,7 @@ input {
     align-items: center;
 }
 
-.basepage h1.title {
+h1.title {
     text-align: center;
     color: var(--blue-dark);
     margin-bottom: 35px;
@@ -77,7 +77,7 @@ input {
 
 .page-container {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1400px;
 }
 
 .swiper {
