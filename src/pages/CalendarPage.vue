@@ -4,7 +4,7 @@
 
 <template>
   <div class="basepage">
-    <p>Conference Room Booking</p>
+    <h1 class="title">Календарь</h1>
   </div>
 </template>
 

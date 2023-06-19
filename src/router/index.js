@@ -9,7 +9,7 @@ import Team from "@/pages/TeamPage.vue";
 import Docs from "@/pages/DocsPage.vue";
 import Instructions from "@/pages/InstructionsPage.vue";
 import Orders from "@/pages/OrdersPage.vue";
-import ConferenceRoomBooking from "@/pages/ConferenceRoomBookingPage.vue";
+import ConferenceRoomBooking from "@/pages/CalendarPage.vue";
 import MarketingMaterials from "@/pages/MarketingMaterialsPage.vue";
 import Learning from "@/pages/LearningPage.vue";
 import User from "@/pages/UserPage.vue";
@@ -144,9 +144,9 @@ const routes = [
         },
     },
     {
-        path: '/conference-room-booking',
+        path: '/calendar',
         components: {
-            default: () => import('@/pages/ConferenceRoomBookingPage.vue'),
+            default: () => import('@/pages/CalendarPage.vue'),
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },

@@ -16,8 +16,8 @@
         </div>
         <div class="gallery-cover rounded overflow-hidden">
           <picture>
-            <source :srcset="`@/assets/img/${gallery.gallery_cover}.webp`" type="image/webp">
-            <img :src="`@/assets/img/${gallery.gallery_cover}.jpg`" alt="news" loading="lazy"/>
+            <source :srcset="imageWeb" type="image/webp" />
+            <img :src="image" alt="gallery" loading="lazy" />
           </picture>
         </div>
         <footer class="gallery-footer">
@@ -48,6 +48,8 @@ import {ref} from "vue";
 import axios from "axios";
 import IconCalendar from "@/components/icons/IconCalendar.vue";
 import IconView from "@/components/icons/IconView.vue";
+import imageWeb from '@/assets/img/index-news-img.webp';
+import image from '@/assets/img/index-news-img.jpg';
 
 const galleries = ref([
   {

@@ -1,6 +1,10 @@
 @import "./font.css";
 @import './base.css';
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     min-height: 100vh;
     color: var(--color-text);

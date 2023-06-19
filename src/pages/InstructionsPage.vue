@@ -1,68 +1,70 @@
 <template>
   <div class="basepage">
     <h1 class="title">Инструкции</h1>
-    <div class="tabs">
-      <div
-          v-for="item in departmentsList"
-          :key="item.department"
-          class="tab"
-          :class="{active: activeDepartment === item.department}"
-          @click="[activeDepartment = item.department, activeCategory = item.categoriesList[0].category]">
-        {{ item.department }}
-      </div>
-    </div>
-    <div class="content shadow rounded">
-      <div
-          v-for="department in departmentsList"
-          :key="department.department"
-      >
-        <div class="inner-tabs">
-          <div
-              class="tab"
-              v-for="category in department.categoriesList"
-              :key="category.category"
-              @click="activeCategory = category.category"
-              v-if="activeDepartment === department.department"
-              :class="{active: activeCategory === category.category}"
-          >
-            {{ category.category }}
-          </div>
-        </div>
+    <TheTabs :tabs="departmentsList" />
+<!--    <div class="tabs">-->
+<!--      <div-->
+<!--          v-for="item in departmentsList"-->
+<!--          :key="item.department"-->
+<!--          class="tab"-->
+<!--          :class="{active: activeDepartment === item.department}"-->
+<!--          @click="[activeDepartment = item.department, activeCategory = item.categoriesList[0].category]">-->
+<!--        {{ item.department }}-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="content shadow rounded">-->
+<!--      <div-->
+<!--          v-for="department in departmentsList"-->
+<!--          :key="department.department"-->
+<!--      >-->
+<!--        <div class="inner-tabs">-->
+<!--          <div-->
+<!--              class="tab"-->
+<!--              v-for="category in department.categoriesList"-->
+<!--              :key="category.category"-->
+<!--              @click="activeCategory = category.category"-->
+<!--              v-if="activeDepartment === department.department"-->
+<!--              :class="{active: activeCategory === category.category}"-->
+<!--          >-->
+<!--            {{ category.category }}-->
+<!--          </div>-->
+<!--        </div>-->
 
-        <div
-            v-for="category in department.categoriesList"
-            :key="category.category"
-            class="docs-container"
-            v-show="activeCategory === category.category"
-        >
-          <div
-              class="docs-inner"
-              v-for="(type, index) in category.typesList"
-              :key="index"
-              v-if="category.category === activeCategory"
-          >
-            <h2 class="title" v-if="type.title">{{ type.title }}</h2>
-            <ul class="docs">
-              <li v-for="doc in type.docsList" :key="doc.title" class="docs__item">
-                <router-link :to="`${doc.link}`" class="docs__link">{{ doc.title }}</router-link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+<!--        <div-->
+<!--            v-for="category in department.categoriesList"-->
+<!--            :key="category.category"-->
+<!--            class="docs-container"-->
+<!--            v-show="activeCategory === category.category"-->
+<!--        >-->
+<!--          <div-->
+<!--              class="docs-inner"-->
+<!--              v-for="(type, index) in category.typesList"-->
+<!--              :key="index"-->
+<!--              v-if="category.category === activeCategory"-->
+<!--          >-->
+<!--            <h2 class="title" v-if="type.title">{{ type.title }}</h2>-->
+<!--            <ul class="docs">-->
+<!--              <li v-for="doc in type.docsList" :key="doc.title" class="docs__item">-->
+<!--                <router-link :to="`${doc.link}`" class="docs__link">{{ doc.title }}</router-link>-->
+<!--              </li>-->
+<!--            </ul>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
   </div>
 </template>
 
 <script setup>
 import {computed, ref} from "vue";
+import TheTabs from "@/components/TheTabs.vue";
 
-const activeDepartment = ref('it-dep');
+const activeDepartment = ref('IT отдел');
 const activeCategory = ref('1с');
 
 const departmentsList = ref([
   {
-    department: 'it-dep',
+    title: 'IT отдел',
     categoriesList: [
       {
         category: '1с',
@@ -293,7 +295,7 @@ const departmentsList = ref([
     ]
   },
   {
-    department: 'state-orders',
+    title: 'Госзакупки',
     categoriesList: [
       {
         category: 'Нововведения 2022',
@@ -399,6 +401,13 @@ const getActiveDepartment = computed(() => {
 
 .docs__link {
   color: var(--black);
+  transition: opacity 0.3s ease-in-out;
+}
+
+.docs__link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  opacity: 0.5;
 }
 </style>
 

@@ -7,8 +7,8 @@
           <router-link to="/" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
-                <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
-                <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+                <source :srcset="imageWeb" type="image/webp"/>
+                <img :src="image" alt="image" loading="lazy"/>
               </picture>
             </div>
             <h2 class="name title"><span class="surname">Семенов</span> Александр Владимирович</h2>
@@ -19,8 +19,8 @@
           <router-link to="/" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
-                <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
-                <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+                <source :srcset="imageWeb" type="image/webp"/>
+                <img :src="image" alt="image" loading="lazy"/>
               </picture>
             </div>
             <h2 class="name title"><span class="surname">Дулаева</span> Оксана Евгеньевна</h2>
@@ -32,12 +32,12 @@
             <router-link to="/" class="department rounded">Отдел продукции для материнства и детcтва</router-link>
           </div>
         </div>
-        <div class="row">
+        <div class="row row-inner-one">
           <router-link to="/" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
-                <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
-                <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+                <source :srcset="imageWeb" type="image/webp"/>
+                <img :src="image" alt="image" loading="lazy"/>
               </picture>
             </div>
             <h2 class="name title"><span class="surname">Дмитриева</span> Марина Олеговна</h2>
@@ -50,12 +50,12 @@
             </router-link>
           </div>
         </div>
-        <div class="row">
+        <div class="row row-above-multiple-employees">
           <router-link to="/" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
-                <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
-                <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+                <source :srcset="imageWeb" type="image/webp"/>
+                <img :src="image" alt="image" loading="lazy"/>
               </picture>
             </div>
             <h2 class="name title"><span class="surname">Солнцева</span> Ольга Станиславовна</h2>
@@ -70,12 +70,12 @@
             </router-link>
           </div>
         </div>
-        <div class="row row-inner">
+        <div class="row row-inner no-departments">
           <router-link to="/" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
-                <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
-                <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+                <source :srcset="imageWeb" type="image/webp"/>
+                <img :src="image" alt="image" loading="lazy"/>
               </picture>
             </div>
             <h2 class="name title"><span class="surname">Евтеев</span> Андрей Владимирович</h2>
@@ -86,8 +86,8 @@
           <router-link to="/" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
-                <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
-                <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+                <source :srcset="imageWeb" type="image/webp"/>
+                <img :src="image" alt="image" loading="lazy"/>
               </picture>
             </div>
             <h2 class="name title"><span class="surname">Кислов</span> Павел Владимирович</h2>
@@ -111,8 +111,8 @@
           <router-link to="/" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
-                <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
-                <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+                <source :srcset="imageWeb" type="image/webp"/>
+                <img :src="image" alt="image" loading="lazy"/>
               </picture>
             </div>
             <h2 class="name title"><span class="surname">Каюкова</span> Людмила Леонидовна</h2>
@@ -124,18 +124,16 @@
             <router-link to="/" class="department rounded">Тендерный отдел</router-link>
           </div>
         </div>
-        <div class="row">
+        <div class="row row-inner-one">
           <router-link to="/" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
-                <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
-                <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+                <source :srcset="imageWeb" type="image/webp"/>
+                <img :src="image" alt="image" loading="lazy"/>
               </picture>
             </div>
-            <div class="card-content">
-              <h2 class="name title"><span class="surname">Коденюк</span> Владимир Анатольевич</h2>
-              <p class="position">Директор по административно-хозяйственным вопросам</p>
-            </div>
+            <h2 class="name title"><span class="surname">Коденюк</span> Владимир Анатольевич</h2>
+            <p class="position">Директор по административно-хозяйственным вопросам</p>
           </router-link>
           <div class="department-group">
             <router-link to="/" class="department rounded">Автохозяйство</router-link>
@@ -146,14 +144,12 @@
           <router-link to="/" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
-                <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
-                <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+                <source :srcset="imageWeb" type="image/webp"/>
+                <img :src="image" alt="image" loading="lazy"/>
               </picture>
             </div>
-            <div class="card-content">
-              <h2 class="name title"><span class="surname">Шубаев</span> Павел Андреевич</h2>
-              <p class="position">Директор по логистике</p>
-            </div>
+            <h2 class="name title"><span class="surname">Шубаев</span> Павел Андреевич</h2>
+            <p class="position">Директор по логистике</p>
           </router-link>
           <div class="department-group">
             <router-link to="/" class="department rounded">Склад</router-link>
@@ -166,8 +162,8 @@
           <router-link to="/" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
-                <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
-                <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+                <source :srcset="imageWeb" type="image/webp"/>
+                <img :src="image" alt="image" loading="lazy"/>
               </picture>
             </div>
             <h2 class="name title"><span class="surname">Гусева</span> Наталья Константиновна</h2>
@@ -182,8 +178,8 @@
           <router-link to="/" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
-                <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
-                <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+                <source :srcset="imageWeb" type="image/webp"/>
+                <img :src="image" alt="image" loading="lazy"/>
               </picture>
             </div>
             <h2 class="name title"><span class="surname">Белинович</span> Вадим Игоревич</h2>
@@ -198,14 +194,14 @@
           <router-link to="/" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
-                <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
-                <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+                <source :srcset="imageWeb" type="image/webp"/>
+                <img :src="image" alt="image" loading="lazy"/>
               </picture>
             </div>
             <h2 class="name title"><span class="surname">Гвоздарев</span> Андрей Владимирович</h2>
             <p class="position">Директор IT</p>
           </router-link>
-          <div class="department-group">
+          <div class="department-group one-group">
             <router-link to="/" class="department rounded">IT отдел</router-link>
           </div>
         </div>
@@ -213,14 +209,14 @@
           <router-link to="/" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
-                <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
-                <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+                <source :srcset="imageWeb" type="image/webp"/>
+                <img :src="image" alt="image" loading="lazy"/>
               </picture>
             </div>
             <h2 class="name title"><span class="surname">Заруцкий</span> Дмитрий Михайлович</h2>
             <p class="position">Заместитель генерального директора по маркетингу и продажам БиоСистемы</p>
           </router-link>
-          <div class="department-group">
+          <div class="department-group one-group">
             <router-link to="/" class="department rounded">Служба технического сервиса</router-link>
           </div>
         </div>
@@ -228,8 +224,8 @@
           <router-link to="/" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
-                <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
-                <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+                <source :srcset="imageWeb" type="image/webp"/>
+                <img :src="image" alt="image" loading="lazy"/>
               </picture>
             </div>
             <h2 class="name title"><span class="surname">Абрамов</span> Максим Николаевич</h2>
@@ -241,12 +237,12 @@
           </div>
         </div>
         <div class="row row-only-department">
-          <div class="department-group">
+          <div class="department-group one-group">
             <router-link to="/" class="department rounded">Отдел комплексных проектов и поставок</router-link>
           </div>
         </div>
         <div class="row row-only-department">
-          <div class="department-group">
+          <div class="department-group one-group">
             <router-link to="/" class="department rounded">Бухгалтерия</router-link>
           </div>
         </div>
@@ -254,8 +250,8 @@
           <router-link to="/" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
-                <source :srcset="`@/assets/img/lazareva.webp`" type="image/webp">
-                <img :src="`@/assets/img/lazareva.jpg`" alt="news" loading="lazy"/>
+                <source :srcset="imageWeb" type="image/webp"/>
+                <img :src="image" alt="image" loading="lazy"/>
               </picture>
             </div>
             <h2 class="name title"><span class="surname">Семенов</span> Алексей Александрович</h2>
@@ -279,7 +275,7 @@
           </div>
         </div>
         <div class="row row-only-department">
-          <div class="department-group">
+          <div class="department-group one-group">
             <router-link to="/" class="department rounded">ООО «БИОМЕБЕЛЬ»</router-link>
           </div>
         </div>
@@ -289,6 +285,8 @@
 </template>
 
 <script setup>
+import imageWeb from '@/assets/img/lazareva.webp';
+import image from '@/assets/img/lazareva.jpg';
 </script>
 
 <style scoped>
@@ -300,11 +298,28 @@
   flex-direction: column;
 }
 
+.content::before {
+  content: '';
+  display: none;
+  position: absolute;
+  top: 106px;
+  left: 0;
+  width: 71%;
+  height: calc(100% - 132px);
+  border-left: 2px solid var(--blue-light);
+  border-top: 2px solid var(--blue-light);
+  border-bottom: 2px solid var(--blue-light);
+  -webkit-border-radius: 20px 0 0 20px;
+  -moz-border-radius: 20px 0 0 20px;
+  border-radius: 20px 0 0 20px;
+}
+
 .row {
   display: flex;
+  position: relative;
   flex-direction: column;
   row-gap: 35px;
-  margin-bottom: 60px;
+  margin-bottom: 70px;
 
   @media (min-width: 1280px) {
     flex-direction: row;
@@ -318,8 +333,42 @@
   }
 }
 
+.row::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 100%;
+  height: 2px;
+  background-color: var(--blue-light);
+  display: none;
+}
+
+.row.row-inner-one::before {
+  left: 153px;
+  width: calc(100% - 153px);
+}
+
+.row.row-inner-one .card::before {
+  display: none;
+  content: '';
+  position: absolute;
+  top: -77px;
+  height: 77px;
+  width: 2px;
+  left: 106px;
+  background-color: var(--blue-light);
+}
+
 .row:last-child {
   margin-bottom: 0;
+}
+
+.row:first-child::before,
+.row:last-child::before {
+  display: none;
 }
 
 .row.row-inner {
@@ -336,6 +385,7 @@
   padding-left: 0;
   @media (min-width: 1280px) {
     flex-direction: column;
+    row-gap: 100px;
   }
 }
 
@@ -346,12 +396,6 @@
 
 .row-only-department {
   justify-content: flex-end;
-}
-
-.department-group {
-  display: flex;
-  flex-direction: column;
-  row-gap: 20px;
 }
 
 .row.row-special .department-group {
@@ -366,8 +410,69 @@
   }
 }
 
+.department-group {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  position: relative;
+}
+
+.department-group::before {
+  content: '';
+  position: absolute;
+  display: none;
+  top: 0;
+  bottom: 0;
+  left: -40px;
+  margin: auto;
+  width: calc(100% + 40px);
+  height: calc(100% - 52px);
+  background-color: var(--gray-light);
+  border-left: 2px solid var(--blue-light);
+  border-bottom: 2px solid var(--blue-light);
+  border-top: 2px solid var(--blue-light);
+  -webkit-border-radius: 20px 0 0 20px;
+  -moz-border-radius: 20px 0 0 20px;
+  border-radius: 20px 0 0 20px;
+}
+
+.row.row-special .department {
+  position: relative;
+}
+
+.row.row-special .department:nth-child(odd)::before,
+.row.row-special .department:nth-child(even)::before {
+  display: none;
+  content: '';
+  position: absolute;
+  height: 2px;
+  width: 88px;
+  background-color: var(--blue-light);
+}
+
+.row.row-special .department:nth-child(odd)::before {
+  right: -88px;
+}
+
+.row.row-special .department:nth-child(even)::before {
+  left: -88px;
+}
+
+.department-group.one-group::before {
+  display: none;
+}
+
+.row-special .department-group::before {
+  width: 2px;
+  height: calc(100% + 73px);
+  left: 0;
+  right: 0;
+  bottom: 27px;
+  top: inherit;
+}
+
 .department {
-  border: 1px solid var(--blue-light);
+  border: 2px solid var(--blue-light);
   background-color: var(--white);
   width: 100%;
   max-width: 436px;
@@ -387,18 +492,25 @@
   }
 
   @media (min-width: 1920px) {
+    min-height: 56px;
     width: 436px;
-    font-size: 17px;
+    font-size: 14px;
   }
+}
+
+.department:hover {
+  background-color: var(--blue-light);
 }
 
 .card {
   display: grid;
+  position: relative;
   grid-template-columns: 1fr;
   row-gap: 20px;
   background-color: var(--white);
   padding-bottom: 20px;
-  max-width: 500px;
+  width: 100%;
+  max-width: 600px;
   transition: box-shadow 0.3s ease-in-out;
 
   @media (min-width: 1280px) {
@@ -412,7 +524,6 @@
   }
 
   @media (min-width: 1920px) {
-    max-width: 729px;
     height: 212px;
   }
 }
@@ -455,6 +566,8 @@
 
 .card .name {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   color: var(--blue-dark);
   padding-bottom: 20px;
   font-size: 27px;
@@ -463,15 +576,16 @@
   width: 100%;
 
   @media (min-width: 1280px) {
-    justify-content: center;
     flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
     text-align: left;
     font-size: 20px;
     padding-bottom: 0;
   }
 
   @media (min-width: 1920px) {
-    font-size: 27px;
+    font-size: 22px;
   }
 }
 
@@ -489,17 +603,96 @@
   display: flex;
   font-size: 18px;
   text-align: center;
+  justify-content: center;
   color: var(--gray-dark);
 
   @media (min-width: 1280px) {
     flex-direction: column;
-    justify-content: center;
     text-align: left;
     font-size: 14px;
   }
 
   @media (min-width: 1920px) {
-    font-size: 18px;
+    font-size: 16px;
+  }
+}
+
+.row.row-inner::before {
+  left: 100px;
+  width: 80%;
+}
+
+.row.row-above-multiple-employees .card::before {
+  content: '';
+  position: absolute;
+  display: none;
+  height: 580px;
+  width: 2px;
+  top: 100%;
+  background-color: var(--blue-light);
+}
+
+@media (min-width: 1280px) {
+  .content::before {
+    display: block;
+  }
+
+  .row::before {
+    display: block;
+  }
+
+  .row.row-special::before {
+    margin: inherit;
+    top: 90px;
+    width: 50%;
+  }
+
+  .row.no-departments::before {
+    width: 20%;
+  }
+
+  .row.row-inner-one .card::before {
+    display: block;
+  }
+
+  .row.row-special .department:nth-child(odd)::before,
+  .row.row-special .department:nth-child(even)::before {
+    display: block;
+  }
+
+  .row.row-special .department:nth-child(odd)::before {
+    right: -88px;
+  }
+
+  .row.row-special .department:nth-child(even)::before {
+    left: -88px;
+  }
+
+  .department-group::before {
+    display: block;
+  }
+
+  .row.row-above-multiple-employees .card::before {
+    display: block;
+  }
+}
+
+@media (min-width: 1920px) {
+  .row.row-special::before {
+    top: 106px;
+  }
+
+  .row.row-inner-one .card::before {
+    height: 70px;
+    top: -70px;
+  }
+
+  .row.row-inner::before {
+    left: 153px;
+  }
+
+  .row.row-above-multiple-employees .card::before {
+    height: 608px;
   }
 }
 </style>
