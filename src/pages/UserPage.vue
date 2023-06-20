@@ -10,11 +10,8 @@
       >
         <SwiperSlide v-for="item in user.gallery" :key="item">
           <picture>
-            <source
-                :srcset="`${USERS_IMAGES_URL}/${params.id}/${item.src}.webp`"
-                type="image/webp">
-            <img
-                :src="`${USERS_IMAGES_URL}/${params.id}/${item.src}.jpg`" alt="photo">
+            <source :srcset="imageWeb" type="image/webp" />
+            <img :src="image" alt="news" loading="lazy" />
           </picture>
         </SwiperSlide>
       </Swiper>
@@ -62,7 +59,7 @@
               </span>
             <div class="user-contacts__column-value">
               <span>Мобильный: </span>
-              <a :href="`tel:${item.department.phone}`">{{ item.department.phone }}</a>
+              <a :href="`tel:${item.department.phone}`">{{ formatPhoneNumber(item.department.phone) }}</a>
             </div>
             <span class="icon icon-copy">
               <IconCopy/>
@@ -116,6 +113,9 @@ import {onMounted, ref} from "vue";
 import axios from "axios";
 import {getMonthName} from "@/functions/getMonthName";
 import {USERS_API_URL, USERS_IMAGES_URL} from "@/constants";
+import imageWeb from '@/assets/img/lazareva.webp';
+import image from '@/assets/img/lazareva.jpg';
+import {formatPhoneNumber} from "@/functions/formatPhoneNumber";
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -126,19 +126,98 @@ import IconMail from "@/components/icons/IconMail.vue";
 import IconCopy from "@/components/icons/IconCopy.vue";
 
 const modules = [Navigation];
-const user = ref({});
-const params = useRoute().params;
+const user = ref({
+  "id": 79,
+  "token": "etwe4t21452341f",
+  "login": "belinovich",
+  "email": "belinovich@bioline.ru",
+  "firstname": "Марина",
+  "middlename": "Руслановна",
+  "lastname": "Лазарева",
+  "avatar": "belinovich.webp",
+  "localphone": 259,
+  "month": 12,
+  "day": 8,
+  "gallery": [
+    {
+      "src": "lazareva"
+    },
+    {
+      "src": "lazareva"
+    },
+    {
+      "src": "lazareva"
+    }
+  ],
+  "companies": [
+    {
+      "id": 1,
+      "user_id": 79,
+      "companys_id": 1,
+      "title": "БиоЛайн",
+      "url": "bioline",
+      "sort": 600,
+      "department": {
+        "locations": "Санкт-Петербург",
+        "title": "Отдел рекламы",
+        "email": "",
+        "url": "advertising",
+        "phone": "79214088648",
+        "groups": {
+          "title": "Группа web-разработки",
+          "email": "",
+          "url": "web",
+          "position": {
+            "title": "web-программист"
+          }
+        }
+      }
+    },
+    {
+      "id": 2,
+      "user_id": 79,
+      "companys_id": 2,
+      "title": "БиоСистемы",
+      "url": "biosystems",
+      "sort": 500,
+      "department": {
+        "locations": "",
+        "title": "Отдел рекламы",
+        "email": "",
+        "url": "advertising",
+        "phone": "",
+        "groups": {
+          "title": "Группа web-разработки",
+          "email": "",
+          "url": "web",
+          "position": {
+            "title": "web-программист"
+          }
+        }
+      }
+    }
+  ],
+  "status": [
+    {
+      "date_start": "2023-05-19",
+      "date_end": null,
+      "title": "в отпуске"
+    }
+  ]
+});
 
-onMounted(() => {
-  axios
-      .get(`${USERS_API_URL}/user/${params.id}`)
-      .then(res => {
-        user.value = res.data;
-      })
-      .catch(err => {
-        console.log(err);
-      })
-})
+// const params = useRoute().params;
+
+// onMounted(() => {
+//   axios
+//       .get(`${USERS_API_URL}/user/${params.id}`)
+//       .then(res => {
+//         user.value = res.data;
+//       })
+//       .catch(err => {
+//         console.log(err);
+//       })
+// })
 </script>
 
 <style scoped>
