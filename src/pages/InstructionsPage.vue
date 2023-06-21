@@ -1,78 +1,64 @@
 <template>
   <div class="basepage">
     <h1 class="title">Инструкции</h1>
+
     <TheTabs
         :tabs="departmentsTitles"
         :activeTab="activeDepartment"
         @setActiveTab="setActiveDepartment"
     />
-    <!--    <div class="tabs">-->
-    <!--      <div-->
-    <!--          v-for="item in departmentsList"-->
-    <!--          :key="item.department"-->
-    <!--          class="tab"-->
-    <!--          :class="{active: activeDepartment === item.department}"-->
-    <!--          @click="[activeDepartment = item.department, activeCategory = item.categoriesList[0].category]">-->
-    <!--        {{ item.department }}-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <!--    <div class="content shadow rounded">-->
-    <!--      <div-->
-    <!--          v-for="department in departmentsList"-->
-    <!--          :key="department.department"-->
-    <!--      >-->
-    <!--        <div class="inner-tabs">-->
-    <!--          <div-->
-    <!--              class="tab"-->
-    <!--              v-for="category in department.categoriesList"-->
-    <!--              :key="category.category"-->
-    <!--              @click="activeCategory = category.category"-->
-    <!--              v-if="activeDepartment === department.department"-->
-    <!--              :class="{active: activeCategory === category.category}"-->
-    <!--          >-->
-    <!--            {{ category.category }}-->
-    <!--          </div>-->
-    <!--        </div>-->
 
-    <!--        <div-->
-    <!--            v-for="category in department.categoriesList"-->
-    <!--            :key="category.category"-->
-    <!--            class="docs-container"-->
-    <!--            v-show="activeCategory === category.category"-->
-    <!--        >-->
-    <!--          <div-->
-    <!--              class="docs-inner"-->
-    <!--              v-for="(type, index) in category.typesList"-->
-    <!--              :key="index"-->
-    <!--              v-if="category.category === activeCategory"-->
-    <!--          >-->
-    <!--            <h2 class="title" v-if="type.title">{{ type.title }}</h2>-->
-    <!--            <ul class="docs">-->
-    <!--              <li v-for="doc in type.docsList" :key="doc.title" class="docs__item">-->
-    <!--                <router-link :to="`${doc.link}`" class="docs__link">{{ doc.title }}</router-link>-->
-    <!--              </li>-->
-    <!--            </ul>-->
-    <!--          </div>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--    </div>-->
+    <div class="content rounded shadow">
+
+      <div class="inner-tabs">
+        <div
+            v-for="item in categoriesTitles"
+            :key="item"
+            class="inner-tab__item"
+            @click="setActiveCategory(item)"
+            :class="{active: activeCategory === item}"
+        >
+          {{ item }}
+        </div>
+      </div>
+
+      <div class="docs-container">
+        <div
+            class="docs-inner"
+            v-for="type in activeTypesList"
+            :key="type.title">
+          <h2
+              class="title"
+              v-if="type.title">{{ type.title }}</h2>
+          <ul class="docs">
+            <li
+                v-for="(doc, index) in type.docsList"
+                :key="index"
+                class="docs__item">
+              <router-link
+                  :to="`${doc.link}`"
+                  class="docs__link">
+                {{ doc.title }}
+              </router-link>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
   </div>
 </template>
 
 <script setup>
-import {computed, ref} from "vue";
+import {ref} from "vue";
 import TheTabs from "@/components/TheTabs.vue";
-
-const activeDepartment = ref('IT отдел');
-const activeCategory = ref('1с');
-const departmentsTitles = ['IT отдел', 'Госзакупки'];
 
 const departmentsList = ref([
   {
     title: 'IT отдел',
     categoriesList: [
       {
-        category: '1с',
+        category: '1С',
         typesList: [
           {
             title: 'Общие инструкции',
@@ -342,13 +328,180 @@ const departmentsList = ref([
   },
 ]);
 
-const getActiveDepartment = computed(() => {
-  return activeDepartment.value
-})
+let departmentsTitles = ref(['IT отдел', 'Госзакупки']);
+let activeDepartment = ref('IT отдел');
+
+const categoriesTitles = ref(['1С', 'Почта', 'Мотив', 'Сайты']);
+const activeCategory = ref('1С');
+const activeTypesList = ref([
+  {
+    title: 'Общие инструкции',
+    docsList: [
+      {
+        title: 'Порядок обращения в IT-отдел',
+        link: '/instructions/ordering'
+      },
+      {
+        title: 'Подключение новой ИБ',
+        link: '/instructions/ordering'
+      },
+    ]
+  },
+  {
+    title: 'инструкции для менеджеров',
+    docsList: [
+      {
+        title: 'Партнеры и контрагенты',
+        link: '/instructions/1'
+      },
+      {
+        title: 'Номенклатура',
+        link: '/instructions/1'
+      }
+    ]
+  },
+  {
+    title: 'инструкции для менеджеров (отдел Елисеевой Е.В.)',
+    docsList: [
+      {
+        title: 'Партнеры и контрагенты',
+        link: '/instructions/1'
+      },
+      {
+        title: 'Номенклатура',
+        link: '/instructions/1'
+      }
+    ]
+  },
+  {
+    title: 'Инструкции для специалистов',
+    docsList: [
+      {
+        title: 'Порядок обращения в IT-отдел',
+        link: '/instructions/ordering'
+      },
+      {
+        title: 'Подключение новой ИБ',
+        link: '/instructions/ordering'
+      }
+    ]
+  },
+  {
+    title: 'Инструкции для РПК',
+    docsList: [
+      {
+        title: 'Порядок обращения в IT-отдел',
+        link: '/instructions/ordering'
+      },
+      {
+        title: 'Подключение новой ИБ',
+        link: '/instructions/ordering'
+      }
+    ]
+  },
+  {
+    title: 'инструкции для склада',
+    docsList: [
+      {
+        title: 'Партнеры и контрагенты',
+        link: '/instructions/1'
+      },
+      {
+        title: 'Номенклатура',
+        link: '/instructions/1'
+      }
+    ]
+  },
+  {
+    title: 'Общие для отдела закупок',
+    docsList: [
+      {
+        title: 'Порядок обращения в IT-отдел',
+        link: '/instructions/ordering'
+      },
+      {
+        title: 'Подключение новой ИБ',
+        link: '/instructions/ordering'
+      }
+    ]
+  },
+  {
+    title: 'инструкции для тех. сервиса',
+    docsList: [
+      {
+        title: 'Партнеры и контрагенты',
+        link: '/instructions/1'
+      },
+      {
+        title: 'Номенклатура',
+        link: '/instructions/1'
+      }
+    ]
+  },
+  {
+    title: 'Инструкции для юридического отдела',
+    docsList: [
+      {
+        title: 'Порядок обращения в IT-отдел',
+        link: '/instructions/ordering'
+      },
+      {
+        title: 'Подключение новой ИБ',
+        link: '/instructions/ordering'
+      }
+    ]
+  },
+  {
+    title: 'Инструкции для финансово-экономического отдела + бухгалтерии',
+    docsList: [
+      {
+        title: 'Партнеры и контрагенты',
+        link: '/instructions/1'
+      },
+      {
+        title: 'Номенклатура',
+        link: '/instructions/1'
+      }
+    ]
+  },
+  {
+    title: 'Инструкции отдела кадров',
+    docsList: [
+      {
+        title: 'Порядок обращения в IT-отдел',
+        link: '/instructions/ordering'
+      },
+      {
+        title: 'Подключение новой ИБ',
+        link: '/instructions/ordering'
+      }
+    ]
+  },
+]);
 
 const setActiveDepartment = (tab) => {
-  activeDepartment.value = tab
+  activeDepartment.value = tab;
+  categoriesTitles.value = departmentsList
+      .value
+      .filter(item => item.title === tab)[0]
+      .categoriesList
+      .map(item => item.category);
+  setActiveCategory(categoriesTitles.value[0]);
 }
+
+const setActiveCategory = (category) => {
+  activeCategory.value = category;
+  setActiveTypesList();
+}
+
+const setActiveTypesList = () => {
+  activeTypesList.value = departmentsList.value
+      .filter(item => item.title === activeDepartment.value)[0]
+      .categoriesList
+      .filter(item => item.category === activeCategory.value)[0]
+      .typesList;
+}
+
 </script>
 
 <style scoped>
@@ -370,7 +523,11 @@ const setActiveDepartment = (tab) => {
   border-bottom: 1px solid var(--gray-medium);
 }
 
-.inner-tabs .tab.active {
+.inner-tabs .inner-tab__item {
+  cursor: pointer;
+}
+
+.inner-tabs .inner-tab__item.active {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -419,4 +576,3 @@ const setActiveDepartment = (tab) => {
   opacity: 0.5;
 }
 </style>
-

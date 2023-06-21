@@ -28,8 +28,6 @@
 </template>
 
 <script setup>
-import {ref, defineEmits, defineProps} from "vue";
-
 const props = defineProps({
   tabs: {
     type: Array,
@@ -62,5 +60,9 @@ const emit = defineEmits(['setActiveTab'])
 
 .tabs__item {
   cursor: pointer;
+}
+
+.tabs__item.active {
+  background-color: var(--blue-light);
 }
 </style>
