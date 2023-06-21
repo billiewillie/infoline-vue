@@ -63,6 +63,11 @@ input {
     background-color: var(--gray-light);
 }
 
+.default-page {
+    display: flex;
+    flex-direction: column;
+}
+
 .centered-page {
     display: flex;
     flex-direction: column;

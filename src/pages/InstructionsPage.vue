@@ -1,5 +1,5 @@
 <template>
-  <div class="basepage">
+  <div class="basepage default-page">
     <h1 class="title">Инструкции</h1>
 
     <TheTabs
@@ -44,7 +44,6 @@
           </ul>
         </div>
       </div>
-
     </div>
   </div>
 </template>
@@ -505,13 +504,9 @@ const setActiveTypesList = () => {
 </script>
 
 <style scoped>
-.tabs {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
 
 .content {
+  flex: auto;
   background-color: var(--white);
 }
 
@@ -550,6 +545,7 @@ const setActiveTypesList = () => {
 
 .content .title {
   padding: 0 10px 20px;
+  margin-bottom: 20px;
   border-bottom: 1px solid var(--gray-medium);
 }
 
@@ -557,7 +553,7 @@ const setActiveTypesList = () => {
   display: flex;
   flex-direction: column;
   row-gap: 10px;
-  padding: 20px 10px 0 30px;
+  padding: 0 10px 0 30px;
   list-style: disc;
 }
 
