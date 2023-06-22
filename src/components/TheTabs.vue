@@ -1,18 +1,36 @@
 <template>
   <div class="tabs">
-    <select
-        class="tabs__select"
-        @change="$emit('setActiveTab', $event.target.value)"
-    >
-      <option
-          v-for="tab in props.tabs"
-          :key="tab"
-          :value="tab"
-      >
-        {{ tab }}
-      </option>
-    </select>
-
+    <div class="select-box" v-click-outside="handleClickOutside">
+      <div @click="isOpen = !isOpen" class="select-box__current shadow" tabindex="1">
+        <div class="select-box__value" v-for="tab in props.tabs" :key="tab">
+          <input
+              class="select-box__input"
+              type="radio"
+              :id="tab"
+              :value="tab"
+              :checked="tab === activeTab"
+              @change="$emit('setActiveTab', $event.target.value)"
+          />
+          <p class="select-box__input-text">{{ tab }}</p>
+        </div>
+        <div
+            class="arrow">
+          <div
+              class="icon"
+              :class="{active: isOpen}">
+            <IconArrow/>
+          </div>
+        </div>
+      </div>
+      <ul v-show="isOpen" class="select-box__list shadow rounded">
+        <li v-for="tab in props.tabs" :key="tab">
+          <label
+              class="select-box__option"
+              :for="tab"
+              aria-hidden="true">{{ tab }}</label>
+        </li>
+      </ul>
+    </div>
     <ul class="tabs__list shadow rounded overflow-hidden">
       <li
           v-for="tab in props.tabs"
@@ -28,6 +46,9 @@
 </template>
 
 <script setup>
+import {ref} from "vue";
+import IconArrow from "@/components/icons/IconArrow.vue";
+
 const props = defineProps({
   tabs: {
     type: Array,
@@ -38,7 +59,27 @@ const props = defineProps({
   }
 })
 
+const isOpen = ref(false);
+
 const emit = defineEmits(['setActiveTab'])
+
+const handleClickOutside = () => {
+  isOpen.value = false;
+};
+
+const vClickOutside = {
+  mounted(el, binding) {
+    el.__ClickOutsideHandler__ = (event) => {
+      if (!(el === event.target || el.contains(event.target))) {
+        binding.value(event);
+      }
+    };
+    document.body.addEventListener('click', el.__ClickOutsideHandler__);
+  },
+  unmounted(el) {
+    document.body.removeEventListener('click', el.__ClickOutsideHandler__);
+  },
+};
 </script>
 
 <style scoped>
@@ -48,11 +89,93 @@ const emit = defineEmits(['setActiveTab'])
   margin-bottom: 20px;
 }
 
-.tabs__select {
+.select-box {
   display: flex;
+  width: 100%;
+  position: relative;
 
   @media (min-width: 1280px) {
     display: none;
+  }
+}
+
+.select-box__current {
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  padding: 0 10px;
+  background-color: var(--white);
+}
+
+.select-box__current:focus + .select-box__list .select-box__option {
+  cursor: pointer;
+}
+
+.select-box .icon {
+  transform: rotate(90deg);
+  transition: transform 0.3s ease-in-out;
+  transform-origin: 50% 50%;
+}
+
+.select-box .icon.active {
+  transform: rotate(-90deg);
+}
+
+.select-box .arrow {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  right: 0;
+  width: 32px;
+  height: 100%;
+  background-color: var(--blue-light);
+  -webkit-border-radius: 0 3px 3px 0;
+  -moz-border-radius: 0 3px 3px 0;
+  border-radius: 0 3px 3px 0;
+}
+
+.select-box__value {
+  display: flex;
+}
+
+.select-box__input {
+  display: none;
+
+  &:checked + .select-box__input-text {
+    display: block;
+  }
+}
+
+.select-box__input-text {
+  display: none;
+  width: 100%;
+  padding: 7px 0;
+  background-color: #fff;
+}
+
+.select-box__list {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  width: 100%;
+  padding: 10px;
+  list-style: none;
+  top: 40px;
+  opacity: 1;
+  background-color: var(--white);
+}
+
+.select-box__option {
+  display: block;
+
+  &:hover,
+  &:focus {
+    color: #546c84;
+    background-color: #fbfbfb;
   }
 }
 
@@ -70,7 +193,7 @@ const emit = defineEmits(['setActiveTab'])
   color: var(--blue-dark);
   font-weight: 500;
   font-size: 13px;
-  padding: 10px 28px;
+  padding: 10px 20px;
   cursor: pointer;
 }
 

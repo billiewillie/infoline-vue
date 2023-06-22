@@ -80,6 +80,11 @@ h1.title {
     margin-bottom: 35px;
 }
 
+.subtitle {
+    font-weight: 700;
+    color: var(--gray-dark);
+}
+
 .title {
     font-weight: 700;
 }

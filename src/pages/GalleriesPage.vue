@@ -1,6 +1,11 @@
 <template>
   <div class="basepage galleries-page">
     <h1 class="title">Фотогалерея</h1>
+    <TheTabs
+        :tabs="years"
+        :activeTab="activeYear"
+        @setActiveTab="setActiveYear"
+    />
     <div class="galleries-grid">
       <router-link
           :to="`/galleries/${gallery.url}`"
@@ -50,6 +55,13 @@ import IconCalendar from "@/components/icons/IconCalendar.vue";
 import IconView from "@/components/icons/IconView.vue";
 import imageWeb from '@/assets/img/index-news-img.webp';
 import image from '@/assets/img/index-news-img.jpg';
+import TheTabs from "@/components/TheTabs.vue";
+
+const years = ['Все', '2023', '2022', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014'];
+const activeYear = ref('Все');
+const setActiveYear = (year) => {
+  activeYear.value = year;
+};
 
 const galleries = ref([
   {

@@ -1,6 +1,11 @@
 <template>
   <div class="basepage">
     <h1 class="title">Дни рождения</h1>
+    <TheTabs
+        :tabs="months"
+        :activeTab="activeMonth"
+        @setActiveTab="setActiveMonth"
+    />
     <div class="content">
       <div class="month">
         <h2 class="month-title title subtitle">Январь</h2>
@@ -154,6 +159,30 @@
 <script setup>
 import IconGiftBlue from "@/components/icons/IconGiftBlue.vue";
 import IconGift from "@/components/icons/IconGift.vue";
+import TheTabs from "@/components/TheTabs.vue";
+import {ref} from "vue";
+
+const months = [
+  "Январь",
+  "Февраль",
+  "Март",
+  "Апрель",
+  "Май",
+  "Июнь",
+  "Июль",
+  "Август",
+  "Сентябрь",
+  "Октябрь",
+  "Ноябрь",
+  "Декабрь",
+];
+
+const activeMonth = ref("Январь");
+
+const setActiveMonth = (month) => {
+  activeMonth.value = month;
+};
+
 </script>
 
 <style scoped>
