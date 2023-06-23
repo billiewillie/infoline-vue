@@ -8,23 +8,16 @@
     />
     <h2 class="subtitle">{{ activeDepartment }}</h2>
     <div class="content shadow rounded overflow-hidden">
-      <div class="content-item" v-for="item in activeDocs" :key="item.id">
-          <div class="icon">
-            <span>{{ item.ext }}</span>
-          </div>
-          <p>{{ item.name }}</p>
-          <footer class="item-footer">
-            <a :href="`${item.link}`">Скачать</a>
-          </footer>
-      </div>
+      <DocComponent v-for="item in activeDocs" :key="item.id" :doc="item"/>
     </div>
   </div>
 </template>
 
 <script setup>
-
 import TheTabs from "@/components/TheTabs.vue";
 import {ref} from "vue";
+import IconDoc from "@/components/icons/IconDoc.vue";
+import DocComponent from "@/components/DocComponent.vue";
 
 const departments = ref([
   {
@@ -32,15 +25,15 @@ const departments = ref([
     docs: [
       {
         id: 1,
-        name: 'файл 1',
-        ext: 'pdf',
-        link: '/',
+        name: 'файл 1 файл 1файл 1файл 1файл 1файл 1файл 1',
+        ext: 'mp3',
+        link: './src/assets/img/gallery-2.webp',
       },
       {
         id: 2,
-        name: 'файл 2',
+        name: 'файл 2 файл 2файл 2файл 2файл 2файл 1файл 1 2',
         ext: 'pdf',
-        link: '/',
+        link: './src/assets/img/gallery-2.webp',
       }
     ]
   },
@@ -86,6 +79,8 @@ const departments = ref([
   }
 ]);
 
+const showFooter = ref(false);
+
 let departmentsTitles = ref(['Отдел персонала', 'Бухгалтерия', 'ИТ отдел']);
 let activeDepartment = ref(departments.value[0].name);
 const activeDocs = ref(departments.value[0].docs);
@@ -98,11 +93,9 @@ const setActiveDepartment = (tab) => {
 const setActiveDocs = (tab) => {
   activeDocs.value = departments.value.filter(item => item.name === tab)[0].docs;
 }
-
 </script>
 
 <style scoped>
-
 .subtitle {
   text-align: center;
   margin-bottom: 18px;
@@ -114,33 +107,5 @@ const setActiveDocs = (tab) => {
 
 .content {
   background-color: var(--white);
-}
-
-.content-item {
-  display: grid;
-  grid-template-rows: repeat(2, 1fr);
-  grid-template-columns: auto 1fr;
-  column-gap: 30px;
-
-  @media (min-width: 1280px) {
-    padding: 20px 36px;
-  }
-}
-
-.content-item:nth-child(even) {
-  background-color: var(--gray-light);
-}
-
-.item-footer {
-  grid-row-start: 2;
-  grid-row-end: 3;
-  grid-column-start: 1;
-  grid-column-end: 3;
-  background-color: var(--blue-light);
-
-  @media (min-width: 1280px) {
-    grid-column-start: 2;
-    background-color: transparent;
-  }
 }
 </style>

@@ -2,7 +2,11 @@
   <div class="basepage gallery-page">
     <h1 class="title">Фотогалерея #1</h1>
     <div class="gallery-grid">
-      <div class="gallery-item rounded shadow">
+      <div
+          class="gallery-item rounded shadow pic"
+          v-for="(src, index) in imgs"
+          :key="index"
+          @click="() => showImg(index)">
         <div class="gallery-cover rounded overflow-hidden">
           <picture>
             <source srcset="@/assets/img/gallery-2.webp" type="image/webp">
@@ -10,54 +14,11 @@
           </picture>
         </div>
       </div>
-      <div class="gallery-item rounded shadow">
-        <div class="gallery-cover rounded overflow-hidden">
-          <picture>
-            <source srcset="@/assets/img/gallery-2.webp" type="image/webp">
-            <img src="@/assets/img/gallery-1.jpeg" alt="">
-          </picture>
-        </div>
-      </div>
-      <div class="gallery-item rounded shadow">
-        <div class="gallery-cover rounded overflow-hidden">
-          <picture>
-            <source srcset="@/assets/img/gallery-2.webp" type="image/webp">
-            <img src="@/assets/img/gallery-1.jpeg" alt="">
-          </picture>
-        </div>
-      </div>
-      <div class="gallery-item rounded shadow">
-        <div class="gallery-cover rounded overflow-hidden">
-          <picture>
-            <source srcset="@/assets/img/gallery-2.webp" type="image/webp">
-            <img src="@/assets/img/gallery-1.jpeg" alt="">
-          </picture>
-        </div>
-      </div>
-      <div class="gallery-item rounded shadow">
-        <div class="gallery-cover rounded overflow-hidden">
-          <picture>
-            <source srcset="@/assets/img/gallery-2.webp" type="image/webp">
-            <img src="@/assets/img/gallery-1.jpeg" alt="">
-          </picture>
-        </div>
-      </div>
-      <div class="gallery-item rounded shadow">
-        <div class="gallery-cover rounded overflow-hidden">
-          <picture>
-            <source srcset="@/assets/img/gallery-2.webp" type="image/webp">
-            <img src="@/assets/img/gallery-1.jpeg" alt="">
-          </picture>
-        </div>
-      </div>
-      <div class="gallery-item rounded shadow">
-        <div class="gallery-cover rounded overflow-hidden">
-          <picture>
-            <source srcset="@/assets/img/gallery-2.webp" type="image/webp">
-            <img src="@/assets/img/gallery-1.jpeg" alt="">
-          </picture>
-        </div>
-      </div>
+      <vue-easy-lightbox
+          :visible="visibleRef"
+          :imgs="imgs"
+          :index="indexRef"
+          @hide="onHide"/>
     </div>
   </div>
 </template>
@@ -67,6 +28,7 @@ import {ref} from "vue";
 import axios from "axios";
 import IconCalendar from "@/components/icons/IconCalendar.vue";
 import IconView from "@/components/icons/IconView.vue";
+import VueEasyLightbox from 'vue-easy-lightbox'
 
 const photos = ref({
   id: 1,
@@ -99,23 +61,43 @@ const photos = ref({
   gallery_cover: '1',
 });
 
+const visibleRef = ref(false)
+const indexRef = ref(0)
+const imgs = [
+  'https://via.placeholder.com/450.png/',
+  'https://via.placeholder.com/300.png/',
+  'https://via.placeholder.com/150.png/',
+  {
+    src: 'https://via.placeholder.com/450.png/',
+    title: 'this is title'
+  }
+]
+const showImg = (index) => {
+  indexRef.value = index
+  visibleRef.value = true
+}
+const onHide = () => visibleRef.value = false
+
 // axios
 //     .get('http://gallery.trifonov.space/api/gallery/show/all')
 //     .then(res => photos.value = res.data);
 </script>
 
 <style scoped>
+@import "vue-easy-lightbox/dist/external-css/vue-easy-lightbox.css";
+
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
   gap: 2px;
 
   @media (min-width: 1280px) {
-    grid-template-columns: repeat(auto-fit, minmax(284px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 16px;
   }
 
   @media (min-width: 1920px) {
+    grid-template-columns: repeat(6, 1fr);
     gap: 20px;
   }
 }
@@ -129,6 +111,7 @@ const photos = ref({
   color: var(--white);
   aspect-ratio: 1 / 1;
   overflow: hidden;
+  cursor: pointer;
 
   @media (min-width: 1280px) {
     aspect-ratio: 3 / 2;

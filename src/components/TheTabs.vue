@@ -57,11 +57,11 @@ const props = defineProps({
   activeTab: {
     type: String,
   }
-})
+});
 
 const isOpen = ref(false);
 
-const emit = defineEmits(['setActiveTab'])
+const emit = defineEmits(['setActiveTab']);
 
 const handleClickOutside = () => {
   isOpen.value = false;
@@ -167,6 +167,7 @@ const vClickOutside = {
   top: 40px;
   opacity: 1;
   background-color: var(--white);
+  z-index: 1;
 }
 
 .select-box__option {
