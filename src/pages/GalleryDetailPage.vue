@@ -4,14 +4,11 @@
     <div class="gallery-grid">
       <div
           class="gallery-item rounded shadow pic"
-          v-for="(src, index) in imgs"
+          v-for="(photo, index) in imgs"
           :key="index"
           @click="() => showImg(index)">
         <div class="gallery-cover rounded overflow-hidden">
-          <picture>
-            <source srcset="@/assets/img/gallery-2.webp" type="image/webp">
-            <img src="@/assets/img/gallery-1.jpeg" alt="">
-          </picture>
+          <img :src="photo" alt="photo">
         </div>
       </div>
       <vue-easy-lightbox
@@ -24,10 +21,8 @@
 </template>
 
 <script setup>
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import axios from "axios";
-import IconCalendar from "@/components/icons/IconCalendar.vue";
-import IconView from "@/components/icons/IconView.vue";
 import VueEasyLightbox from 'vue-easy-lightbox'
 
 const photos = ref({
@@ -52,31 +47,30 @@ const photos = ref({
   ],
   media: [
     {
-      src: "1"
+      src: "gallery-1",
+      alt: 'alt'
     },
     {
-      src: "2"
+      src: "gallery-3",
+      alt: 'alt'
     }
   ],
   gallery_cover: '1',
 });
 
+let imgs = ref([]);
+
 const visibleRef = ref(false)
 const indexRef = ref(0)
-const imgs = [
-  'https://via.placeholder.com/450.png/',
-  'https://via.placeholder.com/300.png/',
-  'https://via.placeholder.com/150.png/',
-  {
-    src: 'https://via.placeholder.com/450.png/',
-    title: 'this is title'
-  }
-]
 const showImg = (index) => {
   indexRef.value = index
   visibleRef.value = true
 }
 const onHide = () => visibleRef.value = false
+
+onMounted(() => {
+  imgs.value = photos.value.media.map(item => `../src/assets/img/${item.src}.jpg`)
+})
 
 // axios
 //     .get('http://gallery.trifonov.space/api/gallery/show/all')

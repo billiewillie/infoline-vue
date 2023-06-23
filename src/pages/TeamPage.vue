@@ -4,7 +4,7 @@
       <h1 class="title">Наша команда</h1>
       <div class="content">
         <div class="row row-head">
-          <router-link to="/" class="card shadow rounded">
+          <router-link to="/users/belinovich" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
                 <source :srcset="imageWeb" type="image/webp"/>
@@ -16,7 +16,7 @@
           </router-link>
         </div>
         <div class="row">
-          <router-link to="/" class="card shadow rounded">
+          <router-link to="/users/belinovich" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
                 <source :srcset="imageWeb" type="image/webp"/>
@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="row row-inner-one">
-          <router-link to="/" class="card shadow rounded">
+          <router-link to="/users/belinovich" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
                 <source :srcset="imageWeb" type="image/webp"/>
@@ -51,7 +51,7 @@
           </div>
         </div>
         <div class="row row-above-multiple-employees">
-          <router-link to="/" class="card shadow rounded">
+          <router-link to="/users/belinovich" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
                 <source :srcset="imageWeb" type="image/webp"/>
@@ -71,7 +71,7 @@
           </div>
         </div>
         <div class="row row-inner no-departments">
-          <router-link to="/" class="card shadow rounded">
+          <router-link to="/users/belinovich" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
                 <source :srcset="imageWeb" type="image/webp"/>
@@ -83,7 +83,7 @@
           </router-link>
         </div>
         <div class="row row-inner">
-          <router-link to="/" class="card shadow rounded">
+          <router-link to="/users/belinovich" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
                 <source :srcset="imageWeb" type="image/webp"/>
@@ -108,7 +108,7 @@
           </div>
         </div>
         <div class="row">
-          <router-link to="/" class="card shadow rounded">
+          <router-link to="/users/belinovich" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
                 <source :srcset="imageWeb" type="image/webp"/>
@@ -125,7 +125,7 @@
           </div>
         </div>
         <div class="row row-inner-one">
-          <router-link to="/" class="card shadow rounded">
+          <router-link to="/users/belinovich" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
                 <source :srcset="imageWeb" type="image/webp"/>
@@ -141,7 +141,7 @@
           </div>
         </div>
         <div class="row">
-          <router-link to="/" class="card shadow rounded">
+          <router-link to="/users/belinovich" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
                 <source :srcset="imageWeb" type="image/webp"/>
@@ -159,7 +159,7 @@
           </div>
         </div>
         <div class="row">
-          <router-link to="/" class="card shadow rounded">
+          <router-link to="/users/belinovich" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
                 <source :srcset="imageWeb" type="image/webp"/>
@@ -175,7 +175,7 @@
           </div>
         </div>
         <div class="row">
-          <router-link to="/" class="card shadow rounded">
+          <router-link to="/users/belinovich" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
                 <source :srcset="imageWeb" type="image/webp"/>
@@ -191,7 +191,7 @@
           </div>
         </div>
         <div class="row">
-          <router-link to="/" class="card shadow rounded">
+          <router-link to="/users/belinovich" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
                 <source :srcset="imageWeb" type="image/webp"/>
@@ -206,7 +206,7 @@
           </div>
         </div>
         <div class="row">
-          <router-link to="/" class="card shadow rounded">
+          <router-link to="/users/belinovich" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
                 <source :srcset="imageWeb" type="image/webp"/>
@@ -221,7 +221,7 @@
           </div>
         </div>
         <div class="row">
-          <router-link to="/" class="card shadow rounded">
+          <router-link to="/users/belinovich" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
                 <source :srcset="imageWeb" type="image/webp"/>
@@ -247,7 +247,7 @@
           </div>
         </div>
         <div class="row row-special">
-          <router-link to="/" class="card shadow rounded">
+          <router-link to="/users/belinovich" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
                 <source :srcset="imageWeb" type="image/webp"/>
