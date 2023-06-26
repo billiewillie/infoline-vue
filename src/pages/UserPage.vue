@@ -10,8 +10,8 @@
       >
         <SwiperSlide v-for="item in user.gallery" :key="item">
           <picture>
-            <source :srcset="imageWeb" type="image/webp" />
-            <img :src="image" alt="news" loading="lazy" />
+            <source :srcset="imageWeb" type="image/webp"/>
+            <img :src="image" alt="news" loading="lazy"/>
           </picture>
         </SwiperSlide>
       </Swiper>
@@ -22,11 +22,14 @@
         <span class="user-name__name">{{ user.firstname }} {{ user.middlename }}</span>
       </div>
       <div class="user-birthday">
-        <span class="icon rounded">
+        <span class="icon rounded" v-if="isBDay">
           <IconBirthday/>
         </span>
         <span class="user-birthday__column-title">День рождения: </span>
-        <span class="user-birthday__column-value"> {{ user.day }} {{ getMonthName(user.month) }}</span>
+        <span
+            class="user-birthday__column-value"
+            :style="isBDay ? `color: var(--blue-light)` : ``"
+        >{{ user.day }} {{ getMonthName(user.month) }}</span>
       </div>
     </header>
     <div class="user-contacts shadow rounded">
@@ -41,31 +44,37 @@
       </div>
       <div class="user-contacts__column">
         <span class="icon">
-            <IconMail/>
+          <IconMail/>
         </span>
         <div class="user-contacts__column-value">
           <span>Эл. почта: </span>
           <a :href="`mailto:${user.email}`">{{ user.email }}</a>
         </div>
         <span class="icon icon-copy">
-          <IconCopy/>
+          <IconCopy @click="copyMail(user.email)"/>
         </span>
       </div>
-      <div v-if="user.companies" class="user-contacts__column">
-        <template v-for="item in user.companies">
-          <template v-if="item.department.phone">
-              <span class="icon">
-                  <IconPhone/>
-              </span>
-            <div class="user-contacts__column-value">
-              <span>Мобильный: </span>
-              <a :href="`tel:${item.department.phone}`">{{ formatPhoneNumber(item.department.phone) }}</a>
-            </div>
-            <span class="icon icon-copy">
-              <IconCopy/>
-            </span>
+      <div class="user-contacts__column">
+        <span class="icon">
+          <IconPhone/>
+        </span>
+        <div class="user-contacts__column-value">
+          <span>Мобильный: </span>
+        </div>
+        <div class="user-contacts__column-value phone-value">
+          <template v-for="item in user.companies" :key="item.id">
+            <template v-if="item.department.phone">
+              <div class="user-contacts__column-value-row">
+                <div class="user-contacts__column-value">
+                  <a :href="`tel:${item.department.phone}`">{{ formatPhoneNumber(item.department.phone) }}</a>
+                </div>
+                <span class="icon icon-copy">
+                  <IconCopy @click="copyPhone(item.department.phone)"/>
+                </span>
+              </div>
+            </template>
           </template>
-        </template>
+        </div>
       </div>
     </div>
     <div class="user-position shadow rounded overflow-hidden">
@@ -116,6 +125,8 @@ import {USERS_API_URL, USERS_IMAGES_URL} from "@/constants";
 import imageWeb from '@/assets/img/lazareva.webp';
 import image from '@/assets/img/lazareva.jpg';
 import {formatPhoneNumber} from "@/functions/formatPhoneNumber";
+import {useToast} from "vue-toastification";
+import "vue-toastification/dist/index.css";
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -125,19 +136,21 @@ import IconPhone from "@/components/icons/IconPhone.vue";
 import IconMail from "@/components/icons/IconMail.vue";
 import IconCopy from "@/components/icons/IconCopy.vue";
 
+const toast = useToast();
+
 const modules = [Navigation];
 const user = ref({
   "id": 79,
   "token": "etwe4t21452341f",
   "login": "belinovich",
-  "email": "belinovich@bioline.ru",
+  "email": "lidzhi-goryaev@bioline.ru",
   "firstname": "Марина",
   "middlename": "Руслановна",
   "lastname": "Лазарева",
   "avatar": "belinovich.webp",
   "localphone": 259,
-  "month": 12,
-  "day": 8,
+  "month": 5,
+  "day": 21,
   "gallery": [
     {
       "src": "lazareva"
@@ -153,7 +166,7 @@ const user = ref({
     {
       "id": 1,
       "user_id": 79,
-      "companys_id": 1,
+      "company_id": 1,
       "title": "БиоЛайн",
       "url": "bioline",
       "sort": 600,
@@ -175,17 +188,17 @@ const user = ref({
     },
     {
       "id": 2,
-      "user_id": 79,
-      "companys_id": 2,
-      "title": "БиоСистемы",
-      "url": "biosystems",
-      "sort": 500,
+      "user_id": 89,
+      "company_id": 2,
+      "title": "БиоЛайн df",
+      "url": "bioline",
+      "sort": 600,
       "department": {
-        "locations": "",
+        "locations": "Санкт-Петербург",
         "title": "Отдел рекламы",
         "email": "",
         "url": "advertising",
-        "phone": "",
+        "phone": "79214088649",
         "groups": {
           "title": "Группа web-разработки",
           "email": "",
@@ -205,6 +218,31 @@ const user = ref({
     }
   ]
 });
+
+const isBDay = ref(false);
+
+const date = new Date();
+const month = date.getMonth() + 1;
+const day = date.getDate();
+
+if(day === user.value.day && month === user.value.month) {
+  isBDay.value = true;
+}
+
+const copyMail = (email) => {
+  navigator.clipboard.writeText(email);
+  toast.success('скопировано', {
+    timeout: 2000
+  })
+}
+
+const copyPhone = (phone) => {
+  navigator.clipboard.writeText(`+${phone}`);
+  toast.success('скопировано', {
+    timeout: 2000
+  })
+}
+
 
 // const params = useRoute().params;
 
@@ -307,7 +345,6 @@ const user = ref({
 .user-birthday__column-value {
   font-weight: 700;
   font-size: 18px;
-  color: var(--orange);
 
   @media (min-width: 1280px) {
     font-size: 24px;
@@ -320,7 +357,7 @@ const user = ref({
   justify-content: center;
   width: 33px;
   height: 33px;
-  background-color: var(--orange);
+  background-color: var(--blue-light);
 }
 
 .user-birthday .icon svg {
@@ -335,6 +372,16 @@ const user = ref({
 
 .user-name span {
   font-weight: 700;
+}
+
+.icon-copy {
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+}
+
+.user-contacts__column:hover .icon-copy {
+  opacity: 1;
 }
 
 .user-name .user-name__surname {
@@ -396,7 +443,7 @@ const user = ref({
 a.user-position__column-value {
   color: var(--blue-light);
   text-decoration: underline;
-  text-underline-offset: 3px;
+  text-underline-offset: 4px;
 }
 
 .user-position__row {
@@ -423,6 +470,12 @@ a.user-position__column-value {
   }
 }
 
+.user-contacts__column-value.phone-value {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
 .user-contacts__column-value span {
   @media (min-width: 1280px) {
     font-size: 12px;
@@ -436,7 +489,7 @@ a.user-position__column-value {
 .user-contacts__column-value a {
   color: var(--blue-light);
   text-decoration: underline;
-  text-underline-offset: 3px;
+  text-underline-offset: 4px;
 
   @media (min-width: 1280px) {
     font-size: 12px;
@@ -465,5 +518,10 @@ a.user-position__column-value {
     width: 18px;
     height: 18px;
   }
+}
+
+.user-contacts__column-value-row {
+  display: flex;
+  column-gap: 10px;
 }
 </style>

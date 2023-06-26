@@ -165,6 +165,12 @@ h1.title {
     margin: auto;
 }
 
+.Vue-Toastification__toast {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
 .x1 {
     -webkit-animation: floatUp 4s infinite linear;
     -moz-animation: floatUp 4s infinite linear;

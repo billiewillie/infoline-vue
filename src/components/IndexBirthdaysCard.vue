@@ -267,7 +267,11 @@ const birthdays = ref([
 	font-size: 15px;
 
 	@media (min-width: 1280px) {
-		font-size: 13px;
+		font-size: 11px;
 	}
+
+  @media (min-width: 1920px) {
+    font-size: 13px;
+  }
 }
 </style>

@@ -37,8 +37,7 @@
           :key="tab"
           class="tabs__item"
           :class="{ active: tab === props.activeTab }"
-          @click="$emit('setActiveTab', tab)"
-      >
+          @click="$emit('setActiveTab', tab)">
         {{ tab }}
       </li>
     </ul>
