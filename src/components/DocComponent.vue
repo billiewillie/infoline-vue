@@ -68,7 +68,13 @@ const showFooter = ref(false);
     grid-row-end: 3;
     padding: 0;
     align-items: center;
+    width: auto;
+    height: auto;
   }
+}
+
+.icon svg {
+    height: 78px;
 }
 
 .name {
@@ -93,6 +99,7 @@ const showFooter = ref(false);
   grid-column-end: 3;
   background-color: var(--blue-light);
   column-gap: 10px;
+  line-height: 1;
 
   @media (min-width: 1280px) {
     display: flex;
@@ -100,6 +107,11 @@ const showFooter = ref(false);
     background-color: transparent;
     padding: 0;
   }
+}
+
+.item-footer svg {
+  width: 20px;
+  height: 20px;
 }
 
 .content-item.expand .item-footer {

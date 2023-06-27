@@ -6,11 +6,11 @@
         :activeTab="activeYear"
         @setActiveTab="setActiveYear"
     />
-    <div class="galleries-grid">
+    <transition-group name="grid" tag="div" class="galleries-grid">
       <router-link
           :to="`/galleries/${gallery.url}`"
           class="gallery-item rounded shadow"
-          v-for="gallery in galleries"
+          v-for="gallery in activeGalleries"
           :key="gallery.id"
       >
         <div class="gallery-date">
@@ -21,8 +21,8 @@
         </div>
         <div class="gallery-cover rounded overflow-hidden">
           <picture>
-            <source :srcset="imageWeb" type="image/webp" />
-            <img :src="image" alt="gallery" loading="lazy" />
+            <source :srcset="imageWeb" type="image/webp"/>
+            <img :src="image" alt="gallery" loading="lazy"/>
           </picture>
         </div>
         <footer class="gallery-footer">
@@ -44,24 +44,18 @@
           </div>
         </footer>
       </router-link>
-    </div>
+    </transition-group>
   </div>
 </template>
 
 <script setup>
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import axios from "axios";
 import IconCalendar from "@/components/icons/IconCalendar.vue";
 import IconView from "@/components/icons/IconView.vue";
 import imageWeb from '@/assets/img/index-news-img.webp';
 import image from '@/assets/img/index-news-img.jpg';
 import TheTabs from "@/components/TheTabs.vue";
-
-const years = ['Все', '2023', '2022', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014'];
-const activeYear = ref('Все');
-const setActiveYear = (year) => {
-  activeYear.value = year;
-};
 
 const galleries = ref([
   {
@@ -71,6 +65,7 @@ const galleries = ref([
     "url": "gallery-1",
     "show_count": 123,
     "published_date": "2023-05-12",
+    "published_year": "2023",
     "gallery_cover": "index-news-img",
     "count_img": 5
   },
@@ -81,6 +76,7 @@ const galleries = ref([
     "url": "gallery-2",
     "show_count": 7,
     "published_date": "2023-05-20",
+    "published_year": "2022",
     "gallery_cover": "index-news-img",
     "count_img": 3
   },
@@ -91,6 +87,7 @@ const galleries = ref([
     "url": "gallery-3",
     "show_count": 9,
     "published_date": "2023-05-20",
+    "published_year": "2021",
     "gallery_cover": "index-news-img",
     "count_img": 3
   },
@@ -101,6 +98,7 @@ const galleries = ref([
     "url": "gallery-4",
     "show_count": 1,
     "published_date": "2023-05-20",
+    "published_year": "2021",
     "gallery_cover": "index-news-img",
     "count_img": 3
   },
@@ -111,6 +109,7 @@ const galleries = ref([
     "url": "gallery-5",
     "show_count": 1,
     "published_date": "2023-05-20",
+    "published_year": "2020",
     "gallery_cover": "index-news-img",
     "count_img": 2
   },
@@ -121,6 +120,7 @@ const galleries = ref([
     "url": "gallery-6",
     "show_count": 23,
     "published_date": "2023-05-20",
+    "published_year": "2020",
     "gallery_cover": "index-news-img",
     "count_img": 2
   },
@@ -130,7 +130,8 @@ const galleries = ref([
     "location": "Москва",
     "url": "gallery-7",
     "show_count": 3,
-    "published_date": "2023-05-20",
+    "published_date": "2019-05-20",
+    "published_year": "2019",
     "gallery_cover": "index-news-img",
     "count_img": 2
   },
@@ -140,7 +141,8 @@ const galleries = ref([
     "location": "Спб",
     "url": "gallery-8",
     "show_count": 5,
-    "published_date": "2023-05-20",
+    "published_date": "2018-05-20",
+    "published_year": "2018",
     "gallery_cover": "index-news-img",
     "count_img": 3
   },
@@ -150,13 +152,35 @@ const galleries = ref([
     "location": "Спб",
     "url": "gallery-9",
     "show_count": 6,
-    "published_date": "2023-05-20",
+    "published_date": "2018-05-20",
+    "published_year": "2018",
     "gallery_cover": "index-news-img",
     "count_img": 3
   }
 ]);
+const years = ref(['Все']);
+const activeYear = ref(years.value[0]);
+const activeGalleries = ref(galleries.value);
 
-// axios.get('http://gallery.trifonov.space/api/gallery/show/all').then(res => galleries.value = res.data);
+onMounted(() => {
+  galleries.value.forEach(item => {
+    years.value.push(item.published_year);
+  });
+  years.value = [...new Set(years.value)];
+  years.value.sort((a, b) => b - a);
+});
+
+const setActiveYear = (year) => {
+  activeYear.value = year;
+  // console.log(activeYear.value);
+  activeGalleries.value = galleries.value.filter(item => {
+    if (activeYear.value === 'Все') {
+      return true;
+    } else {
+      return item.published_year === activeYear.value;
+    }
+  });
+};
 </script>
 
 <style scoped>
@@ -166,11 +190,12 @@ const galleries = ref([
   gap: 20px;
 
   @media (min-width: 1280px) {
-    grid-template-columns: repeat(auto-fit, minmax(580px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 16px;
   }
 
   @media (min-width: 1920px) {
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
   }
 }
@@ -243,6 +268,9 @@ const galleries = ref([
   width: 100%;
   padding: 17px;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0) 100%);
+  -webkit-border-radius: 0 0 3px 3px;
+  -moz-border-radius: 0 0 3px 3px;
+  border-radius: 0 0 3px 3px;
 }
 
 .gallery-footer::before {
@@ -270,5 +298,46 @@ const galleries = ref([
 .gallery-stats__item svg {
   width: 14px;
   height: 14px;
+}
+
+.grid-leave-active,
+.grid-enter-active,
+.grid-move {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.grid-enter {
+  opacity: 0;
+  transform: translateY(50px) scale(0.5);
+}
+
+.grid-enter-to {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.grid-enter-from,
+.grid-leave-to {
+  opacity: 0;
+}
+
+.grid-leave-active {
+  position: absolute;
+  opacity: 0;
+  transform: scaleY(0);
+  animation: bounceIn 0.3s reverse;
+}
+
+.grid-enter-active {
+  animation: bounceIn 0.3s;
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>

@@ -43,6 +43,7 @@ import IconNotFound from "@/components/icons/IconNotFound.vue";
   padding-bottom: 38px;
   border-bottom: 2px solid var(--gray-medium);
   width: 100%;
+  height: auto;
 }
 
 .main-icon svg {

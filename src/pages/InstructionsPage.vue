@@ -328,10 +328,11 @@ const departmentsList = ref([
 ]);
 
 let departmentsTitles = ref(['IT отдел', 'Госзакупки']);
-let activeDepartment = ref('IT отдел');
+let activeDepartment = ref(departmentsTitles.value[0]);
 
 const categoriesTitles = ref(['1С', 'Почта', 'Мотив', 'Сайты']);
-const activeCategory = ref('1С');
+const activeCategory = ref(categoriesTitles.value[0]);
+
 const activeTypesList = ref([
   {
     title: 'Общие инструкции',
