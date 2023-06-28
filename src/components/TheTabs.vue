@@ -112,6 +112,9 @@ const vClickOutside = {
 }
 
 .select-box .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   transform: rotate(90deg);
   transition: transform 0.3s ease-in-out;
   transform-origin: 50% 50%;
