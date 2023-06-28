@@ -501,7 +501,6 @@ const setActiveTypesList = () => {
       .filter(item => item.category === activeCategory.value)[0]
       .typesList;
 }
-
 </script>
 
 <style scoped>

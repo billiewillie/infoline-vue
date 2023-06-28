@@ -1,11 +1,13 @@
 <template>
   <div class="basepage galleries-page">
     <h1 class="title">Фотогалерея</h1>
+
     <TheTabs
         :tabs="years"
         :activeTab="activeYear"
         @setActiveTab="setActiveYear"
     />
+
     <transition-group name="grid" tag="div" class="galleries-grid">
       <router-link
           :to="`/galleries/${gallery.url}`"
@@ -158,6 +160,7 @@ const galleries = ref([
     "count_img": 3
   }
 ]);
+
 const years = ref(['Все']);
 const activeYear = ref(years.value[0]);
 const activeGalleries = ref(galleries.value);

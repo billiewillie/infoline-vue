@@ -4,10 +4,12 @@
     <TheTabs
         :tabs="categories"
         :activeTab="activeCategory"
-        @setActiveTab="setActiveCategory"
-    />
+        @setActiveTab="setActiveCategory"/>
     <div class="news-list" v-if="news.length">
-      <NewsItem v-for="item in news" :key="item.id" :item="item"/>
+      <NewsItem
+          v-for="item in activeNews"
+          :key="item.id"
+          :item="item"/>
     </div>
   </div>
 </template>
@@ -19,7 +21,7 @@ import axios from "axios";
 import {NEWS_URL} from "@/constants";
 import TheTabs from "@/components/TheTabs.vue";
 
-const news = ref([
+const news = [
   {
     "id": 16,
     "title": "В компании юбиляр: поздравляем Жанну Петровну!",
@@ -39,7 +41,7 @@ const news = ref([
     "comments": [1, 1, 1, 1, 1, 1, 1],
     "category": {
       "id": 2,
-      "title": "Юбиляры"
+      "title": "Politics"
     }
   },
   {
@@ -61,7 +63,7 @@ const news = ref([
     "comments": [],
     "category": {
       "id": 2,
-      "title": "Юбиляры"
+      "title": "Politics"
     }
   },
   {
@@ -83,7 +85,7 @@ const news = ref([
     "comments": [],
     "category": {
       "id": 5,
-      "title": "Человек года"
+      "title": "Sport"
     }
   },
   {
@@ -105,7 +107,7 @@ const news = ref([
     "comments": [],
     "category": {
       "id": 2,
-      "title": "Юбиляры"
+      "title": "Sport"
     }
   },
   {
@@ -127,7 +129,7 @@ const news = ref([
     "comments": [],
     "category": {
       "id": 3,
-      "title": "Выставка"
+      "title": "Sport"
     }
   },
   {
@@ -149,28 +151,31 @@ const news = ref([
     "comments": [],
     "category": {
       "id": 2,
-      "title": "Юбиляры"
+      "title": "Sport"
     }
   },
-]);
+];
+
 const categories = ref([
   'Все',
-  'Polytics',
-  'Sport',
-  'Culture'
+  'Politics',
+  'Sport'
 ]);
 
-let activeCategory = ref('Все');
+let activeCategory = ref(categories.value[0]);
+
+const activeNews = ref(news);
 
 const setActiveCategory = (value) => {
   activeCategory.value = value;
+  activeNews.value = news.filter((item) => {
+    if (value === categories.value[0]) {
+      return true;
+    } else {
+      return item.category.title === value;
+    }
+  });
 }
-
-// axios
-//     .get(NEWS_URL)
-//     .then(response => {
-//       news.value = response.data.data;
-//     })
 </script>
 
 <style scoped>
