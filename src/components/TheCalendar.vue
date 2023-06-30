@@ -6,14 +6,22 @@
         locale="ru"
         :attributes="attributes"
         class="calendar shadow rounded"
+        v-model="date"
+        @click="$emit('toggleDate', fullDate)"
     />
   </div>
 </template>
 
 <script setup>
-import {Calendar, DatePicker} from 'v-calendar';
+import {DatePicker} from 'v-calendar';
 import 'v-calendar/style.css';
-import {ref, watch} from 'vue';
+import {ref} from 'vue';
+
+const date = ref(new Date());
+
+const fullDate = ref([date.value.getFullYear(), date.value.getMonth() + 1, date.value.getDate()].join('-'));
+
+const emit = defineEmits(['toggleDate']);
 
 const props = defineProps({
   attributes: {
@@ -21,8 +29,6 @@ const props = defineProps({
     default: () => [],
   }
 });
-
-// const date = ref(new Date());
 </script>
 
 <style>
@@ -43,9 +49,9 @@ const props = defineProps({
   background-color: var(--blue-dark);
   margin-top: 0;
   padding: 0;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
 
 .calendar .vc-title {

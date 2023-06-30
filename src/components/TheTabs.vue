@@ -229,4 +229,16 @@ const vClickOutside = {
   -moz-border-radius: 30px;
   border-radius: 30px;
 }
+
+.calendar-tabs .tabs__list {
+  @media (min-width: 1280px) {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.calendar-tabs .tabs__item {
+  justify-content: center;
+}
 </style>
