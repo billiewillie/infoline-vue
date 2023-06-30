@@ -8,16 +8,20 @@
         class="calendar shadow rounded"
         v-model="date"
         @click="$emit('toggleDate', fullDate)"
+        ref="calendar"
     />
   </div>
 </template>
 
 <script setup>
-import {DatePicker} from 'v-calendar';
+import {DatePicker, Calendar} from 'v-calendar';
 import 'v-calendar/style.css';
-import {ref} from 'vue';
+import {onMounted, ref} from 'vue';
 
 const date = ref(new Date());
+
+const currentPage = ref(null);
+const myFromPage = ref(null);
 
 const fullDate = ref([date.value.getFullYear(), date.value.getMonth() + 1, date.value.getDate()].join('-'));
 
@@ -29,6 +33,16 @@ const props = defineProps({
     default: () => [],
   }
 });
+
+const calendar = ref(null);
+
+const calendarHandler = (page) => {
+  console.log(page, myFromPage)
+}
+
+// onMounted(() => {
+//   console.log(calendar.value)
+// })
 </script>
 
 <style>

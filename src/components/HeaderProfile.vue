@@ -110,6 +110,7 @@ const vClickOutside = {
 
 .header-profile__nav {
   position: fixed;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   row-gap: 20px;

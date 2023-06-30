@@ -4,16 +4,14 @@
       <div class="row row-calendar">
         <TheCalendar
             :attributes="attributes"
-            @toggleDate="toggleDate"
-        />
+            @toggleDate="toggleDate"/>
         <div class="filters rounded shadow">
           <TheTabs
               v-if="countries"
               :tabs="countries"
               :activeTab="activeCountry"
               @setActiveTab="setActiveCountry"
-              class="calendar-tabs"
-          />
+              class="calendar-tabs"/>
           <div class="filters-grid">
             <div class="filters-item">
               <div class="icon">
@@ -44,14 +42,16 @@
       </div>
       <div class="row">
         <h2 class="title">В этот день</h2>
-        <div class="list">
+        <div class="list" v-if="dayEvents.length > 0">
           <div
               class="item rounded shadow"
               v-for="event in dayEvents"
               :key="event.id">
             <header class="item-header">
               <div class="icon">
-                <IconCorpCalendar/>
+                <IconCorpCalendar v-if="event.category === 'Корпоративные мероприятия'"/>
+                <IconExhibition v-if="event.category === 'Выставки и семинары'"/>
+                <IconProdCalendar v-if="event.category === 'Производственный календарь'"/>
               </div>
               <p class="title">{{ event.title }}</p>
             </header>
@@ -60,13 +60,14 @@
                 <div class="icon">
                   <IconClock/>
                 </div>
-                <span class="text">{{ event.time_start }} - {{ event.time_end }}</span>
+                <span class="text" v-if="event.time_start">{{ event.time_start }} - {{ event.time_end }}</span>
+                <span class="text" v-else>Весь день</span>
               </div>
               <div class="item-detail">
                 <div class="icon">
                   <IconCalendarBlue/>
                 </div>
-                <span class="text">{{ event.date_start }} - {{ event.date_end }}</span>
+                <span class="text">{{ getPrettyDatesRange(event.date_start, event.date_end) }}</span>
               </div>
               <div class="item-detail">
                 <div class="icon">
@@ -78,56 +79,66 @@
                 <div class="icon">
                   <IconMarker/>
                 </div>
-                <span class="text">{{ event.city }}</span>
+                <span class="text" v-if="event.city">{{ event.city }}</span>
+                <span class="text" v-else>Все города</span>
               </div>
             </div>
-            <footer class="item-footer">
+            <footer class="item-footer" v-if="event.url">
               <router-link :to="`${event.url}`" class="link">Подробнее</router-link>
             </footer>
           </div>
         </div>
+        <p v-else>Нет событий</p>
       </div>
       <div class="row">
         <h2 class="title">В этот месяце</h2>
-        <div class="list">
-          <div class="item rounded shadow">
+        <div class="list" v-if="monthEvents.length > 0">
+          <div
+              class="item rounded shadow"
+              v-for="event in monthEvents"
+              :key="event.id">
             <header class="item-header">
               <div class="icon">
-                <IconCorpCalendar/>
+                <IconCorpCalendar v-if="event.category === 'Корпоративные мероприятия'"/>
+                <IconExhibition v-if="event.category === 'Выставки и семинары'"/>
+                <IconProdCalendar v-if="event.category === 'Производственный календарь'"/>
               </div>
-              <p class="title">Здравоохранение - TIHE 2023</p>
+              <p class="title">{{ event.title }}</p>
             </header>
             <div class="item-content">
               <div class="item-detail">
                 <div class="icon">
                   <IconClock/>
                 </div>
-                <span class="text">10 - 19</span>
+                <span class="text" v-if="event.time_start">{{ event.time_start }} - {{ event.time_end }}</span>
+                <span class="text" v-else>Весь день</span>
               </div>
               <div class="item-detail">
                 <div class="icon">
                   <IconCalendarBlue/>
                 </div>
-                <span class="text">14 - 24 апреля</span>
+                <span class="text">{{ getPrettyDatesRange(event.date_start, event.date_end) }}</span>
               </div>
               <div class="item-detail">
                 <div class="icon">
                   <IconGlobe/>
                 </div>
-                <span class="text">Казахстан</span>
+                <span class="text">{{ activeCountry }}</span>
               </div>
               <div class="item-detail">
                 <div class="icon">
                   <IconMarker/>
                 </div>
-                <span class="text">Санкт-Петербург</span>
+                <span class="text" v-if="event.city">{{ event.city }}</span>
+                <span class="text" v-else>Все города</span>
               </div>
             </div>
-            <footer class="item-footer">
-              <router-link to="/" class="link">Подробнее</router-link>
+            <footer class="item-footer" v-if="event.url">
+              <router-link :to="`${event.url}`" class="link">Подробнее</router-link>
             </footer>
           </div>
         </div>
+        <p v-else>Нет событий</p>
       </div>
     </div>
   </div>
@@ -135,7 +146,7 @@
 
 <script setup>
 import TheCalendar from "@/components/TheCalendar.vue";
-import {onMounted, ref, watch} from "vue";
+import {onMounted, ref} from "vue";
 import TheTabs from "@/components/TheTabs.vue";
 import IconProdCalendar from "@/components/icons/IconProdCalendar.vue";
 import IconCorpCalendar from "@/components/icons/IconCorpCalendar.vue";
@@ -146,6 +157,7 @@ import IconCalendarBlue from "@/components/icons/IconCalendarBlue.vue";
 import IconGlobe from "@/components/icons/IconGlobe.vue";
 import IconMarker from "@/components/icons/IconMarker.vue";
 import {areDatesEqual} from "@/functions/areDatesEqual";
+import {getPrettyDatesRange} from "@/functions/getPrettyDatesRange";
 
 const date = new Date();
 
@@ -153,6 +165,19 @@ const countries = ref([]);
 const activeCountry = ref('');
 const dayEvents = ref([]);
 const monthEvents = ref([]);
+const fullDate = ref([date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-'));
+const activeDate = ref(fullDate.value);
+
+const attributes = ref([
+  {
+    highlight: 'blue',
+    dates: [new Date()],
+  },
+  {
+    highlight: 'red',
+    dates: []
+  }
+]);
 
 const data = ref({
   "Россия": [
@@ -161,13 +186,13 @@ const data = ref({
       "title": "Здравоохранение - TIHE 2023",
       "url": "/news/nurses-day-2023",
       "description": "13-15 апреля группа компаний «БиоЛайн» примет участие в ключевом событии для медицинского сообщества Узбекистана – международной выставке TIHE-2023.\r\n</p>\r\n<p>\r\nМероприятие является не только демонстрационной платформой, но и включает в себя обширную научно-практическую программу с участием ведущих специалистов, посвященную современным технологиям в Здравоохранении.",
-      "date_start": "2023-6-30",
-      "date_end": "2023-7-06",
+      "date_start": "2023-6-28",
+      "date_end": "2023-6-29",
       "time_start": "10",
       "time_end": "19",
       "day": 2,
       "month": 6,
-      "category": "Производственный календарь",
+      "category": "Корпоративные мероприятия",
       "city": "Москва"
     },
     {
@@ -183,82 +208,54 @@ const data = ref({
       "month": 6,
       "category": "Выставки и семинары",
       "city": "Санкт-Петербург"
-    }
-  ],
-  "Беларусь": [
-    {
-      "id": 3,
-      "title": "Здравоохранение - TIHE 2023",
-      "url": "https://bioline.ru/news/nurses-day-2023",
-      "description": "13-15 апреля группа компаний «БиоЛайн» примет участие в ключевом событии для медицинского сообщества Узбекистана – международной выставке TIHE-2023.\r\n</p>\r\n<p>\r\nМероприятие является не только демонстрационной платформой, но и включает в себя обширную научно-практическую программу с участием ведущих специалистов, посвященную современным технологиям в Здравоохранении.",
-      "date_start": "2023-06-02",
-      "date_end": "2023-06-06",
-      "time_start": null,
-      "time_end": null,
-      "day": 2,
-      "month": 6,
-      "category": "Корпоративные мероприятия",
-      "city": "Витебск"
     },
     {
-      "id": 4,
-      "title": "Здравоохранение - TIHE 2024",
-      "url": "https://bioline.ru/news/nurses-day-2023",
-      "description": "«БиоЛайн» примет участие в ключевом событии для медицинского сообщества Узбекистана – международной выставке TIHE-2023.\r\n</p>\r\n<p>\r\nМероприятие является не только демонстрационной платформой, но и включает в себя обширную научно-практическую программу с участием ведущих специалистов, посвященную современным технологиям в Здравоохранении.",
-      "date_start": "2023-06-02",
-      "date_end": "2023-06-06",
+      "id": 3,
+      "title": "День России",
+      "url": "/news/nurses-day-2023",
+      "description": "государственный праздник День России",
+      "date_start": "2023-6-12",
+      "date_end": "2023-6-12",
       "time_start": null,
       "time_end": null,
-      "day": 2,
+      "day": 12,
       "month": 6,
       "category": "Производственный календарь",
-      "city": "Минск"
-    }
+      "city": null
+    },
   ],
+  "Казахстан": [],
+  "Узбекистан": [],
+  "Беларусь": [],
 });
-
-const fullDate = ref([date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-'));
-
-const currentDate = ref(fullDate.value);
 
 const toggleDate = (value) => {
   date.value = value;
 }
 
-const attributes = ref([
-  {
-    highlight: 'blue',
-    dates: [new Date(), '2023-06-01'],
-  },
-  {
-    highlight: 'red',
-    dates: ['2023-06-24', '2023-06-12']
-  }
-]);
-
-// const setDayEvents = () => {
-//   data
-//       .value[activeCountry.value]
-//       .filter(item => item.date_start === currentDate.value);
-// }
-// const setMonthEvents = ref(data.value["Россия"].filter(item));
-
 const setActiveCountry = (country) => {
   activeCountry.value = country;
+  setActiveEvents();
 }
 
-// const setActiveDate = (date) => {
-//   date.value = date;
-// }
+const setActiveEvents = () => {
+  dayEvents.value = data.value[activeCountry.value].filter(item => areDatesEqual(item.date_start, activeDate.value));
+  monthEvents.value = data.value[activeCountry.value].filter(item => areDatesEqual(item.date_start, activeDate.value, 'month'));
+  attributes.value[0].dates = [...monthEvents
+      .value
+      .filter(item => item.category !== 'Производственный календарь')
+      .map(item => item.date_start), new Date()];
+  attributes.value[1].dates = monthEvents
+      .value
+      .filter(item => item.category === 'Производственный календарь')
+      .map(item => item.date_start);
+}
 
 onMounted(() => {
   countries.value = Object.keys(data.value);
   setActiveCountry(countries.value[0]);
-  dayEvents.value = data.value[activeCountry.value].filter(item => areDatesEqual(item.date_start, currentDate.value));
-  monthEvents.value = data.value[activeCountry.value].filter(item => item.date_start === currentDate.value);
-  console.log(dayEvents.value)
+  setActiveEvents();
 })
-
 </script>
 
 <style scoped>
