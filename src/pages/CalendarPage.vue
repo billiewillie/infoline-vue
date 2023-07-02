@@ -4,7 +4,9 @@
       <div class="row row-calendar">
         <TheCalendar
             :attributes="attributes"
-            @toggleDate="toggleDate"/>
+            @toggleDate="toggleDate"
+            @toggleMonth="toggleMonth"
+        />
         <div class="filters rounded shadow">
           <TheTabs
               v-if="countries"
@@ -158,6 +160,7 @@ import IconGlobe from "@/components/icons/IconGlobe.vue";
 import IconMarker from "@/components/icons/IconMarker.vue";
 import {areDatesEqual} from "@/functions/areDatesEqual";
 import {getPrettyDatesRange} from "@/functions/getPrettyDatesRange";
+import {DatePicker} from "v-calendar";
 
 const date = new Date();
 
@@ -167,7 +170,6 @@ const dayEvents = ref([]);
 const monthEvents = ref([]);
 const fullDate = ref([date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-'));
 const activeDate = ref(fullDate.value);
-
 const attributes = ref([
   {
     highlight: 'blue',
@@ -175,10 +177,9 @@ const attributes = ref([
   },
   {
     highlight: 'red',
-    dates: []
+    dates: [],
   }
 ]);
-
 const data = ref({
   "Россия": [
     {
@@ -186,8 +187,8 @@ const data = ref({
       "title": "Здравоохранение - TIHE 2023",
       "url": "/news/nurses-day-2023",
       "description": "13-15 апреля группа компаний «БиоЛайн» примет участие в ключевом событии для медицинского сообщества Узбекистана – международной выставке TIHE-2023.\r\n</p>\r\n<p>\r\nМероприятие является не только демонстрационной платформой, но и включает в себя обширную научно-практическую программу с участием ведущих специалистов, посвященную современным технологиям в Здравоохранении.",
-      "date_start": "2023-6-28",
-      "date_end": "2023-6-29",
+      "date_start": "2023-6-1",
+      "date_end": "2023-6-4",
       "time_start": "10",
       "time_end": "19",
       "day": 2,
@@ -200,7 +201,7 @@ const data = ref({
       "title": "Здравоохранение - TIHE 2024",
       "url": "https://bioline.ru/news/nurses-day-2023",
       "description": "«БиоЛайн» примет участие в ключевом событии для медицинского сообщества Узбекистана – международной выставке TIHE-2023.\r\n</p>\r\n<p>\r\nМероприятие является не только демонстрационной платформой, но и включает в себя обширную научно-практическую программу с участием ведущих специалистов, посвященную современным технологиям в Здравоохранении.",
-      "date_start": "2023-06-30",
+      "date_start": "2023-7-6",
       "date_end": "2023-07-16",
       "time_start": 12,
       "time_end": 14,
@@ -214,8 +215,8 @@ const data = ref({
       "title": "День России",
       "url": "/news/nurses-day-2023",
       "description": "государственный праздник День России",
-      "date_start": "2023-6-12",
-      "date_end": "2023-6-12",
+      "date_start": "2023-8-20",
+      "date_end": "2023-8-20",
       "time_start": null,
       "time_end": null,
       "day": 12,
@@ -228,9 +229,17 @@ const data = ref({
   "Узбекистан": [],
   "Беларусь": [],
 });
+const calendar = ref(null);
 
 const toggleDate = (value) => {
-  date.value = value;
+  // date.value = value;
+  console.log(value)
+}
+
+const toggleMonth = (result) => {
+  monthEvents.value = data
+      .value[activeCountry.value]
+      .filter(item => areDatesEqual(item.date_start, result, 'month'));
 }
 
 const setActiveCountry = (country) => {
@@ -241,14 +250,19 @@ const setActiveCountry = (country) => {
 const setActiveEvents = () => {
   dayEvents.value = data.value[activeCountry.value].filter(item => areDatesEqual(item.date_start, activeDate.value));
   monthEvents.value = data.value[activeCountry.value].filter(item => areDatesEqual(item.date_start, activeDate.value, 'month'));
-  attributes.value[0].dates = [...monthEvents
-      .value
-      .filter(item => item.category !== 'Производственный календарь')
-      .map(item => item.date_start), new Date()];
-  attributes.value[1].dates = monthEvents
-      .value
-      .filter(item => item.category === 'Производственный календарь')
-      .map(item => item.date_start);
+  attributes.value[0].dates = [
+    ...data
+        .value[activeCountry.value]
+        .filter(item => item.category !== 'Производственный календарь')
+        .map(item => new Date(item.date_start)),
+    new Date()
+  ];
+  attributes.value[1].dates = [
+    ...data
+        .value[activeCountry.value]
+        .filter(item => item.category === 'Производственный календарь')
+        .map(item => new Date(item.date_start))
+  ];
 }
 
 onMounted(() => {

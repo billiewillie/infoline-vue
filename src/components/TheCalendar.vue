@@ -4,11 +4,13 @@
         expanded
         borderless
         locale="ru"
+        ref="calendar"
         :attributes="attributes"
         class="calendar shadow rounded"
         v-model="date"
-        @click="$emit('toggleDate', fullDate)"
-        ref="calendar"
+        mode="date"
+        @dayfocusin="$emit('toggleDate', date)"
+        @transition-end="toggleMonthHandler"
     />
   </div>
 </template>
@@ -16,16 +18,15 @@
 <script setup>
 import {DatePicker, Calendar} from 'v-calendar';
 import 'v-calendar/style.css';
-import {onMounted, ref} from 'vue';
+import {ref} from 'vue';
 
+const calendar = ref(null);
 const date = ref(new Date());
-
 const currentPage = ref(null);
 const myFromPage = ref(null);
-
 const fullDate = ref([date.value.getFullYear(), date.value.getMonth() + 1, date.value.getDate()].join('-'));
 
-const emit = defineEmits(['toggleDate']);
+const emit = defineEmits(['toggleDate', 'toggleMonth']);
 
 const props = defineProps({
   attributes: {
@@ -34,15 +35,12 @@ const props = defineProps({
   }
 });
 
-const calendar = ref(null);
-
-const calendarHandler = (page) => {
-  console.log(page, myFromPage)
+async function toggleMonthHandler() {
+  const result = await calendar.value.calendarRef.pages[0];
+  await emit('toggleMonth', `${result.year}-${result.month}-1`);
+  // const result = await calendar.value;
+  // console.log(result)
 }
-
-// onMounted(() => {
-//   console.log(calendar.value)
-// })
 </script>
 
 <style>
