@@ -9,14 +9,14 @@
         class="calendar shadow rounded"
         v-model="date"
         mode="date"
-        @dayfocusin="$emit('toggleDate', date)"
+        @dayclick="$emit('toggleDate', date)"
         @transition-end="toggleMonthHandler"
     />
   </div>
 </template>
 
 <script setup>
-import {DatePicker, Calendar} from 'v-calendar';
+import {DatePicker} from 'v-calendar';
 import 'v-calendar/style.css';
 import {ref} from 'vue';
 
@@ -38,8 +38,6 @@ const props = defineProps({
 async function toggleMonthHandler() {
   const result = await calendar.value.calendarRef.pages[0];
   await emit('toggleMonth', `${result.year}-${result.month}-1`);
-  // const result = await calendar.value;
-  // console.log(result)
 }
 </script>
 

@@ -5,8 +5,7 @@
         <TheCalendar
             :attributes="attributes"
             @toggleDate="toggleDate"
-            @toggleMonth="toggleMonth"
-        />
+            @toggleMonth="toggleMonth"/>
         <div class="filters rounded shadow">
           <TheTabs
               v-if="countries"
@@ -119,7 +118,7 @@
                 <div class="icon">
                   <IconCalendarBlue/>
                 </div>
-                <span class="text">{{ getPrettyDatesRange(event.date_start, event.date_end) }}</span>
+                <span class="text">{{ getPrettyDatesRange(event.date_start, event.date_end, event.date_end) }}</span>
               </div>
               <div class="item-detail">
                 <div class="icon">
@@ -160,7 +159,8 @@ import IconGlobe from "@/components/icons/IconGlobe.vue";
 import IconMarker from "@/components/icons/IconMarker.vue";
 import {areDatesEqual} from "@/functions/areDatesEqual";
 import {getPrettyDatesRange} from "@/functions/getPrettyDatesRange";
-import {DatePicker} from "v-calendar";
+import {setMonthsEvents} from "@/functions/setMonthsEvents";
+import {setDaysEvents} from "@/functions/setDaysEvents";
 
 const date = new Date();
 
@@ -201,28 +201,14 @@ const data = ref({
       "title": "Здравоохранение - TIHE 2024",
       "url": "https://bioline.ru/news/nurses-day-2023",
       "description": "«БиоЛайн» примет участие в ключевом событии для медицинского сообщества Узбекистана – международной выставке TIHE-2023.\r\n</p>\r\n<p>\r\nМероприятие является не только демонстрационной платформой, но и включает в себя обширную научно-практическую программу с участием ведущих специалистов, посвященную современным технологиям в Здравоохранении.",
-      "date_start": "2023-7-6",
-      "date_end": "2023-07-16",
+      "date_start": "2023-7-3",
+      "date_end": "2023-7-5",
       "time_start": 12,
       "time_end": 14,
       "day": 2,
       "month": 6,
       "category": "Выставки и семинары",
       "city": "Санкт-Петербург"
-    },
-    {
-      "id": 3,
-      "title": "День России",
-      "url": "/news/nurses-day-2023",
-      "description": "государственный праздник День России",
-      "date_start": "2023-8-20",
-      "date_end": "2023-8-20",
-      "time_start": null,
-      "time_end": null,
-      "day": 12,
-      "month": 6,
-      "category": "Производственный календарь",
-      "city": null
     },
   ],
   "Казахстан": [],
@@ -232,14 +218,18 @@ const data = ref({
 const calendar = ref(null);
 
 const toggleDate = (value) => {
-  // date.value = value;
-  console.log(value)
+  activeDate.value = value;
+  dayEvents.value = data
+      .value[activeCountry.value]
+      .filter(item => setDaysEvents(item.date_start, item.date_end, activeDate.value));
 }
 
+// один день события должен попадать в месяц и год
+// сравниваю все дни события
 const toggleMonth = (result) => {
   monthEvents.value = data
       .value[activeCountry.value]
-      .filter(item => areDatesEqual(item.date_start, result, 'month'));
+      .filter(item => setMonthsEvents(item.date_start, item.date_end, result))
 }
 
 const setActiveCountry = (country) => {
@@ -248,20 +238,48 @@ const setActiveCountry = (country) => {
 }
 
 const setActiveEvents = () => {
-  dayEvents.value = data.value[activeCountry.value].filter(item => areDatesEqual(item.date_start, activeDate.value));
-  monthEvents.value = data.value[activeCountry.value].filter(item => areDatesEqual(item.date_start, activeDate.value, 'month'));
+  dayEvents.value = data.value[activeCountry.value].filter(item => setDaysEvents(item.date_start, item.date_end, activeDate.value));
+  monthEvents.value = data.value[activeCountry.value].filter(item => setMonthsEvents(item.date_start, item.date_end, activeDate.value));
   attributes.value[0].dates = [
     ...data
         .value[activeCountry.value]
         .filter(item => item.category !== 'Производственный календарь')
-        .map(item => new Date(item.date_start)),
+        .map(item => {
+          if (item.date_start !== item.date_end) {
+            const dateStart = new Date(item.date_start);
+            const dateEnd = new Date(item.date_end);
+            const dates = [];
+
+            while (dateStart <= dateEnd) {
+              dates.push(new Date(dateStart));
+              dateStart.setDate(dateStart.getDate() + 1);
+            }
+            return dates;
+          } else {
+            return new Date(item.date_start);
+          }
+        }),
     new Date()
   ];
   attributes.value[1].dates = [
     ...data
         .value[activeCountry.value]
         .filter(item => item.category === 'Производственный календарь')
-        .map(item => new Date(item.date_start))
+        .map(item => {
+          if (item.date_start !== item.date_end) {
+            const dateStart = new Date(item.date_start);
+            const dateEnd = new Date(item.date_end);
+            const dates = [];
+
+            while (dateStart <= dateEnd) {
+              dates.push(new Date(dateStart));
+              dateStart.setDate(dateStart.getDate() + 1);
+            }
+            return dates;
+          } else {
+            return new Date(item.date_start);
+          }
+        })
   ];
 }
 
