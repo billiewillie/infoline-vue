@@ -8,7 +8,6 @@
         :attributes="attributes"
         class="calendar shadow rounded"
         v-model="date"
-        mode="date"
         @dayclick="$emit('toggleDate', date)"
         @transition-end="toggleMonthHandler"
     />

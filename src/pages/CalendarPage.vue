@@ -1,146 +1,144 @@
 <template>
-  <div class="basepage">
-    <div class="content">
-      <div class="row row-calendar">
-        <TheCalendar
-            :attributes="attributes"
-            @toggleDate="toggleDate"
-            @toggleMonth="toggleMonth"/>
-        <div class="filters rounded shadow">
-          <TheTabs
-              v-if="countries"
-              :tabs="countries"
-              :activeTab="activeCountry"
-              @setActiveTab="setActiveCountry"
-              class="calendar-tabs"/>
-          <div class="filters-grid">
-            <div class="filters-item">
-              <div class="icon">
-                <IconProdCalendar/>
-              </div>
-              <p class="text">Производственный календарь</p>
+  <div class="basepage calendar-page">
+    <div class="row row-calendar">
+      <TheCalendar
+          :attributes="attributes"
+          @toggleDate="toggleDate"
+          @toggleMonth="toggleMonth"/>
+      <div class="filters rounded shadow">
+        <TheTabs
+            v-if="countries"
+            :tabs="countries"
+            :activeTab="activeCountry"
+            @setActiveTab="setActiveCountry"
+            class="calendar-tabs"/>
+        <div class="filters-grid">
+          <div class="filters-item">
+            <div class="icon">
+              <IconProdCalendar/>
             </div>
-            <div class="filters-item">
-              <div class="icon">
-                <IconCorpCalendar/>
-              </div>
-              <p class="text">Корпоративные мероприятия</p>
+            <p class="text">Производственный календарь</p>
+          </div>
+          <div class="filters-item">
+            <div class="icon">
+              <IconCorpCalendar/>
             </div>
-            <div class="filters-item">
-              <div class="icon">
-                <IconExhibition/>
-              </div>
-              <p class="text">Выставки и семинары</p>
+            <p class="text">Корпоративные мероприятия</p>
+          </div>
+          <div class="filters-item">
+            <div class="icon">
+              <IconExhibition/>
             </div>
-            <div class="filters-item">
-              <div class="icon">
-                <IconElseEvents/>
-              </div>
-              <p class="text">Все события</p>
+            <p class="text">Выставки и семинары</p>
+          </div>
+          <div class="filters-item">
+            <div class="icon">
+              <IconElseEvents/>
             </div>
+            <p class="text">Все события</p>
           </div>
         </div>
       </div>
-      <div class="row">
-        <h2 class="title">В этот день</h2>
-        <div class="list" v-if="dayEvents.length > 0">
-          <div
-              class="item rounded shadow"
-              v-for="event in dayEvents"
-              :key="event.id">
-            <header class="item-header">
-              <div class="icon">
-                <IconCorpCalendar v-if="event.category === 'Корпоративные мероприятия'"/>
-                <IconExhibition v-if="event.category === 'Выставки и семинары'"/>
-                <IconProdCalendar v-if="event.category === 'Производственный календарь'"/>
-              </div>
-              <p class="title">{{ event.title }}</p>
-            </header>
-            <div class="item-content">
-              <div class="item-detail">
-                <div class="icon">
-                  <IconClock/>
-                </div>
-                <span class="text" v-if="event.time_start">{{ event.time_start }} - {{ event.time_end }}</span>
-                <span class="text" v-else>Весь день</span>
-              </div>
-              <div class="item-detail">
-                <div class="icon">
-                  <IconCalendarBlue/>
-                </div>
-                <span class="text">{{ getPrettyDatesRange(event.date_start, event.date_end) }}</span>
-              </div>
-              <div class="item-detail">
-                <div class="icon">
-                  <IconGlobe/>
-                </div>
-                <span class="text">{{ activeCountry }}</span>
-              </div>
-              <div class="item-detail">
-                <div class="icon">
-                  <IconMarker/>
-                </div>
-                <span class="text" v-if="event.city">{{ event.city }}</span>
-                <span class="text" v-else>Все города</span>
-              </div>
+    </div>
+    <div class="row">
+      <h2 class="title">В этот день</h2>
+      <div class="list" v-if="dayEvents.length > 0">
+        <div
+            class="item rounded shadow"
+            v-for="event in dayEvents"
+            :key="event.id">
+          <header class="item-header">
+            <div class="icon">
+              <IconCorpCalendar v-if="event.category === 'Корпоративные мероприятия'"/>
+              <IconExhibition v-if="event.category === 'Выставки и семинары'"/>
+              <IconProdCalendar v-if="event.category === 'Производственный календарь'"/>
             </div>
-            <footer class="item-footer" v-if="event.url">
-              <router-link :to="`${event.url}`" class="link">Подробнее</router-link>
-            </footer>
-          </div>
-        </div>
-        <p v-else>Нет событий</p>
-      </div>
-      <div class="row">
-        <h2 class="title">В этот месяце</h2>
-        <div class="list" v-if="monthEvents.length > 0">
-          <div
-              class="item rounded shadow"
-              v-for="event in monthEvents"
-              :key="event.id">
-            <header class="item-header">
+            <p class="title">{{ event.title }}</p>
+          </header>
+          <div class="item-content">
+            <div class="item-detail">
               <div class="icon">
-                <IconCorpCalendar v-if="event.category === 'Корпоративные мероприятия'"/>
-                <IconExhibition v-if="event.category === 'Выставки и семинары'"/>
-                <IconProdCalendar v-if="event.category === 'Производственный календарь'"/>
+                <IconClock/>
               </div>
-              <p class="title">{{ event.title }}</p>
-            </header>
-            <div class="item-content">
-              <div class="item-detail">
-                <div class="icon">
-                  <IconClock/>
-                </div>
-                <span class="text" v-if="event.time_start">{{ event.time_start }} - {{ event.time_end }}</span>
-                <span class="text" v-else>Весь день</span>
-              </div>
-              <div class="item-detail">
-                <div class="icon">
-                  <IconCalendarBlue/>
-                </div>
-                <span class="text">{{ getPrettyDatesRange(event.date_start, event.date_end, event.date_end) }}</span>
-              </div>
-              <div class="item-detail">
-                <div class="icon">
-                  <IconGlobe/>
-                </div>
-                <span class="text">{{ activeCountry }}</span>
-              </div>
-              <div class="item-detail">
-                <div class="icon">
-                  <IconMarker/>
-                </div>
-                <span class="text" v-if="event.city">{{ event.city }}</span>
-                <span class="text" v-else>Все города</span>
-              </div>
+              <span class="text" v-if="event.time_start">{{ event.time_start }} - {{ event.time_end }}</span>
+              <span class="text" v-else>Весь день</span>
             </div>
-            <footer class="item-footer" v-if="event.url">
-              <router-link :to="`${event.url}`" class="link">Подробнее</router-link>
-            </footer>
+            <div class="item-detail">
+              <div class="icon">
+                <IconCalendarBlue/>
+              </div>
+              <span class="text">{{ getPrettyDatesRange(event.date_start, event.date_end) }}</span>
+            </div>
+            <div class="item-detail">
+              <div class="icon">
+                <IconGlobe/>
+              </div>
+              <span class="text">{{ activeCountry }}</span>
+            </div>
+            <div class="item-detail">
+              <div class="icon">
+                <IconMarker/>
+              </div>
+              <span class="text" v-if="event.city">{{ event.city }}</span>
+              <span class="text" v-else>Все города</span>
+            </div>
           </div>
+          <footer class="item-footer" v-if="event.url">
+            <router-link :to="`${event.url}`" class="link">Подробнее</router-link>
+          </footer>
         </div>
-        <p v-else>Нет событий</p>
       </div>
+      <p v-else>Нет событий</p>
+    </div>
+    <div class="row">
+      <h2 class="title">В этот месяце</h2>
+      <div class="list" v-if="monthEvents.length > 0">
+        <div
+            class="item rounded shadow"
+            v-for="event in monthEvents"
+            :key="event.id">
+          <header class="item-header">
+            <div class="icon">
+              <IconCorpCalendar v-if="event.category === 'Корпоративные мероприятия'"/>
+              <IconExhibition v-if="event.category === 'Выставки и семинары'"/>
+              <IconProdCalendar v-if="event.category === 'Производственный календарь'"/>
+            </div>
+            <p class="title">{{ event.title }}</p>
+          </header>
+          <div class="item-content">
+            <div class="item-detail">
+              <div class="icon">
+                <IconClock/>
+              </div>
+              <span class="text" v-if="event.time_start">{{ event.time_start }} - {{ event.time_end }}</span>
+              <span class="text" v-else>Весь день</span>
+            </div>
+            <div class="item-detail">
+              <div class="icon">
+                <IconCalendarBlue/>
+              </div>
+              <span class="text">{{ getPrettyDatesRange(event.date_start, event.date_end, event.date_end) }}</span>
+            </div>
+            <div class="item-detail">
+              <div class="icon">
+                <IconGlobe/>
+              </div>
+              <span class="text">{{ activeCountry }}</span>
+            </div>
+            <div class="item-detail">
+              <div class="icon">
+                <IconMarker/>
+              </div>
+              <span class="text" v-if="event.city">{{ event.city }}</span>
+              <span class="text" v-else>Все города</span>
+            </div>
+          </div>
+          <footer class="item-footer" v-if="event.url">
+            <router-link :to="`${event.url}`" class="link">Подробнее</router-link>
+          </footer>
+        </div>
+      </div>
+      <p v-else>Нет событий</p>
     </div>
   </div>
 </template>
@@ -157,7 +155,6 @@ import IconClock from "@/components/icons/IconClock.vue";
 import IconCalendarBlue from "@/components/icons/IconCalendarBlue.vue";
 import IconGlobe from "@/components/icons/IconGlobe.vue";
 import IconMarker from "@/components/icons/IconMarker.vue";
-import {areDatesEqual} from "@/functions/areDatesEqual";
 import {getPrettyDatesRange} from "@/functions/getPrettyDatesRange";
 import {setMonthsEvents} from "@/functions/setMonthsEvents";
 import {setDaysEvents} from "@/functions/setDaysEvents";
@@ -173,7 +170,7 @@ const activeDate = ref(fullDate.value);
 const attributes = ref([
   {
     highlight: 'blue',
-    dates: [new Date()],
+    dates: [],
   },
   {
     highlight: 'red',
@@ -187,8 +184,8 @@ const data = ref({
       "title": "Здравоохранение - TIHE 2023",
       "url": "/news/nurses-day-2023",
       "description": "13-15 апреля группа компаний «БиоЛайн» примет участие в ключевом событии для медицинского сообщества Узбекистана – международной выставке TIHE-2023.\r\n</p>\r\n<p>\r\nМероприятие является не только демонстрационной платформой, но и включает в себя обширную научно-практическую программу с участием ведущих специалистов, посвященную современным технологиям в Здравоохранении.",
-      "date_start": "2023-6-1",
-      "date_end": "2023-6-4",
+      "date_start": "2023-6-5",
+      "date_end": "2023-6-9",
       "time_start": "10",
       "time_end": "19",
       "day": 2,
@@ -201,8 +198,8 @@ const data = ref({
       "title": "Здравоохранение - TIHE 2024",
       "url": "https://bioline.ru/news/nurses-day-2023",
       "description": "«БиоЛайн» примет участие в ключевом событии для медицинского сообщества Узбекистана – международной выставке TIHE-2023.\r\n</p>\r\n<p>\r\nМероприятие является не только демонстрационной платформой, но и включает в себя обширную научно-практическую программу с участием ведущих специалистов, посвященную современным технологиям в Здравоохранении.",
-      "date_start": "2023-7-3",
-      "date_end": "2023-7-5",
+      "date_start": "2023-07-05",
+      "date_end": "2023-07-10",
       "time_start": 12,
       "time_end": 14,
       "day": 2,
@@ -224,8 +221,6 @@ const toggleDate = (value) => {
       .filter(item => setDaysEvents(item.date_start, item.date_end, activeDate.value));
 }
 
-// один день события должен попадать в месяц и год
-// сравниваю все дни события
 const toggleMonth = (result) => {
   monthEvents.value = data
       .value[activeCountry.value]
@@ -241,6 +236,7 @@ const setActiveEvents = () => {
   dayEvents.value = data.value[activeCountry.value].filter(item => setDaysEvents(item.date_start, item.date_end, activeDate.value));
   monthEvents.value = data.value[activeCountry.value].filter(item => setMonthsEvents(item.date_start, item.date_end, activeDate.value));
   attributes.value[0].dates = [
+    new Date(),
     ...data
         .value[activeCountry.value]
         .filter(item => item.category !== 'Производственный календарь')
@@ -258,9 +254,8 @@ const setActiveEvents = () => {
           } else {
             return new Date(item.date_start);
           }
-        }),
-    new Date()
-  ];
+        })
+  ].flat()
   attributes.value[1].dates = [
     ...data
         .value[activeCountry.value]
@@ -280,7 +275,7 @@ const setActiveEvents = () => {
             return new Date(item.date_start);
           }
         })
-  ];
+  ].flat();
 }
 
 onMounted(() => {
@@ -291,12 +286,21 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.content {
+.calendar-page {
   display: flex;
   flex-direction: column;
   margin: auto;
-  max-width: 1400px;
   row-gap: 20px;
+
+  @media (min-width: 1280px) {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (min-width: 1920px) {
+    gap: 20px;
+  }
 }
 
 .row {
@@ -311,10 +315,6 @@ onMounted(() => {
 
 .row-calendar {
   grid-template-columns: 1fr;
-
-  @media (min-width: 1280px) {
-    grid-template-columns: 3fr 2fr;
-  }
 }
 
 h2.title {

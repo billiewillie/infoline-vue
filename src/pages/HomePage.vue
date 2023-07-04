@@ -36,34 +36,16 @@ import TheCalendar from "@/components/TheCalendar.vue";
 import SliderGallery from "@/components/SliderGallery.vue";
 import IndexDefaultCard from "@/components/IndexDefaultCard.vue";
 import IndexBirthdaysCard from "@/components/IndexBirthdaysCard.vue";
-import IconMarketingDocs from "@/components/icons/IconMarketingDocs.vue";
-import IconUpdates from "@/components/icons/IconUpdates.vue";
 import IconOrders from "@/components/icons/IconOrders.vue";
-import {NEWS_URL} from "@/constants";
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 
 import {onMounted, ref} from "vue";
-import axios from "axios";
 import {Navigation} from 'swiper';
 import {Swiper, SwiperSlide} from 'swiper/vue';
 
 const defaultCards = ref([
-  {
-    title: "Маркетинговые документы",
-    text: "Задокументируй невербальные всполохи бездны в сознании, расщепись на атомы и созерцай незримое.",
-    background: '#F2CECE',
-    link: "/marketing-docs",
-    component: "IconMarketingDocs"
-  },
-  {
-    title: "Обновления на сайте",
-    text: "Задокументируй невербальные всполохи бездны в сознании, расщепись на атомы и созерцай незримое.",
-    background: '#E3BBF7',
-    link: "/updates",
-    component: "IconUpdates"
-  },
   {
     title: "Оформить заявку",
     text: "Задокументируй невербальные всполохи бездны в сознании, расщепись на атомы и созерцай незримое.",
@@ -207,8 +189,6 @@ const news = ref([
   },
 ]);
 const modules = [Navigation];
-
-// axios.get(NEWS_URL).then(response => {news.value = response.data.data});
 </script>
 
 <style>
@@ -220,7 +200,7 @@ const modules = [Navigation];
 
   @media (min-width: 1280px) {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-template-rows: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
     gap: 16px;
     height: 100vh;
     min-height: 720px;
@@ -236,7 +216,7 @@ const modules = [Navigation];
   @media (min-width: 1280px) {
     display: grid;
     grid-row-start: 1;
-    grid-row-end: 4;
+    grid-row-end: 3;
   }
 }
 

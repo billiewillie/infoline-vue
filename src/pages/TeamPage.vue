@@ -27,9 +27,9 @@
             <p class="position">Заместитель генерального директора по маркетингу и продажам БиоСистемы</p>
           </router-link>
           <div class="department-group">
-            <router-link to="/" class="department rounded">Отдел по работе с клиентами БС</router-link>
-            <router-link to="/" class="department rounded">Отдел госпитального оборудования и мебели</router-link>
-            <router-link to="/" class="department rounded">Отдел продукции для материнства и детcтва</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Отдел по работе с клиентами БС</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Отдел госпитального оборудования и мебели</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Отдел продукции для материнства и детcтва</router-link>
           </div>
         </div>
         <div class="row row-inner-one">
@@ -44,9 +44,9 @@
             <p class="position">Директор по маркетингу и продажам общелабораторного оборудования</p>
           </router-link>
           <div class="department-group">
-            <router-link to="/" class="department rounded">Отдел общелабораторного оборудования</router-link>
-            <router-link to="/" class="department rounded">Отдел лабораторной мебели</router-link>
-            <router-link to="/" class="department rounded">Отдел преаналитических систем и расходных материалов
+            <router-link to="/team/clients-bs" class="department rounded">Отдел общелабораторного оборудования</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Отдел лабораторной мебели</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Отдел преаналитических систем и расходных материалов
             </router-link>
           </div>
         </div>
@@ -62,10 +62,10 @@
             <p class="position">Заместитель генерального директора по маркетингу и продажам БиоЛайна</p>
           </router-link>
           <div class="department-group">
-            <router-link to="/" class="department rounded">Отдел по работе с клиентами БС</router-link>
-            <router-link to="/" class="department rounded">Отдел госпитального оборудования и мебели</router-link>
-            <router-link to="/" class="department rounded">Отдел продукции для материнства и детcтва</router-link>
-            <router-link to="/" class="department rounded">
+            <router-link to="/team/clients-bs" class="department rounded">Отдел по работе с клиентами БС</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Отдел госпитального оборудования и мебели</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Отдел продукции для материнства и детcтва</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">
               Отдел оптической микроскопии, анализа изображений и спектрометрии в научных исследованиях
             </router-link>
           </div>
@@ -94,14 +94,14 @@
             <p class="position">Директор по маркетингу и продажам продукции для гистологии/цитологии</p>
           </router-link>
           <div class="department-group">
-            <router-link to="/" class="department rounded">Отдел цитологии</router-link>
-            <router-link to="/" class="department rounded">Отдел оборудования для клинической микроскопии и цифровой
+            <router-link to="/team/clients-bs" class="department rounded">Отдел цитологии</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Отдел оборудования для клинической микроскопии и цифровой
               патологии
             </router-link>
-            <router-link to="/" class="department rounded">Отдел молекурярной диагностики в патоморфологии</router-link>
-            <router-link to="/" class="department rounded">Отдел иммуногистохимии</router-link>
-            <router-link to="/" class="department rounded">Отдел гистологии</router-link>
-            <router-link to="/" class="department rounded">Отдел продаж гистологических/цитологических расходных
+            <router-link to="/team/clients-bs" class="department rounded">Отдел молекурярной диагностики в патоморфологии</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Отдел иммуногистохимии</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Отдел гистологии</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Отдел продаж гистологических/цитологических расходных
               материалов,
               реагентов и оборудования
             </router-link>
@@ -119,9 +119,9 @@
             <p class="position">Заместитель генерального директора по сопровождению корпоративного бизнеса</p>
           </router-link>
           <div class="department-group">
-            <router-link to="/" class="department rounded">Отдел персонала</router-link>
-            <router-link to="/" class="department rounded">Отдел рекламы</router-link>
-            <router-link to="/" class="department rounded">Тендерный отдел</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Отдел персонала</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Отдел рекламы</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Тендерный отдел</router-link>
           </div>
         </div>
         <div class="row row-inner-one">
@@ -136,8 +136,8 @@
             <p class="position">Директор по административно-хозяйственным вопросам</p>
           </router-link>
           <div class="department-group">
-            <router-link to="/" class="department rounded">Автохозяйство</router-link>
-            <router-link to="/" class="department rounded">Секретариат</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Автохозяйство</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Секретариат</router-link>
           </div>
         </div>
         <div class="row">
@@ -152,10 +152,10 @@
             <p class="position">Директор по логистике</p>
           </router-link>
           <div class="department-group">
-            <router-link to="/" class="department rounded">Склад</router-link>
-            <router-link to="/" class="department rounded">Отдел логистики</router-link>
-            <router-link to="/" class="department rounded">Отдел импорта</router-link>
-            <router-link to="/" class="department rounded">Отдел закупок</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Склад</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Отдел логистики</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Отдел импорта</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Отдел закупок</router-link>
           </div>
         </div>
         <div class="row">
@@ -170,8 +170,8 @@
             <p class="position">Директор по правовым вопросам</p>
           </router-link>
           <div class="department-group">
-            <router-link to="/" class="department rounded">Отдел регистрации медицинских изделий</router-link>
-            <router-link to="/" class="department rounded">Юридический отдел</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Отдел регистрации медицинских изделий</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Юридический отдел</router-link>
           </div>
         </div>
         <div class="row">
@@ -186,8 +186,8 @@
             <p class="position">Заместитель генерального директора по маркетингу и продажам БиоСистемы</p>
           </router-link>
           <div class="department-group">
-            <router-link to="/" class="department rounded">Отдел по работе с клиентами БС</router-link>
-            <router-link to="/" class="department rounded">Отдел госпитального оборудования и мебели</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Отдел по работе с клиентами БС</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Отдел госпитального оборудования и мебели</router-link>
           </div>
         </div>
         <div class="row">
@@ -202,7 +202,7 @@
             <p class="position">Директор IT</p>
           </router-link>
           <div class="department-group one-group">
-            <router-link to="/" class="department rounded">IT отдел</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">IT отдел</router-link>
           </div>
         </div>
         <div class="row">
@@ -217,7 +217,7 @@
             <p class="position">Заместитель генерального директора по маркетингу и продажам БиоСистемы</p>
           </router-link>
           <div class="department-group one-group">
-            <router-link to="/" class="department rounded">Служба технического сервиса</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Служба технического сервиса</router-link>
           </div>
         </div>
         <div class="row">
@@ -232,18 +232,18 @@
             <p class="position">Финансовый директор</p>
           </router-link>
           <div class="department-group">
-            <router-link to="/" class="department rounded">Экономический отдел</router-link>
-            <router-link to="/" class="department rounded">Финансовый отдел</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Экономический отдел</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Финансовый отдел</router-link>
           </div>
         </div>
         <div class="row row-only-department">
           <div class="department-group one-group">
-            <router-link to="/" class="department rounded">Отдел комплексных проектов и поставок</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Отдел комплексных проектов и поставок</router-link>
           </div>
         </div>
         <div class="row row-only-department">
           <div class="department-group one-group">
-            <router-link to="/" class="department rounded">Бухгалтерия</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Бухгалтерия</router-link>
           </div>
         </div>
         <div class="row row-special">
@@ -258,25 +258,25 @@
             <p class="position">Генеральный директор БиоСистемы</p>
           </router-link>
           <div class="department-group">
-            <router-link to="/" class="department rounded">ООО "БиоБеби"</router-link>
-            <router-link to="/" class="department rounded">Филиал г. Нижний Новгород</router-link>
-            <router-link to="/" class="department rounded">Филиал г. Москва</router-link>
-            <router-link to="/" class="department rounded">Филиал г. Новосибирск</router-link>
-            <router-link to="/" class="department rounded">Филиал г. Ростов-на-Дону</router-link>
-            <router-link to="/" class="department rounded">Филиал г. Казань</router-link>
-            <router-link to="/" class="department rounded">Филиал г. Краснодар</router-link>
-            <router-link to="/" class="department rounded">Филиал г. Уфа</router-link>
-            <router-link to="/" class="department rounded">Филиал г. Хабаровск</router-link>
-            <router-link to="/" class="department rounded">Филиал г. Самара</router-link>
-            <router-link to="/" class="department rounded">Филиал г. ТОО «БиоЛайн-Казахстан»</router-link>
-            <router-link to="/" class="department rounded">Филиал г. Екатеринбург</router-link>
-            <router-link to="/" class="department rounded">БиоЛайн-БС (Республика Беларусь)</router-link>
-            <router-link to="/" class="department rounded">ООО "BLUBIOMEDICAL"</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">ООО "БиоБеби"</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Филиал г. Нижний Новгород</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Филиал г. Москва</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Филиал г. Новосибирск</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Филиал г. Ростов-на-Дону</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Филиал г. Казань</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Филиал г. Краснодар</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Филиал г. Уфа</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Филиал г. Хабаровск</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Филиал г. Самара</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Филиал г. ТОО «БиоЛайн-Казахстан»</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Филиал г. Екатеринбург</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">БиоЛайн-БС (Республика Беларусь)</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">ООО "BLUBIOMEDICAL"</router-link>
           </div>
         </div>
         <div class="row row-only-department">
           <div class="department-group one-group">
-            <router-link to="/" class="department rounded">ООО «БИОМЕБЕЛЬ»</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">ООО «БИОМЕБЕЛЬ»</router-link>
           </div>
         </div>
       </div>
@@ -355,8 +355,8 @@ import image from '@/assets/img/lazareva.jpg';
   display: none;
   content: '';
   position: absolute;
-  top: -77px;
-  height: 77px;
+  top: -87px;
+  height: 87px;
   width: 2px;
   left: 106px;
   background-color: var(--blue-light);
