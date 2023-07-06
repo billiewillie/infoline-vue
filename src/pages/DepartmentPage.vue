@@ -4,70 +4,78 @@
       <h1 class="title" v-if="users.title">{{ users.title }}</h1>
       <section>
         <div class="content">
-          <router-link :to="`/users/belinovich`"
-                       class="card shadow rounded"
-                       v-for="user in users.users_not_part_group"
-                       :key="user.id">
+          <div
+              class="card shadow rounded"
+              v-for="user in users.users_not_part_group"
+              :key="user.id">
             <div class="image overflow-hidden">
               <picture>
                 <source :srcset="imageWeb" type="image/webp"/>
                 <img :src="image" alt="news" loading="lazy"/>
               </picture>
             </div>
-            <p class="title name"><span class="surname">{{ user.lastname }}</span>{{ user.firstname }}
-              {{ user.middlename }}</p>
+            <router-link
+                class="title name"
+                :to="`/users/belinovich`">
+              <span class="surname">{{ user.lastname }}</span>{{ user.firstname }} {{ user.middlename }}
+            </router-link>
             <p class="position">{{ user.position }}</p>
             <div class="contacts">
               <div class="contacts-item">
-              <span class="icon">
-                <IconPhoneBlue/>
-              </span>
+                <div class="icon">
+                  <IconPhoneBlue/>
+                </div>
                 <span>Мест. телефон:</span>
                 <span>{{ user.localphone }}</span>
               </div>
               <div class="contacts-item">
-              <span class="icon">
-                <IconMobileBlue/>
-              </span>
+                <span class="icon">
+                  <IconMobileBlue/>
+                </span>
                 <span>Мобильный:</span>
-                <a :href="`tel:+${user.phone}`">{{ formatPhoneNumber(user.phone) }}</a>
-                <span class="icon copy">
-                <IconCopy/>
-              </span>
+                <div class="copy-contact">
+                  <a :href="`tel:+${user.phone}`">{{ formatPhoneNumber(user.phone) }}</a>
+                  <span class="icon copy">
+                    <IconCopy @click="copyPhone(user.phone)"/>
+                  </span>
+                </div>
               </div>
               <div class="contacts-item">
-              <span class="icon">
-                <IconEmailBlue/>
-              </span>
+                <span class="icon">
+                  <IconEmailBlue/>
+                </span>
                 <span>E-mail:</span>
-                <a>{{ user.email }}</a>
-                <span class="icon copy">
-                <IconCopy/>
-              </span>
+                <div class="copy-contact">
+                  <a>{{ user.email }}</a>
+                  <span class="icon copy">
+                    <IconCopy @click="copyMail(user.email)"/>
+                  </span>
+                </div>
               </div>
               <div class="contacts-item">
-              <span class="icon">
-                <IconGiftBlue/>
-              </span>
+                <span class="icon">
+                  <IconGiftBlue/>
+                </span>
                 <span>День рождения:</span>
                 <span>{{ user.day }} {{ getMonthName(user.month) }}</span>
               </div>
             </div>
-          </router-link>
+          </div>
         </div>
       </section>
       <section v-for="item in users.groups" :key="item.id">
         <h2 class="title group-title">{{ item.title }}</h2>
         <div class="content">
-          <router-link :to="`/users/belinovich`" class="card shadow rounded" v-for="user in item.users" :key="user.id">
+          <div class="card shadow rounded" v-for="user in item.users" :key="user.id">
             <div class="image overflow-hidden">
               <picture>
                 <source :srcset="imageWeb" type="image/webp"/>
                 <img :src="image" alt="news" loading="lazy"/>
               </picture>
             </div>
-            <p class="title name"><span class="surname">{{ user.lastname }}</span>{{ user.firstname }}
-              {{ user.middlename }}</p>
+            <router-link :to="`/users/belinovich`" class="title name">
+              <span class="surname">{{ user.lastname }}</span>{{ user.firstname }} {{ user.middlename }}
+            </router-link>
             <p class="position">{{ user.position }}</p>
             <div class="contacts">
               <div class="contacts-item">
@@ -78,24 +86,28 @@
                 <span>{{ user.localphone }}</span>
               </div>
               <div class="contacts-item">
-              <span class="icon">
-                <IconMobileBlue/>
-              </span>
+                <span class="icon">
+                  <IconMobileBlue/>
+                </span>
                 <span>Мобильный:</span>
-                <a :href="`tel:+${user.phone}`">{{ formatPhoneNumber(user.phone) }}</a>
-                <span class="icon copy">
-                <IconCopy/>
-              </span>
+                <div class="copy-contact">
+                  <a :href="`tel:+${user.phone}`">{{ formatPhoneNumber(user.phone) }}</a>
+                  <span class="icon copy">
+                    <IconCopy @click="copyPhone(user.phone)"/>
+                  </span>
+                </div>
               </div>
               <div class="contacts-item">
-              <span class="icon">
-                <IconEmailBlue/>
-              </span>
+                <span class="icon">
+                  <IconEmailBlue/>
+                </span>
                 <span>E-mail:</span>
-                <a>{{ user.email }}</a>
-                <span class="icon copy">
-                <IconCopy/>
-              </span>
+                <div class="copy-contact">
+                  <a>{{ user.email }}</a>
+                  <span class="icon copy">
+                    <IconCopy @click="copyMail(user.email)"/>
+                  </span>
+                </div>
               </div>
               <div class="contacts-item">
               <span class="icon">
@@ -105,7 +117,7 @@
                 <span>{{ user.day }} {{ getMonthName(user.month) }}</span>
               </div>
             </div>
-          </router-link>
+          </div>
         </div>
       </section>
     </div>
@@ -123,6 +135,24 @@ import {getMonthName} from "@/functions/getMonthName";
 import imageWeb from '@/assets/img/lazareva.webp';
 import image from '@/assets/img/lazareva.jpg';
 import {formatPhoneNumber} from "@/functions/formatPhoneNumber";
+import {useToast} from "vue-toastification";
+import "vue-toastification/dist/index.css";
+
+const toast = useToast();
+
+const copyMail = (email) => {
+  navigator.clipboard.writeText(email);
+  toast.success('скопировано', {
+    timeout: 2000
+  })
+}
+
+const copyPhone = (phone) => {
+  navigator.clipboard.writeText(`+${phone}`);
+  toast.success('скопировано', {
+    timeout: 2000
+  })
+}
 
 const users = ref({
       "id": 53,
@@ -391,6 +421,11 @@ const users = ref({
 
   @media (min-width: 1280px) {
     display: flex;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
   }
 }
 
@@ -407,9 +442,11 @@ const users = ref({
   text-decoration: underline;
   text-underline-offset: 3px;
   font-size: 13px;
+  cursor: pointer;
 
   @media (min-width: 1280px) {
     font-size: 14px;
+    display: flex;
   }
 }
 
@@ -466,5 +503,14 @@ section {
   display: flex;
   flex-direction: column;
   row-gap: 20px;
+}
+
+.copy-contact {
+  display: flex;
+  gap: 18px;
+}
+
+.copy-contact:hover span.icon.copy {
+  opacity: 1;
 }
 </style>

@@ -84,7 +84,7 @@ const toggleStatusMobileNav = (value) => {
 }
 
 .header .base-nav__link.router-link-active {
-	background-color: var(--blue-light);
+  color: var(--blue-light);
 }
 
 .header .base-nav__link:hover {

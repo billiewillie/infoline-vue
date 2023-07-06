@@ -41,7 +41,7 @@ import IconOrders from "@/components/icons/IconOrders.vue";
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-import {onMounted, ref} from "vue";
+import {ref} from "vue";
 import {Navigation} from 'swiper';
 import {Swiper, SwiperSlide} from 'swiper/vue';
 

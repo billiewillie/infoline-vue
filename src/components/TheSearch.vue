@@ -3,8 +3,7 @@
       class="search"
       @click="
         $emit('toggleStatus', true);
-        $emit('toggleStatusMobileNav', false)"
-  >
+        $emit('toggleStatusMobileNav', false)">
     <div class="search-button">Поиск...</div>
     <span class="search-icon">
       <IconLoop/>
@@ -14,12 +13,16 @@
     <div class="search-overlay" v-show="isActive === true" @click="$emit('toggleStatus', false)">
       <div class="container">
         <header class="search-header">
-          <input placeholder="Поиск..." @click.stop />
+          <input
+              placeholder="Поиск..."
+              @click.stop
+              @input="setSearchValue"
+              v-model="searchValue"/>
           <span class="search-icon">
-            <IconClose />
+            <IconClose/>
           </span>
         </header>
-        <main class="search-main">
+        <main class="search-main" v-if="isShownResultsList">
           <section class="search-results">
             <header class="search-results__header">Люди</header>
             <ul class="search-results__list">
@@ -28,35 +31,15 @@
                     to="/news"
                     class="search-results__link"
                     @mouseover="stroke = '#fff'"
-                    @mouseout="stroke = '#57e8df'"
-                >
-                  <div class="search-results__avatar rounded shadow overflow-hidden">
-                    <picture>
-                      <source :srcset="`http://users.trifonov.space/images/users/belinovich/belinovich.webp`"
-                              type="image/webp">
-                      <img :src="`http://users.trifonov.space/images/users/belinovich/belinovich.jpg`" alt=""/>
-                    </picture>
-                  </div>
-                  <div class="search-results__description">
-                    <p class="search-results__title">Иванов Иван Иванович</p>
-                    <span class="search-results__position">Генеральный директор</span>
-                  </div>
-                  <span class="icon">
-                    <IconArrow :stroke="stroke"/>
-                  </span>
-                </router-link>
-              </li>
-              <li class="search-results__item">
-                <router-link
-                    to="/"
-                    class="search-results__link"
-                    @mouseover="stroke = '#fff'"
                     @mouseout="stroke = '#57e8df'">
                   <div class="search-results__avatar rounded shadow overflow-hidden">
                     <picture>
-                      <source :srcset="`http://users.trifonov.space/images/users/belinovich/belinovich.webp`"
-                              type="image/webp">
-                      <img :src="`http://users.trifonov.space/images/users/belinovich/belinovich.jpg`" alt=""/>
+                      <source
+                          :srcset="`http://users.trifonov.space/images/users/belinovich/belinovich.webp`"
+                          type="image/webp">
+                      <img
+                          :src="`http://users.trifonov.space/images/users/belinovich/belinovich.jpg`"
+                          alt=""/>
                     </picture>
                   </div>
                   <div class="search-results__description">
@@ -81,14 +64,32 @@ import IconLoop from "@/components/icons/IconLoop.vue";
 import IconClose from "@/components/icons/IconClose.vue";
 import IconArrow from "@/components/icons/IconArrow.vue";
 import {ref} from "vue";
+import axios from "axios";
+import json from "@/assets/data/search.json";
 
 const stroke = ref('#57e8df');
+const isShownResultsList = ref(false);
+const searchValue = ref('');
 const props = defineProps({
   isActive: Boolean,
-})
+});
+const emit = defineEmits(['toggleStatus', 'toggleStatusMobileNav']);
+const data = ref({});
 
-const emit = defineEmits(['toggleStatus', 'toggleStatusMobileNav'])
-
+const setSearchValue = (e) => {
+  searchValue.value = e.target.value;
+  isShownResultsList.value = searchValue.value.length > 2;
+  if (searchValue.value.length > 2) {
+    console.log(json);
+  }
+  // axios
+  //     .get('./assets/data/search.json')
+  //     .then((response) => {
+  //       data.value = response.data
+  //       console.log(data.value)
+  //     })
+  //     .catch((error) => console.log(error))
+};
 </script>
 
 <style scoped>

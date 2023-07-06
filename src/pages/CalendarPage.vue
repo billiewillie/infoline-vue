@@ -4,6 +4,7 @@
       <TheCalendar
           :attributes="attributes"
           @toggleDate="toggleDate"
+          :activeDay="activeDate"
           @toggleMonth="toggleMonth"/>
       <div class="filters rounded shadow">
         <TheTabs
@@ -13,29 +14,19 @@
             @setActiveTab="setActiveCountry"
             class="calendar-tabs"/>
         <div class="filters-grid">
-          <div class="filters-item">
+          <div
+              class="filters-item"
+              :class="{ active: item.title === activeCategory.title }"
+              v-for="item in categories"
+              :key="item.title"
+              @click="toggleCategory(item)"
+          >
             <div class="icon">
-              <IconProdCalendar/>
+              <component :is="item.icon"/>
             </div>
-            <p class="text">Производственный календарь</p>
-          </div>
-          <div class="filters-item">
-            <div class="icon">
-              <IconCorpCalendar/>
-            </div>
-            <p class="text">Корпоративные мероприятия</p>
-          </div>
-          <div class="filters-item">
-            <div class="icon">
-              <IconExhibition/>
-            </div>
-            <p class="text">Выставки и семинары</p>
-          </div>
-          <div class="filters-item">
-            <div class="icon">
-              <IconElseEvents/>
-            </div>
-            <p class="text">Все события</p>
+            <p
+                class="text"
+            >{{ item.title }}</p>
           </div>
         </div>
       </div>
@@ -145,7 +136,7 @@
 
 <script setup>
 import TheCalendar from "@/components/TheCalendar.vue";
-import {onMounted, ref} from "vue";
+import {onMounted, ref, shallowRef} from "vue";
 import TheTabs from "@/components/TheTabs.vue";
 import IconProdCalendar from "@/components/icons/IconProdCalendar.vue";
 import IconCorpCalendar from "@/components/icons/IconCorpCalendar.vue";
@@ -160,8 +151,33 @@ import {setMonthsEvents} from "@/functions/setMonthsEvents";
 import {setDaysEvents} from "@/functions/setDaysEvents";
 
 const date = new Date();
+const icons = {
+  IconProdCalendar,
+  IconCorpCalendar,
+  IconExhibition,
+  IconElseEvents
+}
 
 const countries = ref([]);
+const categories = shallowRef([
+  {
+    title: 'Производственный календарь',
+    icon: icons.IconProdCalendar,
+  },
+  {
+    title: 'Корпоративные мероприятия',
+    icon: icons.IconCorpCalendar,
+  },
+  {
+    title: 'Выставки и семинары',
+    icon: icons.IconExhibition,
+  },
+  {
+    title: 'Все события',
+    icon: icons.IconElseEvents,
+  }
+]);
+const activeCategory = ref(categories.value[3]);
 const activeCountry = ref('');
 const dayEvents = ref([]);
 const monthEvents = ref([]);
@@ -194,6 +210,20 @@ const data = ref({
       "city": "Москва"
     },
     {
+      "id": 3,
+      "title": "День России",
+      "url": "",
+      "description": "Праздник День России",
+      "date_start": "2023-7-12",
+      "date_end": "2023-7-12",
+      "time_start": null,
+      "time_end": null,
+      "day": 12,
+      "month": 6,
+      "category": "Производственный календарь",
+      "city": null
+    },
+    {
       "id": 2,
       "title": "Здравоохранение - TIHE 2024",
       "url": "https://bioline.ru/news/nurses-day-2023",
@@ -222,9 +252,8 @@ const toggleDate = (value) => {
 }
 
 const toggleMonth = (result) => {
-  monthEvents.value = data
-      .value[activeCountry.value]
-      .filter(item => setMonthsEvents(item.date_start, item.date_end, result))
+  activeDate.value = result;
+  setActiveEvents();
 }
 
 const setActiveCountry = (country) => {
@@ -233,49 +262,67 @@ const setActiveCountry = (country) => {
 }
 
 const setActiveEvents = () => {
-  dayEvents.value = data.value[activeCountry.value].filter(item => setDaysEvents(item.date_start, item.date_end, activeDate.value));
-  monthEvents.value = data.value[activeCountry.value].filter(item => setMonthsEvents(item.date_start, item.date_end, activeDate.value));
-  attributes.value[0].dates = [
-    new Date(),
-    ...data
+  if (activeCategory.value.title === "Все события") {
+    dayEvents.value = data
         .value[activeCountry.value]
-        .filter(item => item.category !== 'Производственный календарь')
-        .map(item => {
-          if (item.date_start !== item.date_end) {
-            const dateStart = new Date(item.date_start);
-            const dateEnd = new Date(item.date_end);
-            const dates = [];
+        .filter(item => setDaysEvents(item.date_start, item.date_end, activeDate.value));
+    monthEvents.value = data.value[activeCountry.value].filter(item => setMonthsEvents(item.date_start, item.date_end, activeDate.value));
+    attributes.value[0].dates = [
+      new Date(),
+      ...data
+          .value[activeCountry.value]
+          .filter(item => item.category !== 'Производственный календарь')
+          .map(item => {
+            if (item.date_start !== item.date_end) {
+              const dateStart = new Date(item.date_start);
+              const dateEnd = new Date(item.date_end);
+              const dates = [];
 
-            while (dateStart <= dateEnd) {
-              dates.push(new Date(dateStart));
-              dateStart.setDate(dateStart.getDate() + 1);
+              while (dateStart <= dateEnd) {
+                dates.push(new Date(dateStart));
+                dateStart.setDate(dateStart.getDate() + 1);
+              }
+              return dates;
+            } else {
+              return new Date(item.date_start);
             }
-            return dates;
-          } else {
-            return new Date(item.date_start);
-          }
-        })
-  ].flat()
-  attributes.value[1].dates = [
-    ...data
+          })
+    ].flat();
+    attributes.value[1].dates = [
+      ...data
+          .value[activeCountry.value]
+          .filter(item => item.category === 'Производственный календарь')
+          .map(item => {
+            if (item.date_start !== item.date_end) {
+              const dateStart = new Date(item.date_start);
+              const dateEnd = new Date(item.date_end);
+              const dates = [];
+
+              while (dateStart <= dateEnd) {
+                dates.push(new Date(dateStart));
+                dateStart.setDate(dateStart.getDate() + 1);
+              }
+              return dates;
+            } else {
+              return new Date(item.date_start);
+            }
+          })
+    ].flat();
+  } else {
+    dayEvents.value = data
         .value[activeCountry.value]
-        .filter(item => item.category === 'Производственный календарь')
-        .map(item => {
-          if (item.date_start !== item.date_end) {
-            const dateStart = new Date(item.date_start);
-            const dateEnd = new Date(item.date_end);
-            const dates = [];
+        .filter(item => item.category === activeCategory.value.title)
+        .filter(item => setDaysEvents(item.date_start, item.date_end, activeDate.value));
+    monthEvents.value = data
+        .value[activeCountry.value]
+        .filter(item => item.category === activeCategory.value.title)
+        .filter(item => setMonthsEvents(item.date_start, item.date_end, activeDate.value));
+  }
+}
 
-            while (dateStart <= dateEnd) {
-              dates.push(new Date(dateStart));
-              dateStart.setDate(dateStart.getDate() + 1);
-            }
-            return dates;
-          } else {
-            return new Date(item.date_start);
-          }
-        })
-  ].flat();
+const toggleCategory = (category) => {
+  activeCategory.value = category;
+  setActiveEvents();
 }
 
 onMounted(() => {
@@ -293,7 +340,7 @@ onMounted(() => {
   row-gap: 20px;
 
   @media (min-width: 1280px) {
-    display: grid;
+    flex-direction: row;
     gap: 16px;
     grid-template-columns: repeat(3, 1fr);
   }
@@ -304,7 +351,8 @@ onMounted(() => {
 }
 
 .row {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   gap: 16px;
 
@@ -324,13 +372,12 @@ h2.title {
 }
 
 .list {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 10px;
-  grid-template-columns: 1fr;
 
   @media (min-width: 1280px) {
     gap: 16px;
-    grid-template-columns: repeat(2, 1fr);
   }
 
   @media (min-width: 1920px) {
@@ -383,12 +430,18 @@ h2.title {
   column-gap: 24px;
   padding: 24px 0;
   border-top: 1px solid var(--gray-medium);
+  cursor: pointer;
 
   @media (min-width: 1280px) {
     padding: 0 10px;
     column-gap: 14px;
     border-top: 1px solid var(--gray-medium);
   }
+}
+
+.filters-item.active p {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .filters-item:first-child {

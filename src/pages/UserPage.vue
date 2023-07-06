@@ -6,8 +6,7 @@
           :slides-per-view="1"
           navigation
           loop
-          v-if="user.gallery"
-      >
+          v-if="user.gallery">
         <SwiperSlide v-for="item in user.gallery" :key="item">
           <picture>
             <source :srcset="imageWeb" type="image/webp"/>
@@ -28,8 +27,9 @@
         <span class="user-birthday__column-title">День рождения: </span>
         <span
             class="user-birthday__column-value"
-            :style="isBDay ? `color: var(--blue-light)` : ``"
-        >{{ user.day }} {{ getMonthName(user.month) }}</span>
+            :style="isBDay ? `color: var(--blue-light)` : ``">
+          {{ user.day }} {{ getMonthName(user.month) }}
+        </span>
       </div>
     </header>
     <div class="user-contacts shadow rounded">
@@ -118,10 +118,8 @@
 <script setup>
 import {Navigation} from 'swiper';
 import {Swiper, SwiperSlide} from 'swiper/vue';
-import {onMounted, ref} from "vue";
-import axios from "axios";
+import {ref} from "vue";
 import {getMonthName} from "@/functions/getMonthName";
-import {USERS_API_URL, USERS_IMAGES_URL} from "@/constants";
 import imageWeb from '@/assets/img/lazareva.webp';
 import image from '@/assets/img/lazareva.jpg';
 import {formatPhoneNumber} from "@/functions/formatPhoneNumber";
@@ -130,14 +128,12 @@ import "vue-toastification/dist/index.css";
 
 import 'swiper/css';
 import 'swiper/css/navigation';
-import {useRoute} from "vue-router";
 import IconBirthday from "@/components/icons/IconBirthday.vue";
 import IconPhone from "@/components/icons/IconPhone.vue";
 import IconMail from "@/components/icons/IconMail.vue";
 import IconCopy from "@/components/icons/IconCopy.vue";
 
 const toast = useToast();
-
 const modules = [Navigation];
 const user = ref({
   "id": 79,
@@ -219,13 +215,12 @@ const user = ref({
   ]
 });
 
-const isBDay = ref(false);
-
 const date = new Date();
+const isBDay = ref(false);
 const month = date.getMonth() + 1;
 const day = date.getDate();
 
-if(day === user.value.day && month === user.value.month) {
+if (day === user.value.day && month === user.value.month) {
   isBDay.value = true;
 }
 
@@ -242,20 +237,6 @@ const copyPhone = (phone) => {
     timeout: 2000
   })
 }
-
-
-// const params = useRoute().params;
-
-// onMounted(() => {
-//   axios
-//       .get(`${USERS_API_URL}/user/${params.id}`)
-//       .then(res => {
-//         user.value = res.data;
-//       })
-//       .catch(err => {
-//         console.log(err);
-//       })
-// })
 </script>
 
 <style scoped>

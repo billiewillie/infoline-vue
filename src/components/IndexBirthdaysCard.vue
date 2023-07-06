@@ -79,7 +79,7 @@ const birthdays = ref([
 ]);
 
 // onMounted(() => {
-//   fetch(`${USERS_API_URL}/upcoming-birthdays/4`).then(res => res.json()).then(data => {
+//   fetch(`${USERS_API_URL}/upcoming-birthdays/4`).then(res => res.data()).then(data => {
 //     birthdays.value = data
 //   })
 // })

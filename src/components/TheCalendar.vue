@@ -8,7 +8,7 @@
         :attributes="attributes"
         class="calendar shadow rounded"
         v-model="date"
-        @dayclick="$emit('toggleDate', date)"
+        @dayclick="setClick"
         @transition-end="toggleMonthHandler"
     />
   </div>
@@ -31,6 +31,10 @@ const props = defineProps({
   attributes: {
     type: Array,
     default: () => [],
+  },
+  activeDay: {
+    type: String,
+    default: '',
   }
 });
 
@@ -38,6 +42,14 @@ async function toggleMonthHandler() {
   const result = await calendar.value.calendarRef.pages[0];
   await emit('toggleMonth', `${result.year}-${result.month}-1`);
 }
+
+function setClick() {
+  if ([date.value.getFullYear(), date.value.getMonth() + 1, date.value.getDate()].join('-') !== props.activeDay) {
+    emit('toggleDate', date.value);
+    console.log(props.activeDay)
+  }
+}
+
 </script>
 
 <style>
