@@ -10,7 +10,10 @@
     </span>
   </div>
   <Teleport to="body">
-    <div class="search-overlay" v-show="isActive === true" @click="$emit('toggleStatus', false)">
+    <div
+        class="search-overlay"
+        v-show="isActive === true"
+        @click="$emit('toggleStatus', false)">
       <div class="container">
         <header class="search-header">
           <input
@@ -23,8 +26,8 @@
           </span>
         </header>
         <main class="search-main" v-if="isShownResultsList">
-          <section class="search-results">
-            <header class="search-results__header">Люди</header>
+          <section class="search-results" v-for="item in data" :key="item.title">
+            <header class="search-results__header">{{ item.title }}</header>
             <ul class="search-results__list">
               <li class="search-results__item">
                 <router-link
@@ -34,12 +37,8 @@
                     @mouseout="stroke = '#57e8df'">
                   <div class="search-results__avatar rounded shadow overflow-hidden">
                     <picture>
-                      <source
-                          :srcset="`http://users.trifonov.space/images/users/belinovich/belinovich.webp`"
-                          type="image/webp">
-                      <img
-                          :src="`http://users.trifonov.space/images/users/belinovich/belinovich.jpg`"
-                          alt=""/>
+                      <source :srcset="imageWeb" type="image/webp"/>
+                      <img :src="image" alt="news" loading="lazy"/>
                     </picture>
                   </div>
                   <div class="search-results__description">
@@ -66,6 +65,8 @@ import IconArrow from "@/components/icons/IconArrow.vue";
 import {ref} from "vue";
 import axios from "axios";
 import json from "@/assets/data/search.json";
+import imageWeb from "@/assets/img/lazareva.webp";
+import image from "@/assets/img/lazareva.jpg";
 
 const stroke = ref('#57e8df');
 const isShownResultsList = ref(false);
@@ -74,21 +75,41 @@ const props = defineProps({
   isActive: Boolean,
 });
 const emit = defineEmits(['toggleStatus', 'toggleStatusMobileNav']);
-const data = ref({});
+const data = ref([]);
+const keys = ['firstName', 'middleName', 'lastName', 'position', 'title', 'description', 'category'];
 
 const setSearchValue = (e) => {
   searchValue.value = e.target.value;
   isShownResultsList.value = searchValue.value.length > 2;
   if (searchValue.value.length > 2) {
-    console.log(json);
+    data.value = [];
+    json.forEach(item => {
+      item.list.forEach(el => {
+        keys.forEach(key => {
+          if (el[key] && el[key].toLowerCase().includes(searchValue.value.toLowerCase())) {
+            if (data.value.length === 0) {
+              data.value.push({
+                title: item.title,
+                list: [el]
+              })
+            } else {
+              data.value.forEach((valueItem) => {
+                if (valueItem.title === item.title) {
+                  valueItem.list.push(el);
+                } else {
+                  data.value.push({
+                    title: item.title,
+                    list: [el]
+                  })
+                }
+              })
+            }
+          }
+        })
+      })
+    })
+    isShownResultsList.value = true;
   }
-  // axios
-  //     .get('./assets/data/search.json')
-  //     .then((response) => {
-  //       data.value = response.data
-  //       console.log(data.value)
-  //     })
-  //     .catch((error) => console.log(error))
 };
 </script>
 
