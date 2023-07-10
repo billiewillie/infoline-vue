@@ -1,5 +1,5 @@
 <template>
-  <div class="birthdays-card shadow rounded">
+  <div class="birthdays-card">
     <header class="birthdays-card-header">
 			<span class="icon">
 				<IconBirthday/>
@@ -44,7 +44,7 @@ const birthdays = ref([
     middlename: 'Петрович',
     lastname: 'Ладжи-Горяев',
     avatar: 'index-news-img',
-    month: 8,
+    month: 9,
     day: 23,
   },
   {
@@ -54,7 +54,7 @@ const birthdays = ref([
     middlename: 'Петрович',
     lastname: 'Трифонов',
     avatar: 'index-news-img',
-    month: 8,
+    month: 9,
     day: 23,
   },
   {
@@ -64,7 +64,7 @@ const birthdays = ref([
     middlename: 'Петрович',
     lastname: 'Трифонов',
     avatar: 'index-news-img',
-    month: 8,
+    month: 9,
     day: 23,
   },
   {
@@ -74,9 +74,9 @@ const birthdays = ref([
     middlename: 'Петрович',
     lastname: 'Трифонов',
     avatar: 'index-news-img',
-    month: 8,
+    month: 9,
     day: 23,
-  },
+  }
 ]);
 </script>
 
@@ -172,12 +172,8 @@ const birthdays = ref([
   @media (min-width: 1280px) {
     flex-direction: row;
     column-gap: 12px;
-    padding: 6px;
+    padding: 8px 0 0;
     flex: auto;
-  }
-
-  @media (min-width: 1920px) {
-    padding: 12px;
   }
 }
 
@@ -201,6 +197,10 @@ const birthdays = ref([
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (min-width: 1280px) {
+    padding: 10px 0;
+  }
 }
 
 .birthdays-date span {
@@ -210,11 +210,7 @@ const birthdays = ref([
   text-align: center;
 
   @media (min-width: 1280px) {
-    font-size: 11px;
-  }
-
-  @media (min-width: 1920px) {
-    font-size: 13px;
+    font-size: 14px;
   }
 }
 
@@ -245,6 +241,7 @@ const birthdays = ref([
 
   @media (min-width: 1280px) {
     font-size: 10px;
+    padding: 10px 0;
   }
 
   @media (min-width: 1920px) {

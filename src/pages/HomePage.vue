@@ -25,18 +25,17 @@
         :text="item.text"
         :background="item.background"
         :link="item.link"
-        :component="item.component"
-    />
+        :component="item.component"/>
   </div>
 </template>
 
 <script setup>
 import NewsItem from "@/components/NewsItem.vue";
 import TheCalendar from "@/components/TheCalendar.vue";
+import IconOrders from "@/components/icons/IconOrders.vue";
 import SliderGallery from "@/components/SliderGallery.vue";
 import IndexDefaultCard from "@/components/IndexDefaultCard.vue";
 import IndexBirthdaysCard from "@/components/IndexBirthdaysCard.vue";
-import IconOrders from "@/components/icons/IconOrders.vue";
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -244,7 +243,11 @@ const modules = [Navigation];
 
 .news .swiper-slide {
   @media (min-width: 1280px) {
-    height: auto;
+    height: calc(50vh - 49px);
+  }
+
+  @media (min-width: 1920px) {
+    height: calc(50vh - 65px);
   }
 }
 </style>
