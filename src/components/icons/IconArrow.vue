@@ -21,4 +21,12 @@ const props = defineProps({
 path{
   transition: stroke 0.3s ease-in-out;
 }
+
+.search-results__link svg path {
+  stroke: var(--blue-light);
+}
+
+.search-results__link:hover svg path {
+  stroke: var(--white);
+}
 </style>

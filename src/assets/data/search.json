@@ -40,11 +40,11 @@
     "list": [
       {
         "title": "АКТ отпуска-возврата товара с выставок",
-        "link": "/docs/doc.pdf"
+        "link": "./src/assets/img/gallery-2.webp"
       },
       {
         "title": "АКТ доставки",
-        "link": "/docs/doc.pdf"
+        "link": "./src/assets/img/gallery-2.webp"
       }
     ]
   }

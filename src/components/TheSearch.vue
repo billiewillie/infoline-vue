@@ -3,7 +3,8 @@
       class="search"
       @click="
         $emit('toggleStatus', true);
-        $emit('toggleStatusMobileNav', false)">
+        $emit('toggleStatusMobileNav', false);
+        setInputFocused()">
     <div class="search-button">Поиск...</div>
     <span class="search-icon">
       <IconLoop/>
@@ -20,21 +21,24 @@
               placeholder="Поиск..."
               @click.stop
               @input="setSearchValue"
-              v-model="searchValue"/>
+              v-model="searchValue"
+              ref="searchInput"
+          />
           <span class="search-icon">
             <IconClose/>
           </span>
         </header>
         <main class="search-main" v-if="isShownResultsList">
-          <section class="search-results" v-for="item in data" :key="item.title">
-            <header class="search-results__header">{{ item.title }}</header>
+          <section class="search-results" v-for="list in data" :key="list.title">
+            <header class="search-results__header" @click.stop>{{ list.title }}</header>
             <ul class="search-results__list">
-              <li class="search-results__item">
+              <li class="search-results__item" v-if="list.title === 'люди'">
                 <router-link
                     to="/news"
                     class="search-results__link"
-                    @mouseover="stroke = '#fff'"
-                    @mouseout="stroke = '#57e8df'">
+                    @click="clearSearchValue"
+                    v-for="item in list.list"
+                    :key="item.id">
                   <div class="search-results__avatar rounded shadow overflow-hidden">
                     <picture>
                       <source :srcset="imageWeb" type="image/webp"/>
@@ -42,11 +46,54 @@
                     </picture>
                   </div>
                   <div class="search-results__description">
-                    <p class="search-results__title">Иванов Иван Иванович</p>
-                    <span class="search-results__position">Генеральный директор</span>
+                    <p class="search-results__title">{{ item.firstName }}</p>
+                    <span class="search-results__position">{{ item.position }}</span>
                   </div>
                   <span class="icon">
-                    <IconArrow :stroke="stroke"/>
+                    <IconArrow/>
+                  </span>
+                </router-link>
+              </li>
+              <li class="search-results__item" v-if="list.title === 'документы'">
+                <a
+                    download
+                    class="search-results__link"
+                    v-for="item in list.list"
+                    :href="item.link"
+                    @click="clearSearchValue"
+                    :key="item.id">
+                  <div class="search-results__avatar rounded shadow overflow-hidden">
+                    <picture>
+                      <source :srcset="imageWeb" type="image/webp"/>
+                      <img :src="image" alt="news" loading="lazy"/>
+                    </picture>
+                  </div>
+                  <div class="search-results__description">
+                    <p class="search-results__title">{{ item.title }}</p>
+                  </div>
+                  <span class="icon">
+                    <IconArrow/>
+                  </span>
+                </a>
+              </li>
+              <li class="search-results__item" v-if="list.title === 'новости'">
+                <router-link
+                    to="/news"
+                    class="search-results__link"
+                    @click="clearSearchValue"
+                    v-for="item in list.list"
+                    :key="item.id">
+                  <div class="search-results__avatar rounded shadow overflow-hidden">
+                    <picture>
+                      <source :srcset="imageWeb" type="image/webp"/>
+                      <img :src="image" alt="news" loading="lazy"/>
+                    </picture>
+                  </div>
+                  <div class="search-results__description">
+                    <p class="search-results__title">{{ item.title }}</p>
+                  </div>
+                  <span class="icon">
+                    <IconArrow/>
                   </span>
                 </router-link>
               </li>
@@ -62,15 +109,15 @@
 import IconLoop from "@/components/icons/IconLoop.vue";
 import IconClose from "@/components/icons/IconClose.vue";
 import IconArrow from "@/components/icons/IconArrow.vue";
-import {ref} from "vue";
+import {nextTick, ref} from "vue";
 import axios from "axios";
 import json from "@/assets/data/search.json";
 import imageWeb from "@/assets/img/lazareva.webp";
 import image from "@/assets/img/lazareva.jpg";
 
-const stroke = ref('#57e8df');
 const isShownResultsList = ref(false);
 const searchValue = ref('');
+const searchInput = ref(null);
 const props = defineProps({
   isActive: Boolean,
 });
@@ -107,10 +154,22 @@ const setSearchValue = (e) => {
           }
         })
       })
-    })
+    });
     isShownResultsList.value = true;
+    console.log(data.value);
   }
 };
+const clearSearchValue = () => {
+  searchValue.value = '';
+  isShownResultsList.value = false;
+  data.value = [];
+};
+
+const setInputFocused = () => {
+  nextTick(() => {
+    searchInput.value.focus();
+  })
+}
 </script>
 
 <style scoped>
@@ -252,6 +311,10 @@ const setSearchValue = (e) => {
   width: 70px;
   height: 70px;
   filter: drop-shadow(0 1px 5px rgba(0, 0, 0, 0.21));
+}
+
+.search-results__avatar img {
+  object-position: center top;
 }
 
 .search-results__description {
