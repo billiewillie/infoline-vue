@@ -129,21 +129,13 @@ const props = defineProps({
 
 .news-item__date .icon {
   display: flex;
+  width: 16px;
+  height: 16px;
 }
 
 .news-item__date .icon svg {
-  width: 18px;
-  height: 20px;
-
-  @media (min-width: 1280px) {
-    width: 12px;
-    height: 13px;
-  }
-
-  @media (min-width: 1920px) {
-    width: 16px;
-    height: 18px;
-  }
+  width: 100%;
+  height: 100%;
 }
 
 .news-item__date .text {
@@ -158,6 +150,10 @@ const props = defineProps({
   @media (min-width: 1920px) {
     font-size: 13px;
   }
+}
+
+.news-item__date .icon {
+  display: flex;
 }
 
 .news-item__footer {

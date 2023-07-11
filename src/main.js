@@ -7,8 +7,8 @@ import Toast from "vue-toastification";
 import './assets/main.css'
 
 const app = createApp(App)
-app.use(Toast)
 app.use(createPinia())
+app.use(Toast)
 app.use(router)
 
 app.mount('#app')

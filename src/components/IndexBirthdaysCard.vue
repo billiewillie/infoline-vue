@@ -241,7 +241,7 @@ const birthdays = ref([
 
   @media (min-width: 1280px) {
     font-size: 10px;
-    padding: 10px 0;
+    padding: 10px 4px;
   }
 
   @media (min-width: 1920px) {
