@@ -1,6 +1,8 @@
 <template>
   <div class="slider-gallery shadow rounded">
-    <router-link :to="`/galleries/gallery-1`" class="title gallery-title">
+    <router-link
+        :to="`/galleries/${galleryLink}`"
+        class="title gallery-title">
       <span class="icon">
       <IconGallery/>
       </span>
@@ -10,14 +12,17 @@
         :modules="modules"
         :slides-per-view="1"
         navigation
-        loop
-        v-if="gallery.length"
+        v-if="galleriesIndexPage.length > 0"
         @slideChange="onSlideChange"
-    >
-      <SwiperSlide v-for="item in gallery" :key="item.id">
+        loop>
+      <SwiperSlide v-for="item in galleriesIndexPage" :key="item.id">
         <picture>
-          <source :srcset="imageWeb" type="image/webp"/>
-          <img :src="image" alt="news" loading="lazy"/>
+          <source
+              :srcset="`http://gallery.trifonov.space/upload/galleries/${item.id}/${item.src}.webp`"
+              type="image/webp"/>
+          <img
+              :src="`http://gallery.trifonov.space/upload/galleries/${item.id}/${item.src}.jpg`"
+              alt="gallery"/>
         </picture>
       </SwiperSlide>
     </swiper>
@@ -28,74 +33,22 @@
 import {Navigation} from 'swiper';
 import {Swiper, SwiperSlide} from 'swiper/vue';
 
-import imageWeb from '@/assets/img/index-news-img.webp';
-import image from '@/assets/img/index-news-img.jpg';
-
 import 'swiper/css';
 import 'swiper/css/navigation';
-import {onMounted, ref} from 'vue';
-import axios from 'axios';
-import {GALLERY_URL, INDEX_PAGE_GALLERY_URL} from '@/constants';
 import IconGallery from "@/components/icons/IconGallery.vue";
 
-const gallery = ref([
-  {
-    id: 1,
-    title: 'id 1',
-    url: 'gallery-4',
-    src: 'index-news-img',
-  },
-  {
-    id: 2,
-    title: 'id 2',
-    url: 'gallery-4',
-    src: 'index-news-img',
-  },
-  {
-    id: 3,
-    title: 'id 3',
-    url: 'gallery-1',
-    src: 'index-news-img',
-  },
-  {
-    id: 4,
-    title: 'id 4',
-    url: 'gallery-4',
-    src: 'index-news-img',
-  },
-  {
-    id: 5,
-    title: 'id 5',
-    url: 'gallery-4',
-    src: 'index-news-img',
-  },
-  {
-    id: 2,
-    title: 'Новогодний квартирник',
-    url: 'gallery-1',
-    src: 'index-news-img',
-  },
-  {
-    id: 3,
-    title: 'Test 4',
-    url: 'gallery-4',
-    src: 'index-news-img',
-  },
-]);
-const galleryTitle = ref(gallery.value[0].title);
+import {useRootStore} from "@/stores/galleriesStore";
+import {storeToRefs} from "pinia";
+
+const galleriesStore = useRootStore();
+galleriesStore.getGalleriesIndexPage();
+const {galleriesIndexPage, galleryTitle, galleryLink} = storeToRefs(galleriesStore);
 const modules = [Navigation];
 
 const onSlideChange = (swiper) => {
-  galleryTitle.value = gallery.value[swiper.realIndex].title;
+  galleriesStore.setGalleryTitle(swiper.realIndex);
+  galleriesStore.setGalleryLink(swiper.realIndex);
 };
-
-// onMounted(() => {
-//   axios
-//       .get(INDEX_PAGE_GALLERY_URL)
-//       .then(response => {
-//         gallery.value = response.data;
-//       })
-// });
 </script>
 
 <style>

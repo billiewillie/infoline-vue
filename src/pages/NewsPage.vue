@@ -19,7 +19,7 @@ import NewsItem from "@/components/NewsItem.vue";
 import {ref} from "vue";
 import TheTabs from "@/components/TheTabs.vue";
 
-import {useRootStore} from "@/stores/root";
+import {useRootStore} from "@/stores/newsStore";
 import {storeToRefs} from "pinia";
 
 const rootStore = useRootStore();

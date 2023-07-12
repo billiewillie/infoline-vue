@@ -82,7 +82,9 @@ const departments = ref([
 const showFooter = ref(false);
 
 let departmentsTitles = ref(['Отдел персонала', 'Бухгалтерия', 'ИТ отдел']);
+
 let activeDepartment = ref(departments.value[0].name);
+
 const activeDocs = ref(departments.value[0].docs);
 
 const setActiveDepartment = (tab) => {

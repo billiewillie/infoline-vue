@@ -7,10 +7,8 @@
           :breakpoints="{ 1280: { enabled: false } }"
           navigation
           space-between="10"
-          loop
-          v-if="news.length"
-      >
-        <SwiperSlide v-for="item in news" :key="item.id">
+          loop>
+        <SwiperSlide v-for="item in newsIndexPage" :key="item.id">
           <NewsItem :item="item"/>
         </SwiperSlide>
       </Swiper>
@@ -55,11 +53,12 @@ const defaultCards = ref([
 ]);
 const modules = [Navigation];
 
-import {useRootStore} from "@/stores/root";
+import {useRootStore} from "@/stores/newsStore";
 import {storeToRefs} from "pinia";
 
-const rootStore = useRootStore();
-const {news} = storeToRefs(rootStore);
+const newsStore = useRootStore();
+newsStore.getNewsIndexPage();
+const {newsIndexPage} = storeToRefs(newsStore);
 </script>
 
 <style>

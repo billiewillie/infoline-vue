@@ -15,8 +15,8 @@
           :key="item.id">
         <div class="birthdays-avatar overflow-hidden">
           <picture>
-            <source :srcset="imageWeb" type="image/webp"/>
-            <img :src="image" alt="image" loading="lazy"/>
+            <source :srcset="`http://users.trifonov.space/images/users/${item.login}/gallery_1.webp`" type="image/webp"/>
+            <img :src="`http://users.trifonov.space/images/users/${item.login}/gallery_1}.jpg`" alt="avatar"/>
           </picture>
         </div>
         <span class="birthdays-name">{{ item.lastname }} {{ item.firstname }}</span>
@@ -31,53 +31,14 @@
 
 <script setup>
 import IconBirthday from '@/components/icons/IconBirthday.vue';
-import {ref} from 'vue';
 import {getMonthName} from '@/functions/getMonthName';
-import imageWeb from '@/assets/img/index-news-img.webp';
-import image from '@/assets/img/index-news-img.jpg';
 
-const birthdays = ref([
-  {
-    token: 'uvB5Fnc0xm7eJsbR5U2VX8',
-    login: 'index-news-img',
-    firstname: 'Артем',
-    middlename: 'Петрович',
-    lastname: 'Ладжи-Горяев',
-    avatar: 'index-news-img',
-    month: 9,
-    day: 23,
-  },
-  {
-    token: 'uvB5Fnc0xm7eJsbR5U2VX8',
-    login: 'index-news-img',
-    firstname: 'Артем',
-    middlename: 'Петрович',
-    lastname: 'Трифонов',
-    avatar: 'index-news-img',
-    month: 9,
-    day: 23,
-  },
-  {
-    token: 'uvB5Fnc0xm7eJsbR5U2VX8',
-    login: 'index-news-img',
-    firstname: 'Артем',
-    middlename: 'Петрович',
-    lastname: 'Трифонов',
-    avatar: 'index-news-img',
-    month: 9,
-    day: 23,
-  },
-  {
-    token: 'uvB5Fnc0xm7eJsbR5U2VX8',
-    login: 'index-news-img',
-    firstname: 'Артем',
-    middlename: 'Петрович',
-    lastname: 'Трифонов',
-    avatar: 'index-news-img',
-    month: 9,
-    day: 23,
-  }
-]);
+import {useRootStore} from "@/stores/birthdaysStore";
+import {storeToRefs} from "pinia";
+
+const birthdaysStore = useRootStore();
+birthdaysStore.getBirthdays();
+const {birthdays} = storeToRefs(birthdaysStore);
 </script>
 
 <style scoped>
@@ -223,6 +184,10 @@ const birthdays = ref([
   @media (min-width: 1280px) {
     flex: auto;
   }
+}
+
+.birthdays-avatar img {
+  object-position: top center;
 }
 
 .birthdays-name {

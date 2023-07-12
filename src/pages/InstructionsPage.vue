@@ -1,15 +1,11 @@
 <template>
   <div class="basepage default-page">
     <h1 class="title">Инструкции</h1>
-
     <TheTabs
         :tabs="departmentsTitles"
         :activeTab="activeDepartment"
-        @setActiveTab="setActiveDepartment"
-    />
-
+        @setActiveTab="setActiveDepartment"/>
     <div class="content rounded shadow">
-
       <div class="inner-tabs">
         <div
             v-for="item in categoriesTitles"
@@ -21,7 +17,6 @@
           {{ item }}
         </div>
       </div>
-
       <div class="docs-container">
         <div
             class="docs-inner"
@@ -328,9 +323,11 @@ const departmentsList = ref([
 ]);
 
 let departmentsTitles = ref(['IT отдел', 'Госзакупки']);
+
 let activeDepartment = ref(departmentsTitles.value[0]);
 
 const categoriesTitles = ref(['1С', 'Почта', 'Мотив', 'Сайты']);
+
 const activeCategory = ref(categoriesTitles.value[0]);
 
 const activeTypesList = ref([

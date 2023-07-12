@@ -14,7 +14,7 @@
     <div
         class="search-overlay"
         v-show="isActive === true"
-        @click="$emit('toggleStatus', false)">
+        @click="$emit('toggleStatus', false);clearSearchValue()">
       <div class="container">
         <header class="search-header">
           <input
@@ -24,7 +24,7 @@
               v-model="searchValue"
               ref="searchInput"
           />
-          <span class="search-icon">
+          <span class="search-icon" @click="clearSearchValue()">
             <IconClose/>
           </span>
         </header>
@@ -156,7 +156,6 @@ const setSearchValue = (e) => {
       })
     });
     isShownResultsList.value = true;
-    console.log(data.value);
   }
 };
 const clearSearchValue = () => {
