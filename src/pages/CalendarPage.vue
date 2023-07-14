@@ -33,12 +33,18 @@
       </div>
     </div>
     <div class="row">
-      <h2 class="title">В этот день</h2>
+      <h2 class="title rounded">В этот день</h2>
       <div class="list" v-if="dayEvents.length > 0">
         <div
             class="item rounded shadow"
             v-for="event in dayEvents"
             :key="event.id">
+          <div class="location">
+            <div class="icon">
+              <IconMarker/>
+            </div>
+            <p>{{ activeCountry }} {{ event.city }}</p>
+          </div>
           <header class="item-header">
             <div class="icon">
               <IconCorpCalendar v-if="event.category === 'Корпоративные мероприятия'"/>
@@ -48,47 +54,44 @@
             <p class="title">{{ event.title }}</p>
           </header>
           <div class="item-content">
-            <div class="item-detail">
-              <div class="icon">
-                <IconClock/>
+            <div class="item-content__block">
+              <div class="item-detail">
+                <div class="icon">
+                  <IconClock/>
+                </div>
+                <span class="text" v-if="event.time_start">{{ event.time_start }} - {{ event.time_end }}</span>
+                <span class="text" v-else>Весь день</span>
               </div>
-              <span class="text" v-if="event.time_start">{{ event.time_start }} - {{ event.time_end }}</span>
-              <span class="text" v-else>Весь день</span>
+              <div class="item-detail">
+                <div class="icon">
+                  <IconCalendarBlue/>
+                </div>
+                <span class="text">{{ getPrettyDatesRange(event.date_start, event.date_end, event.date_end) }}</span>
+              </div>
             </div>
-            <div class="item-detail">
-              <div class="icon">
-                <IconCalendarBlue/>
+            <div class="item-content__block">
+              <div class="item-detail" v-if="event.url">
+                <router-link :to="`${event.url}`" class="link">Подробнее</router-link>
               </div>
-              <span class="text">{{ getPrettyDatesRange(event.date_start, event.date_end) }}</span>
-            </div>
-            <div class="item-detail">
-              <div class="icon">
-                <IconGlobe/>
-              </div>
-              <span class="text">{{ activeCountry }}</span>
-            </div>
-            <div class="item-detail">
-              <div class="icon">
-                <IconMarker/>
-              </div>
-              <span class="text" v-if="event.city">{{ event.city }}</span>
-              <span class="text" v-else>Все города</span>
             </div>
           </div>
-          <footer class="item-footer" v-if="event.url">
-            <router-link :to="`${event.url}`" class="link">Подробнее</router-link>
-          </footer>
         </div>
       </div>
       <p v-else>Нет событий</p>
     </div>
     <div class="row">
-      <h2 class="title">В этот месяце</h2>
+      <h2 class="title rounded">В этот месяце</h2>
       <div class="list" v-if="monthEvents.length > 0">
         <div
             class="item rounded shadow"
             v-for="event in monthEvents"
             :key="event.id">
+          <div class="location">
+            <div class="icon">
+              <IconMarker/>
+            </div>
+            <p>{{ activeCountry }} {{ event.city }}</p>
+          </div>
           <header class="item-header">
             <div class="icon">
               <IconCorpCalendar v-if="event.category === 'Корпоративные мероприятия'"/>
@@ -98,36 +101,27 @@
             <p class="title">{{ event.title }}</p>
           </header>
           <div class="item-content">
-            <div class="item-detail">
-              <div class="icon">
-                <IconClock/>
+            <div class="item-content__block">
+              <div class="item-detail">
+                <div class="icon">
+                  <IconClock/>
+                </div>
+                <span class="text" v-if="event.time_start">{{ event.time_start }} - {{ event.time_end }}</span>
+                <span class="text" v-else>Весь день</span>
               </div>
-              <span class="text" v-if="event.time_start">{{ event.time_start }} - {{ event.time_end }}</span>
-              <span class="text" v-else>Весь день</span>
+              <div class="item-detail">
+                <div class="icon">
+                  <IconCalendarBlue/>
+                </div>
+                <span class="text">{{ getPrettyDatesRange(event.date_start, event.date_end, event.date_end) }}</span>
+              </div>
             </div>
-            <div class="item-detail">
-              <div class="icon">
-                <IconCalendarBlue/>
-              </div>
-              <span class="text">{{ getPrettyDatesRange(event.date_start, event.date_end, event.date_end) }}</span>
-            </div>
-            <div class="item-detail">
-              <div class="icon">
-                <IconGlobe/>
-              </div>
-              <span class="text">{{ activeCountry }}</span>
-            </div>
-            <div class="item-detail">
-              <div class="icon">
-                <IconMarker/>
-              </div>
-              <span class="text" v-if="event.city">{{ event.city }}</span>
-              <span class="text" v-else>Все города</span>
+            <div class="item-content__block">
+              <template v-if="event.url">
+                <router-link :to="`${event.url}`" class="link">Подробнее</router-link>
+              </template>
             </div>
           </div>
-          <footer class="item-footer" v-if="event.url">
-            <router-link :to="`${event.url}`" class="link">Подробнее</router-link>
-          </footer>
         </div>
       </div>
       <p v-else>Нет событий</p>
@@ -198,22 +192,34 @@ const data = ref({
   "Россия": [
     {
       "id": 1,
-      "title": "Здравоохранение - TIHE 2023",
+      "title": "Здравоохранение - TIHE 2023 руддщ вавыа ва ыаы выа",
       "url": "/news/nurses-day-2023",
       "description": "13-15 апреля группа компаний «БиоЛайн» примет участие в ключевом событии для медицинского сообщества Узбекистана – международной выставке TIHE-2023.\r\n</p>\r\n<p>\r\nМероприятие является не только демонстрационной платформой, но и включает в себя обширную научно-практическую программу с участием ведущих специалистов, посвященную современным технологиям в Здравоохранении.",
       "date_start": "2023-6-5",
-      "date_end": "2023-6-9",
+      "date_end": "2023-6-6",
       "time_start": "10",
       "time_end": "19",
       "day": 2,
       "month": 6,
       "category": "Корпоративные мероприятия",
-      "city": "Москва"
+      "city": "Москва",
+      "timetable": [
+        {
+          "date": "2023-6-5",
+          "time_start": "10:00",
+          "time_end": "12:00"
+        },
+        {
+          "date": "2023-6-6",
+          "time_start": "11:00",
+          "time_end": "14:00"
+        }
+      ]
     },
     {
       "id": 3,
-      "title": "День России",
-      "url": "",
+      "title": "День России выаыв выавыа выав ыаываы вавыа",
+      "url": "https://ru.wikipedia.org/wiki/%D0%94%D0%B5%D0%BD%D1%8C_%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D0%B8",
       "description": "Праздник День России",
       "date_start": "2023-7-12",
       "date_end": "2023-7-12",
@@ -222,7 +228,8 @@ const data = ref({
       "day": 12,
       "month": 6,
       "category": "Производственный календарь",
-      "city": null
+      "city": null,
+      "timetable": []
     },
     {
       "id": 2,
@@ -230,13 +237,25 @@ const data = ref({
       "url": "https://bioline.ru/news/nurses-day-2023",
       "description": "«БиоЛайн» примет участие в ключевом событии для медицинского сообщества Узбекистана – международной выставке TIHE-2023.\r\n</p>\r\n<p>\r\nМероприятие является не только демонстрационной платформой, но и включает в себя обширную научно-практическую программу с участием ведущих специалистов, посвященную современным технологиям в Здравоохранении.",
       "date_start": "2023-07-05",
-      "date_end": "2023-07-10",
+      "date_end": "2023-07-06",
       "time_start": 12,
       "time_end": 14,
       "day": 2,
       "month": 6,
       "category": "Выставки и семинары",
-      "city": "Санкт-Петербург"
+      "city": "Санкт-Петербург",
+      "timetable": [
+        {
+          "date": "2023-07-05",
+          "time_start": "12:00",
+          "time_end": "14:00"
+        },
+        {
+          "date": "2023-07-06",
+          "time_start": "13:00",
+          "time_end": "15:00"
+        }
+      ]
     },
   ],
   "Казахстан": [],
@@ -362,14 +381,29 @@ onMounted(() => {
   }
 }
 
+.calendar-page .calendar-wrapper {
+  @media (min-width: 1280px) {
+    height: calc(50vh - 49px);
+    padding-right: 2px;
+  }
+
+  @media (min-width: 1920px) {
+    height: calc(50vh - 65px);
+  }
+}
+
 .row-calendar {
   grid-template-columns: 1fr;
 }
 
 h2.title {
-  border-bottom: 1px solid var(--blue-light);
-  padding-bottom: 10px;
-  text-align: center;
+  background-color: var(--blue-dark);
+  color: var(--white);
+  font-size: 15px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .list {
@@ -434,7 +468,7 @@ h2.title {
   cursor: pointer;
 
   @media (min-width: 1280px) {
-    padding: 0 10px;
+    padding: 10px 12px;
     column-gap: 14px;
     border-top: 1px solid var(--gray-medium);
   }
@@ -475,6 +509,11 @@ h2.title {
 
 .filters-item .icon svg {
   width: 100%;
+
+  @media (min-width: 1280px) {
+    min-width: 20px;
+    min-height: 20px;
+  }
 }
 
 .filters-item .text {
@@ -499,56 +538,74 @@ h2.title {
 }
 
 .item {
+  display: flex;
+  flex-direction: column;
   @media (min-width: 1280px) {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-rows: repeat(2, 1fr);
     padding: 15px;
     row-gap: 15px;
   }
 }
 
+.item .location {
+  display: flex;
+  padding: 10px;
+  column-gap: 10px;
+}
+
+.item .location .icon {
+  width: 18px;
+  height: 18px;
+}
+
+.item .location .icon svg {
+  width: 18px;
+  height: 18px;
+}
+
 .item-header {
   display: flex;
-  align-items: center;
-  padding: 18px;
+  padding: 10px;
   column-gap: 10px;
-  font-size: 18px;
+  font-size: 16px;
   color: var(--blue-dark);
 
   @media (min-width: 1280px) {
-    order: 1;
     padding: 0;
   }
 }
 
 .item-header .icon {
-  width: 24px;
-  height: 24px;
+  width: 18px;
+  height: 18px;
 }
 
 .item-header .icon svg {
-  width: 100%;
+  width: 18px;
+  height: 18px;
 }
 
 .item-content {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  padding: 18px;
-  row-gap: 23px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  row-gap: 10px;
   column-gap: 10px;
   border-top: 1px solid var(--gray-medium);
 
   @media (min-width: 1280px) {
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 1fr;
+    flex-direction: row;
     row-gap: 0;
-    order: 3;
-    grid-column-start: 1;
-    grid-column-end: 3;
     padding: 15px 0 0 0;
   }
+}
+
+.item-content__block {
+  display: flex;
+}
+
+.item-content__block a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .item-detail {
@@ -557,6 +614,7 @@ h2.title {
   align-items: center;
   font-size: 14px;
   color: var(--blue-dark);
+  width: 50%;
 
   @media (min-width: 1280px) {
     font-size: 11px;
@@ -568,8 +626,13 @@ h2.title {
 }
 
 .item-detail .icon {
-  width: 24px;
-  height: 24px;
+  width: 18px;
+  height: 18px;
+}
+
+.item-detail .icon svg {
+  width: 18px;
+  height: 18px;
 }
 
 .item-footer {

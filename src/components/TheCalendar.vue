@@ -123,14 +123,15 @@ function setClick() {
   line-height: 23px;
   font-size: 14px;
   font-weight: 400;
-  height: 28px;
-  aspect-ratio: 1 / 1;
+  height: 100%;
+  width: 100%;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
 
   @media (min-width: 1280px) {
     font-size: 11px;
     line-height: 19px;
-    height: 19px;
-    width: 19px;
   }
 
   @media (min-width: 1920px) {
@@ -200,7 +201,8 @@ function setClick() {
 }
 
 .calendar .vc-highlight-bg-solid {
-  height: 28px;
+  height: 31px;
+  min-width: 31px;
   aspect-ratio: 1 / 1;
   background-color: var(--blue-light);
 

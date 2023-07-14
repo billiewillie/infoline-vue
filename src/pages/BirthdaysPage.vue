@@ -35,7 +35,7 @@
 import IconGiftBlue from "@/components/icons/IconGiftBlue.vue";
 import IconGift from "@/components/icons/IconGift.vue";
 import TheTabs from "@/components/TheTabs.vue";
-import {onMounted, ref} from "vue";
+import {ref} from "vue";
 
 const months = [
   "Январь",
