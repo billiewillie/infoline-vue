@@ -11,7 +11,7 @@
       <router-link
           :to="{name: 'User', params: {id: 'belinovich'}}"
           class="birthdays-link rounded shadow overflow-hidden"
-          v-for="item in birthdays"
+          v-for="item in birthdaysIndexPage"
           :key="item.id">
         <div class="birthdays-avatar overflow-hidden">
           <picture>
@@ -37,8 +37,8 @@ import {useRootStore} from "@/stores/birthdaysStore";
 import {storeToRefs} from "pinia";
 
 const birthdaysStore = useRootStore();
-birthdaysStore.getBirthdays();
-const {birthdays} = storeToRefs(birthdaysStore);
+birthdaysStore.getBirthdaysIndexPage();
+const {birthdaysIndexPage} = storeToRefs(birthdaysStore);
 </script>
 
 <style scoped>
@@ -131,10 +131,11 @@ const {birthdays} = storeToRefs(birthdaysStore);
   row-gap: 16px;
 
   @media (min-width: 1280px) {
-    flex-direction: row;
-    column-gap: 12px;
     padding: 8px 0 0;
-    flex: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 12px;
+    height: 100%;
   }
 }
 

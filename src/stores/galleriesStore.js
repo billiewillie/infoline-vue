@@ -5,9 +5,19 @@ import axios from "axios";
 export const useRootStore = defineStore(
     "galleries",
     () => {
+        const galleries = ref([]);
         const galleriesIndexPage = ref([]);
         const galleryTitle = ref("");
         const galleryLink = ref("");
+
+        const getGalleries = async () => {
+            try {
+                const res = await axios.get('http://gallery.trifonov.space/api/gallery/show/all');
+                galleries.value = res.data;
+            } catch (e) {
+                console.log(e);
+            }
+        }
 
         const getGalleriesIndexPage = async () => {
             try {
@@ -29,11 +39,13 @@ export const useRootStore = defineStore(
         }
 
         return {
+            galleries,
             galleriesIndexPage,
             galleryTitle,
             galleryLink,
             getGalleriesIndexPage,
             setGalleryTitle,
-            setGalleryLink
+            setGalleryLink,
+            getGalleries
         }
     })

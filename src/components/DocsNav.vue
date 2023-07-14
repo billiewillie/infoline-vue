@@ -40,11 +40,6 @@ const navList = ref([
     title: 'Инструкции',
     path: '/instructions',
     icon: 'IconInstructions'
-  },
-  {
-    title: 'Заявки',
-    path: '/orders',
-    icon: 'IconOrders'
   }
 ])
 
@@ -54,8 +49,6 @@ function renderIcon(icon) {
       return IconDocs
     case "IconInstructions":
       return IconInstructions
-    case "IconOrders":
-      return IconOrdersSmall
   }
 }
 </script>

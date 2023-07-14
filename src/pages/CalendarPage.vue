@@ -3,9 +3,10 @@
     <div class="row row-calendar">
       <TheCalendar
           :attributes="attributes"
-          @toggleDate="toggleDate"
           :activeDay="activeDate"
-          @toggleMonth="toggleMonth"/>
+          @toggleDate="toggleDate"
+          @toggleMonth="toggleMonth"
+      />
       <div class="filters rounded shadow">
         <TheTabs
             v-if="countries"

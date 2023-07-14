@@ -4,44 +4,33 @@
     <TheTabs
         :tabs="newsCategories"
         :activeTab="activeCategory"
-        @setActiveTab="setActiveCategory"/>
+        @setActiveTab="newsStore.setActiveCategory"
+    />
     <div class="news-list" v-if="news">
       <NewsItem
           v-for="item in activeNews"
           :key="item.id"
-          :item="item"/>
+          :item="item"
+      />
     </div>
   </div>
 </template>
 
 <script setup>
 import NewsItem from "@/components/NewsItem.vue";
-import {ref} from "vue";
 import TheTabs from "@/components/TheTabs.vue";
 
 import {useRootStore} from "@/stores/newsStore";
 import {storeToRefs} from "pinia";
+import {onMounted} from "vue";
 
-const rootStore = useRootStore();
-const {news} = storeToRefs(rootStore);
-const {newsCategories} = storeToRefs(rootStore);
+const newsStore = useRootStore();
+newsStore.getNews();
+const {news, newsCategories, activeCategory, activeNews} = storeToRefs(newsStore);
 
-let activeCategory = ref(newsCategories.value[0]);
-
-const activeNews = ref(news);
-
-console.log(news.value)
-
-const setActiveCategory = (value) => {
-  activeCategory.value = value;
-  activeNews.value = news.value.filter((item) => {
-    if (value === newsCategories.value[0]) {
-      return true;
-    } else {
-      return item.category.title === value;
-    }
-  });
-}
+onMounted(() => {
+  newsStore.setActiveCategory('Все');
+})
 </script>
 
 <style scoped>

@@ -7,8 +7,8 @@
           <router-link to="/users/belinovich" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
-                <source :srcset="imageWeb" type="image/webp"/>
-                <img :src="image" alt="image" loading="lazy"/>
+                <source :srcset="SemenovAVWebp" type="image/webp"/>
+                <img :src="SemenovAV" alt="image" loading="lazy"/>
               </picture>
             </div>
             <h2 class="name title"><span class="surname">Семенов</span> Александр Владимирович</h2>
@@ -19,8 +19,8 @@
           <router-link to="/users/belinovich" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
-                <source :srcset="imageWeb" type="image/webp"/>
-                <img :src="image" alt="image" loading="lazy"/>
+                <source :srcset="DulaevaWebp" type="image/webp"/>
+                <img :src="Dulaeva" alt="image" loading="lazy"/>
               </picture>
             </div>
             <h2 class="name title"><span class="surname">Дулаева</span> Оксана Евгеньевна</h2>
@@ -28,25 +28,29 @@
           </router-link>
           <div class="department-group">
             <router-link to="/team/clients-bs" class="department rounded">Отдел по работе с клиентами БС</router-link>
-            <router-link to="/team/clients-bs" class="department rounded">Отдел госпитального оборудования и мебели</router-link>
-            <router-link to="/team/clients-bs" class="department rounded">Отдел продукции для материнства и детcтва</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Отдел госпитального оборудования и мебели
+            </router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Отдел продукции для материнства и детcтва
+            </router-link>
           </div>
         </div>
         <div class="row row-inner-one">
           <router-link to="/users/belinovich" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
-                <source :srcset="imageWeb" type="image/webp"/>
-                <img :src="image" alt="image" loading="lazy"/>
+                <source :srcset="DmitrievaWebp" type="image/webp"/>
+                <img :src="Dmitrieva" alt="image" loading="lazy"/>
               </picture>
             </div>
             <h2 class="name title"><span class="surname">Дмитриева</span> Марина Олеговна</h2>
             <p class="position">Директор по маркетингу и продажам общелабораторного оборудования</p>
           </router-link>
           <div class="department-group">
-            <router-link to="/team/clients-bs" class="department rounded">Отдел общелабораторного оборудования</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Отдел общелабораторного оборудования
+            </router-link>
             <router-link to="/team/clients-bs" class="department rounded">Отдел лабораторной мебели</router-link>
-            <router-link to="/team/clients-bs" class="department rounded">Отдел преаналитических систем и расходных материалов
+            <router-link to="/team/clients-bs" class="department rounded">Отдел преаналитических систем и расходных
+              материалов
             </router-link>
           </div>
         </div>
@@ -54,8 +58,8 @@
           <router-link to="/users/belinovich" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
-                <source :srcset="imageWeb" type="image/webp"/>
-                <img :src="image" alt="image" loading="lazy"/>
+                <source :srcset="SolntsevaWebp" type="image/webp"/>
+                <img :src="Solntseva" alt="image" loading="lazy"/>
               </picture>
             </div>
             <h2 class="name title"><span class="surname">Солнцева</span> Ольга Станиславовна</h2>
@@ -63,8 +67,10 @@
           </router-link>
           <div class="department-group">
             <router-link to="/team/clients-bs" class="department rounded">Отдел по работе с клиентами БС</router-link>
-            <router-link to="/team/clients-bs" class="department rounded">Отдел госпитального оборудования и мебели</router-link>
-            <router-link to="/team/clients-bs" class="department rounded">Отдел продукции для материнства и детcтва</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Отдел госпитального оборудования и мебели
+            </router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Отдел продукции для материнства и детcтва
+            </router-link>
             <router-link to="/team/clients-bs" class="department rounded">
               Отдел оптической микроскопии, анализа изображений и спектрометрии в научных исследованиях
             </router-link>
@@ -74,8 +80,8 @@
           <router-link to="/users/belinovich" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
-                <source :srcset="imageWeb" type="image/webp"/>
-                <img :src="image" alt="image" loading="lazy"/>
+                <source :srcset="EvteevWebp" type="image/webp"/>
+                <img :src="Evteev" alt="image" loading="lazy"/>
               </picture>
             </div>
             <h2 class="name title"><span class="surname">Евтеев</span> Андрей Владимирович</h2>
@@ -86,8 +92,8 @@
           <router-link to="/users/belinovich" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
-                <source :srcset="imageWeb" type="image/webp"/>
-                <img :src="image" alt="image" loading="lazy"/>
+                <source :srcset="KislovWebp" type="image/webp"/>
+                <img :src="Kislov" alt="image" loading="lazy"/>
               </picture>
             </div>
             <h2 class="name title"><span class="surname">Кислов</span> Павел Владимирович</h2>
@@ -95,13 +101,17 @@
           </router-link>
           <div class="department-group">
             <router-link to="/team/clients-bs" class="department rounded">Отдел цитологии</router-link>
-            <router-link to="/team/clients-bs" class="department rounded">Отдел оборудования для клинической микроскопии и цифровой
+            <router-link to="/team/clients-bs" class="department rounded">Отдел оборудования для клинической микроскопии
+              и цифровой
               патологии
             </router-link>
-            <router-link to="/team/clients-bs" class="department rounded">Отдел молекурярной диагностики в патоморфологии</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Отдел молекурярной диагностики в
+              патоморфологии
+            </router-link>
             <router-link to="/team/clients-bs" class="department rounded">Отдел иммуногистохимии</router-link>
             <router-link to="/team/clients-bs" class="department rounded">Отдел гистологии</router-link>
-            <router-link to="/team/clients-bs" class="department rounded">Отдел продаж гистологических/цитологических расходных
+            <router-link to="/team/clients-bs" class="department rounded">Отдел продаж гистологических/цитологических
+              расходных
               материалов,
               реагентов и оборудования
             </router-link>
@@ -111,8 +121,8 @@
           <router-link to="/users/belinovich" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
-                <source :srcset="imageWeb" type="image/webp"/>
-                <img :src="image" alt="image" loading="lazy"/>
+                <source :srcset="KaukovaWebp" type="image/webp"/>
+                <img :src="Kaukova" alt="image" loading="lazy"/>
               </picture>
             </div>
             <h2 class="name title"><span class="surname">Каюкова</span> Людмила Леонидовна</h2>
@@ -128,8 +138,8 @@
           <router-link to="/users/belinovich" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
-                <source :srcset="imageWeb" type="image/webp"/>
-                <img :src="image" alt="image" loading="lazy"/>
+                <source :srcset="KodenukWebp" type="image/webp"/>
+                <img :src="Kodenuk" alt="image" loading="lazy"/>
               </picture>
             </div>
             <h2 class="name title"><span class="surname">Коденюк</span> Владимир Анатольевич</h2>
@@ -144,8 +154,8 @@
           <router-link to="/users/belinovich" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
-                <source :srcset="imageWeb" type="image/webp"/>
-                <img :src="image" alt="image" loading="lazy"/>
+                <source :srcset="ShubaevWebp" type="image/webp"/>
+                <img :src="Shubaev" alt="image" loading="lazy"/>
               </picture>
             </div>
             <h2 class="name title"><span class="surname">Шубаев</span> Павел Андреевич</h2>
@@ -162,15 +172,16 @@
           <router-link to="/users/belinovich" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
-                <source :srcset="imageWeb" type="image/webp"/>
-                <img :src="image" alt="image" loading="lazy"/>
+                <source :srcset="GusevaWebp" type="image/webp"/>
+                <img :src="Guseva" alt="image" loading="lazy"/>
               </picture>
             </div>
             <h2 class="name title"><span class="surname">Гусева</span> Наталья Константиновна</h2>
             <p class="position">Директор по правовым вопросам</p>
           </router-link>
           <div class="department-group">
-            <router-link to="/team/clients-bs" class="department rounded">Отдел регистрации медицинских изделий</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Отдел регистрации медицинских изделий
+            </router-link>
             <router-link to="/team/clients-bs" class="department rounded">Юридический отдел</router-link>
           </div>
         </div>
@@ -178,24 +189,8 @@
           <router-link to="/users/belinovich" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
-                <source :srcset="imageWeb" type="image/webp"/>
-                <img :src="image" alt="image" loading="lazy"/>
-              </picture>
-            </div>
-            <h2 class="name title"><span class="surname">Белинович</span> Вадим Игоревич</h2>
-            <p class="position">Заместитель генерального директора по маркетингу и продажам БиоСистемы</p>
-          </router-link>
-          <div class="department-group">
-            <router-link to="/team/clients-bs" class="department rounded">Отдел по работе с клиентами БС</router-link>
-            <router-link to="/team/clients-bs" class="department rounded">Отдел госпитального оборудования и мебели</router-link>
-          </div>
-        </div>
-        <div class="row">
-          <router-link to="/users/belinovich" class="card shadow rounded">
-            <div class="image overflow-hidden">
-              <picture>
-                <source :srcset="imageWeb" type="image/webp"/>
-                <img :src="image" alt="image" loading="lazy"/>
+                <source :srcset="GvozdarevWebp" type="image/webp"/>
+                <img :src="Gvozdarev" alt="image" loading="lazy"/>
               </picture>
             </div>
             <h2 class="name title"><span class="surname">Гвоздарев</span> Андрей Владимирович</h2>
@@ -209,8 +204,8 @@
           <router-link to="/users/belinovich" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
-                <source :srcset="imageWeb" type="image/webp"/>
-                <img :src="image" alt="image" loading="lazy"/>
+                <source :srcset="ZarutskyiWebp" type="image/webp"/>
+                <img :src="Zarutskyi" alt="image" loading="lazy"/>
               </picture>
             </div>
             <h2 class="name title"><span class="surname">Заруцкий</span> Дмитрий Михайлович</h2>
@@ -224,8 +219,8 @@
           <router-link to="/users/belinovich" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
-                <source :srcset="imageWeb" type="image/webp"/>
-                <img :src="image" alt="image" loading="lazy"/>
+                <source :srcset="AbramovWebp" type="image/webp"/>
+                <img :src="Abramov" alt="image" loading="lazy"/>
               </picture>
             </div>
             <h2 class="name title"><span class="surname">Абрамов</span> Максим Николаевич</h2>
@@ -238,7 +233,8 @@
         </div>
         <div class="row row-only-department">
           <div class="department-group one-group">
-            <router-link to="/team/clients-bs" class="department rounded">Отдел комплексных проектов и поставок</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Отдел комплексных проектов и поставок
+            </router-link>
           </div>
         </div>
         <div class="row row-only-department">
@@ -250,8 +246,8 @@
           <router-link to="/users/belinovich" class="card shadow rounded">
             <div class="image overflow-hidden">
               <picture>
-                <source :srcset="imageWeb" type="image/webp"/>
-                <img :src="image" alt="image" loading="lazy"/>
+                <source :srcset="SemenovZaminWebp" type="image/webp"/>
+                <img :src="SemenovZamin" alt="image" loading="lazy"/>
               </picture>
             </div>
             <h2 class="name title"><span class="surname">Семенов</span> Алексей Александрович</h2>
@@ -268,7 +264,8 @@
             <router-link to="/team/clients-bs" class="department rounded">Филиал г. Уфа</router-link>
             <router-link to="/team/clients-bs" class="department rounded">Филиал г. Хабаровск</router-link>
             <router-link to="/team/clients-bs" class="department rounded">Филиал г. Самара</router-link>
-            <router-link to="/team/clients-bs" class="department rounded">Филиал г. ТОО «БиоЛайн-Казахстан»</router-link>
+            <router-link to="/team/clients-bs" class="department rounded">Филиал г. ТОО «БиоЛайн-Казахстан»
+            </router-link>
             <router-link to="/team/clients-bs" class="department rounded">Филиал г. Екатеринбург</router-link>
             <router-link to="/team/clients-bs" class="department rounded">БиоЛайн-БС (Республика Беларусь)</router-link>
             <router-link to="/team/clients-bs" class="department rounded">ООО "BLUBIOMEDICAL"</router-link>
@@ -287,6 +284,34 @@
 <script setup>
 import imageWeb from '@/assets/img/lazareva.webp';
 import image from '@/assets/img/lazareva.jpg';
+import SemenovAV from '@/assets/img/users/semenov.jpg';
+import SemenovAVWebp from '@/assets/img/users/semenov.webp';
+import Dulaeva from '@/assets/img/users/dulaeva.jpg';
+import DulaevaWebp from '@/assets/img/users/dulaeva.webp';
+import Dmitrieva from '@/assets/img/users/dmitrieva.jpg';
+import DmitrievaWebp from '@/assets/img/users/dmitrieva.webp';
+import Solntseva from '@/assets/img/users/solntseva.jpg';
+import SolntsevaWebp from '@/assets/img/users/solntseva.webp';
+import Evteev from '@/assets/img/users/evteev.jpg';
+import EvteevWebp from '@/assets/img/users/evteev.webp';
+import Kislov from '@/assets/img/users/kislov.jpg';
+import KislovWebp from '@/assets/img/users/kislov.webp';
+import Kaukova from '@/assets/img/users/kaukova.jpg';
+import KaukovaWebp from '@/assets/img/users/kaukova.webp';
+import Kodenuk from '@/assets/img/users/kodenuk.jpg';
+import KodenukWebp from '@/assets/img/users/kodenuk.webp';
+import Shubaev from '@/assets/img/users/shubaev.jpg';
+import ShubaevWebp from '@/assets/img/users/shubaev.webp';
+import Guseva from '@/assets/img/users/guseva.jpg';
+import GusevaWebp from '@/assets/img/users/guseva.webp';
+import Gvozdarev from '@/assets/img/users/gvozdarev.jpg';
+import GvozdarevWebp from '@/assets/img/users/gvozdarev.webp';
+import Zarutskyi from '@/assets/img/users/zarutskiy.jpg';
+import ZarutskyiWebp from '@/assets/img/users/zarutskiy.webp';
+import Abramov from '@/assets/img/users/abramov.jpg';
+import AbramovWebp from '@/assets/img/users/abramov.webp';
+import SemenovZamin from '@/assets/img/users/semenov-zam.jpg';
+import SemenovZaminWebp from '@/assets/img/users/semenov-zam.webp';
 </script>
 
 <style scoped>
@@ -355,11 +380,14 @@ import image from '@/assets/img/lazareva.jpg';
   display: none;
   content: '';
   position: absolute;
-  top: -87px;
-  height: 87px;
   width: 2px;
-  left: 106px;
   background-color: var(--blue-light);
+
+  @media (min-width: 1920px) {
+    left: 106px;
+    top: -87px;
+    height: 87px;
+  }
 }
 
 .row:last-child {
@@ -651,10 +679,6 @@ import image from '@/assets/img/lazareva.jpg';
     width: 20%;
   }
 
-  .row.row-inner-one .card::before {
-    display: block;
-  }
-
   .row.row-special .department:nth-child(odd)::before,
   .row.row-special .department:nth-child(even)::before {
     display: block;
@@ -675,16 +699,18 @@ import image from '@/assets/img/lazareva.jpg';
   .row.row-above-multiple-employees .card::before {
     display: block;
   }
+
+  .row.row-inner-one .card::before {
+    display: block;
+    height: 78px;
+    top: -78px;
+    left: 75px;
+  }
 }
 
 @media (min-width: 1920px) {
   .row.row-special::before {
     top: 106px;
-  }
-
-  .row.row-inner-one .card::before {
-    height: 70px;
-    top: -70px;
   }
 
   .row.row-inner::before {
@@ -693,6 +719,13 @@ import image from '@/assets/img/lazareva.jpg';
 
   .row.row-above-multiple-employees .card::before {
     height: 608px;
+  }
+
+
+  .row.row-inner-one .card::before {
+    left: 106px;
+    top: -70px;
+    height: 70px;
   }
 }
 </style>

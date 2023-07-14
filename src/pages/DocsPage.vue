@@ -8,7 +8,7 @@
     />
     <h2 class="subtitle">{{ activeDepartment }}</h2>
     <div class="content shadow rounded overflow-hidden">
-      <DocComponent v-for="item in activeDocs" :key="item.id" :doc="item"/>
+      <DocComponent v-for="item in activeDocs" :key="item.name" :doc="item"/>
     </div>
   </div>
 </template>
@@ -21,20 +21,38 @@ import DocComponent from "@/components/DocComponent.vue";
 
 const departments = ref([
   {
-    name: 'Отдел персонала',
+    name: 'Отдел рекламы',
     docs: [
       {
         id: 1,
-        name: 'файл 1 файл 1файл 1файл 1файл 1файл 1файл 1',
-        ext: 'mp3',
-        link: './src/assets/img/gallery-2.webp',
+        name: 'Акт с перевозчиком - повреждение груза',
+        ext: 'doc',
+        link: 'https://infoline.bioline.ru/docs/1-1.pdf',
       },
       {
         id: 2,
-        name: 'файл 2 файл 2файл 2файл 2файл 2файл 1файл 1 2',
-        ext: 'pdf',
-        link: './src/assets/img/gallery-2.webp',
-      }
+        name: 'БЛ + БС Комбинированный Логотип (ENG)',
+        ext: 'jpg',
+        link: 'https://infoline.bioline.ru/docs/1-1.jpg',
+      },
+      {
+        id: 3,
+        name: 'БЛ + БС Комбинированный Логотип (RU)',
+        ext: 'jpg',
+        link: 'https://infoline.bioline.ru/docs/1-1.jpg',
+      },
+      {
+        id: 4,
+        name: 'БЛ Логотип (ENG)',
+        ext: 'jpg',
+        link: 'https://infoline.bioline.ru/docs/1-1.jpg',
+      },
+      {
+        id: 5,
+        name: 'БЛ Логотип (RU)',
+        ext: 'jpg',
+        link: 'https://infoline.bioline.ru/docs/1-1.jpg',
+      },
     ]
   },
   {
@@ -55,7 +73,7 @@ const departments = ref([
     ]
   },
   {
-    name: 'ИТ отдел',
+    name: 'Отдел персноала',
     docs: [
       {
         id: 1,
@@ -76,12 +94,148 @@ const departments = ref([
         link: '/',
       },
     ]
+  },
+  {
+    name: 'Юридический отдел',
+    docs: [
+      {
+        id: 1,
+        name: 'файл 1',
+        ext: 'mp3',
+        link: '/',
+      },
+      {
+        id: 2,
+        name: 'файл 2',
+        ext: 'mp3',
+        link: '/',
+      }
+    ]
+  },
+  {
+    name: 'Тендерный отдел',
+    docs: [
+      {
+        id: 1,
+        name: 'файл 1',
+        ext: 'mp3',
+        link: '/',
+      },
+      {
+        id: 2,
+        name: 'файл 2',
+        ext: 'mp3',
+        link: '/',
+      }
+    ]
+  },
+  {
+    name: 'Секретариат',
+    docs: [
+      {
+        id: 1,
+        name: 'файл 1',
+        ext: 'mp3',
+        link: '/',
+      },
+      {
+        id: 2,
+        name: 'файл 2',
+        ext: 'mp3',
+        link: '/',
+      }
+    ]
+  },
+  {
+    name: 'Отдел логистики',
+    docs: [
+      {
+        id: 1,
+        name: 'файл 1',
+        ext: 'mp3',
+        link: '/',
+      },
+      {
+        id: 2,
+        name: 'файл 2',
+        ext: 'mp3',
+        link: '/',
+      }
+    ]
+  },
+  {
+    name: 'Финансовый раздел',
+    docs: [
+      {
+        id: 1,
+        name: 'файл 1',
+        ext: 'mp3',
+        link: '/',
+      },
+      {
+        id: 2,
+        name: 'файл 2',
+        ext: 'mp3',
+        link: '/',
+      }
+    ]
+  },
+  {
+    name: 'Охрана труда',
+    docs: [
+      {
+        id: 1,
+        name: 'файл 1',
+        ext: 'mp3',
+        link: '/',
+      },
+      {
+        id: 2,
+        name: 'файл 2',
+        ext: 'mp3',
+        link: '/',
+      }
+    ]
+  },
+  {
+    name: 'Отдел внешней и складской логистики',
+    docs: [
+      {
+        id: 1,
+        name: 'файл 1',
+        ext: 'mp3',
+        link: '/',
+      },
+      {
+        id: 2,
+        name: 'файл 2',
+        ext: 'mp3',
+        link: '/',
+      }
+    ]
+  },
+  {
+    name: 'Отдел закупок',
+    docs: [
+      {
+        id: 1,
+        name: 'файл 1',
+        ext: 'mp3',
+        link: '/',
+      },
+      {
+        id: 2,
+        name: 'файл 2',
+        ext: 'mp3',
+        link: '/',
+      }
+    ]
   }
 ]);
 
 const showFooter = ref(false);
 
-let departmentsTitles = ref(['Отдел персонала', 'Бухгалтерия', 'ИТ отдел']);
+let departmentsTitles = ref(['Отдел рекламы', 'Бухгалтерия', 'Отдел персонала', 'Юридический отдел', 'Тендерный отдел', 'Секретариат', 'Отдел логистики', 'Финансовый раздел', 'Охрана труда', 'Отдел внешней и складской логистики', 'Отдел закупок']);
 
 let activeDepartment = ref(departments.value[0].name);
 
@@ -109,5 +263,11 @@ const setActiveDocs = (tab) => {
 
 .content {
   background-color: var(--white);
+}
+
+.tabs {
+  @media (min-width: 1280px) {
+    display: none;
+  }
 }
 </style>
