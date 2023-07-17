@@ -55,18 +55,22 @@
           </header>
           <div class="item-content">
             <div class="item-content__block">
-              <div class="item-detail">
-                <div class="icon">
-                  <IconClock/>
+              <div class="item__content__block-row" v-for="date in event.timetable" :key="date.date">
+                <div class="item-detail">
+                  <div class="icon">
+                    <IconCalendarBlue/>
+                  </div>
+                  <span class="text">{{
+                      new Date(date.date).getDate()
+                    }} {{ getMonthName(new Date(date.date).getMonth() + 1) }}</span>
                 </div>
-                <span class="text" v-if="event.time_start">{{ event.time_start }} - {{ event.time_end }}</span>
-                <span class="text" v-else>Весь день</span>
-              </div>
-              <div class="item-detail">
-                <div class="icon">
-                  <IconCalendarBlue/>
+                <div class="item-detail">
+                  <div class="icon">
+                    <IconClock/>
+                  </div>
+                  <span class="text" v-if="event.time_start">{{ event.time_start }} - {{ event.time_end }}</span>
+                  <span class="text" v-else>Весь день</span>
                 </div>
-                <span class="text">{{ getPrettyDatesRange(event.date_start, event.date_end, event.date_end) }}</span>
               </div>
             </div>
             <div class="item-content__block">
@@ -102,18 +106,22 @@
           </header>
           <div class="item-content">
             <div class="item-content__block">
-              <div class="item-detail">
-                <div class="icon">
-                  <IconClock/>
+              <div class="item__content__block-row" v-for="date in event.timetable" :key="date.date">
+                <div class="item-detail">
+                  <div class="icon">
+                    <IconCalendarBlue/>
+                  </div>
+                  <span class="text">{{
+                      new Date(date.date).getDate()
+                    }} {{ getMonthName(new Date(date.date).getMonth() + 1) }}</span>
                 </div>
-                <span class="text" v-if="event.time_start">{{ event.time_start }} - {{ event.time_end }}</span>
-                <span class="text" v-else>Весь день</span>
-              </div>
-              <div class="item-detail">
-                <div class="icon">
-                  <IconCalendarBlue/>
+                <div class="item-detail">
+                  <div class="icon">
+                    <IconClock/>
+                  </div>
+                  <span class="text" v-if="event.time_start">{{ event.time_start }} - {{ event.time_end }}</span>
+                  <span class="text" v-else>Весь день</span>
                 </div>
-                <span class="text">{{ getPrettyDatesRange(event.date_start, event.date_end, event.date_end) }}</span>
               </div>
             </div>
             <div class="item-content__block">
@@ -144,6 +152,7 @@ import IconMarker from "@/components/icons/IconMarker.vue";
 import {getPrettyDatesRange} from "@/functions/getPrettyDatesRange";
 import {setMonthsEvents} from "@/functions/setMonthsEvents";
 import {setDaysEvents} from "@/functions/setDaysEvents";
+import {getMonthName} from "../functions/getMonthName";
 
 const date = new Date();
 const icons = {
@@ -221,15 +230,21 @@ const data = ref({
       "title": "День России выаыв выавыа выав ыаываы вавыа",
       "url": "https://ru.wikipedia.org/wiki/%D0%94%D0%B5%D0%BD%D1%8C_%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D0%B8",
       "description": "Праздник День России",
-      "date_start": "2023-7-12",
-      "date_end": "2023-7-12",
+      "date_start": "2023-6-12",
+      "date_end": "2023-6-12",
       "time_start": null,
       "time_end": null,
       "day": 12,
       "month": 6,
       "category": "Производственный календарь",
       "city": null,
-      "timetable": []
+      "timetable": [
+        {
+          "date": "2023-6-12",
+          "time_start": "10:00",
+          "time_end": "12:00"
+        }
+      ]
     },
     {
       "id": 2,
@@ -283,10 +298,15 @@ const setActiveCountry = (country) => {
 
 const setActiveEvents = () => {
   if (activeCategory.value.title === "Все события") {
+
     dayEvents.value = data
         .value[activeCountry.value]
         .filter(item => setDaysEvents(item.date_start, item.date_end, activeDate.value));
-    monthEvents.value = data.value[activeCountry.value].filter(item => setMonthsEvents(item.date_start, item.date_end, activeDate.value));
+
+    monthEvents.value = data
+        .value[activeCountry.value]
+        .filter(item => setMonthsEvents(item.date_start, item.date_end, activeDate.value));
+
     attributes.value[0].dates = [
       new Date(),
       ...data
@@ -308,6 +328,7 @@ const setActiveEvents = () => {
             }
           })
     ].flat();
+
     attributes.value[1].dates = [
       ...data
           .value[activeCountry.value]
@@ -328,20 +349,77 @@ const setActiveEvents = () => {
             }
           })
     ].flat();
+
   } else {
     dayEvents.value = data
         .value[activeCountry.value]
         .filter(item => item.category === activeCategory.value.title)
         .filter(item => setDaysEvents(item.date_start, item.date_end, activeDate.value));
+
     monthEvents.value = data
         .value[activeCountry.value]
         .filter(item => item.category === activeCategory.value.title)
         .filter(item => setMonthsEvents(item.date_start, item.date_end, activeDate.value));
+
+    attributes.value[0].dates = [
+      new Date(),
+      ...data
+          .value[activeCountry.value]
+          .filter(item => {
+            if (activeCategory.value.title === 'Корпоративные мероприятия') {
+              return item.category === 'Корпоративные мероприятия'
+            } else if (activeCategory.value.title === 'Выставки и семинары') {
+              return item.category === 'Выставки и семинары'
+            }
+          })
+          .map(item => {
+            if (item.date_start !== item.date_end) {
+              const dateStart = new Date(item.date_start);
+              const dateEnd = new Date(item.date_end);
+              const dates = [];
+
+              while (dateStart <= dateEnd) {
+                dates.push(new Date(dateStart));
+                dateStart.setDate(dateStart.getDate() + 1);
+              }
+              return dates;
+            } else {
+              return new Date(item.date_start);
+            }
+          })
+    ].flat();
+
+    attributes.value[1].dates = [
+      ...data
+          .value[activeCountry.value]
+          .filter(item => {
+            if (activeCategory.value.title === 'Производственный календарь') {
+              return item.category === 'Производственный календарь'
+            }
+          })
+          .map(item => {
+            if (item.date_start !== item.date_end) {
+              const dateStart = new Date(item.date_start);
+              const dateEnd = new Date(item.date_end);
+              const dates = [];
+
+              while (dateStart <= dateEnd) {
+                dates.push(new Date(dateStart));
+                dateStart.setDate(dateStart.getDate() + 1);
+              }
+              return dates;
+            } else {
+              return new Date(item.date_start);
+            }
+          })
+    ].flat();
+
   }
 }
 
 const toggleCategory = (category) => {
   activeCategory.value = category;
+  console.log(activeCategory.value.title);
   setActiveEvents();
 }
 
@@ -476,7 +554,7 @@ h2.title {
 
 .filters-item.active p {
   text-decoration: underline;
-  text-underline-offset: 3px;
+  text-underline-offset: 4px;
 }
 
 .filters-item:first-child {
@@ -550,6 +628,11 @@ h2.title {
   display: flex;
   padding: 10px;
   column-gap: 10px;
+  font-size: 12px;
+
+  @media (min-width: 1280px) {
+    padding: 10px 0;
+  }
 }
 
 .item .location .icon {
@@ -601,6 +684,43 @@ h2.title {
 
 .item-content__block {
   display: flex;
+}
+
+.item-content__block:first-child {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+
+  @media (min-width: 1280px) {
+    width: 60%;
+  }
+
+  @media (min-width: 1920px) {
+    width: 50%;
+  }
+}
+
+.item__content__block-row {
+  display: flex;
+}
+
+.item__content__block-row:not(:first-child) .icon {
+  visibility: hidden;
+}
+
+.item-content__block:last-child {
+  @media (min-width: 1280px) {
+    justify-content: flex-end;
+    flex: auto;
+    align-self: flex-end;
+  }
+}
+
+.item-content__block:last-child .item-detail {
+  @media (min-width: 1280px) {
+    width: 100%;
+    justify-content: flex-end;
+  }
 }
 
 .item-content__block a {

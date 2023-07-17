@@ -9,8 +9,7 @@
         class="calendar shadow rounded"
         v-model="date"
         @dayclick="setClick"
-        @transition-end="toggleMonthHandler"
-    />
+        @transition-end="toggleMonthHandler"/>
   </div>
 </template>
 
@@ -46,7 +45,6 @@ async function toggleMonthHandler() {
 function setClick() {
   if ([date.value.getFullYear(), date.value.getMonth() + 1, date.value.getDate()].join('-') !== props.activeDay) {
     emit('toggleDate', date.value);
-    console.log(props.activeDay)
   }
 }
 

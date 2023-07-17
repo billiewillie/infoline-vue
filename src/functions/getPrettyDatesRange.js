@@ -1,4 +1,3 @@
-import {MONTHS} from "@/constants";
 import {areDatesEqual} from "@/functions/areDatesEqual";
 import {getMonthName} from "@/functions/getMonthName";
 

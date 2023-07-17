@@ -79,7 +79,7 @@ const props = defineProps({
   display: flex;
   flex-direction: column;
   row-gap: 10px;
-  padding: 0 17px;
+  padding: 0 16px;
 }
 
 .news-item__content .title {
@@ -165,7 +165,7 @@ const props = defineProps({
 .news-item__footer-stats {
   display: flex;
   column-gap: 13px;
-  padding: 0 17px;
+  padding: 0 16px;
 }
 
 .news-item__footer-stats-digit {

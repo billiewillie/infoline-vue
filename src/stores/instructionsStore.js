@@ -3,7 +3,7 @@ import {ref} from "vue";
 import axios from "axios";
 
 export const useRootStore = defineStore(
-    "news",
+    "instructions",
     () => {
         const departmentsList = ref([]);
 
@@ -22,16 +22,44 @@ export const useRootStore = defineStore(
                 const res = await axios.get('http://instructions.trifonov.space/api/instructions/show/all');
                 departmentsList.value = res.data;
                 departmentsTitles.value = departmentsList.value.map(item => item.title);
-                activeDepartment.value = departmentsTitles.value[0];
-                categoriesTitles.value = departmentsList.value[0].subcategories.map(item => item.title);
-                activeCategory.value = categoriesTitles.value[0];
-                activeTypesList.value = departmentsList.value[0].subcategories[0].typesList;
+                setActiveDepartment(departmentsTitles.value[0]);
             } catch (e) {
                 console.log(e);
             }
         }
 
-        return {
+        const setActiveDepartment = (tab) => {
+            activeDepartment.value = tab;
+            categoriesTitles.value = departmentsList
+                .value
+                .filter(item => item.title === tab)[0]
+                .categoriesList
+                .map(item => item.category);
+            setActiveCategory(categoriesTitles.value[0]);
+        }
 
+        const setActiveCategory = (category) => {
+            activeCategory.value = category;
+            setActiveTypesList();
+        }
+
+        const setActiveTypesList = () => {
+            activeTypesList.value = departmentsList.value
+                .filter(item => item.title === activeDepartment.value)[0]
+                .categoriesList
+                .filter(item => item.category === activeCategory.value)[0]
+                .typesList;
+        }
+
+        return {
+            departmentsList,
+            departmentsTitles,
+            activeDepartment,
+            categoriesTitles,
+            activeCategory,
+            activeTypesList,
+            getInstructions,
+            setActiveDepartment,
+            setActiveCategory
         }
     })

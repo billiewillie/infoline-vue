@@ -14,10 +14,9 @@
           v-for="item in birthdaysIndexPage"
           :key="item.id">
         <div class="birthdays-avatar overflow-hidden">
-          <picture>
-            <source :srcset="`http://users.trifonov.space/images/users/${item.login}/gallery_1.webp`" type="image/webp"/>
-            <img :src="`http://users.trifonov.space/images/users/${item.login}/gallery_1}.jpg`" alt="avatar"/>
-          </picture>
+          <TheImage
+              :image="`http://users.trifonov.space/images/users/${item.login}/gallery_1.webp`"
+              alt="alt" />
         </div>
         <span class="birthdays-name">{{ item.lastname }} {{ item.firstname }}</span>
         <div class="birthdays-date">
@@ -30,15 +29,18 @@
 </template>
 
 <script setup>
+import imageWebp from '@/assets/img/gallery-1.jpeg';
 import IconBirthday from '@/components/icons/IconBirthday.vue';
 import {getMonthName} from '@/functions/getMonthName';
 
 import {useRootStore} from "@/stores/birthdaysStore";
 import {storeToRefs} from "pinia";
+import TheImage from "@/components/TheImage.vue";
 
 const birthdaysStore = useRootStore();
 birthdaysStore.getBirthdaysIndexPage();
 const {birthdaysIndexPage} = storeToRefs(birthdaysStore);
+
 </script>
 
 <style scoped>
@@ -147,6 +149,7 @@ const {birthdaysIndexPage} = storeToRefs(birthdaysStore);
   height: 90px;
   grid-template-columns: auto 1fr;
   grid-template-rows: 1fr 1fr;
+  background-color: var(--white);
 
   @media (min-width: 1280px) {
     display: flex;
@@ -183,6 +186,8 @@ const {birthdaysIndexPage} = storeToRefs(birthdaysStore);
   grid-row-end: 3;
 
   @media (min-width: 1280px) {
+    aspect-ratio: inherit;
+    width: 100%;
     flex: auto;
   }
 }
