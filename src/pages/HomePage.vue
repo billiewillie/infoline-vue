@@ -13,7 +13,9 @@
         </SwiperSlide>
       </Swiper>
     </div>
-    <TheCalendar/>
+    <TheCalendar
+        :attributes="attributes"
+    />
     <SliderGallery/>
     <IndexBirthdaysCard/>
     <IndexDefaultCard
@@ -59,6 +61,31 @@ import {storeToRefs} from "pinia";
 const newsStore = useRootStore();
 newsStore.getNewsIndexPage();
 const {newsIndexPage} = storeToRefs(newsStore);
+
+const attributes = ref([
+  {
+    dates: [
+      new Date('2023-07-27')
+    ],
+    dot: {
+      color: 'blue',
+    },
+    popover: {
+      label: "Здравоохранение - TIHE 2023 руддщ вавыа ва ыаы выа"
+    }
+  },
+  {
+    dates: [
+      new Date('2023-07-27')
+    ],
+    dot: {
+      color: 'blue',
+    },
+    popover: {
+      label: "День России выаыв выавыа выав ыаываы вавыа"
+    }
+  },
+]);
 </script>
 
 <style>

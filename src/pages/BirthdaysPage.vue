@@ -113,6 +113,7 @@ const isBirthday = (item) => {
   position: relative;
   grid-template-columns: 1fr;
   row-gap: 30px;
+  background-color: var(--white);
 
   @media (min-width: 1280px) {
     display: grid;

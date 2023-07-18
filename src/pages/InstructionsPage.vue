@@ -15,7 +15,6 @@ const {
   activeCategory,
   activeTypesList
 } = storeToRefs(instructionsStore);
-
 </script>
 
 <template>

@@ -111,9 +111,7 @@
                   <div class="icon">
                     <IconCalendarBlue/>
                   </div>
-                  <span class="text">{{
-                      new Date(date.date).getDate()
-                    }} {{ getMonthName(new Date(date.date).getMonth() + 1) }}</span>
+                  <span class="text">{{ new Date(date.date).getDate() }} {{ getMonthName(new Date(date.date).getMonth() + 1) }}</span>
                 </div>
                 <div class="item-detail">
                   <div class="icon">
@@ -147,12 +145,10 @@ import IconExhibition from "@/components/icons/IconExhibition.vue";
 import IconElseEvents from "@/components/icons/IconElseEvents.vue";
 import IconClock from "@/components/icons/IconClock.vue";
 import IconCalendarBlue from "@/components/icons/IconCalendarBlue.vue";
-import IconGlobe from "@/components/icons/IconGlobe.vue";
 import IconMarker from "@/components/icons/IconMarker.vue";
-import {getPrettyDatesRange} from "@/functions/getPrettyDatesRange";
 import {setMonthsEvents} from "@/functions/setMonthsEvents";
 import {setDaysEvents} from "@/functions/setDaysEvents";
-import {getMonthName} from "../functions/getMonthName";
+import {getMonthName} from "@/functions/getMonthName";
 
 const date = new Date();
 const icons = {
@@ -413,13 +409,11 @@ const setActiveEvents = () => {
             }
           })
     ].flat();
-
   }
 }
 
 const toggleCategory = (category) => {
   activeCategory.value = category;
-  console.log(activeCategory.value.title);
   setActiveEvents();
 }
 

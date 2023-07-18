@@ -234,4 +234,8 @@ function setClick() {
 .calendar .vc-red .vc-highlight-bg-solid {
   background-color: var(--orange);
 }
+
+.calendar .vc-day-box-center-bottom {
+  padding-bottom: 5px;
+}
 </style>

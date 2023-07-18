@@ -52,8 +52,6 @@ const {birthdaysIndexPage} = storeToRefs(birthdaysStore);
 const isBirthday = (item) => {
   return new Date().getMonth() + 1 === item.month && new Date().getDate() === item.day;
 }
-
-console.log(new Date().getMonth() + 1);
 </script>
 
 <style scoped>

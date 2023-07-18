@@ -11,8 +11,7 @@
     <p
         @click="showFooter = !showFooter"
         class="name">{{ props.doc.name }}</p>
-    <footer
-        class="item-footer">
+    <footer class="item-footer">
       <IconSave/>
       <a
           class="link"

@@ -1,17 +1,11 @@
 <template>
   <div class="basepage newspage">
     <h1 class="title">Новости</h1>
-    <TheTabs
-        :tabs="newsCategories"
-        :activeTab="activeCategory"
-        @setActiveTab="newsStore.setActiveCategory"
-    />
-    <div class="news-list" v-if="news">
+    <div class="news-list">
       <NewsItem
-          v-for="item in activeNews"
+          v-for="item in news"
           :key="item.id"
-          :item="item"
-      />
+          :item="item"/>
     </div>
   </div>
 </template>
@@ -27,10 +21,6 @@ import {onMounted} from "vue";
 const newsStore = useRootStore();
 newsStore.getNews();
 const {news, newsCategories, activeCategory, activeNews} = storeToRefs(newsStore);
-
-onMounted(() => {
-  newsStore.setActiveCategory('Все');
-})
 </script>
 
 <style scoped>
