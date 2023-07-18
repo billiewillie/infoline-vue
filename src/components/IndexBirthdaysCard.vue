@@ -11,12 +11,18 @@
       <router-link
           :to="{name: 'User', params: {id: 'belinovich'}}"
           class="birthdays-link rounded shadow overflow-hidden"
+          :class="{ active: isBirthday(item)}"
           v-for="item in birthdaysIndexPage"
           :key="item.id">
+        <div class="gift">
+          <div class="icon">
+            <IconGift/>
+          </div>
+        </div>
         <div class="birthdays-avatar overflow-hidden">
           <TheImage
               :image="`http://users.trifonov.space/images/users/${item.login}/gallery_1.webp`"
-              alt="alt" />
+              alt="alt"/>
         </div>
         <span class="birthdays-name">{{ item.lastname }} {{ item.firstname }}</span>
         <div class="birthdays-date">
@@ -36,11 +42,18 @@ import {getMonthName} from '@/functions/getMonthName';
 import {useRootStore} from "@/stores/birthdaysStore";
 import {storeToRefs} from "pinia";
 import TheImage from "@/components/TheImage.vue";
+import {ref} from "vue";
+import IconGift from "@/components/icons/IconGift.vue";
 
 const birthdaysStore = useRootStore();
 birthdaysStore.getBirthdaysIndexPage();
 const {birthdaysIndexPage} = storeToRefs(birthdaysStore);
 
+const isBirthday = (item) => {
+  return new Date().getMonth() + 1 === item.month && new Date().getDate() === item.day;
+}
+
+console.log(new Date().getMonth() + 1);
 </script>
 
 <style scoped>
@@ -80,6 +93,36 @@ const {birthdaysIndexPage} = storeToRefs(birthdaysStore);
     padding: 6px 11px 7px 8px;
     column-gap: 14px;
   }
+}
+
+.gift {
+  position: absolute;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  right: 0;
+  top: 0;
+  width: 26px;
+  height: 26px;
+  z-index: 1;
+  background-color: var(--blue-light);
+  -webkit-border-radius: 0 3px 0 3px;
+  -moz-border-radius: 0 3px 0 3px;
+  border-radius: 0 3px 0 3px;
+}
+
+.active .gift {
+  display: flex;
+}
+
+.gift .icon {
+  width: 14px;
+  height: 14px;
+}
+
+.gift .icon svg {
+  width: 100%;
+  height: 100%;
 }
 
 .birthdays-card-header .icon {
@@ -150,6 +193,7 @@ const {birthdaysIndexPage} = storeToRefs(birthdaysStore);
   grid-template-columns: auto 1fr;
   grid-template-rows: 1fr 1fr;
   background-color: var(--white);
+  transition: box-shadow 0.3s;
 
   @media (min-width: 1280px) {
     display: flex;
@@ -158,12 +202,24 @@ const {birthdaysIndexPage} = storeToRefs(birthdaysStore);
   }
 }
 
+.birthdays-link.active:hover {
+  box-shadow: 0 1px 14px 0 var(--blue-light);
+}
+
+.birthdays-link:hover {
+  box-shadow: 0 1px 14px 0 var(--gray-medium);
+}
+
 .birthdays-date {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
+  column-gap: 4px;
 
   @media (min-width: 1280px) {
+    column-gap: 0;
+    flex-direction: column;
     padding: 10px 0;
   }
 }
@@ -171,12 +227,16 @@ const {birthdaysIndexPage} = storeToRefs(birthdaysStore);
 .birthdays-date span {
   color: var(--gray-dark);
   font-weight: 700;
-  width: 100%;
   text-align: center;
 
   @media (min-width: 1280px) {
     font-size: 14px;
+    width: 100%;
   }
+}
+
+.active .birthdays-date span {
+  color: var(--blue-light);
 }
 
 .birthdays-avatar {

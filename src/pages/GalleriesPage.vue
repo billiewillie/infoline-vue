@@ -175,7 +175,6 @@ onMounted(() => {
 
 const setActiveYear = (year) => {
   activeYear.value = year;
-  // console.log(activeYear.value);
   activeGalleries.value = galleries.value.filter(item => {
     if (activeYear.value === 'Все') {
       return true;

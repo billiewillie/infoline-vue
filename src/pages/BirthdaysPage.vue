@@ -10,8 +10,14 @@
       <div class="month">
         <h2 class="month-title title subtitle">{{ activeMonth }}</h2>
         <div class="list">
-          <router-link :to="`users/${item.login}`" class="card rounded shadow" v-for="item in birthdays[activeMonth]">
-            <div class="photo">
+          <router-link
+              :to="`users/${item.login}`"
+              class="card rounded shadow"
+              :class="{ active: isBirthday(item)}"
+              v-for="item in birthdays[activeMonth]">
+            <div class="icon">
+              <IconGift/>
+            </div>            <div class="photo">
               <picture>
                 <source srcset="@/assets/img/gallery-2.webp" type="image/webp">
                 <img src="@/assets/img/gallery-1.jpeg" alt="">
@@ -19,9 +25,6 @@
             </div>
             <p class="title name">{{ item.lastname}} {{ item.firstname }}</p>
             <footer class="card-footer">
-              <div class="icon rounded">
-                <IconGift/>
-              </div>
               <span class="date">{{ item.day }} {{ getMonthName(item.month) }}</span>
             </footer>
           </router-link>
@@ -32,10 +35,12 @@
 </template>
 
 <script setup>
-import IconGiftBlue from "@/components/icons/IconGiftBlue.vue";
 import IconGift from "@/components/icons/IconGift.vue";
 import TheTabs from "@/components/TheTabs.vue";
 import {ref} from "vue";
+import {useRootStore} from "@/stores/birthdaysStore";
+import {storeToRefs} from "pinia";
+import {getMonthName} from "@/functions/getMonthName";
 
 const months = [
   "Январь",
@@ -63,14 +68,13 @@ const setActiveMonth = (month) => {
   activeMonthNumber.value = months.indexOf(month);
 };
 
-import {useRootStore} from "@/stores/birthdaysStore";
-import {storeToRefs} from "pinia";
-import {getMonthName} from "@/functions/getMonthName";
-
 const birthdaysStore = useRootStore();
 birthdaysStore.getBirthdays();
 const {birthdays} = storeToRefs(birthdaysStore);
-console.log(birthdays.value)
+
+const isBirthday = (item) => {
+  return new Date().getMonth() + 1 === item.month && new Date().getDate() === item.day;
+}
 </script>
 
 <style scoped>
@@ -106,6 +110,7 @@ console.log(birthdays.value)
 
 .card {
   display: grid;
+  position: relative;
   grid-template-columns: 1fr;
   row-gap: 30px;
 
@@ -122,7 +127,11 @@ console.log(birthdays.value)
 }
 
 .card:hover {
-  box-shadow: 0 1px 14px #57E8DF;
+  box-shadow: 0 1px 14px var(--gray-medium);
+}
+
+.card.active:hover {
+  box-shadow: 0 1px 14px var(--blue-light);
 }
 
 .photo {
@@ -185,24 +194,41 @@ console.log(birthdays.value)
   font-weight: 700;
   font-size: 27px;
   color: var(--black);
+  padding: 10px 0;
 
   @media (min-width: 1280px) {
     justify-content: flex-start;
     font-size: 18px;
+    padding: 0;
   }
 }
 
+.active .date {
+  color: var(--blue-light);
+}
+
 .icon {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
-  width: 76px;
-  height: 76px;
+  width: 26px;
+  height: 26px;
   background-color: var(--blue-light);
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  -webkit-border-radius: 0 3px 0 3px;
+  -moz-border-radius: 0 3px 0 3px;
+  border-radius: 0 3px 0 3px;
 
   @media (min-width: 1280px) {
     width: 35px;
     height: 35px;
   }
+}
+
+.active .icon {
+  display: flex;
 }
 </style>

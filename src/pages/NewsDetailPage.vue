@@ -1,30 +1,34 @@
 <template>
-  <div class="news-detail-page basepage">
-    <div class="news-container rounded shadow">
-      <div class="news-cover">
-        <picture>
-          <source :srcset="`${NEWS_IMAGES_URL}/${post.id}/${post.preview_image}.webp`"
-                  type="image/webp">
-          <img :src="`${NEWS_IMAGES_URL}/${post.id}/${post.preview_image}.jpg`" :alt="post.title">
-        </picture>
-      </div>
-      <div class="news-detail__content">
-        <h1 class="title">{{ post.title }}</h1>
-        <p class="description">{{ post.description }}</p>
-        <div v-html="post.content"></div>
-        <div class="new-comment">
-          <header class="new-comment__header">
-            <span class="icon">
-              <IconCommentGrey/>
-            </span>
-            <span>Оставить комментарий</span>
-          </header>
-          <form action="" class="form">
-            <textarea name="" id="" cols="30" rows="10" class="textarea rounded shadow"></textarea>
-            <ButtonComponent class="rounded">отправить</ButtonComponent>
-          </form>
+  <div class="basepage">
+    <div class="news-cover">
+      <TheImage alt="alt" image="http://news.trifonov.space/images/posts/10/img_124.webp"/>
+      <header class="news-header">
+        <div class="news-header__top">
+          <div class="date">
+            <div class="icon">
+              <IconCalendar/>
+            </div>
+            <span>{{ post.published_date }}</span>
+          </div>
+          <div class="author">
+            <div class="icon">
+              <IconHouse/>
+            </div>
+            <span>автор: {{ post.name }} {{ post.surname }}</span>
+          </div>
+          <div class="category">
+            <div class="icon">
+              <IconHouse/>
+            </div>
+            <span>категория: {{ post.category }}</span>
+          </div>
         </div>
-      </div>
+        <h1 class="title">{{ post.title }}</h1>
+      </header>
+    </div>
+    <div class="content">
+      <p class="description">{{ post.description }}</p>
+      <div v-html="post.content"></div>
     </div>
   </div>
 </template>
@@ -35,6 +39,9 @@ import axios from "axios";
 import {NEWS_IMAGES_URL, NEWS_URL} from "@/constants";
 import IconCommentGrey from "@/components/icons/IconCommentGrey.vue";
 import ButtonComponent from "@/components/UI/ButtonComponent.vue";
+import TheImage from "@/components/TheImage.vue";
+import IconCalendar from "@/components/icons/IconCalendar.vue";
+import IconHouse from "@/components/icons/IconHouse.vue";
 
 const post = ref({});
 
@@ -71,10 +78,27 @@ onMounted(() => {
 }
 
 .news-cover {
-  height: 514px;
+  display: flex;
+  flex-direction: column-reverse;
+  position: relative;
+  height: 500px;
 }
 
-.news-detail__content {
+.news-cover .image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.news-header {
+  background-color: var(--blue-dark);
+  color: var(--white);
+  max-width: 760px;
+}
+
+.content {
   padding: 40px 10px;
   font-size: 16px;
   font-weight: 400;
@@ -85,12 +109,9 @@ onMounted(() => {
 }
 
 .title {
-  color: var(--blue-dark);
+  color: var(--white);
   font-weight: 700;
   font-size: 30px;
-  padding-bottom: 25px;
-  margin-bottom: 25px;
-  border-bottom: 1px solid var(--gray-medium);
 }
 
 .new-comment__header {
@@ -113,99 +134,5 @@ onMounted(() => {
   border-bottom: 1px solid var(--gray-medium);
   font-size: 24px;
   font-weight: 400;
-}
-
-.new-comment {
-  display: flex;
-  flex-direction: column;
-  row-gap: 25px;
-}
-
-.new-comment .form {
-  display: flex;
-  flex-direction: column;
-  row-gap: 25px;
-  align-items: center;
-}
-
-.new-comment .form textarea {
-  padding: 15px;
-  resize: none;
-  width: 100%;
-}
-
-.new-comment .form button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 14px;
-  width: 230px;
-}
-
-.new-comment .form button span.text {
-  color: var(--white);
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.comments-header {
-  color: var(--gray-dark);
-  margin-bottom: 40px;
-}
-
-.comments-header p {
-  font-weight: 700;
-  font-size: 16px;
-}
-
-.comment {
-  display: grid;
-  grid-template-columns: 46px auto 1fr;
-  grid-template-rows: 20px 1fr;
-  column-gap: 16px;
-  row-gap: 9px;
-  margin-bottom: 30px;
-}
-
-.comment.comment-answer {
-  padding-left: 73px;
-}
-
-.comment .avatar {
-  width: 46px;
-  height: 46px;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
-  grid-row-start: 1;
-  grid-row-end: 3;
-  filter: drop-shadow(0 1px 5px rgba(0, 0, 0, 0.21));
-}
-
-.comment .name {
-  font-size: 14px;
-  color: var(--blue-dark);
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-.comment .date {
-  font-size: 14px;
-  color: var(--gray-dark);
-}
-
-.comment .text {
-  font-size: 14px;
-  grid-column-end: 4;
-  grid-column-start: 2;
-  color: var(--blue-dark);
-}
-
-.comment-container {
-  padding: 0 10px;
-
-  @media (min-width: 1280px) {
-    padding: 0 152px;
-  }
 }
 </style>

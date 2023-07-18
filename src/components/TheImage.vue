@@ -48,6 +48,10 @@ onMounted(() => {
   height: 100%;
 }
 
+img {
+  object-position: top center;
+}
+
 .cover {
   position: absolute;
   top: 0;
