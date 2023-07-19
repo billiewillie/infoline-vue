@@ -162,18 +162,23 @@ const vClickOutside = {
   position: absolute;
   display: flex;
   flex-direction: column;
-  row-gap: 10px;
   width: 100%;
-  padding: 10px;
+  padding: 10px 0;
   list-style: none;
   top: 40px;
   opacity: 1;
   background-color: var(--white);
   z-index: 1;
+
+  @media (min-width: 1280px) {
+    padding: 0;
+  }
 }
 
 .select-box__option {
   display: block;
+  padding: 5px;
+  cursor: pointer;
 
   &:hover,
   &:focus {
@@ -240,5 +245,17 @@ const vClickOutside = {
 
 .calendar-tabs .tabs__item {
   justify-content: center;
+}
+
+.docs-page .select-box{
+  @media (min-width: 1280px) {
+    display: flex;
+  }
+}
+
+.docs-page .tabs__list  {
+  @media (min-width: 1280px) {
+    display: none;
+  }
 }
 </style>

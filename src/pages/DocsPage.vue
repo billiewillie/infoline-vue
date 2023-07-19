@@ -1,12 +1,10 @@
 <template>
-  <div class="basepage">
-    <h1 class="title">Документы</h1>
+  <div class="basepage docs-page">
+    <h1 class="title">Регламенты и положения</h1>
     <TheTabs
         :tabs="departmentsTitles"
         :activeTab="activeDepartment"
-        @setActiveTab="docsStore.setActiveDepartment"
-    />
-    <h2 class="subtitle">{{ activeDepartment }}</h2>
+        @setActiveTab="docsStore.setActiveDepartment"/>
     <div class="content shadow rounded overflow-hidden">
       <DocComponent v-for="item in activeDocs" :key="item.name" :doc="item"/>
     </div>
@@ -15,8 +13,6 @@
 
 <script setup>
 import TheTabs from "@/components/TheTabs.vue";
-import {ref} from "vue";
-import IconDoc from "@/components/icons/IconDoc.vue";
 import DocComponent from "@/components/DocComponent.vue";
 
 import {useRootStore} from "@/stores/docsStore";
@@ -40,11 +36,18 @@ const {departments, departmentsTitles, activeDepartment, activeDocs} = storeToRe
 
 .content {
   background-color: var(--white);
+
+  @media (min-width: 1280px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .tabs {
   @media (min-width: 1280px) {
-    display: none;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 </style>

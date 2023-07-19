@@ -47,6 +47,7 @@
         </footer>
       </router-link>
     </transition-group>
+
   </div>
 </template>
 

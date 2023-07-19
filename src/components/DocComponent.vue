@@ -15,7 +15,7 @@
       <IconSave/>
       <a
           class="link"
-          :href="`${props.doc.link}`"
+          :href="`http://regulations.trifonov.space/documents/${props.doc.link}`"
           download>скачать</a>
     </footer>
   </div>
@@ -39,48 +39,73 @@ const showFooter = ref(false);
 <style scoped>
 .content-item {
   display: grid;
-  grid-template-rows: repeat(1, 1fr);
-  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr;
+  grid-template-columns: 84px 1fr;
   column-gap: 30px;
 
   @media (min-width: 1280px) {
     grid-template-rows: repeat(2, 1fr);
     row-gap: 10px;
-    padding: 20px 36px;
+    padding: 15px 0;
   }
 }
 
 .content-item.expand {
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: 1fr 60px;
+
+  @media (min-width: 1280px) {
+    grid-template-rows: repeat(2, 1fr);
+  }
 }
 
 .content-item:nth-child(even) {
   background-color: var(--gray-light);
+
+  @media (min-width: 1280px) {
+    background-color: transparent;
+  }
+}
+
+.content-item:nth-child(4n + 3),
+.content-item:nth-child(4n + 4) {
+  @media (min-width: 1280px) {
+    background-color: var(--gray-light);
+  }
 }
 
 .icon {
-  padding: 12px 29px 12px 19px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  padding: 16px 0;
 
   @media (min-width: 1280px) {
     display: flex;
     grid-row-start: 1;
     grid-row-end: 3;
-    padding: 0;
-    align-items: center;
+    padding: 5px 0 0;
+    align-items: flex-start;
     width: auto;
     height: auto;
   }
 }
 
+.icon-doc {
+  width: 35px;
+  height: 38px;
+}
+
 .icon svg {
-    height: 78px;
+  height: 78px;
 }
 
 .name {
   display: flex;
   align-items: center;
   font-size: 14px;
-  padding: 12px 12px 12px 0;
+  padding: 16px 12px 16px 0;
 
   @media (min-width: 1280px) {
     padding: 0;
@@ -90,8 +115,9 @@ const showFooter = ref(false);
 
 .item-footer {
   display: none;
+  height: 60px;
   align-items: center;
-  padding: 12px 19px;
+  padding: 0 20px;
   grid-row-start: 2;
   grid-row-end: 3;
   grid-column-start: 1;
@@ -105,6 +131,7 @@ const showFooter = ref(false);
     grid-column-start: 2;
     background-color: transparent;
     padding: 0;
+    height: auto;
   }
 }
 

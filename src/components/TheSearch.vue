@@ -110,7 +110,6 @@ import IconLoop from "@/components/icons/IconLoop.vue";
 import IconClose from "@/components/icons/IconClose.vue";
 import IconArrow from "@/components/icons/IconArrow.vue";
 import {nextTick, ref} from "vue";
-import axios from "axios";
 import json from "@/assets/data/search.json";
 import imageWeb from "@/assets/img/lazareva.webp";
 import image from "@/assets/img/lazareva.jpg";
@@ -158,6 +157,7 @@ const setSearchValue = (e) => {
     isShownResultsList.value = true;
   }
 };
+
 const clearSearchValue = () => {
   searchValue.value = '';
   isShownResultsList.value = false;
