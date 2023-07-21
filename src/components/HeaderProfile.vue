@@ -157,6 +157,10 @@ const vClickOutside = {
   top: 40px;
   opacity: 0;
 
+  @media (min-width: 1280px) {
+    top: 60px;
+  }
+
   @media (min-width: 1920px) {
     top: 80px;
   }
