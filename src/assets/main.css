@@ -104,29 +104,29 @@ h1.title {
     object-fit: cover;
 }
 
-.swiper-button-next,
-.swiper-button-prev {
+.swiper .swiper-button-next,
+.swiper .swiper-button-prev {
     background-color: var(--blue-light);
     width: 32px;
     height: 32px;
 }
 
-.swiper-button-next {
+.swiper .swiper-button-next {
     right: 0;
     -webkit-border-radius: 3px 0 0 3px;
     -moz-border-radius: 3px 0 0 3px;
     border-radius: 3px 0 0 3px;
 }
 
-.swiper-button-prev {
+.swiper .swiper-button-prev {
     left: 0;
     -webkit-border-radius: 0 3px 3px 0;
     -moz-border-radius: 0 3px 3px 0;
     border-radius: 0 3px 3px 0;
 }
 
-.swiper-button-next:after,
-.swiper-button-prev:after {
+.swiper .swiper-button-next:after,
+.swiper .swiper-button-prev:after {
     color: var(--white);
     font-size: 12px;
 }

@@ -1,19 +1,21 @@
 <template>
   <div class="basepage gallery-page">
-    <h1 class="title">Фотогалерея #1</h1>
+    <h1 class="title">{{gallery.title}}</h1>
     <div class="gallery-grid">
       <div
           class="gallery-item rounded shadow pic"
-          v-for="(photo, index) in imgs"
+          v-for="(photo, index) in galleryImgs"
           :key="index"
           @click="() => showImg(index)">
         <div class="gallery-cover rounded overflow-hidden">
-          <img :src="photo" alt="photo">
+          <img
+              :src="photo"
+              alt="photo">
         </div>
       </div>
       <vue-easy-lightbox
           :visible="visibleRef"
-          :imgs="imgs"
+          :imgs="galleryImgs"
           :index="indexRef"
           @hide="onHide"/>
     </div>
@@ -21,60 +23,26 @@
 </template>
 
 <script setup>
-import {onMounted, ref} from "vue";
-import axios from "axios";
+import {ref} from "vue";
 import VueEasyLightbox from 'vue-easy-lightbox'
+import {useRootStore} from "@/stores/galleriesStore";
+import {storeToRefs} from "pinia";
+import {useRoute} from "vue-router";
 
-const photos = ref({
-  id: 1,
-  title: 'Фотогалерея #1',
-  location: 'Санкт-Петербург',
-  download_link: 'https://www.google.com',
-  url: 'https://www.google.com',
-  show_count: 1,
-  published_date: '2022-01-01',
-  category: [
-    {
-      title: 'Категория 1',
-    }
-  ],
-  author: [
-    {
-      token: 'sdfsdf',
-      firstname: 'Иван',
-      lastname: 'Иванов',
-    }
-  ],
-  media: [
-    {
-      src: "gallery-1",
-      alt: 'alt'
-    },
-    {
-      src: "gallery-3",
-      alt: 'alt'
-    }
-  ],
-  gallery_cover: '1',
-});
+const visibleRef = ref(false);
+const indexRef = ref(0);
 
-let imgs = ref([]);
-
-const visibleRef = ref(false)
-const indexRef = ref(0)
+const params = useRoute().params;
 const showImg = (index) => {
   indexRef.value = index
   visibleRef.value = true
 }
 const onHide = () => visibleRef.value = false
 
-onMounted(() => {
-  imgs.value = photos.value.media.map(item => `../src/assets/img/${item.src}.jpg`)
-})
+const galleriesStore = useRootStore();
+galleriesStore.getGallery(params.id);
+const {gallery, galleryImgs} = storeToRefs(galleriesStore);
 
-// axios
-//     .get('http://gallery.trifonov.space/api/gallery/show/all')
-//     .then(res => photos.value = res.data);
 </script>
 
 <style scoped>

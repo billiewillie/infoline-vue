@@ -8,10 +8,9 @@
           loop
           v-if="user.gallery">
         <SwiperSlide v-for="item in user.gallery" :key="item">
-          <picture>
-            <source :srcset="imageWeb" type="image/webp"/>
-            <img :src="image" alt="news" loading="lazy"/>
-          </picture>
+          <img
+              :src="`http://users.trifonov.space/images/users/${user.login}/${item.src}.webp`"
+              alt="user"/>
         </SwiperSlide>
       </Swiper>
     </div>
@@ -21,13 +20,13 @@
         <span class="user-name__name">{{ user.firstname }} {{ user.middlename }}</span>
       </div>
       <div class="user-birthday">
-        <span class="icon rounded" v-if="isBDay">
+        <span class="icon rounded" v-if="isBDay()">
           <IconBirthday/>
         </span>
         <span class="user-birthday__column-title">День рождения: </span>
         <span
             class="user-birthday__column-value"
-            :style="isBDay ? `color: var(--blue-light)` : ``">
+            :style="isBDay() ? `color: var(--blue-light)` : ``">
           {{ user.day }} {{ getMonthName(user.month) }}
         </span>
       </div>
@@ -62,7 +61,9 @@
           <span>Мобильный: </span>
         </div>
         <div class="user-contacts__column-value phone-value">
-          <template v-for="item in user.companies" :key="item.id">
+          <template
+              v-for="item in user.companies"
+              :key="item.id">
             <template v-if="item.department.phone">
               <div class="user-contacts__column-value-row">
                 <div class="user-contacts__column-value">
@@ -96,7 +97,7 @@
           </div>
           <div class="user-position__row">
             <span class="user-position__column-title">Отдел: </span>
-            <router-link to="/" class="user-position__column-value">{{ item.department.title }}</router-link>
+            <router-link :to="`/departments/${item.department.url}`" class="user-position__column-value">{{ item.department.title }}</router-link>
           </div>
           <div class="user-position__row" v-show="item.department.groups.title">
             <span class="user-position__column-title">Группа: </span>
@@ -118,111 +119,29 @@
 <script setup>
 import {Navigation} from 'swiper';
 import {Swiper, SwiperSlide} from 'swiper/vue';
-import {ref} from "vue";
 import {getMonthName} from "@/functions/getMonthName";
-import imageWeb from '@/assets/img/lazareva.webp';
-import image from '@/assets/img/lazareva.jpg';
 import {formatPhoneNumber} from "@/functions/formatPhoneNumber";
 import {useToast} from "vue-toastification";
 import "vue-toastification/dist/index.css";
-
 import 'swiper/css';
 import 'swiper/css/navigation';
 import IconBirthday from "@/components/icons/IconBirthday.vue";
 import IconPhone from "@/components/icons/IconPhone.vue";
 import IconMail from "@/components/icons/IconMail.vue";
 import IconCopy from "@/components/icons/IconCopy.vue";
+import {useRootStore} from "@/stores/usersStore";
+import {storeToRefs} from "pinia";
+import {useRoute} from "vue-router";
 
+const params = useRoute().params;
 const toast = useToast();
 const modules = [Navigation];
-const user = ref({
-  "id": 79,
-  "token": "etwe4t21452341f",
-  "login": "belinovich",
-  "email": "lidzhi-goryaev@bioline.ru",
-  "firstname": "Марина",
-  "middlename": "Руслановна",
-  "lastname": "Лазарева",
-  "avatar": "belinovich.webp",
-  "localphone": 259,
-  "month": 5,
-  "day": 21,
-  "gallery": [
-    {
-      "src": "lazareva"
-    },
-    {
-      "src": "lazareva"
-    },
-    {
-      "src": "lazareva"
-    }
-  ],
-  "companies": [
-    {
-      "id": 1,
-      "user_id": 79,
-      "company_id": 1,
-      "title": "БиоЛайн",
-      "url": "bioline",
-      "sort": 600,
-      "department": {
-        "locations": "Санкт-Петербург",
-        "title": "Отдел рекламы",
-        "email": "",
-        "url": "advertising",
-        "phone": "79214088648",
-        "groups": {
-          "title": "Группа web-разработки",
-          "email": "",
-          "url": "web",
-          "position": {
-            "title": "web-программист"
-          }
-        }
-      }
-    },
-    {
-      "id": 2,
-      "user_id": 89,
-      "company_id": 2,
-      "title": "БиоЛайн df",
-      "url": "bioline",
-      "sort": 600,
-      "department": {
-        "locations": "Санкт-Петербург",
-        "title": "Отдел рекламы",
-        "email": "",
-        "url": "advertising",
-        "phone": "79214088649",
-        "groups": {
-          "title": "Группа web-разработки",
-          "email": "",
-          "url": "web",
-          "position": {
-            "title": "web-программист"
-          }
-        }
-      }
-    }
-  ],
-  "status": [
-    {
-      "date_start": "2023-05-19",
-      "date_end": null,
-      "title": "в отпуске"
-    }
-  ]
-});
 
-const date = new Date();
-const isBDay = ref(false);
-const month = date.getMonth() + 1;
-const day = date.getDate();
-
-if (day === user.value.day && month === user.value.month) {
-  isBDay.value = true;
-}
+const isBDay = () => {
+  const date = new Date();
+  return date.getDate() === user.value.day
+      && date.getMonth() + 1 === user.value.month;
+};
 
 const copyMail = (email) => {
   navigator.clipboard.writeText(email);
@@ -237,6 +156,10 @@ const copyPhone = (phone) => {
     timeout: 2000
   })
 }
+
+const usersStore = useRootStore();
+usersStore.getUser(params.id);
+const {user} = storeToRefs(usersStore);
 </script>
 
 <style scoped>
@@ -279,6 +202,7 @@ const copyPhone = (phone) => {
   flex-direction: column;
   padding: 24px;
   row-gap: 10px;
+  background-color: var(--white);
 
   @media (min-width: 1280px) {
     row-gap: 20px;
@@ -422,7 +346,7 @@ const copyPhone = (phone) => {
 }
 
 a.user-position__column-value {
-  color: var(--blue-light);
+  color: var(--blue-dark);
   text-decoration: underline;
   text-underline-offset: 4px;
 }

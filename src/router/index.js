@@ -1,19 +1,5 @@
 import {createRouter, createWebHistory} from "vue-router";
 
-import Home from "@/pages/HomePage.vue";
-import NotFound from "@/pages/NotFoundPage.vue";
-import News from "@/pages/NewsPage.vue";
-import Newbie from "@/pages/NewbiePage.vue";
-import Gallery from "@/pages/GalleriesPage.vue";
-import Team from "@/pages/TeamPage.vue";
-import Docs from "@/pages/DocsPage.vue";
-import Instructions from "@/pages/InstructionsPage.vue";
-import Orders from "@/pages/OrdersPage.vue";
-import ConferenceRoomBooking from "@/pages/CalendarPage.vue";
-import MarketingMaterials from "@/pages/MarketingMaterialsPage.vue";
-import Learning from "@/pages/LearningPage.vue";
-import User from "@/pages/UserPage.vue";
-
 const routes = [
     {
         path: '/',
@@ -55,6 +41,14 @@ const routes = [
         path: '/news/:id',
         components: {
             default: () => import('@/pages/NewsDetailPage.vue'),
+            Header: () => import('@/components/TheHeader.vue'),
+            Sidebar: () => import('@/components/TheSidebar.vue'),
+        },
+    },
+    {
+        path: '/departments/:id',
+        components: {
+            default: () => import('@/pages/DepartmentPage.vue'),
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },

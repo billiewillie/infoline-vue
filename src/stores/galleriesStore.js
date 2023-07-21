@@ -6,14 +6,45 @@ export const useRootStore = defineStore(
     "galleries",
     () => {
         const galleries = ref([]);
+        const gallery = ref({});
         const galleriesIndexPage = ref([]);
         const galleryTitle = ref("");
         const galleryLink = ref("");
+        const years = ref(['Все']);
+        const activeYear = ref('');
+        const activeGalleries = ref({});
+        const galleryImgs = ref([]);
 
         const getGalleries = async () => {
             try {
                 const res = await axios.get('http://gallery.trifonov.space/api/gallery/show/all');
                 galleries.value = res.data;
+                galleries.value.forEach(item => {
+                    const published_year = String(new Date(item.published_date).getFullYear());
+                    years.value.push(published_year);
+                });
+                years.value = [...new Set(years.value)];
+                activeYear.value = years.value[0];
+                years.value.sort((a, b) => b - a);
+                activeGalleries.value = galleries.value.filter(item => {
+                    if (activeYear.value === 'Все') {
+                        return true;
+                    } else {
+                        const published_year = String(new Date(item.published_date).getFullYear());
+                        return published_year === activeYear.value;
+                    }
+                })
+                console.log(galleries.value)
+            } catch (e) {
+                console.log(e);
+            }
+        }
+
+        const getGallery = async (id) => {
+            try {
+                const res = await axios.get(`http://gallery.trifonov.space/api/gallery/show/${id}`);
+                gallery.value = res.data;
+                galleryImgs.value = gallery.value.media.map(item => `http://gallery.trifonov.space/upload/galleries/${gallery.value.id}/${item.src}.webp`)
             } catch (e) {
                 console.log(e);
             }
@@ -38,14 +69,33 @@ export const useRootStore = defineStore(
             galleryLink.value = galleriesIndexPage.value[index].url;
         }
 
+        const setActiveYear = (year) => {
+            activeYear.value = year;
+            activeGalleries.value = galleries.value.filter(item => {
+                if (activeYear.value === 'Все') {
+                    return true;
+                } else {
+                    const published_year = String(new Date(item.published_date).getFullYear());
+                    return published_year === activeYear.value;
+                }
+            });
+        };
+
         return {
             galleries,
+            gallery,
+            galleryImgs,
+            years,
             galleriesIndexPage,
             galleryTitle,
+            activeGalleries,
             galleryLink,
+            activeYear,
             getGalleriesIndexPage,
             setGalleryTitle,
             setGalleryLink,
-            getGalleries
+            getGalleries,
+            setActiveYear,
+            getGallery
         }
     })
