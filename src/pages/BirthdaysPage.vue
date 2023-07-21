@@ -17,13 +17,13 @@
               v-for="item in birthdays[activeMonth]">
             <div class="icon">
               <IconGift/>
-            </div>            <div class="photo">
-              <picture>
-                <source srcset="@/assets/img/gallery-2.webp" type="image/webp">
-                <img src="@/assets/img/gallery-1.jpeg" alt="">
-              </picture>
             </div>
-            <p class="title name">{{ item.lastname}} {{ item.firstname }}</p>
+            <div class="photo">
+              <img
+                  :src="`http://users.trifonov.space/images/users/${item.login}/gallery_1.webp`"
+                  alt="person">
+            </div>
+            <p class="title name">{{ item.lastname }} {{ item.firstname }}</p>
             <footer class="card-footer">
               <span class="date">{{ item.day }} {{ getMonthName(item.month) }}</span>
             </footer>
@@ -151,6 +151,10 @@ const isBirthday = (item) => {
     -moz-border-radius: 3px 0 0 3px;
     border-radius: 3px 0 0 3px;
   }
+}
+
+.photo img {
+  object-position: top center;
 }
 
 .title {

@@ -13,9 +13,7 @@
         </SwiperSlide>
       </Swiper>
     </div>
-    <TheCalendar
-        :attributes="attributes"
-    />
+    <TheCalendar :attributes="attributes"/>
     <SliderGallery/>
     <IndexBirthdaysCard/>
     <IndexDefaultCard
