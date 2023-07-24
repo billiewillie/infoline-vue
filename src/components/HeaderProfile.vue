@@ -94,18 +94,15 @@ const vClickOutside = {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 12px;
-  height: 6px;
+  width: 6px;
+  height: 12px;
   transform-origin: 50% 50%;
   transition: transform 0.3s;
+  transform: rotate(90deg);
 }
 
 .header-profile .icon.active {
-  transform: rotate(180deg);
-}
-
-.header-profile .icon svg {
-  transform: rotate(90deg);
+  transform: rotate(-90deg);
 }
 
 .header-profile__nav {

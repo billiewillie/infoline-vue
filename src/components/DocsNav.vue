@@ -32,7 +32,7 @@ const props = defineProps({
 
 const navList = ref([
   {
-    title: 'Документы',
+    title: 'Регламенты и положения',
     path: '/docs',
     icon: 'IconDocs'
   },

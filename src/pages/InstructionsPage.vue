@@ -50,7 +50,7 @@ const {
                 :key="index"
                 class="docs__item">
               <router-link
-                  :to="`/docs/${doc.url}`"
+                  :to="`/instructions/${doc.url}`"
                   class="docs__link">
                 {{ doc.title }}
               </router-link>

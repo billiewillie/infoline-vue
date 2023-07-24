@@ -84,4 +84,9 @@ const onSlideChange = (swiper) => {
   width: 18px;
   height: 18px;
 }
+
+.icon svg {
+  width: 100%;
+  height: 100%;
+}
 </style>

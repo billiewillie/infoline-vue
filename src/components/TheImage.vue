@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import imageWebp from '@/assets/img/placeholder-person.jpeg';
+import imageWebp from '@/assets/img/placeholder-person.png';
 import {onMounted, ref} from "vue";
 
 const cover = ref(null);

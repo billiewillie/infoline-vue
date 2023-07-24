@@ -16,18 +16,20 @@
         v-show="isActive === true"
         @click="$emit('toggleStatus', false);clearSearchValue()">
       <div class="container">
-        <header class="search-header">
-          <input
-              placeholder="Поиск..."
-              @click.stop
-              @input="setSearchValue"
-              v-model="searchValue"
-              ref="searchInput"
-          />
-          <span class="search-icon" @click="clearSearchValue()">
+        <transition name="search-header">
+          <header class="search-header">
+            <input
+                placeholder="Поиск..."
+                @click.stop
+                @input="setSearchValue"
+                v-model="searchValue"
+                ref="searchInput"
+            />
+            <span class="search-icon" @click="clearSearchValue()">
             <IconClose/>
           </span>
-        </header>
+          </header>
+        </transition>
         <main class="search-main" v-if="isShownResultsList">
           <section class="search-results" v-for="list in data" :key="list.title">
             <header class="search-results__header" @click.stop>{{ list.title }}</header>
@@ -333,5 +335,4 @@ const setInputFocused = () => {
   color: var(--gray-dark);
   font-size: 13px;
 }
-
 </style>

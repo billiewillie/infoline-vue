@@ -702,8 +702,8 @@ import SemenovZaminWebp from '@/assets/img/users/semenov-zam.webp';
 
   .row.row-inner-one .card::before {
     display: block;
-    height: 78px;
-    top: -78px;
+    height: 87px;
+    top: -87px;
     left: 75px;
   }
 }

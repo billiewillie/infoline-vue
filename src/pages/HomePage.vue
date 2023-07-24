@@ -34,13 +34,13 @@ import IconOrders from "@/components/icons/IconOrders.vue";
 import SliderGallery from "@/components/SliderGallery.vue";
 import IndexDefaultCard from "@/components/IndexDefaultCard.vue";
 import IndexBirthdaysCard from "@/components/IndexBirthdaysCard.vue";
-
 import 'swiper/css';
 import 'swiper/css/navigation';
-
-import {onMounted, ref} from "vue";
+import {ref} from "vue";
 import {Navigation} from 'swiper';
 import {Swiper, SwiperSlide} from 'swiper/vue';
+import {useRootStore} from "@/stores/newsStore";
+import {storeToRefs} from "pinia";
 
 const defaultCards = ref([
   {
@@ -52,9 +52,6 @@ const defaultCards = ref([
   },
 ]);
 const modules = [Navigation];
-
-import {useRootStore} from "@/stores/newsStore";
-import {storeToRefs} from "pinia";
 
 const newsStore = useRootStore();
 newsStore.getNewsIndexPage();

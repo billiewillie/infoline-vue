@@ -107,8 +107,8 @@ const {galleries, years, activeYear, activeGalleries} = storeToRefs(galleriesSto
 
 .gallery-item .icon {
   display: flex;
-  width: 14px;
-  height: 14px;
+  width: 18px;
+  height: 18px;
 }
 
 .gallery-item .icon svg {

@@ -35,14 +35,12 @@
 </template>
 
 <script setup>
-import imageWebp from '@/assets/img/gallery-1.jpeg';
 import IconBirthday from '@/components/icons/IconBirthday.vue';
 import {getMonthName} from '@/functions/getMonthName';
 
 import {useRootStore} from "@/stores/birthdaysStore";
 import {storeToRefs} from "pinia";
 import TheImage from "@/components/TheImage.vue";
-import {ref} from "vue";
 import IconGift from "@/components/icons/IconGift.vue";
 
 const birthdaysStore = useRootStore();
