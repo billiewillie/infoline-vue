@@ -15,7 +15,7 @@
         v-if="galleriesIndexPage.length > 0"
         @slideChange="onSlideChange"
         loop>
-      <SwiperSlide v-for="item in galleriesIndexPage" :key="item.id">
+      <SwiperSlide v-for="(item, index) in galleriesIndexPage" :key="index">
         <picture>
           <source
               :srcset="`http://gallery.trifonov.space/upload/galleries/${item.id}/${item.src}.webp`"

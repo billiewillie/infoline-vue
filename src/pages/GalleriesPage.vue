@@ -209,8 +209,8 @@ const {galleries, years, activeYear, activeGalleries} = storeToRefs(galleriesSto
 }
 
 .grid-leave-active {
-  position: absolute;
   opacity: 0;
+  position: absolute;
   transform: scaleY(0);
   animation: bounceIn 0.3s reverse;
 }

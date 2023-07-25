@@ -8,8 +8,11 @@
           navigation
           space-between="10"
           loop>
-        <SwiperSlide v-for="item in newsIndexPage" :key="item.id">
-          <NewsItem :item="item"/>
+        <SwiperSlide
+            v-for="item in newsIndexPage"
+            :key="item.id">
+          <NewsItem
+              :item="item"/>
         </SwiperSlide>
       </Swiper>
     </div>
@@ -143,5 +146,10 @@ const attributes = ref([
   @media (min-width: 1920px) {
     height: calc(50vh - 65px);
   }
+}
+
+.news-item__footer .btn .icon {
+  width: 7px;
+  height: 11px;
 }
 </style>

@@ -27,10 +27,10 @@ const {
     <div class="content rounded shadow">
       <div class="inner-tabs">
         <div
-            v-for="item in categoriesTitles"
-            v-if="categoriesTitles"
             :key="item"
+            v-if="categoriesTitles"
             class="inner-tab__item"
+            v-for="item in categoriesTitles"
             @click="instructionsStore.setActiveCategory(item)"
             :class="{active: activeCategory === item}">
           {{ item }}
@@ -126,7 +126,7 @@ const {
 
 .docs__link:hover {
   text-decoration: underline;
-  text-underline-offset: 3px;
+  text-underline-offset: 4px;
   opacity: 0.5;
 }
 </style>
