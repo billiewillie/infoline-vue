@@ -16,7 +16,7 @@
         </SwiperSlide>
       </Swiper>
     </div>
-    <TheCalendar :attributes="attributes"/>
+    <TheCalendar :attributes="attributesIndexPage"/>
     <SliderGallery/>
     <IndexBirthdaysCard/>
     <IndexDefaultCard
@@ -42,7 +42,8 @@ import 'swiper/css/navigation';
 import {ref} from "vue";
 import {Navigation} from 'swiper';
 import {Swiper, SwiperSlide} from 'swiper/vue';
-import {useRootStore} from "@/stores/newsStore";
+import {useRootStore as useNewsStore} from "@/stores/newsStore";
+import {useRootStore as useCalendarStore} from "@/stores/calendarStore";
 import {storeToRefs} from "pinia";
 
 const defaultCards = ref([
@@ -56,34 +57,12 @@ const defaultCards = ref([
 ]);
 const modules = [Navigation];
 
-const newsStore = useRootStore();
+const newsStore = useNewsStore();
+const calendarStore = useCalendarStore();
 newsStore.getNewsIndexPage();
+calendarStore.getData();
 const {newsIndexPage} = storeToRefs(newsStore);
-
-const attributes = ref([
-  {
-    dates: [
-      new Date('2023-07-27')
-    ],
-    dot: {
-      color: 'blue',
-    },
-    popover: {
-      label: "Здравоохранение - TIHE 2023 руддщ вавыа ва ыаы выа"
-    }
-  },
-  {
-    dates: [
-      new Date('2023-07-27')
-    ],
-    dot: {
-      color: 'blue',
-    },
-    popover: {
-      label: "День России выаыв выавыа выав ыаываы вавыа"
-    }
-  },
-]);
+const {attributesIndexPage} = storeToRefs(calendarStore);
 </script>
 
 <style>

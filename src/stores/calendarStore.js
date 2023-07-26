@@ -38,8 +38,49 @@ export const useRootStore = defineStore(
                 dates: [],
             }
         ]);
+        const attributesIndexPage = ref([
+            {
+                dates: [
+                    new Date('2023-07-27')
+                ],
+                dot: {
+                    color: 'blue',
+                },
+                popover: {
+                    label: "Здравоохранение - TIHE 2023 руддщ вавыа ва ыаы выа"
+                }
+            },
+            {
+                dates: [
+                    new Date('2023-07-27')
+                ],
+                dot: {
+                    color: 'blue',
+                },
+                popover: {
+                    label: "11 День России выаыв выавыа выав ыаываы вавыа"
+                }
+            },
+        ]);
         const fullDate = ref([date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-'));
         const activeDate = ref(fullDate.value);
+
+        const getDates = (item) => {
+            if (item.date_start !== item.date_end) {
+                const dateStart = new Date(item.date_start);
+                const dateEnd = new Date(item.date_end);
+                const dates = [];
+
+                while (dateStart <= dateEnd) {
+                    dates.push(new Date(dateStart));
+                    dateStart.setDate(dateStart.getDate() + 1);
+                }
+
+                return dates;
+            } else {
+                return new Date(item.date_start);
+            }
+        }
 
         const getData = async () => {
             try {
@@ -49,6 +90,7 @@ export const useRootStore = defineStore(
                 activeCategory.value = categories.value[3];
                 setActiveCountry(countries.value[0]);
                 setActiveEvents();
+                setIndexPageEvents("Россия");
             } catch (e) {
                 console.log(e);
             }
@@ -71,6 +113,29 @@ export const useRootStore = defineStore(
             setActiveEvents();
         }
 
+        const setIndexPageEvents = (country) => {
+            attributesIndexPage.value = data.value[country].map(item => {
+                const getColor = () => {
+                    if (item.category === 'Производственный календарь') {
+                        return 'red';
+                    } else {
+                        return 'blue';
+                    }
+                }
+
+                return {
+                    dates: getDates(item),
+                    dot: {
+                        color: getColor(),
+                    },
+                    popover: {
+                        label: item.title
+                    }
+                }
+            })
+            console.log(data.value[country]);
+        }
+
         const setActiveEvents = () => {
             if (activeCategory.value.title === "Все события") {
 
@@ -87,42 +152,14 @@ export const useRootStore = defineStore(
                     ...data
                         .value[activeCountry.value]
                         .filter(item => item.category !== 'Производственный календарь')
-                        .map(item => {
-                            if (item.date_start !== item.date_end) {
-                                const dateStart = new Date(item.date_start);
-                                const dateEnd = new Date(item.date_end);
-                                const dates = [];
-
-                                while (dateStart <= dateEnd) {
-                                    dates.push(new Date(dateStart));
-                                    dateStart.setDate(dateStart.getDate() + 1);
-                                }
-                                return dates;
-                            } else {
-                                return new Date(item.date_start);
-                            }
-                        })
+                        .map(getDates)
                 ].flat();
 
                 attributes.value[1].dates = [
                     ...data
                         .value[activeCountry.value]
                         .filter(item => item.category === 'Производственный календарь')
-                        .map(item => {
-                            if (item.date_start !== item.date_end) {
-                                const dateStart = new Date(item.date_start);
-                                const dateEnd = new Date(item.date_end);
-                                const dates = [];
-
-                                while (dateStart <= dateEnd) {
-                                    dates.push(new Date(dateStart));
-                                    dateStart.setDate(dateStart.getDate() + 1);
-                                }
-                                return dates;
-                            } else {
-                                return new Date(item.date_start);
-                            }
-                        })
+                        .map(getDates)
                 ].flat();
 
             } else {
@@ -147,21 +184,7 @@ export const useRootStore = defineStore(
                                 return item.category === 'Выставки и семинары'
                             }
                         })
-                        .map(item => {
-                            if (item.date_start !== item.date_end) {
-                                const dateStart = new Date(item.date_start);
-                                const dateEnd = new Date(item.date_end);
-                                const dates = [];
-
-                                while (dateStart <= dateEnd) {
-                                    dates.push(new Date(dateStart));
-                                    dateStart.setDate(dateStart.getDate() + 1);
-                                }
-                                return dates;
-                            } else {
-                                return new Date(item.date_start);
-                            }
-                        })
+                        .map(getDates)
                 ].flat();
 
                 attributes.value[1].dates = [
@@ -172,21 +195,7 @@ export const useRootStore = defineStore(
                                 return item.category === 'Производственный календарь'
                             }
                         })
-                        .map(item => {
-                            if (item.date_start !== item.date_end) {
-                                const dateStart = new Date(item.date_start);
-                                const dateEnd = new Date(item.date_end);
-                                const dates = [];
-
-                                while (dateStart <= dateEnd) {
-                                    dates.push(new Date(dateStart));
-                                    dateStart.setDate(dateStart.getDate() + 1);
-                                }
-                                return dates;
-                            } else {
-                                return new Date(item.date_start);
-                            }
-                        })
+                        .map(getDates)
                 ].flat();
             }
         }
@@ -201,6 +210,7 @@ export const useRootStore = defineStore(
             dayEvents,
             countries,
             attributes,
+            attributesIndexPage,
             categories,
             activeDate,
             monthEvents,
