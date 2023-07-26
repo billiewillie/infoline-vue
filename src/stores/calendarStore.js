@@ -133,7 +133,6 @@ export const useRootStore = defineStore(
                     }
                 }
             })
-            console.log(data.value[country]);
         }
 
         const setActiveEvents = () => {

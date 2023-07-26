@@ -31,7 +31,7 @@
         </li>
       </ul>
     </div>
-    <ul class="tabs__list shadow rounded overflow-hidden">
+    <ul class="tabs__list shadow rounded">
       <li
           v-for="tab in props.tabs"
           :key="tab"
@@ -192,7 +192,9 @@ const vClickOutside = {
 
   @media (min-width: 1280px) {
     display: flex;
+    align-items: center;
     background-color: var(--white);
+    overflow-x: hidden;
   }
 }
 
@@ -245,17 +247,5 @@ const vClickOutside = {
 
 .calendar-tabs .tabs__item {
   justify-content: center;
-}
-
-.docs-page .select-box{
-  @media (min-width: 1280px) {
-    display: flex;
-  }
-}
-
-.docs-page .tabs__list  {
-  @media (min-width: 1280px) {
-    display: none;
-  }
 }
 </style>

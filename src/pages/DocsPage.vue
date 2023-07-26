@@ -42,12 +42,4 @@ const {departments, departmentsTitles, activeDepartment, activeDocs} = storeToRe
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
-.tabs {
-  @media (min-width: 1280px) {
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
 </style>

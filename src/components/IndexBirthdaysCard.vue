@@ -9,7 +9,7 @@
     </header>
     <div class="birthdays-list">
       <router-link
-          :to="{name: 'User', params: {id: 'belinovich'}}"
+          :to="{name: 'User', params: {id: item.login }}"
           class="birthdays-link rounded shadow overflow-hidden"
           :class="{ active: isBirthday(item)}"
           v-for="item in birthdaysIndexPage"

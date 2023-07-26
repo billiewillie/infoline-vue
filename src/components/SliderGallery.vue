@@ -15,15 +15,10 @@
         v-if="galleriesIndexPage.length > 0"
         @slideChange="onSlideChange"
         loop>
-      <SwiperSlide v-for="(item, index) in galleriesIndexPage" :key="index">
-        <picture>
-          <source
-              :srcset="`http://gallery.trifonov.space/upload/galleries/${item.id}/${item.src}.webp`"
-              type="image/webp"/>
-          <img
-              :src="`http://gallery.trifonov.space/upload/galleries/${item.id}/${item.src}.jpg`"
-              alt="gallery"/>
-        </picture>
+      <SwiperSlide v-for="item in galleriesIndexPage" :key="item.id">
+        <img
+            :src="`http://gallery.trifonov.space/upload/galleries/${item.gallery_id}/${item.src}.webp`"
+            alt="gallery"/>
       </SwiperSlide>
     </swiper>
   </div>

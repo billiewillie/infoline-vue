@@ -5,8 +5,8 @@ import axios from "axios";
 export const useRootStore = defineStore(
     "galleries",
     () => {
-        const galleries = ref([]);
         const gallery = ref({});
+        const galleries = ref([]);
         const galleriesIndexPage = ref([]);
         const galleryTitle = ref("");
         const galleryLink = ref("");
@@ -34,7 +34,6 @@ export const useRootStore = defineStore(
                         return published_year === activeYear.value;
                     }
                 })
-                console.log(galleries.value)
             } catch (e) {
                 console.log(e);
             }

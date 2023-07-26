@@ -59,8 +59,8 @@ const modules = [Navigation];
 
 const newsStore = useNewsStore();
 const calendarStore = useCalendarStore();
-newsStore.getNewsIndexPage();
 calendarStore.getData();
+newsStore.getNewsIndexPage();
 const {newsIndexPage} = storeToRefs(newsStore);
 const {attributesIndexPage} = storeToRefs(calendarStore);
 </script>
