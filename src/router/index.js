@@ -1,4 +1,16 @@
 import {createRouter, createWebHistory} from "vue-router";
+import {useRootStore} from "@/stores/usersStore";
+import {storeToRefs} from "pinia";
+
+const getLoginPage = () => {
+    const usersStore = useRootStore();
+    const {isLoggedIn} = storeToRefs(usersStore);
+    if (localStorage.getItem('isLoggedIn') !== '1') {
+        return {
+            path: '/login'
+        }
+    }
+}
 
 const routes = [
     {
@@ -8,16 +20,25 @@ const routes = [
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },
+        beforeEnter: getLoginPage
     },
     {
         path: '/login',
         components: {
             default: () => import('@/pages/LoginPage.vue'),
         },
+        beforeEnter: () => {
+            if(localStorage.getItem('isLoggedIn') === '1') {
+                return {
+                    path: '/'
+                }
+            }
+        }
     },
     {
         path: '/users',
         redirect: '/birthdays',
+        beforeEnter: getLoginPage
     },
     {
         path: '/users/:id',
@@ -28,6 +49,7 @@ const routes = [
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },
+        beforeEnter: getLoginPage
     },
     {
         path: '/news',
@@ -36,6 +58,7 @@ const routes = [
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },
+        beforeEnter: getLoginPage
     },
     {
         path: '/news/:id',
@@ -44,6 +67,7 @@ const routes = [
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },
+        beforeEnter: getLoginPage
     },
     {
         path: '/departments/:id',
@@ -52,6 +76,7 @@ const routes = [
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },
+        beforeEnter: getLoginPage
     },
     {
         path: '/birthdays',
@@ -60,6 +85,7 @@ const routes = [
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },
+        beforeEnter: getLoginPage
     },
     {
         path: '/newbie',
@@ -68,6 +94,7 @@ const routes = [
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },
+        beforeEnter: getLoginPage
     },
     {
         path: '/galleries',
@@ -76,6 +103,7 @@ const routes = [
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },
+        beforeEnter: getLoginPage
     },
     {
         path: '/galleries/:id',
@@ -84,6 +112,7 @@ const routes = [
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },
+        beforeEnter: getLoginPage
     },
     {
         path: '/team',
@@ -92,6 +121,7 @@ const routes = [
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },
+        beforeEnter: getLoginPage
     },
     {
         path: '/team/:id',
@@ -102,6 +132,7 @@ const routes = [
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },
+        beforeEnter: getLoginPage
     },
     {
         path: '/docs',
@@ -110,6 +141,7 @@ const routes = [
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },
+        beforeEnter: getLoginPage
     },
     {
         path: '/instructions',
@@ -118,6 +150,7 @@ const routes = [
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },
+        beforeEnter: getLoginPage
     },
     {
         path: '/instructions/:id',
@@ -128,6 +161,7 @@ const routes = [
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },
+        beforeEnter: getLoginPage
     },
     {
         path: '/orders',
@@ -136,6 +170,7 @@ const routes = [
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },
+        beforeEnter: getLoginPage
     },
     {
         path: '/calendar',
@@ -144,6 +179,7 @@ const routes = [
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },
+        beforeEnter: getLoginPage
     },
     {
         path: '/marketing-materials',
@@ -152,14 +188,7 @@ const routes = [
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },
-    },
-    {
-        path: '/learning',
-        components: {
-            default: () => import('@/pages/LearningPage.vue'),
-            Header: () => import('@/components/TheHeader.vue'),
-            Sidebar: () => import('@/components/TheSidebar.vue'),
-        },
+        beforeEnter: getLoginPage
     },
     {
         path: '/:pathMatch(.*)*',

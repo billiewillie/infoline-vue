@@ -1,10 +1,3 @@
-<script setup>
-import IconLogo from "@/components/icons/IconLogo.vue";
-import ButtonComponent from "@/components/UI/ButtonComponent.vue";
-import IconUserForm from "@/components/icons/IconUserForm.vue";
-import IconKeyForm from "@/components/icons/IconKeyForm.vue";
-</script>
-
 <template>
   <div class="custompage">
     <div class='light x1'></div>
@@ -21,21 +14,29 @@ import IconKeyForm from "@/components/icons/IconKeyForm.vue";
         <IconLogo/>
       </div>
       <h1 class="title">Добро пожаловать на корпоративный портал info <span class="blue">Line</span>!</h1>
-      <form class="form">
+      <form class="form" @submit.prevent="submitClick">
         <div class="form-row">
           <div class="icon">
             <IconUserForm/>
           </div>
-          <input type="text" class="rounded input" placeholder="Введите логин"/>
+          <input
+              type="text"
+              class="rounded input"
+              v-model="login"
+              placeholder="Введите логин"/>
         </div>
         <div class="form-row">
           <div class="icon">
-            <IconKeyForm />
+            <IconKeyForm/>
           </div>
-          <input type="password" class="rounded input" placeholder="Введите пароль"/>
+          <input
+              type="password"
+              class="rounded input"
+              v-model="password"
+              placeholder="Введите пароль"/>
         </div>
         <div class="form-row">
-          <ButtonComponent>Войти</ButtonComponent>
+          <button class="btn" type="submit">Войти</button>
         </div>
       </form>
       <router-link to="/forgot" class="forgot">Забыли пароль?</router-link>
@@ -43,6 +44,34 @@ import IconKeyForm from "@/components/icons/IconKeyForm.vue";
   </div>
 </template>
 
+<script setup>
+import IconLogo from "@/components/icons/IconLogo.vue";
+import ButtonComponent from "@/components/UI/ButtonComponent.vue";
+import IconUserForm from "@/components/icons/IconUserForm.vue";
+import IconKeyForm from "@/components/icons/IconKeyForm.vue";
+import {ref} from "vue";
+import {useRootStore} from "@/stores/usersStore";
+import {useRouter} from "vue-router";
+import {storeToRefs} from "pinia";
+
+const usersStore = useRootStore();
+const {isLoggedIn} = storeToRefs(usersStore);
+
+const router = useRouter();
+const login = ref('');
+const password = ref('');
+
+const submitClick = () => {
+  usersStore.setLogin(login.value, password.value);
+  if (localStorage.getItem('isLoggedIn') === '1') {
+    router.push({
+      path: '/'
+    })
+  }
+}
+
+
+</script>
 
 <style scoped>
 .custom-wrapper {
@@ -105,6 +134,7 @@ form {
 .title {
   font-size: 22px;
   font-weight: 700;
+  color: var(--white);
 }
 
 .title .blue {

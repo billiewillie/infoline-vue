@@ -8,9 +8,7 @@
           :key="index"
           @click="() => showImg(index)">
         <div class="gallery-cover rounded overflow-hidden">
-          <img
-              :src="photo"
-              alt="photo">
+          <img :src="photo" alt="photo">
         </div>
       </div>
       <vue-easy-lightbox
@@ -92,6 +90,10 @@ const {gallery, galleryImgs} = storeToRefs(galleriesStore);
 
 .gallery-item .icon {
   display: flex;
+}
+
+.gallery-item img {
+  object-position: top center;
 }
 
 .gallery-date .icon svg {

@@ -78,7 +78,7 @@ export const useRootStore = defineStore(
                     return published_year === activeYear.value;
                 }
             });
-        };
+        }
 
         return {
             galleries,

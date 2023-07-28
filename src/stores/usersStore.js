@@ -6,6 +6,7 @@ export const useRootStore = defineStore(
     "users",
     () => {
         const user = ref({});
+        const logedUser = ref({});
 
         const getUser = async (login) => {
             try {
@@ -16,8 +17,21 @@ export const useRootStore = defineStore(
             }
         }
 
+        const setLogin = (login, password) => {
+            if (login === 'test' && password === 'test') {
+                localStorage.setItem('isLoggedIn', '1')
+            }
+        }
+
+        const login = (obj) => {
+            logedUser.value = obj;
+        }
+
         return {
             user,
-            getUser
+            logedUser,
+            getUser,
+            login,
+            setLogin
         }
     })

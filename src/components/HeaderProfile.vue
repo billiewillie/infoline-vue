@@ -26,7 +26,7 @@
           <div class="icon">
             <IconLogout/>
           </div>
-          <span class="text">Выйти</span>
+          <span class="text" @click="setLoggedOut">Выйти</span>
         </div>
       </div>
     </transition>
@@ -38,7 +38,9 @@ import IconArrow from '@/components/icons/IconArrow.vue';
 import IconSettings from '@/components/icons/IconSettings.vue';
 import IconLogout from '@/components/icons/IconLogout.vue';
 import {ref} from 'vue';
+import {useRouter} from "vue-router";
 
+const router = useRouter()
 const isOpen = ref(false);
 
 const handleClickOutside = () => {
@@ -58,6 +60,13 @@ const vClickOutside = {
     document.body.removeEventListener('click', el.__ClickOutsideHandler__);
   },
 };
+
+const setLoggedOut = () => {
+  localStorage.setItem('isLoggedIn', '0');
+  router.push({
+    path: '/login'
+  })
+}
 </script>
 
 <style scoped>
