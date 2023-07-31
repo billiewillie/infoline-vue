@@ -56,9 +56,13 @@ const toggleStatusMobileNav = (value) => {
 }
 
 .header-right {
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+  column-gap: 1px;
+
+
   @media (min-width: 1280px) {
-    display: flex;
-    align-items: stretch;
     height: 100%;
     width: calc(31% - 5px);
     justify-content: space-between;

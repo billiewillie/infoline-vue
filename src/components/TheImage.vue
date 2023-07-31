@@ -49,6 +49,7 @@ onMounted(() => {
 }
 
 img {
+  display: flex;
   object-position: top center;
 }
 
