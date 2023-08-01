@@ -52,7 +52,7 @@
       </header>
     </div>
     <div class="content">
-      <p class="description post-center">{{ post.description }}</p>
+      <p class="description">{{ post.description }}</p>
       <div class="post-center" v-html="post.content"></div>
     </div>
     <div class="comment-new">
@@ -64,8 +64,8 @@
           <span>Оставить комментарий</span>
         </h2>
       </header>
-      <div class="comment-new-textarea post-center">
-        <textarea name="" id="" cols="30" rows="10"></textarea>
+      <div class="comment-new-textarea">
+        <textarea></textarea>
       </div>
     </div>
     <div class="comments">
@@ -104,7 +104,7 @@
                 </div>
                 <div class="comment-stats-item">
                   <div class="icon">
-                    <IconLike/>
+                    <IconDislike/>
                   </div>
                   <span>12</span>
                 </div>
@@ -113,12 +113,18 @@
             <div class="comment-text">
               {{ comment.content }}
             </div>
+            <div class="comment-answer">
+              <div class="comment-answer-button"></div>
+            </div>
           </div>
           <div class="comment-dialog-trigger">
             <span></span>
             <span></span>
             <span></span>
           </div>
+        </div>
+        <div class="comment-answer-textarea">
+          <textarea></textarea>
         </div>
       </div>
     </div>
@@ -138,6 +144,7 @@ import IconLike from "@/components/icons/IconLike.vue";
 import IconView from "@/components/icons/IconView.vue";
 import IconShare from "@/components/icons/IconShare.vue";
 import IconNew from "@/components/icons/IconNew.vue";
+import IconDislike from "@/components/icons/IconDislike.vue";
 
 const post = ref({});
 
@@ -300,6 +307,7 @@ console.log(post)
   font-size: 24px;
   font-weight: 400;
   max-width: 740px;
+  margin: 0 auto 25px;
 }
 
 .post-center {
@@ -346,10 +354,18 @@ console.log(post)
   flex-direction: column;
   row-gap: 20px;
   padding-bottom: 20px;
+  background-color: var(--white);
+}
+
+.comments {
+  background-color: var(--white);
 }
 
 .comment-new-textarea textarea {
+  display: flex;
   width: 100%;
+  max-width: 740px;
+  margin: 0 auto;
 }
 
 .comment {
@@ -378,10 +394,11 @@ console.log(post)
 .comment-header {
   display: flex;
   flex-direction: column;
-  row-gap: 10px;
+  row-gap: 15px;
 
   @media (min-width: 1280px) {
     flex-direction: row;
+    column-gap: 15px;
   }
 }
 
@@ -407,7 +424,7 @@ console.log(post)
   display: flex;
   flex: auto;
   flex-direction: column;
-  row-gap: 10px;
+  row-gap: 15px;
 }
 
 .comment-dialog-trigger {
@@ -425,5 +442,15 @@ console.log(post)
   -moz-border-radius: 50%;
   border-radius: 50%;
   background-color: var(--blue-dark);
+}
+
+.comment-answer-textarea {
+  max-width: 740px;
+  margin: 0 auto;
+}
+
+.comment-answer-textarea textarea {
+  width: 100%;
+
 }
 </style>
