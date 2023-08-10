@@ -20,7 +20,7 @@
             </div>
             <div class="photo">
               <img
-                  :src="`http://users.trifonov.space/images/users/${item.login}/gallery_1.webp`"
+                  :src="`https://users.trifonov.space/images/users/${item.login}/gallery_1.webp`"
                   alt="person">
             </div>
             <p class="title name">{{ item.lastname }} {{ item.firstname }}</p>

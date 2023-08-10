@@ -84,7 +84,7 @@ export const useRootStore = defineStore(
 
         const getData = async () => {
             try {
-                const res = await axios.get('http://calendar.trifonov.space/api/calendar/show/all');
+                const res = await axios.get('https://calendar.trifonov.space/api/calendar/show/all');
                 data.value = res.data;
                 countries.value = Object.keys(data.value);
                 activeCategory.value = categories.value[3];

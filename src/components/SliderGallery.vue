@@ -17,7 +17,7 @@
         loop>
       <SwiperSlide v-for="item in galleriesIndexPage" :key="item.id">
         <img
-            :src="`http://gallery.trifonov.space/upload/galleries/${item.gallery_id}/${item.src}.webp`"
+            :src="`https://gallery.trifonov.space/upload/galleries/${item.gallery_id}/${item.src}.webp`"
             alt="gallery"/>
       </SwiperSlide>
     </swiper>

@@ -1,13 +1,15 @@
 <template>
   <div class="news-item shadow rounded">
-		<span class="news-item__date">
-			<span class="icon"><IconCalendar/></span>
-			<span class="text">{{ item.published_date }}</span>
-		</span>
+    <span class="news-item__date">
+      <span class="icon"><IconCalendar/></span>
+      <span class="text">{{ item.published_date }}</span>
+    </span>
     <div class="news-item__image">
       <picture>
-        <source :srcset="`http://news.trifonov.space/images/posts/${item.id}/${item.preview_image}.webp`" type="image/webp"/>
-        <img :src="`http://news.trifonov.space/images/posts/${item.id}/${item.preview_image}.jpg`" alt="avatar" loading="lazy"/>
+        <source :srcset="`https://news.trifonov.space/images/posts/${item.id}/${item.preview_image}.webp`"
+                type="image/webp"/>
+        <img :src="`https://news.trifonov.space/images/posts/${item.id}/${item.preview_image}.jpg`" alt="avatar"
+             loading="lazy"/>
       </picture>
     </div>
     <div class="news-item__content">

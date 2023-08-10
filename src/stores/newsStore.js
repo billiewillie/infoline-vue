@@ -13,7 +13,7 @@ export const useRootStore = defineStore(
 
         const getNews = async () => {
             try {
-                const res = await axios.get(`http://news.trifonov.space/api/posts`);
+                const res = await axios.get(`https://news.trifonov.space/api/posts`);
                 news.value = res.data.data;
                 activeNews.value = news.value;
             } catch (e) {
@@ -23,7 +23,7 @@ export const useRootStore = defineStore(
 
         const getNewsIndexPage = async () => {
             try {
-                const res = await axios.get('http://news.trifonov.space/api/posts?page=1&limit=5');
+                const res = await axios.get('https://news.trifonov.space/api/posts?page=1&limit=5');
                 newsIndexPage.value = res.data.data;
             } catch (e) {
                 console.log(e);

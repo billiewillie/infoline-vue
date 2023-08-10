@@ -21,7 +21,7 @@
         </div>
         <div class="gallery-cover rounded overflow-hidden">
           <img
-              :src="`http://gallery.trifonov.space/upload/galleries/${gallery.id}/${gallery.gallery_cover}.jpg`"
+              :src="`https://gallery.trifonov.space/upload/galleries/${gallery.id}/${gallery.gallery_cover}.jpg`"
               alt="gallery"
               loading="lazy"/>
         </div>

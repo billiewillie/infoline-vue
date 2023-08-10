@@ -10,7 +10,7 @@ export const useRootStore = defineStore(
 
         const getUser = async (login) => {
             try {
-                const res = await axios.get(`http://users.trifonov.space/api/show/user/${login}`);
+                const res = await axios.get(`https://users.trifonov.space/api/show/user/${login}`);
                 user.value = res.data;
             } catch (e) {
                 console.log(e);

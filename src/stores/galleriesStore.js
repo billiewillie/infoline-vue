@@ -17,7 +17,7 @@ export const useRootStore = defineStore(
 
         const getGalleries = async () => {
             try {
-                const res = await axios.get('http://gallery.trifonov.space/api/gallery/show/all');
+                const res = await axios.get('https://gallery.trifonov.space/api/gallery/show/all');
                 galleries.value = res.data;
                 galleries.value.forEach(item => {
                     const published_year = String(new Date(item.published_date).getFullYear());
@@ -41,9 +41,9 @@ export const useRootStore = defineStore(
 
         const getGallery = async (id) => {
             try {
-                const res = await axios.get(`http://gallery.trifonov.space/api/gallery/show/${id}`);
+                const res = await axios.get(`https://gallery.trifonov.space/api/gallery/show/${id}`);
                 gallery.value = res.data;
-                galleryImgs.value = gallery.value.media.map(item => `http://gallery.trifonov.space/upload/galleries/${gallery.value.id}/${item.src}.webp`)
+                galleryImgs.value = gallery.value.media.map(item => `https://gallery.trifonov.space/upload/galleries/${gallery.value.id}/${item.src}.webp`)
             } catch (e) {
                 console.log(e);
             }
@@ -51,7 +51,7 @@ export const useRootStore = defineStore(
 
         const getGalleriesIndexPage = async () => {
             try {
-                const res = await axios.get('http://gallery.trifonov.space/api/gallery/show/hidden-pool');
+                const res = await axios.get('https://gallery.trifonov.space/api/gallery/show/hidden-pool');
                 galleriesIndexPage.value = res.data;
                 galleryLink.value = galleriesIndexPage.value[0].url;
                 galleryTitle.value = galleriesIndexPage.value[0].title;

@@ -19,7 +19,7 @@ export const useRootStore = defineStore(
 
         const getInstructions = async () => {
             try {
-                const res = await axios.get('http://instructions.trifonov.space/api/instructions/show/all');
+                const res = await axios.get('https://instructions.trifonov.space/api/instructions/show/all');
                 departmentsList.value = res.data;
                 departmentsTitles.value = departmentsList.value.map(item => item.title);
                 setActiveDepartment(departmentsTitles.value[0]);

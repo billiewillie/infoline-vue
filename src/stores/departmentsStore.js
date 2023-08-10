@@ -9,7 +9,7 @@ export const useRootStore = defineStore(
 
         const getDepartment = async (id) => {
             try {
-                const res = await axios.get(`http://users.trifonov.space/api/show/department/${id}`);
+                const res = await axios.get(`https://users.trifonov.space/api/show/department/${id}`);
                 department.value = res.data;
             } catch (e) {
                 console.log(e);

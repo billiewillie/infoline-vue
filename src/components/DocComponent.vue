@@ -15,7 +15,7 @@
       <IconSave/>
       <a
           class="link"
-          :href="`http://regulations.trifonov.space/documents/${props.doc.link}`"
+          :href="`https://regulations.trifonov.space/documents/${props.doc.link}`"
           download>скачать</a>
     </footer>
   </div>
@@ -66,10 +66,21 @@ const showFooter = ref(false);
   }
 }
 
-.content-item:nth-child(4n + 3),
-.content-item:nth-child(4n + 4) {
+.content-item:nth-child(4n + 3) {
+  position: relative;
+
+}
+
+.content-item:nth-child(4n + 3)::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background-color: var(--gray-light);
   @media (min-width: 1280px) {
-    background-color: var(--gray-light);
+    display: block;
   }
 }
 

@@ -225,7 +225,7 @@ export const useRootStore = defineStore(
 
         const getDocs = async () => {
             try {
-                const res = await axios.get('http://regulations.trifonov.space/api/regulations/show/all');
+                const res = await axios.get('https://regulations.trifonov.space/api/regulations/show/all');
                 departments.value = res.data;
                 activeDepartment.value = departments.value[0].name;
                 activeDocs.value = departments.value[0].docs;

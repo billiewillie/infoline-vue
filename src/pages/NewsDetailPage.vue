@@ -26,7 +26,7 @@
       </div>
     </div>
     <div class="news-cover">
-      <TheImage alt="alt" image="http://news.trifonov.space/images/posts/10/img_124.webp"/>
+      <TheImage alt="alt" image="https://news.trifonov.space/images/posts/10/img_124.webp"/>
       <header class="news-header rounded overflow-hidden">
         <div class="news-header__top">
           <div class="news-header__top-item date">
@@ -82,7 +82,7 @@
           <div class="comment-avatar">
             <div class="image">
               <img
-                  src="http://users.trifonov.space/images/users/belinovich/avatar.webp"
+                  src="https://users.trifonov.space/images/users/belinovich/avatar.webp"
                   alt="avatar"/>
             </div>
           </div>

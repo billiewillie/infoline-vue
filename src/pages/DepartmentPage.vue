@@ -10,7 +10,7 @@
               :key="user.id">
             <div class="image overflow-hidden">
               <img
-                  :src="`http://users.trifonov.space/images/users/${user.login}/gallery_1.webp`"
+                  :src="`https://users.trifonov.space/images/users/${user.login}/gallery_1.webp`"
                   alt="user"
                   loading="lazy"/>
             </div>
@@ -69,7 +69,7 @@
           <div class="card shadow rounded" v-for="user in item.users" :key="user.id">
             <div class="image overflow-hidden">
               <img
-                  :src="`http://users.trifonov.space/images/users/${user.login}/gallery_1.webp`"
+                  :src="`https://users.trifonov.space/images/users/${user.login}/gallery_1.webp`"
                   alt="user"
                   loading="lazy"/>            </div>
             <router-link :to="`/users/${user.login}`" class="title name">

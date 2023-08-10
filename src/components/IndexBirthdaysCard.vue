@@ -21,7 +21,7 @@
         </div>
         <div class="birthdays-avatar overflow-hidden">
           <TheImage
-              :image="`http://users.trifonov.space/images/users/${item.login}/gallery_1.webp`"
+              :image="`https://users.trifonov.space/images/users/${item.login}/gallery_1.webp`"
               alt="alt"/>
         </div>
         <span class="birthdays-name">{{ item.lastname }} {{ item.firstname }}</span>
@@ -57,6 +57,10 @@ const isBirthday = (item) => {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (min-width: 1280px) {
+    padding-bottom: 5px;
+  }
 }
 
 .birthdays-card-header {

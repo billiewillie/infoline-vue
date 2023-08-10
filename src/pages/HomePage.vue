@@ -1,20 +1,24 @@
 <template>
   <div class="basepage homepage">
     <div class="news">
-      <Swiper
-          :modules="modules"
-          :slides-per-view="1"
-          :breakpoints="{ 1280: { enabled: false } }"
-          navigation
-          space-between="10"
-          loop>
-        <SwiperSlide
-            v-for="item in newsIndexPage"
-            :key="item.id">
-          <NewsItem
-              :item="item"/>
-        </SwiperSlide>
-      </Swiper>
+      <template v-if="newsIndexPage && newsIndexPage.length">
+        <Swiper
+            :modules="modules"
+            :slides-per-view="1"
+            :breakpoints="{ 1280: { enabled: false } }"
+            navigation
+            space-between="10"
+            loop>
+          <SwiperSlide
+              v-for="item in newsIndexPage"
+              :key="item.id">
+            <NewsItem :item="item"/>
+          </SwiperSlide>
+        </Swiper>
+      </template>
+      <template v-else>
+        <NewsSkeleton/>
+      </template>
     </div>
     <TheCalendar :attributes="attributesIndexPage"/>
     <SliderGallery/>
@@ -33,7 +37,7 @@
 <script setup>
 import NewsItem from "@/components/NewsItem.vue";
 import TheCalendar from "@/components/TheCalendar.vue";
-import IconOrders from "@/components/icons/IconOrders.vue";
+import IconMarketingDocs from "@/components/icons/IconMarketingDocs.vue";
 import SliderGallery from "@/components/SliderGallery.vue";
 import IndexDefaultCard from "@/components/IndexDefaultCard.vue";
 import IndexBirthdaysCard from "@/components/IndexBirthdaysCard.vue";
@@ -45,14 +49,15 @@ import {Swiper, SwiperSlide} from 'swiper/vue';
 import {useRootStore as useNewsStore} from "@/stores/newsStore";
 import {useRootStore as useCalendarStore} from "@/stores/calendarStore";
 import {storeToRefs} from "pinia";
+import NewsSkeleton from "@/components/NewsSkeleton.vue";
 
 const defaultCards = ref([
   {
-    title: "Оформить заявку",
-    text: "Задокументируй невербальные всполохи бездны в сознании, расщепись на атомы и созерцай незримое.",
+    title: "Маркетинговые материалы",
+    text: "",
     background: '#BAF7F3',
-    link: "/orders",
-    component: "IconOrders"
+    link: "/docs",
+    component: "IconMarketingDocs"
   },
 ]);
 const modules = [Navigation];
@@ -124,6 +129,16 @@ const {attributesIndexPage} = storeToRefs(calendarStore);
 
   @media (min-width: 1920px) {
     height: calc(50vh - 65px);
+  }
+}
+
+.news .swiper-slide:nth-child(2) {
+  @media (min-width: 1280px) {
+    height: calc(50vh - 51px);
+  }
+
+  @media (min-width: 1920px) {
+    height: calc(50vh - 70px);
   }
 }
 

@@ -9,7 +9,7 @@
           v-if="user.gallery">
         <SwiperSlide v-for="item in user.gallery" :key="item">
           <img
-              :src="`http://users.trifonov.space/images/users/${user.login}/${item.src}.webp`"
+              :src="`https://users.trifonov.space/images/users/${user.login}/${item.src}.webp`"
               alt="user"/>
         </SwiperSlide>
       </Swiper>
