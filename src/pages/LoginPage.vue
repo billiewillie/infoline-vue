@@ -36,19 +36,31 @@
               placeholder="Введите пароль"/>
         </div>
         <div class="form-row">
-          <button class="btn" type="submit">Войти</button>
+          <button
+              class="btn"
+              @mouseover="isHovered = true"
+              @mouseleave="isHovered = false">
+            <span class="text">войти</span>
+            <span class="btn-icon">
+              <IconArrow
+                  :stroke="isHovered
+                  ? 'var(--blue-light)'
+                  : 'var(--white)'"
+              />
+            </span>
+          </button>
         </div>
       </form>
-      <router-link to="/forgot" class="forgot">Забыли пароль?</router-link>
+      <!--      <router-link to="/forgot" class="forgot">Забыли пароль?</router-link>-->
     </div>
   </div>
 </template>
 
 <script setup>
 import IconLogo from "@/components/icons/IconLogo.vue";
-import ButtonComponent from "@/components/UI/ButtonComponent.vue";
 import IconUserForm from "@/components/icons/IconUserForm.vue";
 import IconKeyForm from "@/components/icons/IconKeyForm.vue";
+import IconArrow from "@/components/icons/IconArrow.vue";
 import {ref} from "vue";
 import {useRootStore} from "@/stores/usersStore";
 import {useRouter} from "vue-router";
@@ -60,6 +72,7 @@ const {isLoggedIn} = storeToRefs(usersStore);
 const router = useRouter();
 const login = ref('');
 const password = ref('');
+const isHovered = ref(false);
 
 const submitClick = () => {
   usersStore.setLogin(login.value, password.value);
@@ -69,8 +82,6 @@ const submitClick = () => {
     })
   }
 }
-
-
 </script>
 
 <style scoped>
@@ -90,7 +101,7 @@ const submitClick = () => {
 form {
   display: flex;
   flex-direction: column;
-  row-gap: 11px;
+  row-gap: 10px;
   width: 100%;
 }
 
@@ -108,12 +119,6 @@ form {
   text-decoration: underline;
   text-underline-offset: 3px;
   font-size: 13px;
-}
-
-.btn {
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
 }
 
 .form-row .icon {
@@ -140,5 +145,47 @@ form {
 .title .blue {
   font-weight: 700;
   color: var(--blue-light);
+}
+
+.btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: var(--blue-light);
+  border: 1px solid var(--blue-light);
+  cursor: pointer;
+  padding: 14px;
+  transition: background-color 0.3s ease-in-out;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.btn:hover {
+  background-color: var(--white);
+}
+
+.btn span.text {
+  color: var(--white);
+  font-weight: 700;
+  text-transform: uppercase;
+  flex: auto;
+  transition: color 0.3s ease-in-out;
+}
+
+.btn:hover span.text {
+  color: var(--blue-light);
+}
+
+.btn-icon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  right: 10px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
 }
 </style>

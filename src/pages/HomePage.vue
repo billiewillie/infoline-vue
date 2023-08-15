@@ -56,7 +56,7 @@ const defaultCards = ref([
     title: "Маркетинговые материалы",
     text: "",
     background: '#BAF7F3',
-    link: "/docs",
+    link: "/marketing-materials",
     component: "IconMarketingDocs"
   },
 ]);
@@ -134,7 +134,7 @@ const {attributesIndexPage} = storeToRefs(calendarStore);
 
 .news .swiper-slide:nth-child(2) {
   @media (min-width: 1280px) {
-    height: calc(50vh - 51px);
+    height: calc(50vh - 54px);
   }
 
   @media (min-width: 1920px) {

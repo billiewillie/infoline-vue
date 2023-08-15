@@ -42,4 +42,5 @@ const {departments, departmentsTitles, activeDepartment, activeDocs} = storeToRe
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
 </style>

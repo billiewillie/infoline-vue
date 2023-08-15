@@ -29,6 +29,10 @@ import {ref} from "vue";
   row-gap: 16px;
 
   @media (min-width: 1280px) {
+    row-gap: 16px;
+  }
+
+  @media (min-width: 1920px) {
     row-gap: 20px;
   }
 }

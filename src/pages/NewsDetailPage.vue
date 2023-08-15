@@ -55,79 +55,79 @@
       <p class="description">{{ post.description }}</p>
       <div class="post-center" v-html="post.content"></div>
     </div>
-    <div class="comment-new">
-      <header class="post-header">
-        <h2 class="title post-center">
-            <span class="icon">
-              <IconNew/>
-            </span>
-          <span>Оставить комментарий</span>
-        </h2>
-      </header>
-      <div class="comment-new-textarea">
-        <textarea></textarea>
-      </div>
-    </div>
-    <div class="comments">
-      <header class="post-header">
-        <h2 class="title post-center">
-            <span class="icon">
-              <IconComment/>
-            </span>
-          <span>Комментарии</span>
-        </h2>
-      </header>
-      <div class="comment" v-for="comment in post.comments" :key="comment.id">
-        <div class="post-center comment-inner">
-          <div class="comment-avatar">
-            <div class="image">
-              <img
-                  src="https://users.trifonov.space/images/users/belinovich/avatar.webp"
-                  alt="avatar"/>
-            </div>
-          </div>
-          <div class="comment-content">
-            <div class="comment-header">
-              <h3 class="comment-author title">Вадим Белинович</h3>
-              <div class="comment-stats">
-                <div class="comment-stats-item">
-                  <div class="icon">
-                    <IconCalendar/>
-                  </div>
-                  <span>11.12.23</span>
-                </div>
-                <div class="comment-stats-item">
-                  <div class="icon">
-                    <IconLike/>
-                  </div>
-                  <span>12</span>
-                </div>
-                <div class="comment-stats-item">
-                  <div class="icon">
-                    <IconDislike/>
-                  </div>
-                  <span>12</span>
-                </div>
-              </div>
-            </div>
-            <div class="comment-text">
-              {{ comment.content }}
-            </div>
-            <div class="comment-answer">
-              <div class="comment-answer-button"></div>
-            </div>
-          </div>
-          <div class="comment-dialog-trigger">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
-        <div class="comment-answer-textarea">
-          <textarea></textarea>
-        </div>
-      </div>
-    </div>
+<!--    <div class="comment-new">-->
+<!--      <header class="post-header">-->
+<!--        <h2 class="title post-center">-->
+<!--            <span class="icon">-->
+<!--              <IconNew/>-->
+<!--            </span>-->
+<!--          <span>Оставить комментарий</span>-->
+<!--        </h2>-->
+<!--      </header>-->
+<!--      <div class="comment-new-textarea">-->
+<!--        <textarea></textarea>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="comments">-->
+<!--      <header class="post-header">-->
+<!--        <h2 class="title post-center">-->
+<!--            <span class="icon">-->
+<!--              <IconComment/>-->
+<!--            </span>-->
+<!--          <span>Комментарии</span>-->
+<!--        </h2>-->
+<!--      </header>-->
+<!--      <div class="comment" v-for="comment in post.comments" :key="comment.id">-->
+<!--        <div class="post-center comment-inner">-->
+<!--          <div class="comment-avatar">-->
+<!--            <div class="image">-->
+<!--              <img-->
+<!--                  src="https://users.trifonov.space/images/users/belinovich/avatar.webp"-->
+<!--                  alt="avatar"/>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="comment-content">-->
+<!--            <div class="comment-header">-->
+<!--              <h3 class="comment-author title">Вадим Белинович</h3>-->
+<!--              <div class="comment-stats">-->
+<!--                <div class="comment-stats-item">-->
+<!--                  <div class="icon">-->
+<!--                    <IconCalendar/>-->
+<!--                  </div>-->
+<!--                  <span>11.12.23</span>-->
+<!--                </div>-->
+<!--                <div class="comment-stats-item">-->
+<!--                  <div class="icon">-->
+<!--                    <IconLike/>-->
+<!--                  </div>-->
+<!--                  <span>12</span>-->
+<!--                </div>-->
+<!--                <div class="comment-stats-item">-->
+<!--                  <div class="icon">-->
+<!--                    <IconDislike/>-->
+<!--                  </div>-->
+<!--                  <span>12</span>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="comment-text">-->
+<!--              {{ comment.content }}-->
+<!--            </div>-->
+<!--            <div class="comment-answer">-->
+<!--              <div class="comment-answer-button"></div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="comment-dialog-trigger">-->
+<!--            <span></span>-->
+<!--            <span></span>-->
+<!--            <span></span>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="comment-answer-textarea">-->
+<!--          <textarea></textarea>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
   </div>
 </template>
 

@@ -36,7 +36,7 @@ function renderIcon(icon) {
 
 <style scoped>
 .default-card-wrapper {
-  @media (min-width: 1920px) {
+  @media (min-width: 1280px) {
     padding-bottom: 5px;
   }
 }

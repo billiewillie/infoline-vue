@@ -22,7 +22,9 @@
           </div>
         </div>
       </div>
-      <ul v-show="isOpen" class="select-box__list shadow rounded">
+      <ul
+          v-show="isOpen"
+          class="select-box__list shadow rounded">
         <li v-for="tab in props.tabs" :key="tab">
           <label
               class="select-box__option"
@@ -168,7 +170,7 @@ const vClickOutside = {
   top: 40px;
   opacity: 1;
   background-color: var(--white);
-  z-index: 1;
+  z-index: 2;
 
   @media (min-width: 1280px) {
     padding: 0;
@@ -200,15 +202,13 @@ const vClickOutside = {
 
 .tabs__item {
   display: flex;
+  align-items: center;
   color: var(--blue-dark);
   font-weight: 500;
   font-size: 13px;
   padding: 10px 20px;
   cursor: pointer;
-}
-
-.tabs__item.active {
-  background-color: var(--blue-light);
+  height: 100%;
 }
 
 .tabs__item.active {
@@ -247,5 +247,9 @@ const vClickOutside = {
 
 .calendar-tabs .tabs__item {
   justify-content: center;
+}
+
+.docs-page .tabs__list {
+  background-color: red;
 }
 </style>

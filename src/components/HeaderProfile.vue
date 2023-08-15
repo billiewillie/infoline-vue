@@ -22,11 +22,11 @@
           </div>
           <span class="text">Сменить пароль</span>
         </div>
-        <div class="header-profile__item">
+        <div class="header-profile__item" @click="setLoggedOut">
           <div class="icon">
             <IconLogout/>
           </div>
-          <span class="text" @click="setLoggedOut">Выйти</span>
+          <span class="text">Выйти</span>
         </div>
       </div>
     </transition>
@@ -137,6 +137,7 @@ const setLoggedOut = () => {
   display: flex;
   column-gap: 14px;
   align-items: center;
+  cursor: pointer;
 }
 
 .header-profile__item .icon {

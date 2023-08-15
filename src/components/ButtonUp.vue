@@ -11,7 +11,7 @@
 import IconArrow from '@/components/icons/IconArrow.vue';
 </script>
 
-<style>
+<style scoped>
 .button-up {
 	display: none;
 	color: var(--white);
@@ -47,5 +47,10 @@ import IconArrow from '@/components/icons/IconArrow.vue';
 	width: 23px;
 	height: 23px;
 	border: 1px solid var(--white);
+}
+
+.button-up .icon svg {
+  width: 80%;
+  height: 80%;
 }
 </style>
