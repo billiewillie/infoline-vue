@@ -8,9 +8,10 @@
           loop
           v-if="user.gallery">
         <SwiperSlide v-for="item in user.gallery" :key="item">
-          <img
-              :src="`https://users.trifonov.space/images/users/${user.login}/${item.src}.webp`"
-              alt="user"/>
+          <TheImage
+              :alt="`${user.firstname} ${user.lastname}`"
+              :image="`https://users.trifonov.space/images/users/${user.login}/${item.src}.webp`"
+          />
         </SwiperSlide>
       </Swiper>
     </div>
@@ -97,7 +98,9 @@
           </div>
           <div class="user-position__row">
             <span class="user-position__column-title">Отдел: </span>
-            <router-link :to="`/departments/${item.department.url}`" class="user-position__column-value">{{ item.department.title }}</router-link>
+            <router-link :to="`/departments/advertising`" class="user-position__column-value">
+              {{ item.department.title }}
+            </router-link>
           </div>
           <div class="user-position__row" v-show="item.department.groups.title">
             <span class="user-position__column-title">Группа: </span>
@@ -132,6 +135,7 @@ import IconCopy from "@/components/icons/IconCopy.vue";
 import {useRootStore} from "@/stores/usersStore";
 import {storeToRefs} from "pinia";
 import {useRoute} from "vue-router";
+import TheImage from "@/components/TheImage.vue";
 
 const params = useRoute().params;
 const toast = useToast();

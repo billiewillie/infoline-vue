@@ -8,12 +8,9 @@
               class="card shadow rounded"
               v-for="user in department.users_not_part_group"
               :key="user.id">
-            <div class="image overflow-hidden">
-              <img
-                  :src="`https://users.trifonov.space/images/users/${user.login}/gallery_1.webp`"
-                  alt="user"
-                  loading="lazy"/>
-            </div>
+            <TheImage
+                :alt="`${user.firstname} ${user.lastname}`"
+                :image="`https://users.trifonov.space/images/users/${user.login}/gallery_1.webp`"/>
             <router-link
                 class="title name"
                 :to="`/users/${user.login}`">
@@ -67,11 +64,9 @@
         <h2 class="title group-title">{{ item.title }}</h2>
         <div class="content">
           <div class="card shadow rounded" v-for="user in item.users" :key="user.id">
-            <div class="image overflow-hidden">
-              <img
-                  :src="`https://users.trifonov.space/images/users/${user.login}/gallery_1.webp`"
-                  alt="user"
-                  loading="lazy"/>            </div>
+            <TheImage
+                :alt="`${user.firstname} ${user.lastname}`"
+                :image="`https://users.trifonov.space/images/users/${user.login}/gallery_1.webp`"/>
             <router-link :to="`/users/${user.login}`" class="title name">
               <span class="surname">{{ user.lastname }}</span>{{ user.firstname }} {{ user.middlename }}
             </router-link>
@@ -138,6 +133,7 @@ import "vue-toastification/dist/index.css";
 import {useRootStore} from "@/stores/departmentsStore";
 import {storeToRefs} from "pinia";
 import {useRoute} from "vue-router";
+import TheImage from "@/components/TheImage.vue";
 
 const toast = useToast();
 const params = useRoute().params;

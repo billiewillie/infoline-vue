@@ -1,17 +1,19 @@
 <template>
-  <aside class="aside">
-    <DocsNav :withIcons="true"/>
-    <transition name="fade">
-      <div class="button-up" v-show="isOpen" @click="clickUp">
-        <div class="button-container">
-          <div class="icon">
-            <IconArrow/>
-          </div>
-          <span>наверх</span>
-        </div>
-      </div>
-    </transition>
-  </aside>
+  <Transition name="slide-sidebar" appear>
+    <aside class="aside">
+      <DocsNav :withIcons="true"/>
+<!--      <transition name="fade">-->
+<!--        <div class="button-up" v-show="isOpen" @click="clickUp">-->
+<!--          <div class="button-container">-->
+<!--            <div class="icon">-->
+<!--              <IconArrow/>-->
+<!--            </div>-->
+<!--            <span>наверх</span>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </transition>-->
+    </aside>
+  </Transition>
 </template>
 
 <script setup>
@@ -42,7 +44,6 @@ onBeforeUnmount(() => {
 <style>
 aside.aside {
   display: none;
-  transition: right 0.3s ease-in-out;
 
   @media (min-width: 1280px) {
     position: fixed;
@@ -192,5 +193,15 @@ aside.aside .docs-nav__icon svg {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+.slide-sidebar-enter-active,
+.slide-sidebar-leave-active{
+  transition: transform 0.3s ease-out;
+}
+
+.slide-sidebar-enter-from,
+.slide-sidebar-leave-to {
+  transform: translateX(-50px);
 }
 </style>

@@ -19,9 +19,10 @@
               <IconGift/>
             </div>
             <div class="photo">
-              <img
-                  :src="`https://users.trifonov.space/images/users/${item.login}/gallery_1.webp`"
-                  alt="person">
+              <TheImage
+                  alt="person"
+                  :image="`https://users.trifonov.space/images/users/${item.login}/gallery_1.webp`"
+              />
             </div>
             <p class="title name">{{ item.lastname }} {{ item.firstname }}</p>
             <footer class="card-footer">
@@ -41,6 +42,7 @@ import {ref} from "vue";
 import {useRootStore} from "@/stores/birthdaysStore";
 import {storeToRefs} from "pinia";
 import {getMonthName} from "@/functions/getMonthName";
+import TheImage from "@/components/TheImage.vue";
 
 const months = [
   "Январь",

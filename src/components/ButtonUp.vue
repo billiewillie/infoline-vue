@@ -50,7 +50,7 @@ import IconArrow from '@/components/icons/IconArrow.vue';
 }
 
 .button-up .icon svg {
-  width: 80%;
-  height: 80%;
+  width: 50%;
+  height: 50%;
 }
 </style>

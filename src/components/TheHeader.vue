@@ -1,15 +1,17 @@
 <template>
-  <header class="header">
-    <div class="header-left">
-      <TheLogo @click="toggleStatusMobileNav(false)"/>
-      <BaseNav/>
-    </div>
-    <div class="header-right">
-      <TheSearch :isActive="isActive" @toggleStatus="toggleStatus" @toggleStatusMobileNav="toggleStatusMobileNav"/>
-      <HeaderBurger :isActiveMobileNav="isActiveMobileNav" @toggleStatusMobileNav="toggleStatusMobileNav"/>
-      <HeaderProfile/>
-    </div>
-  </header>
+  <Transition name="slide" appear>
+    <header class="header">
+      <div class="header-left">
+        <TheLogo @click="toggleStatusMobileNav(false)"/>
+        <BaseNav/>
+      </div>
+      <div class="header-right">
+        <TheSearch :isActive="isActive" @toggleStatus="toggleStatus" @toggleStatusMobileNav="toggleStatusMobileNav"/>
+        <HeaderBurger :isActiveMobileNav="isActiveMobileNav" @toggleStatusMobileNav="toggleStatusMobileNav"/>
+        <HeaderProfile/>
+      </div>
+    </header>
+  </Transition>
 </template>
 
 <script setup>
@@ -18,10 +20,11 @@ import BaseNav from '@/components/BaseNav.vue';
 import TheSearch from '@/components/TheSearch.vue';
 import HeaderProfile from '@/components/HeaderProfile.vue';
 import HeaderBurger from '@/components/HeaderBurger.vue';
-import {ref} from 'vue';
+import {onMounted, ref} from 'vue';
 
 const isActive = ref(false);
 const isActiveMobileNav = ref(false);
+const isShown = ref(false);
 
 const toggleStatus = (value) => {
   isActive.value = value;
@@ -30,6 +33,10 @@ const toggleStatus = (value) => {
 const toggleStatusMobileNav = (value) => {
   isActiveMobileNav.value = value;
 };
+
+onMounted(() => {
+  isShown.value = true;
+})
 </script>
 
 <style>
@@ -45,6 +52,7 @@ const toggleStatusMobileNav = (value) => {
   height: 56px;
   background-color: var(--blue-dark);
   column-gap: 2px;
+  transition: top 0.3s ease-in-out;
 
   @media (min-width: 1280px) {
     height: 50px;
@@ -121,5 +129,16 @@ const toggleStatusMobileNav = (value) => {
 
 .header .base-nav__link.router-link-active:hover {
   color: var(--white);
+}
+
+.slide-enter-active,
+.slide-leave-active{
+  transition: all 0.3s ease-out;
+}
+
+.slide-enter-from,
+.slide-leave-to {
+  transform: translateY(-60px);
+  opacity: 0;
 }
 </style>

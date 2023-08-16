@@ -42,10 +42,7 @@
                     v-for="item in list.list"
                     :key="item.id">
                   <div class="search-results__avatar rounded shadow overflow-hidden">
-                    <picture>
-                      <source :srcset="imageWeb" type="image/webp"/>
-                      <img :src="image" alt="news" loading="lazy"/>
-                    </picture>
+                    <TheImage alt="search" :image="imageWeb" />
                   </div>
                   <div class="search-results__description">
                     <p class="search-results__title">{{ item.firstName }}</p>
@@ -86,10 +83,7 @@
                     v-for="item in list.list"
                     :key="item.id">
                   <div class="search-results__avatar rounded shadow overflow-hidden">
-                    <picture>
-                      <source :srcset="imageWeb" type="image/webp"/>
-                      <img :src="image" alt="news" loading="lazy"/>
-                    </picture>
+                    <TheImage alt="search" :image="imageWeb" />
                   </div>
                   <div class="search-results__description">
                     <p class="search-results__title">{{ item.title }}</p>
@@ -115,6 +109,7 @@ import {nextTick, ref} from "vue";
 import json from "@/assets/data/search.json";
 import imageWeb from "@/assets/img/lazareva.webp";
 import image from "@/assets/img/lazareva.jpg";
+import TheImage from "@/components/TheImage.vue";
 
 const isShownResultsList = ref(false);
 const searchValue = ref('');
@@ -124,7 +119,7 @@ const props = defineProps({
 });
 const emit = defineEmits(['toggleStatus', 'toggleStatusMobileNav']);
 const data = ref([]);
-const keys = ['firstName', 'middleName', 'lastName', 'position', 'title', 'description', 'category'];
+const keys = ['firstname', 'middlename', 'lastname', 'position', 'title', 'description', 'tags'];
 
 const setSearchValue = (e) => {
   searchValue.value = e.target.value;
