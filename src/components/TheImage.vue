@@ -1,23 +1,19 @@
 <template>
   <div class="image">
-    <div class="cover" ref="cover"></div>
+    <div class="cover" :class="isLoaded ? 'loaded' : ''"></div>
     <img
         v-show="isLoaded"
-        @load="onImgLoaded"
+        @load="isLoaded = true"
         :src="image"
-        :alt="alt"/>
-    <img
-        v-show="!isLoaded"
-        :src="imageWebp"
-        :alt="alt"/>
+        v-if="image"
+        :alt="alt"
+        loading="lazy"
+    />
   </div>
 </template>
 
 <script setup>
-import imageWebp from '@/assets/img/placeholder-person.png';
-import {onMounted, ref} from "vue";
-
-const cover = ref(null);
+import {ref} from "vue";
 
 const props = defineProps({
   image: {
@@ -34,18 +30,14 @@ const isLoaded = ref(false);
 const onImgLoaded = () => {
   isLoaded.value = true;
 }
-
-onMounted(() => {
-  setTimeout(() => {
-    cover.value.classList.add('loaded');
-  }, 500)
-})
 </script>
 
 <style scoped>
 .image {
   position: relative;
   height: 100%;
+  animation: skeleton 1s linear infinite alternate;
+  animation-delay: 0.2s;
 }
 
 img {
@@ -60,7 +52,7 @@ img {
   width: 100%;
   height: 100%;
   z-index: 1;
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(30px);
   transition: backdrop-filter 0.5s ease-in-out;
 }
 
@@ -68,4 +60,12 @@ img {
   backdrop-filter: blur(0);
 }
 
+@keyframes skeleton {
+  from {
+    background-color: var(--gray-medium);
+  }
+  to {
+    background-color: var(--white);
+  }
+}
 </style>

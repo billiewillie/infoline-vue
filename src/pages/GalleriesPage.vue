@@ -20,10 +20,10 @@
           <span class="date">{{ formateDate(gallery.published_date) }}</span>
         </div>
         <div class="gallery-cover rounded overflow-hidden">
-          <img
-              :src="`https://gallery.trifonov.space/upload/galleries/${gallery.id}/${gallery.gallery_cover}.jpg`"
-              alt="gallery"
-              loading="lazy"/>
+          <TheImage
+              alt="gallery-cover"
+              :image="`https://gallery.trifonov.space/upload/galleries/${gallery.id}/${gallery.gallery_cover}.jpg`"
+          />
         </div>
         <footer class="gallery-footer">
           <h2 class="title">{{ gallery.title }}</h2>
@@ -57,6 +57,7 @@ import TheTabs from "@/components/TheTabs.vue";
 import {formateDate} from "@/functions/formatDate";
 import {useRootStore} from "@/stores/galleriesStore";
 import {storeToRefs} from "pinia";
+import TheImage from "@/components/TheImage.vue";
 
 const galleriesStore = useRootStore();
 galleriesStore.getGalleries();
@@ -123,7 +124,7 @@ const {galleries, years, activeYear, activeGalleries} = storeToRefs(galleriesSto
 
 .gallery-date {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   padding: 7px;
   background-color: var(--blue-dark);
   display: flex;
@@ -154,6 +155,7 @@ const {galleries, years, activeYear, activeGalleries} = storeToRefs(galleriesSto
   row-gap: 10px;
   width: 100%;
   padding: 17px;
+  z-index: 2;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0) 100%);
   -webkit-border-radius: 0 0 3px 3px;
   -moz-border-radius: 0 0 3px 3px;

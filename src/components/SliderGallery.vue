@@ -16,9 +16,9 @@
         @slideChange="onSlideChange"
         loop>
       <SwiperSlide v-for="item in galleriesIndexPage" :key="item.id">
-        <img
-            :src="`https://gallery.trifonov.space/upload/galleries/${item.gallery_id}/${item.src}.webp`"
-            alt="gallery"/>
+        <TheImage
+            alt="gallery-item"
+            :image="`https://gallery.trifonov.space/upload/galleries/${item.gallery_id}/${item.src}.webp`"/>
       </SwiperSlide>
     </swiper>
   </div>
@@ -34,6 +34,7 @@ import IconGallery from "@/components/icons/IconGallery.vue";
 
 import {useRootStore} from "@/stores/galleriesStore";
 import {storeToRefs} from "pinia";
+import TheImage from "@/components/TheImage.vue";
 
 const galleriesStore = useRootStore();
 galleriesStore.getGalleriesIndexPage();
@@ -66,7 +67,7 @@ const onSlideChange = (swiper) => {
   top: 0;
   font-size: 13px;
   color: var(--white);
-  padding: 8px;
+  padding: 7px;
   z-index: 2;
   min-width: 40%;
   background-color: var(--blue-dark);

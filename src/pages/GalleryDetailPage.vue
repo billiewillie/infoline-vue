@@ -8,7 +8,10 @@
           :key="index"
           @click="() => showImg(index)">
         <div class="gallery-cover rounded overflow-hidden">
-          <img :src="photo" alt="photo">
+          <TheImage
+              alt="photo"
+              :image="photo"
+          />
         </div>
       </div>
       <vue-easy-lightbox
@@ -26,6 +29,7 @@ import VueEasyLightbox from 'vue-easy-lightbox'
 import {useRootStore} from "@/stores/galleriesStore";
 import {storeToRefs} from "pinia";
 import {useRoute} from "vue-router";
+import TheImage from "@/components/TheImage.vue";
 
 const visibleRef = ref(false);
 const indexRef = ref(0);

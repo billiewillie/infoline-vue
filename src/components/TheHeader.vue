@@ -1,7 +1,9 @@
 <template>
   <header class="header">
-    <TheLogo @click="toggleStatusMobileNav(false)"/>
-    <BaseNav/>
+    <div class="header-left">
+      <TheLogo @click="toggleStatusMobileNav(false)"/>
+      <BaseNav/>
+    </div>
     <div class="header-right">
       <TheSearch :isActive="isActive" @toggleStatus="toggleStatus" @toggleStatusMobileNav="toggleStatusMobileNav"/>
       <HeaderBurger :isActiveMobileNav="isActiveMobileNav" @toggleStatusMobileNav="toggleStatusMobileNav"/>
@@ -61,7 +63,6 @@ const toggleStatusMobileNav = (value) => {
   height: 100%;
   column-gap: 1px;
 
-
   @media (min-width: 1280px) {
     height: 100%;
     width: calc(31% - 5px);
@@ -73,6 +74,13 @@ const toggleStatusMobileNav = (value) => {
   }
 }
 
+.header-left {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  column-gap: 70px;
+}
+
 .header .base-nav__menu {
   display: none;
 
@@ -82,7 +90,7 @@ const toggleStatusMobileNav = (value) => {
   }
 
   @media (min-width: 1920px) {
-    column-gap: 50px;
+    column-gap: 30px;
   }
 }
 

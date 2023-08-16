@@ -5,12 +5,9 @@
       <span class="text">{{ item.published_date }}</span>
     </span>
     <div class="news-item__image">
-      <picture>
-        <source :srcset="`https://news.trifonov.space/images/posts/${item.id}/${item.preview_image}.webp`"
-                type="image/webp"/>
-        <img :src="`https://news.trifonov.space/images/posts/${item.id}/${item.preview_image}.jpg`" alt="avatar"
-             loading="lazy"/>
-      </picture>
+      <TheImage
+          alt="news-cover"
+          :image="`https://news.trifonov.space/images/posts/${item.id}/${item.preview_image}.webp`"/>
     </div>
     <div class="news-item__content">
       <h2 class="title">{{ item.title }}</h2>
@@ -46,6 +43,7 @@ import IconCalendar from '@/components/icons/IconCalendar.vue';
 import ButtonComponent from '@/components/UI/ButtonComponent.vue';
 import imageWeb from '@/assets/img/index-news-img.webp';
 import image from '@/assets/img/index-news-img.jpg';
+import TheImage from "@/components/TheImage.vue";
 
 const props = defineProps({
   item: {
@@ -116,9 +114,9 @@ const props = defineProps({
   display: flex;
   column-gap: 5px;
   align-items: center;
-  z-index: 1;
+  z-index: 2;
   color: var(--white);
-  padding: 6px 12px;
+  padding: 8px 12px;
   -webkit-border-radius: 3px 0 3px 0;
   -moz-border-radius: 3px 0 3px 0;
   border-radius: 3px 0 3px 0;
@@ -131,8 +129,8 @@ const props = defineProps({
 
 .news-item__date .icon {
   display: flex;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
 }
 
 .news-item__date .icon svg {
@@ -144,18 +142,6 @@ const props = defineProps({
   font-weight: 600;
   font-size: 13px;
   line-height: 1;
-
-  @media (min-width: 1280px) {
-    font-size: 10px;
-  }
-
-  @media (min-width: 1920px) {
-    font-size: 13px;
-  }
-}
-
-.news-item__date .icon {
-  display: flex;
 }
 
 .news-item__footer {
@@ -178,7 +164,7 @@ const props = defineProps({
 }
 
 .btn {
-  padding: 14px 30px;
+  padding: 14px 26px;
   font-size: 11px;
   -webkit-border-radius: 3px 0 3px 0;
   -moz-border-radius: 3px 0 3px 0;

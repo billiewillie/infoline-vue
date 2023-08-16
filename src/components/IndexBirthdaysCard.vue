@@ -2,7 +2,7 @@
   <div class="birthdays-card">
     <header class="birthdays-card-header">
 			<span class="icon">
-				<IconBirthday/>
+        <IconGiftBlue/>
 			</span>
       <span class="text">С Днем Рождения!</span>
       <router-link to="/birthdays" class="birthdays-card-link shadow rounded">все</router-link>
@@ -42,6 +42,7 @@ import {useRootStore} from "@/stores/birthdaysStore";
 import {storeToRefs} from "pinia";
 import TheImage from "@/components/TheImage.vue";
 import IconGift from "@/components/icons/IconGift.vue";
+import IconGiftBlue from "@/components/icons/IconGiftBlue.vue";
 
 const birthdaysStore = useRootStore();
 birthdaysStore.getBirthdaysIndexPage();
@@ -77,6 +78,7 @@ const isBirthday = (item) => {
   -moz-border-radius: 3px 3px 0 0;
   border-radius: 3px 3px 0 0;
   align-items: center;
+  min-height: 32px;
 
   @media (min-width: 1280px) {
     display: flex;
@@ -133,29 +135,14 @@ const isBirthday = (item) => {
   @media (min-width: 1280px) {
     left: 0;
     position: relative;
-    width: 13px;
-    height: 13px;
-  }
-
-  @media (min-width: 1920px) {
-    width: 19px;
-    height: 19px;
+    width: 18px;
+    height: 18px;
   }
 }
 
 .birthdays-card-header .icon svg {
-  width: 19px;
-  height: 19px;
-
-  @media (min-width: 1280px) {
-    width: 13px;
-    height: 13px;
-  }
-
-  @media (min-width: 1920px) {
-    width: 19px;
-    height: 19px;
-  }
+  width: 100%;
+  height: 100%;
 }
 
 .birthdays-card-header .text {

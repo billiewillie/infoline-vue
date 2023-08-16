@@ -248,8 +248,4 @@ const vClickOutside = {
 .calendar-tabs .tabs__item {
   justify-content: center;
 }
-
-.docs-page .tabs__list {
-  background-color: red;
-}
 </style>

@@ -71,6 +71,7 @@ function setClick() {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
+  min-height: 32px;
 }
 
 .calendar .vc-title {
@@ -236,6 +237,10 @@ function setClick() {
 }
 
 .calendar .vc-day-box-center-bottom {
-  padding-bottom: 5px;
+  padding-bottom: 2px;
+
+  @media (min-width: 1280px) {
+    padding-bottom: 5px;
+  }
 }
 </style>
