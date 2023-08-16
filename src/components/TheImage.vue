@@ -7,7 +7,6 @@
         :src="image"
         v-if="image"
         :alt="alt"
-        loading="lazy"
     />
   </div>
 </template>
@@ -68,4 +67,5 @@ img {
     background-color: var(--white);
   }
 }
+
 </style>

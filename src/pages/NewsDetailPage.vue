@@ -26,7 +26,10 @@
       </div>
     </div>
     <div class="news-cover">
-      <TheImage alt="alt" image="https://news.trifonov.space/images/posts/10/img_124.webp"/>
+      <TheImage
+          alt="alt"
+          :image="`https://news.trifonov.space/images/posts/10/img_124.webp`"
+      />
       <header class="news-header rounded overflow-hidden">
         <div class="news-header__top">
           <div class="news-header__top-item date">
@@ -247,6 +250,7 @@ console.log(post)
   background-color: var(--blue-dark);
   color: var(--white);
   padding: 10px;
+  z-index: 1;
 
   @media (min-width: 1280px) {
     max-width: 760px;
