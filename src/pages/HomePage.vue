@@ -116,6 +116,10 @@ const {attributesIndexPage} = storeToRefs(calendarStore);
   }
 }
 
+.news .swiper-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
 .news .swiper {
   width: 100%;
 }
