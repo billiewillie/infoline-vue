@@ -104,6 +104,8 @@ const {attributesIndexPage} = storeToRefs(calendarStore);
 }
 
 .news .swiper-wrapper {
+  scrollbar-width: none;
+
   @media (min-width: 1280px) {
     display: flex;
     flex-direction: column;
