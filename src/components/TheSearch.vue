@@ -23,70 +23,90 @@
                 @click.stop
                 @input="setSearchValue"
                 v-model="searchValue"
-                ref="searchInput"
-            />
+                ref="searchInput"/>
             <span class="search-icon" @click="clearSearchValue()">
             <IconClose/>
           </span>
           </header>
         </transition>
         <main class="search-main" v-if="isShownResultsList">
-          <section class="search-results" v-for="list in data" :key="list.title">
-            <header class="search-results__header" @click.stop>{{ list.title }}</header>
+          <section class="search-results" v-if="data.users">
+            <header class="search-results__header" @click.stop>Пользователи</header>
             <ul class="search-results__list">
-              <li class="search-results__item" v-if="list.title === 'люди'">
+              <li class="search-results__item" v-for="user in data.users" :key="user.id">
                 <router-link
                     to="/news"
                     class="search-results__link"
-                    @click="clearSearchValue"
-                    v-for="item in list.list"
-                    :key="item.id">
+                    @click="clearSearchValue">
                   <div class="search-results__avatar rounded shadow overflow-hidden">
-                    <TheImage alt="search" :image="imageWeb" />
+                    <TheImage alt="search" :image="imageWeb"/>
                   </div>
                   <div class="search-results__description">
-                    <p class="search-results__title">{{ item.firstName }}</p>
-                    <span class="search-results__position">{{ item.position }}</span>
+                    <p class="search-results__title">{{ user.firstname }}</p>
+                    <span class="search-results__position">{{ user.position }}</span>
                   </div>
                   <span class="icon">
                     <IconArrow/>
                   </span>
                 </router-link>
               </li>
-              <li class="search-results__item" v-if="list.title === 'документы'">
-                <a
-                    download
+            </ul>
+          </section>
+          <section class="search-results" v-if="data.news">
+            <header class="search-results__header" @click.stop>Новости</header>
+            <ul class="search-results__list">
+              <li class="search-results__item" v-for="news in data.news" :key="news.id">
+                <router-link
+                    to="/news"
                     class="search-results__link"
-                    v-for="item in list.list"
-                    :href="item.link"
-                    @click="clearSearchValue"
-                    :key="item.id">
+                    @click="clearSearchValue">
                   <div class="search-results__avatar rounded shadow overflow-hidden">
-                    <picture>
-                      <source :srcset="imageWeb" type="image/webp"/>
-                      <img :src="image" alt="news" loading="lazy"/>
-                    </picture>
+                    <TheImage alt="search" :image="imageWeb"/>
                   </div>
                   <div class="search-results__description">
-                    <p class="search-results__title">{{ item.title }}</p>
+                    <p class="search-results__title">{{ news.title }}</p>
                   </div>
                   <span class="icon">
                     <IconArrow/>
                   </span>
-                </a>
+                </router-link>
               </li>
-              <li class="search-results__item" v-if="list.title === 'новости'">
+            </ul>
+          </section>
+          <section class="search-results" v-if="data.documents">
+            <header class="search-results__header" @click.stop>Документы</header>
+            <ul class="search-results__list">
+              <li class="search-results__item" v-for="document in data.documents" :key="document.id">
                 <router-link
-                    to="/news"
+                    to="/docs"
                     class="search-results__link"
-                    @click="clearSearchValue"
-                    v-for="item in list.list"
-                    :key="item.id">
+                    @click="clearSearchValue">
                   <div class="search-results__avatar rounded shadow overflow-hidden">
-                    <TheImage alt="search" :image="imageWeb" />
+                    <TheImage alt="search" :image="imageWeb"/>
                   </div>
                   <div class="search-results__description">
-                    <p class="search-results__title">{{ item.title }}</p>
+                    <p class="search-results__title">{{ document.title }}</p>
+                  </div>
+                  <span class="icon">
+                    <IconArrow/>
+                  </span>
+                </router-link>
+              </li>
+            </ul>
+          </section>
+          <section class="search-results" v-if="data.instructions">
+            <header class="search-results__header" @click.stop>Инструкции</header>
+            <ul class="search-results__list">
+              <li class="search-results__item" v-for="instruction in data.instructions" :key="instruction.id">
+                <router-link
+                    to="/instructions"
+                    class="search-results__link"
+                    @click="clearSearchValue">
+                  <div class="search-results__avatar rounded shadow overflow-hidden">
+                    <TheImage alt="search" :image="imageWeb"/>
+                  </div>
+                  <div class="search-results__description">
+                    <p class="search-results__title">{{ instruction.title }}</p>
                   </div>
                   <span class="icon">
                     <IconArrow/>
@@ -106,10 +126,10 @@ import IconLoop from "@/components/icons/IconLoop.vue";
 import IconClose from "@/components/icons/IconClose.vue";
 import IconArrow from "@/components/icons/IconArrow.vue";
 import {nextTick, ref} from "vue";
-import json from "@/assets/data/search.json";
 import imageWeb from "@/assets/img/lazareva.webp";
 import image from "@/assets/img/lazareva.jpg";
 import TheImage from "@/components/TheImage.vue";
+import axios from "axios";
 
 const isShownResultsList = ref(false);
 const searchValue = ref('');
@@ -119,38 +139,22 @@ const props = defineProps({
 });
 const emit = defineEmits(['toggleStatus', 'toggleStatusMobileNav']);
 const data = ref([]);
-const keys = ['firstname', 'middlename', 'lastname', 'position', 'title', 'description', 'tags'];
+const keys = ['firstname', 'middlename', 'lastname', 'position', 'title', 'description', 'tags', 'content'];
 
-const setSearchValue = (e) => {
+const setSearchValue = async (e) => {
   searchValue.value = e.target.value;
   isShownResultsList.value = searchValue.value.length > 2;
   if (searchValue.value.length > 2) {
     data.value = [];
-    json.forEach(item => {
-      item.list.forEach(el => {
-        keys.forEach(key => {
-          if (el[key] && el[key].toLowerCase().includes(searchValue.value.toLowerCase())) {
-            if (data.value.length === 0) {
-              data.value.push({
-                title: item.title,
-                list: [el]
-              })
-            } else {
-              data.value.forEach((valueItem) => {
-                if (valueItem.title === item.title) {
-                  valueItem.list.push(el);
-                } else {
-                  data.value.push({
-                    title: item.title,
-                    list: [el]
-                  })
-                }
-              })
-            }
-          }
+    await axios
+        .get(`https://test.trifonov.space/api/search/show?search=${searchValue.value}`)
+        .then((res) => {
+          data.value = res.data;
         })
-      })
-    });
+        .catch((err) => {
+          console.log(err);
+        })
+    console.log(data.value);
     isShownResultsList.value = true;
   }
 };
@@ -269,6 +273,9 @@ const setInputFocused = () => {
 .search-main {
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
+  height: 90%;
+  scrollbar-width: none;
 }
 
 .search-results {
