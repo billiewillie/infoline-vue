@@ -30,19 +30,21 @@
           </header>
         </transition>
         <main class="search-main" v-if="isShownResultsList">
-          <section class="search-results" v-if="data.users">
+          <section class="search-results" v-if="data.users && data.users.length > 0">
             <header class="search-results__header" @click.stop>Пользователи</header>
             <ul class="search-results__list">
               <li class="search-results__item" v-for="user in data.users" :key="user.id">
                 <router-link
-                    to="/news"
+                    :to="`/users/${user.login}`"
                     class="search-results__link"
                     @click="clearSearchValue">
                   <div class="search-results__avatar rounded shadow overflow-hidden">
-                    <TheImage alt="search" :image="imageWeb"/>
+                    <TheImage
+                        alt="search"
+                        :image="`https://users.trifonov.space/images/users/${user.login}/avatar.webp`"/>
                   </div>
                   <div class="search-results__description">
-                    <p class="search-results__title">{{ user.firstname }}</p>
+                    <p class="search-results__title">{{ user.firstname }} {{ user.lastname }}</p>
                     <span class="search-results__position">{{ user.position }}</span>
                   </div>
                   <span class="icon">
@@ -52,7 +54,7 @@
               </li>
             </ul>
           </section>
-          <section class="search-results" v-if="data.news">
+          <section class="search-results" v-if="data.news && data.news.length > 0">
             <header class="search-results__header" @click.stop>Новости</header>
             <ul class="search-results__list">
               <li class="search-results__item" v-for="news in data.news" :key="news.id">
@@ -73,16 +75,17 @@
               </li>
             </ul>
           </section>
-          <section class="search-results" v-if="data.documents">
+          <section class="search-results" v-if="data.documents && data.documents.length > 0">
             <header class="search-results__header" @click.stop>Документы</header>
             <ul class="search-results__list">
               <li class="search-results__item" v-for="document in data.documents" :key="document.id">
-                <router-link
-                    to="/docs"
+                <a
                     class="search-results__link"
+                    :href="`https://regulations.trifonov.space/documents/${document.url}`"
+                    download
                     @click="clearSearchValue">
                   <div class="search-results__avatar rounded shadow overflow-hidden">
-                    <TheImage alt="search" :image="imageWeb"/>
+                    <IconDoc :ext="document.ext"/>
                   </div>
                   <div class="search-results__description">
                     <p class="search-results__title">{{ document.title }}</p>
@@ -90,11 +93,11 @@
                   <span class="icon">
                     <IconArrow/>
                   </span>
-                </router-link>
+                </a>
               </li>
             </ul>
           </section>
-          <section class="search-results" v-if="data.instructions">
+          <section class="search-results" v-if="data.instructions && data.instructions.length > 0">
             <header class="search-results__header" @click.stop>Инструкции</header>
             <ul class="search-results__list">
               <li class="search-results__item" v-for="instruction in data.instructions" :key="instruction.id">
@@ -103,7 +106,9 @@
                     class="search-results__link"
                     @click="clearSearchValue">
                   <div class="search-results__avatar rounded shadow overflow-hidden">
-                    <TheImage alt="search" :image="imageWeb"/>
+                    <div class="icon">
+                      <IconDocSearch/>
+                    </div>
                   </div>
                   <div class="search-results__description">
                     <p class="search-results__title">{{ instruction.title }}</p>
@@ -126,10 +131,12 @@ import IconLoop from "@/components/icons/IconLoop.vue";
 import IconClose from "@/components/icons/IconClose.vue";
 import IconArrow from "@/components/icons/IconArrow.vue";
 import {nextTick, ref} from "vue";
-import imageWeb from "@/assets/img/lazareva.webp";
-import image from "@/assets/img/lazareva.jpg";
+import imageWeb from "@/assets/img/news-cover-search.webp";
+
 import TheImage from "@/components/TheImage.vue";
 import axios from "axios";
+import IconDoc from "@/components/icons/IconDoc.vue";
+import IconDocSearch from "@/components/icons/IconDocSearch.vue";
 
 const isShownResultsList = ref(false);
 const searchValue = ref('');
@@ -311,8 +318,12 @@ const setInputFocused = () => {
 }
 
 .search-results__avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 70px;
   height: 70px;
+  background-color: var(--white);
   filter: drop-shadow(0 1px 5px rgba(0, 0, 0, 0.21));
 }
 

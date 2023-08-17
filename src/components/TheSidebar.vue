@@ -44,6 +44,7 @@ onBeforeUnmount(() => {
 <style>
 aside.aside {
   display: none;
+  transition: all 0.3s ease-in-out;
 
   @media (min-width: 1280px) {
     position: fixed;
@@ -193,11 +194,6 @@ aside.aside .docs-nav__icon svg {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
-}
-
-.slide-sidebar-enter-active,
-.slide-sidebar-leave-active{
-  transition: transform 0.3s ease-out;
 }
 
 .slide-sidebar-enter-from,

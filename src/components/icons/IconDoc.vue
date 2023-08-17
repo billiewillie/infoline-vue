@@ -41,13 +41,13 @@ svg {
 span {
   position: absolute;
   width: 100%;
-  top: 18px;
+  top: 19px;
   left: 0;
   right: 0;
   margin: 0 auto;
   text-align: center;
   text-transform: uppercase;
-  font-size: 10px;
+  font-size: 9px;
   line-height: 1;
   font-weight: 900;
   color: var(--blue-light);
