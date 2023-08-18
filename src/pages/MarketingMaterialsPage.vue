@@ -89,6 +89,10 @@ const {activeMaterials, activeCategory, categories} = storeToRefs(marketingMater
   }
 }
 
+.card .image {
+  box-shadow: var(--base-shadow);
+}
+
 .card-content {
   display: flex;
   flex-direction: column;
