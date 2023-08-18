@@ -85,6 +85,7 @@ const {activeMaterials, activeCategory, categories} = storeToRefs(marketingMater
   }
 
   @media (min-width: 1920px) {
+    width: calc(33% - 20px);
     gap: 60px;
   }
 }

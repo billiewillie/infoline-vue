@@ -248,6 +248,7 @@ const setInputFocused = () => {
   width: 100vw;
   height: 100vh;
   backdrop-filter: blur(10px);
+  transition: backdrop-filter 0.3s ease-in-out;
 }
 
 .search-overlay .container {
