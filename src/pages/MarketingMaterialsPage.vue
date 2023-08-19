@@ -80,12 +80,12 @@ const {activeMaterials, activeCategory, categories} = storeToRefs(marketingMater
   @media (min-width: 1280px) {
     grid-template-columns: 2fr 3fr;
     gap: 40px;
-    width: calc(50% - 20px);
+    width: calc((100%/2) - 20px);
     height: 250px;
   }
 
   @media (min-width: 1920px) {
-    width: calc(33% - 20px);
+    width: calc((100%/3) - 30px);
     gap: 60px;
   }
 }

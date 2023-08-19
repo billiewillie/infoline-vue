@@ -489,6 +489,11 @@ h2.title {
 .item-content__block a {
   text-decoration: underline;
   text-underline-offset: 4px;
+  color: var(--blue-dark);
+}
+
+.item-content__block a:hover {
+  opacity: 0.5;
 }
 
 .item-detail {
