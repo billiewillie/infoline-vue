@@ -158,9 +158,6 @@ onMounted(() => {
         post.value = res.data;
       })
 })
-
-console.log(post)
-
 </script>
 
 <style scoped>
@@ -177,6 +174,7 @@ console.log(post)
   -webkit-border-radius: 3px 0 0 3px;
   -moz-border-radius: 3px 0 0 3px;
   border-radius: 3px 0 0 3px;
+  transition: right 0.3s ease-in-out;
 
   @media (min-width: 1280px) {
     display: flex;
