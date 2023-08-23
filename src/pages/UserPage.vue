@@ -284,14 +284,9 @@ const {user} = storeToRefs(usersStore);
 }
 
 .icon-copy {
-  display: none;
   cursor: pointer;
   opacity: 0;
   transition: opacity .3s ease-in-out;
-
-  @media (min-width: 1280px) {
-    display: flex;
-  }
 }
 
 .user-contacts__column:hover .icon-copy {
@@ -422,6 +417,14 @@ a.user-position__column-value {
 
 .user-contacts__column .icon {
   display: flex;
+}
+
+.user-contacts__column .icon.icon-copy {
+  display: none;
+
+  @media (min-width: 1280px) {
+    display: flex;
+  }
 }
 
 .user-contacts__column svg {
