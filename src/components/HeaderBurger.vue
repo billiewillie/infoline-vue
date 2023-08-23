@@ -55,9 +55,9 @@ const props = defineProps({
   bottom: 0;
   margin: auto;
   right: 15px;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
   opacity: 1;
   transition: opacity 0.3s ease-in-out, right 0.3s ease-in-out;
 }

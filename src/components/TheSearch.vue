@@ -243,7 +243,7 @@ const setInputFocused = () => {
   right: 0;
   display: flex;
   justify-content: center;
-  z-index: 1;
+  z-index: 2;
   background-color: rgba(0, 0, 0, 0.61);
   width: 100vw;
   height: 100vh;
