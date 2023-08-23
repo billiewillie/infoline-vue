@@ -284,9 +284,14 @@ const {user} = storeToRefs(usersStore);
 }
 
 .icon-copy {
+  display: none;
   cursor: pointer;
   opacity: 0;
   transition: opacity .3s ease-in-out;
+
+  @media (min-width: 1280px) {
+    display: flex;
+  }
 }
 
 .user-contacts__column:hover .icon-copy {
