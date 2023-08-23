@@ -66,12 +66,13 @@ const {galleries, years, activeYear, activeGalleries} = storeToRefs(galleriesSto
 
 <style scoped>
 .galleries-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 20px;
   width: 100%;
 
   @media (min-width: 1280px) {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
   }

@@ -170,7 +170,7 @@ const vClickOutside = {
   top: 40px;
   opacity: 1;
   background-color: var(--white);
-  z-index: 2;
+  z-index: 3;
 
   @media (min-width: 1280px) {
     padding: 0;
