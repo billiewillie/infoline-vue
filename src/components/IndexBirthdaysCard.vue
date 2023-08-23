@@ -158,7 +158,7 @@ const isBirthday = (item) => {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 12px;
+  padding: 12px 0;
   width: 100%;
   row-gap: 16px;
 

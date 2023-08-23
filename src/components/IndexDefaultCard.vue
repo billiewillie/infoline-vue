@@ -51,9 +51,11 @@ function renderIcon(icon) {
   align-items: center;
   background-color: var(--white);
   justify-content: center;
+  gap: 30px;
 
   @media (min-width: 1280px) {
     grid-template-columns: 310px;
+    gap: 0;
   }
 }
 
@@ -77,9 +79,11 @@ h2.title {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: 30px;
 
   @media (min-width: 1280px) {
     font-size: 22px;
+    padding-top: 0;
   }
   @media (min-width: 1920px) {
     font-size: 28px;

@@ -7,31 +7,33 @@
         @setActiveTab="marketingMaterialsStore.setActiveCategory"
     />
     <div class="content shadow rounded overflow-hidden">
-      <div
-          class="card"
-          v-for="item in activeMaterials"
-          :key="item.id">
-        <TheImage
-            alt="alt"
-            :image="`https://marketing-materials.trifonov.space/materials/${item.id}/${item.prev}.webp`"/>
-        <div class="card-content">
-          <h2 class="title card-title">{{ item.title }}</h2>
-          <div class="card-content-footer">
-            <p class="field">
-              <span class="field-title">Формат:</span>
-              <span class="field-text">{{ item.format }}</span>
-            </p>
-            <p class="field">
-              <span class="field-title">Дата:</span>
-              <span class="field-text">{{ item.update_at ? item.update_at : item.created_at }}</span>
-            </p>
-            <div class="buttons">
-              <a class="button" :href="`https://marketing-materials.trifonov.space/materials/${item.id}/${item.prev}.webp`" target="_blank">
+      <div class="grid">
+        <div
+            class="card"
+            v-for="item in activeMaterials"
+            :key="item.id">
+          <TheImage
+              alt="alt"
+              :image="`https://marketing-materials.trifonov.space/materials/${item.id}/${item.prev}.webp`"/>
+          <div class="card-content">
+            <h2 class="title card-title">{{ item.title }}</h2>
+            <div class="card-content-footer">
+              <p class="field">
+                <span class="field-title">Формат:</span>
+                <span class="field-text">{{ item.format }}</span>
+              </p>
+              <p class="field">
+                <span class="field-title">Дата:</span>
+                <span class="field-text">{{ item.update_at ? item.update_at : item.created_at }}</span>
+              </p>
+              <div class="buttons">
+                <a class="button" :href="`https://marketing-materials.trifonov.space/materials/${item.id}/${item.prev}.webp`" target="_blank">
                 <span class="icon">
                   <IconShare/>
                 </span>
-                <span class="text">открыть</span>
-              </a>
+                  <span class="text">открыть</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -72,6 +74,20 @@ const {activeMaterials, activeCategory, categories} = storeToRefs(marketingMater
   }
 }
 
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 60px;
+
+  @media (min-width: 1280px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1920px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 .card {
   display: grid;
   grid-template-columns: 1fr;
@@ -80,12 +96,10 @@ const {activeMaterials, activeCategory, categories} = storeToRefs(marketingMater
   @media (min-width: 1280px) {
     grid-template-columns: 2fr 3fr;
     gap: 40px;
-    width: calc((100%/2) - 20px);
     height: 250px;
   }
 
   @media (min-width: 1920px) {
-    width: calc((100%/3) - 30px);
     gap: 60px;
   }
 }
