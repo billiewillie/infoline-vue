@@ -385,6 +385,11 @@ a.user-position__column-value {
   row-gap: 10px;
 }
 
+.user-contacts__column-value:nth-child(2) {
+  display: flex;
+  column-gap: 10px;
+}
+
 .user-contacts__column-value span {
   @media (min-width: 1280px) {
     font-size: 12px;
