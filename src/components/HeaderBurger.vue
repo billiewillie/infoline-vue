@@ -77,9 +77,9 @@ const props = defineProps({
   transform-origin: right center;
   transition: transform 0.3s ease-in-out;
   background-color: var(--white);
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
 }
 
 .burger::before {
