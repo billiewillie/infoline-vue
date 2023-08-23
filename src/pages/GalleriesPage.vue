@@ -7,7 +7,7 @@
         :activeTab="activeYear"
         @setActiveTab="galleriesStore.setActiveYear"/>
 
-    <transition-group name="grid" tag="div" class="galleries-grid">
+    <div class="galleries-grid">
       <router-link
           :to="`/galleries/${gallery.url}`"
           class="gallery-item rounded shadow"
@@ -44,7 +44,7 @@
           </div>
         </footer>
       </router-link>
-    </transition-group>
+    </div>
 
   </div>
 </template>
@@ -191,37 +191,6 @@ const {galleries, years, activeYear, activeGalleries} = storeToRefs(galleriesSto
   height: 14px;
 }
 
-.grid-leave-active,
-.grid-enter-active,
-.grid-move {
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.grid-enter {
-  opacity: 0;
-  transform: translateY(50px) scale(0.5);
-}
-
-.grid-enter-to {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-.grid-enter-from,
-.grid-leave-to {
-  opacity: 0;
-}
-
-.grid-leave-active {
-  opacity: 0;
-  position: absolute;
-  transform: scaleY(0);
-  animation: bounceIn 0.3s reverse;
-}
-
-.grid-enter-active {
-  animation: bounceIn 0.3s;
-}
 
 @keyframes bounceIn {
   0% {
