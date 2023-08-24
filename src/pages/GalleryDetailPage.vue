@@ -13,7 +13,9 @@
         <span class="icon">
           <IconPhoto/>
         </span>
-          <span class="count">32</span>
+          <span
+              class="count"
+              v-if="gallery.media && gallery.media.length">{{ gallery.media.length }}</span>
         </div>
         <div class="stats__item">
           <span class="icon">
@@ -71,7 +73,6 @@ const onHide = () => visibleRef.value = false
 const galleriesStore = useRootStore();
 galleriesStore.getGallery(params.id);
 const {gallery, galleryImgs} = storeToRefs(galleriesStore);
-
 </script>
 
 <style scoped>
