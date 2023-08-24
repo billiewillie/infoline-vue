@@ -221,6 +221,12 @@ const {
   }
 }
 
+.row:last-child {
+  @media (min-width: 1280px) {
+    order: 2;
+  }
+}
+
 .calendar-page .calendar-wrapper {
   @media (min-width: 1280px) {
     height: calc(50vh - 49px);
@@ -234,6 +240,10 @@ const {
 
 .row-calendar {
   grid-template-columns: 1fr;
+
+  @media (min-width: 1280px) {
+    order: 1;
+  }
 }
 
 h2.title {
