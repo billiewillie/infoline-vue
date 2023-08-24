@@ -293,6 +293,10 @@ h1.title {
     display: none !important;
 }
 
+html::-webkit-scrollbar {
+    display: none;
+}
+
 @-webkit-keyframes floatUp {
     0% {
         top: 100vh;
