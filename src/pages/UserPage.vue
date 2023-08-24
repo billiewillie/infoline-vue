@@ -52,6 +52,7 @@
         </div>
         <span class="icon icon-copy">
           <IconCopy @click="copyMail(user.email)"/>
+          <span class="tooltip">Копировать</span>
         </span>
       </div>
       <div class="user-contacts__column">
@@ -72,6 +73,7 @@
                 </div>
                 <span class="icon icon-copy">
                   <IconCopy @click="copyPhone(item.department.phone)"/>
+                  <span class="tooltip">Копировать</span>
                 </span>
               </div>
             </template>
@@ -285,8 +287,24 @@ const {user} = storeToRefs(usersStore);
 
 .icon-copy {
   cursor: pointer;
+  position: relative;
   opacity: 0;
   transition: opacity .3s ease-in-out;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 130%;
+  width: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.icon-copy:hover .tooltip {
+  opacity: 1;
 }
 
 .user-contacts__column:hover .icon-copy {
