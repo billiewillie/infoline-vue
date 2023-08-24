@@ -282,8 +282,12 @@ const setInputFocused = () => {
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-  height: 90%;
+  max-height: 90%;
   scrollbar-width: none;
+}
+
+.search-main::-webkit-scrollbar {
+  display: none;
 }
 
 .search-results {
