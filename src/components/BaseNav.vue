@@ -27,6 +27,10 @@ const navList = ref([
   {
     title: 'Календарь',
     path: '/calendar'
+  },
+  {
+    title: 'О компании',
+    path: '/about'
   }
 ]);
 </script>

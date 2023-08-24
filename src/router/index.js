@@ -61,6 +61,15 @@ const routes = [
         beforeEnter: getLoginPage
     },
     {
+        path: '/about',
+        components: {
+            default: () => import('@/pages/AboutPage.vue'),
+            Header: () => import('@/components/TheHeader.vue'),
+            Sidebar: () => import('@/components/TheSidebar.vue'),
+        },
+        beforeEnter: getLoginPage
+    },
+    {
         path: '/news/:id',
         components: {
             default: () => import('@/pages/NewsDetailPage.vue'),
@@ -118,17 +127,6 @@ const routes = [
         path: '/team',
         components: {
             default: () => import('@/pages/TeamPage.vue'),
-            Header: () => import('@/components/TheHeader.vue'),
-            Sidebar: () => import('@/components/TheSidebar.vue'),
-        },
-        beforeEnter: getLoginPage
-    },
-    {
-        path: '/team/:id',
-        name: 'Team',
-        props: true,
-        components: {
-            default: () => import('@/pages/DepartmentPage.vue'),
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },

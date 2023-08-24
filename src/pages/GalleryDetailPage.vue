@@ -1,6 +1,6 @@
 <template>
   <div class="basepage gallery-page">
-    <h1 class="title">{{gallery.title}}</h1>
+    <h1 class="title">{{ gallery.title }}</h1>
     <div class="gallery-grid">
       <div
           class="gallery-item rounded shadow pic"
@@ -12,6 +12,7 @@
               alt="photo"
               :image="photo"
           />
+
         </div>
       </div>
       <vue-easy-lightbox
@@ -166,5 +167,9 @@ const {gallery, galleryImgs} = storeToRefs(galleriesStore);
 .gallery-stats__item svg {
   width: 14px;
   height: 14px;
+}
+
+.vel-modal {
+  background: rgba(0, 0, 0, 0.8);
 }
 </style>

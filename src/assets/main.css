@@ -284,6 +284,14 @@ h1.title {
     left: 85%;
 }
 
+.vel-img {
+    max-height: 90vh !important;
+    max-width: 90vh !important;
+}
+
+.vel-toolbar {
+    display: none !important;
+}
 
 @-webkit-keyframes floatUp {
     0% {
@@ -543,5 +551,16 @@ h1.title {
 
     .extrapage {
         padding: 90px 20px 10px 90px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .vel-btns-wrapper .btn__close {
+        top: 40px !important;
+    }
+
+    .vel-btns-wrapper .btn__close .vel-icon {
+        width: 2em;
+        height: 2em;
     }
 }
