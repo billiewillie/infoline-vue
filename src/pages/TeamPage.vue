@@ -481,7 +481,7 @@ import TheImage from "@/components/TheImage.vue";
   background-color: var(--white);
   padding-bottom: 20px;
   width: 100%;
-  max-width: 600px;
+  max-width: 580px;
   transition: box-shadow 0.3s ease-in-out;
 
   @media (min-width: 1280px) {
