@@ -1,6 +1,10 @@
 @import "./font.css";
 @import './base.css';
 
+*::-webkit-scrollbar {
+    display: none;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -291,10 +295,6 @@ h1.title {
 
 .vel-toolbar {
     display: none !important;
-}
-
-body::-webkit-scrollbar {
-    display: none;
 }
 
 @-webkit-keyframes floatUp {
