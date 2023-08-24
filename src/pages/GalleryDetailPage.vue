@@ -10,9 +10,9 @@
           <span class="count">{{ gallery.show_count }}</span>
         </div>
         <div class="stats__item">
-        <span class="icon">
-          <IconPhoto/>
-        </span>
+          <span class="icon">
+            <IconPhoto/>
+          </span>
           <span
               class="count"
               v-if="gallery.media && gallery.media.length">{{ gallery.media.length }}</span>

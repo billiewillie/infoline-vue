@@ -68,7 +68,6 @@ const showFooter = ref(false);
 
 .content-item:nth-child(4n + 3) {
   position: relative;
-
 }
 
 .content-item:nth-child(4n + 3)::before {
@@ -78,8 +77,11 @@ const showFooter = ref(false);
   left: 0;
   width: 200%;
   height: 100%;
-  background-color: var(--gray-light);
-  @media (min-width: 1280px) {
+}
+
+@media (min-width: 1280px) {
+  .content-item:nth-child(4n + 3)::before {
+    background-color: var(--gray-light);
     display: block;
   }
 }

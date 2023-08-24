@@ -166,6 +166,7 @@ const vClickOutside = {
   flex-direction: column;
   width: 100%;
   padding: 10px 0;
+  row-gap: 10px;
   list-style: none;
   top: 40px;
   opacity: 1;
