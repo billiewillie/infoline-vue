@@ -17,9 +17,14 @@
             <p class="position">Заместитель генерального директора по маркетингу и продажам БиоСистемы</p>
           </router-link>
           <div class="department-group">
-            <router-link to="/departments/advertising" class="department rounded">Отдел по работе с клиентами БС</router-link>
-            <router-link to="/departments/advertising" class="department rounded">Отдел госпитального оборудования и мебели</router-link>
-            <router-link to="/departments/advertising" class="department rounded">Отдел продукции для материнства и детcтва</router-link>
+            <router-link to="/departments/advertising" class="department rounded">Отдел по работе с клиентами БС
+            </router-link>
+            <router-link to="/departments/advertising" class="department rounded">Отдел госпитального оборудования и
+              мебели
+            </router-link>
+            <router-link to="/departments/advertising" class="department rounded">Отдел продукции для материнства и
+              детcтва
+            </router-link>
           </div>
         </div>
         <div class="row row-inner-one">
@@ -31,8 +36,10 @@
           <div class="department-group">
             <router-link to="/departments/advertising" class="department rounded">Отдел общелабораторного оборудования
             </router-link>
-            <router-link to="/departments/advertising" class="department rounded">Отдел лабораторной мебели</router-link>
-            <router-link to="/departments/advertising" class="department rounded">Отдел преаналитических систем и расходных
+            <router-link to="/departments/advertising" class="department rounded">Отдел лабораторной мебели
+            </router-link>
+            <router-link to="/departments/advertising" class="department rounded">Отдел преаналитических систем и
+              расходных
               материалов
             </router-link>
           </div>
@@ -44,10 +51,13 @@
             <p class="position">Заместитель генерального директора по маркетингу и продажам БиоЛайна</p>
           </router-link>
           <div class="department-group">
-            <router-link to="/departments/advertising" class="department rounded">Отдел по работе с клиентами БС</router-link>
-            <router-link to="/departments/advertising" class="department rounded">Отдел госпитального оборудования и мебели
+            <router-link to="/departments/advertising" class="department rounded">Отдел по работе с клиентами БС
             </router-link>
-            <router-link to="/departments/advertising" class="department rounded">Отдел продукции для материнства и детcтва
+            <router-link to="/departments/advertising" class="department rounded">Отдел госпитального оборудования и
+              мебели
+            </router-link>
+            <router-link to="/departments/advertising" class="department rounded">Отдел продукции для материнства и
+              детcтва
             </router-link>
             <router-link to="/departments/advertising" class="department rounded">
               Отдел оптической микроскопии, анализа изображений и спектрометрии в научных исследованиях
@@ -79,7 +89,8 @@
             </router-link>
             <router-link to="/departments/advertising" class="department rounded">Отдел иммуногистохимии</router-link>
             <router-link to="/departments/advertising" class="department rounded">Отдел гистологии</router-link>
-            <router-link to="/departments/advertising" class="department rounded">Отдел продаж гистологических/цитологических
+            <router-link to="/departments/advertising" class="department rounded">Отдел продаж
+              гистологических/цитологических
               расходных
               материалов,
               реагентов и оборудования
@@ -151,7 +162,8 @@
             <p class="position">Заместитель генерального директора по маркетингу и продажам БиоСистемы</p>
           </router-link>
           <div class="department-group one-group">
-            <router-link to="/departments/advertising" class="department rounded">Служба технического сервиса</router-link>
+            <router-link to="/departments/advertising" class="department rounded">Служба технического сервиса
+            </router-link>
           </div>
         </div>
         <div class="row">
@@ -184,7 +196,8 @@
           </router-link>
           <div class="department-group">
             <router-link to="/departments/advertising" class="department rounded">ООО "БиоБеби"</router-link>
-            <router-link to="/departments/advertising" class="department rounded">Филиал г. Нижний Новгород</router-link>
+            <router-link to="/departments/advertising" class="department rounded">Филиал г. Нижний Новгород
+            </router-link>
             <router-link to="/departments/advertising" class="department rounded">Филиал г. Москва</router-link>
             <router-link to="/departments/advertising" class="department rounded">Филиал г. Новосибирск</router-link>
             <router-link to="/departments/advertising" class="department rounded">Филиал г. Ростов-на-Дону</router-link>
@@ -258,7 +271,7 @@ import TheImage from "@/components/TheImage.vue";
   position: absolute;
   top: 106px;
   left: 0;
-  width: 71%;
+  width: 73%;
   height: calc(100% - 132px);
   border-left: 2px solid var(--blue-light);
   border-top: 2px solid var(--blue-light);
@@ -433,6 +446,7 @@ import TheImage from "@/components/TheImage.vue";
   background-color: var(--white);
   width: 100%;
   max-width: 436px;
+  justify-content: center;
   text-align: center;
   padding: 15px 30px;
   color: var(--black);

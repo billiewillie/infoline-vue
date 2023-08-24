@@ -357,7 +357,11 @@ a.user-position__column-value {
 
 .user-position__row {
   display: flex;
-  column-gap: 60px;
+  column-gap: 20px;
+
+  @media (min-width: 1280px) {
+    column-gap: 60px;
+  }
 }
 
 .userpage .swiper-wrapper {
@@ -368,7 +372,7 @@ a.user-position__column-value {
   display: flex;
   flex-direction: column;
   row-gap: 25px;
-  padding: 30px;
+  padding: 30px 40px;
 
   @media (min-width: 1280px) {
     padding: 30px 44px;
