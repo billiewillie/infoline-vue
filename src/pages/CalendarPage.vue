@@ -145,8 +145,6 @@ import IconElseEvents from "@/components/icons/IconElseEvents.vue";
 import IconClock from "@/components/icons/IconClock.vue";
 import IconCalendarBlue from "@/components/icons/IconCalendarBlue.vue";
 import IconMarker from "@/components/icons/IconMarker.vue";
-import {setMonthsEvents} from "@/functions/setMonthsEvents";
-import {setDaysEvents} from "@/functions/setDaysEvents";
 import {getMonthName} from "@/functions/getMonthName";
 import {useRootStore} from "@/stores/calendarStore";
 import {storeToRefs} from "pinia";

@@ -4,6 +4,7 @@
     <img
         v-show="isLoaded"
         @load="isLoaded = true"
+        @error="console.log(222)"
         :src="image"
         v-if="image"
         :alt="alt"
@@ -57,6 +58,14 @@ img {
 
 .cover.loaded {
   backdrop-filter: blur(0);
+}
+
+.about-page .about-cover img {
+  aspect-ratio: 370/237;
+
+  @media (min-width: 1280px) {
+    aspect-ratio: inherit;
+  }
 }
 
 @keyframes skeleton {

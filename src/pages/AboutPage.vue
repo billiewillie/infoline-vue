@@ -1,172 +1,358 @@
 <template>
-  <div class="basepage">
-    <h1 class="title">О компании</h1>
-    <div class="content">
+  <div class="basepage about-page">
+    <div class="about-page-header">
+      <div class="about-cover shadow rounded overflow-hidden">
+        <TheImage
+            alt="cover"
+            :image="AboutCoverImage"/>
+      </div>
+      <h1 class="title">О компании</h1>
+    </div>
+    <ul class="about-logos">
+      <li
+          class="shadow rounded about-logo"
+          v-for="logo in logos">
+        <div class="logo">
+          <component :is="logo.logo"/>
+        </div>
+        <p class="text">{{ logo.text }}</p>
+      </li>
+    </ul>
+    <div class="content shadow rounded">
+      <div class="about-slider">
+        <div class="container">
+          <swiper navigation>
+            <swiper-slide v-for="slide in slides1">
+              <TheImage alt="slide" :image="slide"/>
+            </swiper-slide>
+          </swiper>
+          <div class="slider-text">
+            <h2 class="slider-title title">Мы проделали долгий путь</h2>
+            <p class="slider-description">Компания началась с нескольких человек
+              и небольшой комнаты в Больнице №33. За 30 лет мы выросли, сейчас нас больше
+              300 человек, мы занимаем целое здание, площадью
+              2500 м2, а наши офисы находятся не только
+              в Санкт-Петербурге, и даже не только в России.</p>
+          </div>
+        </div>
+      </div>
+      <div class="about-page-title">
+        <img class="bg-about-title" :src="BgAboutTitle" alt="bg-about-title">
+        <div class="container">
+          <span class="blue">Наша миссия -</span>
+          <p class="subtitle">поиск, внедрение и адаптация новых технологий в диагностику и медицину.</p>
+          <p class="description">Мы стремимся создавать инновационные решения, которые помогут улучшить качество жизни
+            пациентов и повысить эффективность работы медицинских учреждений.</p>
+        </div>
+      </div>
+      <div class="container">
+        <div class="about-slider">
+          <div class="slider-text">
+            <h2 class="slider-title title">Мы проделали долгий путь</h2>
+            <p class="slider-description">Компания началась с нескольких человек
+              и небольшой комнаты в Больнице №33. За 30 лет мы выросли, сейчас нас больше
+              300 человек, мы занимаем целое здание, площадью
+              2500 м2, а наши офисы находятся не только
+              в Санкт-Петербурге, и даже не только в России.</p>
+          </div>
+        </div>
+      </div>
+      <div class="timeline">
+        <div class="container">timeline</div>
+      </div>
+      <div class="about-page-title">
+        <img class="bg-about-title" :src="BgAboutTitle" alt="bg-about-title">
+        <div class="container">
+          <span class="blue">Наша продукция –</span>
+          <p class="subtitle">самые значимые технологии в лабораторном и медицинском мире.</p>
+          <p class="description">Самые крупные мировые производители доверяют нам своё имя, а мы всегда оправдываем их
+            доверие.</p>
+        </div>
+      </div>
+      <div class="container">
+        <div class="about-slider">
+          <div class="slider-text">
+            <h2 class="slider-title title">Мы проделали долгий путь</h2>
+            <p class="slider-description">Компания началась с нескольких человек
+              и небольшой комнаты в Больнице №33. За 30 лет мы выросли, сейчас нас больше
+              300 человек, мы занимаем целое здание, площадью
+              2500 м2, а наши офисы находятся не только
+              в Санкт-Петербурге, и даже не только в России.</p>
+          </div>
+        </div>
+      </div>
+      <div class="about-page-title">
+        <img class="bg-about-title" :src="BgAboutTitle" alt="bg-about-title">
+        <div class="container">
+          <span class="blue">Наша команда</span>
+          <p class="subtitle">не стоит на месте и уверенными темпами мы идём вперед.</p>
+          <p class="description">Особенно ценно, что многие сотрудники остаются с нами надолго, растут и развиваются
+            вместе с компанией на протяжении десятилетий.</p>
+        </div>
+      </div>
+      <div class="container">
+        <div class="about-slider">
+          <div class="slider-text">
+            <h2 class="slider-title title">Мы проделали долгий путь</h2>
+            <p class="slider-description">Компания началась с нескольких человек
+              и небольшой комнаты в Больнице №33. За 30 лет мы выросли, сейчас нас больше
+              300 человек, мы занимаем целое здание, площадью
+              2500 м2, а наши офисы находятся не только
+              в Санкт-Петербурге, и даже не только в России.</p>
+          </div>
+        </div>
+      </div>
+      <div class="about-page-title">
+        <img class="bg-about-title" :src="BgAboutTitle" alt="bg-about-title">
+        <div class="container">
+          <span class="blue">Мы ценим,</span>
+          <p class="subtitle">что за каждым профессионалом нашей команды стоит интересная личность!</p>
+          <p class="description">Мы с удовольствием предоставляем каждому возможность проявить себя, организовывая
+            конкурсы, тимбилдинг и другие корпоративные мероприятия.</p>
+        </div>
+      </div>
+      <div class="container">
+        <div class="about-slider">
+          <div class="slider-text">
+            <h2 class="slider-title title">Мы проделали долгий путь</h2>
+            <p class="slider-description">Компания началась с нескольких человек
+              и небольшой комнаты в Больнице №33. За 30 лет мы выросли, сейчас нас больше
+              300 человек, мы занимаем целое здание, площадью
+              2500 м2, а наши офисы находятся не только
+              в Санкт-Петербурге, и даже не только в России.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import {Navigation} from 'swiper';
+import {Swiper, SwiperSlide} from 'swiper/vue';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import TheImage from "@/components/TheImage.vue";
+import AboutCoverImage from "@/assets/img/about-cover.webp";
+import IconLogoBioline from "@/components/icons/IconLogoBioline.vue";
+import IconLogoBioBaby from "@/components/icons/IconLogoBioBaby.vue";
+import IconLogoBioMebel from "@/components/icons/IconLogoBioMebel.vue";
+import IconLogoBioSystemy from "@/components/icons/IconLogoBioSystemy.vue";
+import BgAboutTitle from "@/assets/img/about-title-bg.svg";
+import ImageAboutSlider11 from "@/assets/img/about-slider-1-1.webp"
+import ImageAboutSlider12 from "@/assets/img/about-slider-1-2.webp"
 
+const slides1 = [
+  ImageAboutSlider11, AboutCoverImage
+]
+
+const icons = {
+  IconLogoBioline,
+  IconLogoBioBaby,
+  IconLogoBioMebel,
+  IconLogoBioSystemy,
+}
+
+const logos = [
+  {
+    logo: icons.IconLogoBioline,
+    text: "Диагностическое оборудование, реагенты и расходные материалы для клинических и научных исследований и фармразработок."
+  },
+  {
+    logo: icons.IconLogoBioSystemy,
+    text: "Общелабораторное и медицинское оборудование, расходные материалы."
+  },
+  {
+    logo: icons.IconLogoBioMebel,
+    text: "Производство лабораторной и медицинской мебели."
+  },
+  {
+    logo: icons.IconLogoBioBaby,
+    text: "Направление B2C, продукция для материнства и детства."
+  }
+]
+
+const modules = [Navigation];
 </script>
 
 <style scoped>
+.about-page-header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+  @media (min-width: 1280px) {
+    aspect-ratio: 3/1;
+    margin-bottom: 20px;
+    flex-direction: column-reverse;
+  }
+}
+
+.about-cover {
+  margin-bottom: 16px;
+
+  @media (min-width: 1280px) {
+    position: absolute;
+    margin-bottom: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+h1.title {
+  display: flex;
+  justify-content: center;
+  color: var(--white);
+  background-color: var(--blue-dark);
+  padding: 35px 0;
+  margin-bottom: 0;
+  font-size: 27px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+
+  @media (min-width: 1280px) {
+    width: 33%;
+    font-size: 30px;
+    -webkit-border-radius: 0 3px 0 0;
+    -moz-border-radius: 0 3px 0 0;
+    border-radius: 0 3px 0 0;
+  }
+}
+
 .content {
   display: flex;
   flex-direction: column;
   row-gap: 30px;
+  background-color: var(--white);
+
+  @media (min-width: 1280px) {
+    padding: 140px 0;
+    overflow: hidden;
+    row-gap: 160px;
+  }
 }
 
-.month-title {
-  margin-bottom: 20px;
-  color: var(--gray-dark);
+.content .container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1400px;
+  margin: auto;
+  padding: 0 10px;
+  row-gap: 30px;
+  width: 100%;
+
+  @media (min-width: 1280px) {
+    padding: 0;
+  }
+}
+
+.content .container .swiper {
+  width: 100%;
+}
+
+.about-slider .container {
+  padding: 0;
+}
+
+
+.about-logos {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  margin-bottom: 16px;
+
+  @media (min-width: 1280px) {
+    flex-direction: row;
+    column-gap: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+.about-logo {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  background-color: var(--white);
+
+  @media (min-width: 1280px) {
+    flex: 1;
+    padding: 6px 20px;
+  }
+}
+
+.about-logo .logo {
+  position: relative;
+}
+
+.about-logo .logo svg {
+  max-width: 191px;
+  max-height: 57px;
+}
+
+.about-logo .logo::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 130px;
+  height: 1px;
+  background-color: var(--gray-medium);
+}
+
+.about-logo > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.about-page-title {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  row-gap: 16px;
+}
+
+.bg-about-title {
+  position: absolute;
+  display: none;
+  top: -100px;
+  left: -2%;
+  width: 104%;
+  height: 200%;
+  object-fit: contain;
 
   @media (min-width: 1280px) {
     display: block;
   }
 }
 
-.list {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 45px;
-
-  @media (min-width: 1280px) {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-
-  @media (min-width: 1920px) {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.card {
-  display: grid;
-  position: relative;
-  grid-template-columns: 1fr;
-  row-gap: 30px;
-  background-color: var(--white);
-
-  @media (min-width: 1280px) {
-    display: grid;
-    flex-direction: initial;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: 1fr 1fr;
-    padding-right: 20px;
-    column-gap: 20px;
-    row-gap: 0;
-    transition: box-shadow 0.3s ease-in-out;
-  }
-}
-
-.card:hover {
-  box-shadow: 0 1px 14px var(--gray-medium);
-}
-
-.card.active:hover {
-  box-shadow: 0 1px 14px var(--blue-light);
-}
-
-.photo {
-  width: 100%;
-  aspect-ratio: 1;
-  overflow: hidden;
-  -webkit-border-radius: 3px 3px 0 0;
-  -moz-border-radius: 3px 3px 0 0;
-  border-radius: 3px 3px 0 0;
-
-  @media (min-width: 1280px) {
-    grid-row-start: 1;
-    grid-row-end: 3;
-    width: 132px;
-    -webkit-border-radius: 3px 0 0 3px;
-    -moz-border-radius: 3px 0 0 3px;
-    border-radius: 3px 0 0 3px;
-  }
-}
-
-.photo img {
-  object-position: top center;
-}
-
-.title {
-  font-size: 27px;
-  text-align: center;
-  color: var(--blue-dark);
-}
-
-.subtitle {
-  color: var(--gray-dark);
-  border-bottom: 1px solid var(--gray-medium);
-  padding-bottom: 15px;
-  margin-bottom: 20px;
-}
-
-.name {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: nowrap;
-
-  @media (min-width: 1280px) {
-    justify-content: flex-start;
-    font-size: 18px;
-  }
-}
-
-.card-footer {
-  display: flex;
-  align-items: center;
-  border-top: 1px solid var(--gray-medium);
-
-  @media (min-width: 1280px) {
-    column-gap: 15px;
-  }
-}
-
-.date {
-  display: flex;
-  flex: auto;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 27px;
-  color: var(--black);
-  padding: 10px 0;
-
-  @media (min-width: 1280px) {
-    justify-content: flex-start;
-    font-size: 18px;
-    padding: 0;
-  }
-}
-
-.active .date {
+.about-page-title span.blue {
   color: var(--blue-light);
-}
-
-.icon {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  width: 26px;
-  height: 26px;
-  background-color: var(--blue-light);
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 1;
-  -webkit-border-radius: 0 3px 0 3px;
-  -moz-border-radius: 0 3px 0 3px;
-  border-radius: 0 3px 0 3px;
+  font-size: 40px;
+  font-weight: 700;
 
   @media (min-width: 1280px) {
-    width: 35px;
-    height: 35px;
+    font-size: 100px;
   }
 }
 
-.active .icon {
-  display: flex;
+.about-page-title .subtitle {
+  font-size: 36px;
+  color: var(--black);
+
+  @media (min-width: 1280px) {
+    font-size: 50px;
+    padding-left: 300px;
+  }
+}
+
+.about-page-title .description {
+  font-size: 20px;
+  @media (min-width: 1280px) {
+    padding-left: 600px;
+  }
 }
 </style>
