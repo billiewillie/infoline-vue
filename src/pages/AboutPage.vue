@@ -71,7 +71,20 @@
         </div>
       </div>
       <div class="timeline">
-        <div class="container">timeline</div>
+        <div class="container">
+          <h2 class="title">История компании</h2>
+          <swiper
+              :slides-per-view="1"
+              :centered-slides="true"
+              space-between="30">
+            <swiper-slide
+                class="timeline-slide"
+                v-for="slide in timelineSlides">
+              <h2 class="year title">{{ slide.year }}</h2>
+              <p class="text">{{ slide.text }}</p>
+            </swiper-slide>
+          </swiper>
+        </div>
       </div>
       <div class="about-page-title">
         <img class="bg-about-title" :src="BgAboutTitle" alt="bg-about-title">
@@ -196,6 +209,65 @@ const slides1 = [
   ImageAboutPhoto16,
   ImageAboutPhoto17
 ];
+
+const timelineSlides = [
+  {
+    year: 1992,
+    text: 'электронные дозаторы "Biohit"'
+  },
+  {
+    year: 1999,
+    text: 'Открытие производства лабораторной мебели “БиоМебель”'
+  },
+  {
+    year: 2000,
+    text: 'Проточные цитофлуориметры Becton Dickinson, реагенты для иммуногистохимии Novocastra'
+  },
+  {
+    year: 2001,
+    text: 'вакуумные системы для взятия крови Becton Dickinson'
+  },
+  {
+    year: 2006,
+    text: 'общелабораторное оборудование для медицинских и фармацевтических предприятий'
+  },
+  {
+    year: 2007,
+    text: 'медицинская и госпитальная мебель:медицинские функциональные кровати'
+  },
+  {
+    year: 2008,
+    text: 'оборудование для стандартизации преаналитического этапа гистологического исследования Milestone'
+  },
+  {
+    year: 2010,
+    text: 'комплексные решения для гистологии Leica'
+  },
+  {
+    year: 2013,
+    text: 'оборудование для автоматизации переаналитического этапа лабораторных исследований'
+  },
+  {
+    year: 2014,
+    text: 'инновационные решения для оснащения моргов LEEC'
+  },
+  {
+    year: 2015,
+    text: 'автоматические системы для исследований в молекулярной онкологии Biocartis'
+  },
+  {
+    year: 2018,
+    text: 'микроскопия высокого разрешения Leica Microsystems'
+  },
+  {
+    year: 2019,
+    text: 'продукция для материнства и детства B2C'
+  },
+  {
+    year: 2020,
+    text: 'локализация производства медицинских функциональных кроватей Pardo на базе компании “Биомебель”'
+  },
+]
 
 const icons = {
   IconLogoBioline,
@@ -435,5 +507,37 @@ h1.title {
 
 .slider-description {
   font-size: 16px;
+}
+
+.timeline {
+  text-align: center;
+}
+
+.timeline .container {
+  row-gap: 30px;
+
+  @media (min-width: 1280px) {
+    row-gap: 70px;
+  }
+}
+.timeline .title {
+  font-size: 30px;
+}
+
+.timeline-slide {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 20px;
+  text-align: left;
+  padding: 20px 0;
+  z-index: 10;
+  border-top: 2px solid var(--gray-medium);
+}
+
+.timeline-slide .year {
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--blue-light);
+  color: var(--blue-dark);
 }
 </style>
