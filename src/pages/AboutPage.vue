@@ -21,13 +21,17 @@
     <div class="content shadow rounded">
       <div class="about-slider">
         <div class="container">
-          <swiper navigation>
+          <swiper
+              :modules="modules"
+              :slides-per-view="1"
+              loop
+              navigation>
             <swiper-slide v-for="slide in slides1">
               <TheImage alt="slide" :image="slide"/>
             </swiper-slide>
           </swiper>
           <div class="slider-text">
-            <h2 class="slider-title title">Мы проделали долгий путь</h2>
+            <h2 class="slider-title title">Мы проделали долгий путь</h2>
             <p class="slider-description">Компания началась с нескольких человек
               и небольшой комнаты в Больнице №33. За 30 лет мы выросли, сейчас нас больше
               300 человек, мы занимаем целое здание, площадью
@@ -45,10 +49,19 @@
             пациентов и повысить эффективность работы медицинских учреждений.</p>
         </div>
       </div>
-      <div class="container">
-        <div class="about-slider">
+      <div class="about-slider">
+        <div class="container">
+          <swiper
+              :modules="modules"
+              :slides-per-view="1"
+              loop
+              navigation>
+            <swiper-slide v-for="slide in slides1">
+              <TheImage alt="slide" :image="slide"/>
+            </swiper-slide>
+          </swiper>
           <div class="slider-text">
-            <h2 class="slider-title title">Мы проделали долгий путь</h2>
+            <h2 class="slider-title title">Мы проделали долгий путь</h2>
             <p class="slider-description">Компания началась с нескольких человек
               и небольшой комнаты в Больнице №33. За 30 лет мы выросли, сейчас нас больше
               300 человек, мы занимаем целое здание, площадью
@@ -63,16 +76,25 @@
       <div class="about-page-title">
         <img class="bg-about-title" :src="BgAboutTitle" alt="bg-about-title">
         <div class="container">
-          <span class="blue">Наша продукция –</span>
+          <span class="blue">Наша продукция -</span>
           <p class="subtitle">самые значимые технологии в лабораторном и медицинском мире.</p>
           <p class="description">Самые крупные мировые производители доверяют нам своё имя, а мы всегда оправдываем их
             доверие.</p>
         </div>
       </div>
-      <div class="container">
-        <div class="about-slider">
+      <div class="about-slider">
+        <div class="container">
+          <swiper
+              :modules="modules"
+              :slides-per-view="1"
+              loop
+              navigation>
+            <swiper-slide v-for="slide in slides1">
+              <TheImage alt="slide" :image="slide"/>
+            </swiper-slide>
+          </swiper>
           <div class="slider-text">
-            <h2 class="slider-title title">Мы проделали долгий путь</h2>
+            <h2 class="slider-title title">Мы проделали долгий путь</h2>
             <p class="slider-description">Компания началась с нескольких человек
               и небольшой комнаты в Больнице №33. За 30 лет мы выросли, сейчас нас больше
               300 человек, мы занимаем целое здание, площадью
@@ -90,10 +112,19 @@
             вместе с компанией на протяжении десятилетий.</p>
         </div>
       </div>
-      <div class="container">
-        <div class="about-slider">
+      <div class="about-slider">
+        <div class="container">
+          <swiper
+              :modules="modules"
+              :slides-per-view="1"
+              loop
+              navigation>
+            <swiper-slide v-for="slide in slides1">
+              <TheImage alt="slide" :image="slide"/>
+            </swiper-slide>
+          </swiper>
           <div class="slider-text">
-            <h2 class="slider-title title">Мы проделали долгий путь</h2>
+            <h2 class="slider-title title">Мы проделали долгий путь</h2>
             <p class="slider-description">Компания началась с нескольких человек
               и небольшой комнаты в Больнице №33. За 30 лет мы выросли, сейчас нас больше
               300 человек, мы занимаем целое здание, площадью
@@ -111,10 +142,19 @@
             конкурсы, тимбилдинг и другие корпоративные мероприятия.</p>
         </div>
       </div>
-      <div class="container">
-        <div class="about-slider">
+      <div class="about-slider">
+        <div class="container">
+          <swiper
+              :modules="modules"
+              :slides-per-view="1"
+              loop
+              navigation>
+            <swiper-slide v-for="slide in slides1">
+              <TheImage alt="slide" :image="slide"/>
+            </swiper-slide>
+          </swiper>
           <div class="slider-text">
-            <h2 class="slider-title title">Мы проделали долгий путь</h2>
+            <h2 class="slider-title title">Мы проделали долгий путь</h2>
             <p class="slider-description">Компания началась с нескольких человек
               и небольшой комнаты в Больнице №33. За 30 лет мы выросли, сейчас нас больше
               300 человек, мы занимаем целое здание, площадью
@@ -128,23 +168,34 @@
 </template>
 
 <script setup>
-import {Navigation} from 'swiper';
-import {Swiper, SwiperSlide} from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import {Navigation} from 'swiper';
+import {Swiper, SwiperSlide} from 'swiper/vue';
 import TheImage from "@/components/TheImage.vue";
+import BgAboutTitle from "@/assets/img/about-title-bg.svg";
 import AboutCoverImage from "@/assets/img/about-cover.webp";
 import IconLogoBioline from "@/components/icons/IconLogoBioline.vue";
 import IconLogoBioBaby from "@/components/icons/IconLogoBioBaby.vue";
 import IconLogoBioMebel from "@/components/icons/IconLogoBioMebel.vue";
 import IconLogoBioSystemy from "@/components/icons/IconLogoBioSystemy.vue";
-import BgAboutTitle from "@/assets/img/about-title-bg.svg";
-import ImageAboutSlider11 from "@/assets/img/about-slider-1-1.webp"
-import ImageAboutSlider12 from "@/assets/img/about-slider-1-2.webp"
+import ImageAboutPhoto11 from "@/assets/img/about-photo-11.webp";
+import ImageAboutPhoto12 from "@/assets/img/about-photo-12.webp"
+import ImageAboutPhoto13 from "@/assets/img/about-photo-13.webp"
+import ImageAboutPhoto14 from "@/assets/img/about-photo-14.webp"
+import ImageAboutPhoto15 from "@/assets/img/about-photo-15.webp"
+import ImageAboutPhoto16 from "@/assets/img/about-photo-16.webp"
+import ImageAboutPhoto17 from "@/assets/img/about-photo-17.webp"
 
 const slides1 = [
-  ImageAboutSlider11, AboutCoverImage
-]
+  ImageAboutPhoto11,
+  ImageAboutPhoto12,
+  ImageAboutPhoto13,
+  ImageAboutPhoto14,
+  ImageAboutPhoto15,
+  ImageAboutPhoto16,
+  ImageAboutPhoto17
+];
 
 const icons = {
   IconLogoBioline,
@@ -254,7 +305,6 @@ h1.title {
   padding: 0;
 }
 
-
 .about-logos {
   display: flex;
   flex-direction: column;
@@ -354,5 +404,36 @@ h1.title {
   @media (min-width: 1280px) {
     padding-left: 600px;
   }
+}
+
+.about-slider .container {
+  @media (min-width: 1280px) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 170px;
+  }
+}
+
+.slider-text {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  padding: 0 10px;
+
+  @media (min-width: 1280px) {
+    width: 56%;
+  }
+}
+
+.slider-title {
+  padding-bottom: 20px;
+  color: var(--blue-dark);
+  font-size: 30px;
+  border-bottom: 2px solid var(--blue-light);
+}
+
+.slider-description {
+  font-size: 16px;
 }
 </style>
