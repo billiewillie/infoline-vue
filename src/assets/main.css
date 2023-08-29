@@ -142,6 +142,12 @@ h1.title {
     font-size: 12px;
 }
 
+.about-slider.about__success .swiper .swiper-button-next,
+.about-slider.about__success .swiper .swiper-button-prev {
+    top: 20%;
+    margin-top: 0;
+}
+
 .custompage {
     display: flex;
     justify-content: center;
@@ -547,6 +553,21 @@ h1.title {
     .extrapage {
         padding: 66px 20px 10px 70px;
     }
+
+    .vel-btns-wrapper .btn__close {
+        top: 40px !important;
+    }
+
+    .vel-btns-wrapper .btn__close .vel-icon {
+        width: 2em;
+        height: 2em;
+    }
+
+
+    .about-slider.about__success .swiper .swiper-button-next,
+    .about-slider.about__success .swiper .swiper-button-prev {
+        top: 50%;
+    }
 }
 
 @media (min-width: 1920px) {
@@ -556,16 +577,5 @@ h1.title {
 
     .extrapage {
         padding: 90px 20px 10px 90px;
-    }
-}
-
-@media (min-width: 1280px) {
-    .vel-btns-wrapper .btn__close {
-        top: 40px !important;
-    }
-
-    .vel-btns-wrapper .btn__close .vel-icon {
-        width: 2em;
-        height: 2em;
     }
 }
