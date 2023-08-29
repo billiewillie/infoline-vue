@@ -146,6 +146,9 @@ h1.title {
 .about-slider.about__success .swiper .swiper-button-prev {
     top: 20%;
     margin-top: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
 }
 
 .custompage {

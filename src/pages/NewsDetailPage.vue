@@ -48,7 +48,7 @@
             <div class="icon">
               <IconUser/>
             </div>
-            <span>автор: Евгения Родионова</span>
+            <span>автор: <b>Евгения Родионова</b></span>
           </div>
         </div>
         <h1 class="title">{{ post.title }}</h1>
@@ -252,6 +252,8 @@ onMounted(() => {
 
   @media (min-width: 1280px) {
     max-width: 760px;
+    padding: 20px;
+    row-gap: 20px;
   }
 }
 
@@ -268,6 +270,18 @@ onMounted(() => {
 .news-header__top-item {
   display: flex;
   column-gap: 10px;
+}
+
+.news-header__top-item b {
+  font-weight: 700;
+}
+
+.news-header__top-item.category span {
+  font-weight: 600;
+}
+
+.news-header__top-item.date span {
+  font-weight: 600;
 }
 
 .content {

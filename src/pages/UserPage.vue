@@ -298,7 +298,7 @@ const {user} = storeToRefs(usersStore);
   width: 70px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 12px;
+  font-size: 12px !important;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
