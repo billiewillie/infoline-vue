@@ -271,7 +271,7 @@ import TheImage from "@/components/TheImage.vue";
   position: absolute;
   top: 106px;
   left: 0;
-  width: 73%;
+  width: 72%;
   height: calc(100% - 132px);
   border-left: 2px solid var(--blue-light);
   border-top: 2px solid var(--blue-light);
@@ -509,6 +509,7 @@ import TheImage from "@/components/TheImage.vue";
   -webkit-border-radius: 3px 3px 0 0;
   -moz-border-radius: 3px 3px 0 0;
   border-radius: 3px 3px 0 0;
+  overflow: hidden;
 
   @media (min-width: 1280px) {
     grid-row-start: 1;
