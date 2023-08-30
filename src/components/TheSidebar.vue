@@ -57,7 +57,7 @@ aside.aside {
     justify-content: space-between;
     height: calc(100vh - 50px);
     background-color: var(--white);
-    z-index: 1;
+    z-index: 2;
     box-shadow: var(--secondary-shadow);
   }
 

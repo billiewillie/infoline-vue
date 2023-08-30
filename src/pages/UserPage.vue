@@ -374,6 +374,7 @@ a.user-position__column-value {
   color: var(--blue-dark);
   text-decoration: underline;
   text-underline-offset: 4px;
+  line-height: 1.5;
 }
 
 .user-position__row {
