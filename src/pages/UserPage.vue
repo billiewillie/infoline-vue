@@ -39,7 +39,7 @@
         </span>
         <div class="user-contacts__column-value">
           <span>Местный телефон: </span>
-          <span v-if="user.localphone && user.localphone.length > 0">{{ user.localphone }}</span>
+          <span v-if="user.localphone && user.localphone > 0">{{ user.localphone }}</span>
           <span v-else>Нет</span>
         </div>
       </div>
