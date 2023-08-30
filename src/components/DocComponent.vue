@@ -16,7 +16,9 @@
       <a
           class="link"
           :href="`https://regulations.trifonov.space/documents/${props.doc.link}`"
-          download>скачать</a>
+          download
+          :target="props.doc.ext === 'jpg' ? '_blank' : '_self'"
+      >скачать</a>
     </footer>
   </div>
 </template>
