@@ -39,7 +39,8 @@
         </span>
         <div class="user-contacts__column-value">
           <span>Местный телефон: </span>
-          <span>{{ user.localphone }}</span>
+          <span v-if="user.localphone && user.localphone.length > 0">{{ user.localphone }}</span>
+          <span v-else>Нет</span>
         </div>
       </div>
       <div class="user-contacts__column">
@@ -48,7 +49,8 @@
         </span>
         <div class="user-contacts__column-value">
           <span>Эл. почта: </span>
-          <a :href="`mailto:${user.email}`">{{ user.email }}</a>
+          <a v-if="user.email && user.email.length > 0" :href="`mailto:${user.email}`">{{ user.email }}</a>
+          <span v-else>Нет</span>
         </div>
         <span class="icon icon-copy">
           <IconCopy @click="copyMail(user.email)"/>
@@ -77,6 +79,7 @@
                 </span>
               </div>
             </template>
+            <span v-else>Нет</span>
           </template>
         </div>
       </div>
