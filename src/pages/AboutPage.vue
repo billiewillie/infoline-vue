@@ -442,6 +442,10 @@ h1.title {
 
 .about-slider .container {
   padding: 0;
+
+  @media (min-width: 1280px) {
+    padding: 0 10px;
+  }
 }
 
 .about-slider.about__success {
@@ -506,6 +510,10 @@ h1.title {
 
 .about-slider.about__success .swiper-slide .slider-text {
   position: relative;
+
+  @media (min-width: 1280px) {
+    padding: 60px 20px 0 0;
+  }
 
   @media (min-width: 1920px) {
     padding: 60px 60px 0 0;
@@ -644,7 +652,11 @@ h1.title {
     display: flex;
     flex-direction: row;
     align-items: center;
-    column-gap: 170px;
+    column-gap: 100px;
+  }
+
+  @media (min-width: 1920px) {
+    column-gap: 175px;
   }
 }
 

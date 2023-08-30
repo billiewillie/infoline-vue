@@ -17,7 +17,7 @@
 import IconDocs from "@/components/icons/IconDocs.vue";
 import IconInstructions from "@/components/icons/IconInstructions.vue";
 import IconMarketingMaterials from "@/components/icons/IconMarketingMaterials.vue";
-import IconCalendar from "@/components/icons/IconCalendarBlack.vue";
+import IconBirthday from "@/components/icons/IconBirthdayBlue.vue";
 import {ref} from "vue";
 
 const props = defineProps({
@@ -46,7 +46,7 @@ const navList = ref([
   {
     title: 'Дни рождения',
     path: '/birthdays',
-    icon: 'IconCalendar'
+    icon: 'IconBirthday'
   }
 ])
 
@@ -58,8 +58,8 @@ function renderIcon(icon) {
       return IconInstructions
     case "IconMarketingMaterials":
       return IconMarketingMaterials
-    case "IconCalendar":
-      return IconCalendar
+    case "IconBirthday":
+      return IconBirthday
   }
 }
 </script>

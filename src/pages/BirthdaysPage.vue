@@ -20,7 +20,7 @@
             </div>
             <div class="photo">
               <TheImage
-                  alt="person"
+                  alt=""
                   :image="`https://users.trifonov.space/images/users/${item.login}/gallery_1.webp`"
               />
             </div>

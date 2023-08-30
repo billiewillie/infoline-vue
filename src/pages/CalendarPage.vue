@@ -50,26 +50,7 @@
             </div>
             <p class="title">{{ event.title }}</p>
           </header>
-          <div class="item-content">
-            <div class="item-content__block">
-              <div class="item__content__block-row" v-for="date in event.timetable" :key="date.date">
-                <div class="item-detail">
-                  <div class="icon">
-                    <IconCalendarBlue/>
-                  </div>
-                  <span class="text">{{
-                      new Date(date.date).getDate()
-                    }} {{ getMonthName(new Date(date.date).getMonth() + 1) }}</span>
-                </div>
-                <div class="item-detail">
-                  <div class="icon">
-                    <IconClock/>
-                  </div>
-                  <span class="text" v-if="event.time_start">{{ event.time_start }} - {{ event.time_end }}</span>
-                  <span class="text" v-else>Весь день</span>
-                </div>
-              </div>
-            </div>
+          <div class="item-content" v-if="event.url">
             <div class="item-content__block">
               <div class="item-detail" v-if="event.url">
                 <router-link :to="`${event.url}`" class="link">Подробнее</router-link>
@@ -101,26 +82,7 @@
             </div>
             <p class="title">{{ event.title }}</p>
           </header>
-          <div class="item-content">
-            <div class="item-content__block">
-              <div class="item__content__block-row" v-for="date in event.timetable" :key="date.date">
-                <div class="item-detail">
-                  <div class="icon">
-                    <IconCalendarBlue/>
-                  </div>
-                  <span class="text">{{
-                      new Date(date.date).getDate()
-                    }} {{ getMonthName(new Date(date.date).getMonth() + 1) }}</span>
-                </div>
-                <div class="item-detail">
-                  <div class="icon">
-                    <IconClock/>
-                  </div>
-                  <span class="text" v-if="event.time_start">{{ event.time_start }} - {{ event.time_end }}</span>
-                  <span class="text" v-else>Весь день</span>
-                </div>
-              </div>
-            </div>
+          <div class="item-content" v-if="event.url">
             <div class="item-content__block">
               <template v-if="event.url">
                 <router-link :to="`${event.url}`" class="link">Подробнее</router-link>
@@ -390,7 +352,7 @@ h2.title {
   flex-direction: column;
   @media (min-width: 1280px) {
     padding: 15px;
-    row-gap: 15px;
+    row-gap: 20px;
   }
 }
 
@@ -402,7 +364,7 @@ h2.title {
   font-size: 12px;
 
   @media (min-width: 1280px) {
-    padding: 10px 0;
+    padding: 0 0;
   }
 }
 

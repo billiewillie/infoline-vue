@@ -7,8 +7,7 @@
         @error="console.log(222)"
         :src="image"
         v-if="image"
-        :alt="alt"
-    />
+        :alt="alt"/>
   </div>
 </template>
 

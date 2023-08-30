@@ -10,8 +10,7 @@
       <IconArrow
           :stroke="isHovered
           ? 'var(--blue-light)'
-          : 'var(--white)'"
-      />
+          : 'var(--white)'"/>
     </span>
   </button>
 </template>

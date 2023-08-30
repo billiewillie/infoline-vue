@@ -7,10 +7,10 @@
           navigation
           loop
           v-if="user.gallery">
-        <SwiperSlide v-for="item in user.gallery" :key="item">
+        <SwiperSlide v-for="i in 3" :key="i">
           <TheImage
               :alt="`${user.firstname} ${user.lastname}`"
-              :image="`https://users.trifonov.space/images/users/${user.login}/${item.src}.webp`"
+              :image="`https://users.trifonov.space/images/users/${user.login}/gallery_${i}.webp`"
           />
         </SwiperSlide>
       </Swiper>
