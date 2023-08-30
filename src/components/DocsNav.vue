@@ -44,8 +44,8 @@ const navList = ref([
     icon: 'IconMarketingMaterials'
   },
   {
-    title: 'Календарь',
-    path: '/calendar',
+    title: 'Дни рождения',
+    path: '/birthdays',
     icon: 'IconCalendar'
   }
 ])
