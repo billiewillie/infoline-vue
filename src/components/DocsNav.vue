@@ -16,11 +16,8 @@
 <script setup>
 import IconDocs from "@/components/icons/IconDocs.vue";
 import IconInstructions from "@/components/icons/IconInstructions.vue";
-import IconOrdersSmall from "@/components/icons/IconOrdersSmall.vue";
-import IconBooking from "@/components/icons/IconBooking.vue";
-import IconLearning from "@/components/icons/IconLearning.vue";
 import IconMarketingMaterials from "@/components/icons/IconMarketingMaterials.vue";
-import IconOrders from "@/components/icons/IconOrders.vue";
+import IconCalendar from "@/components/icons/IconCalendarBlack.vue";
 import {ref} from "vue";
 
 const props = defineProps({
@@ -46,6 +43,11 @@ const navList = ref([
     path: '/marketing-materials',
     icon: 'IconMarketingMaterials'
   },
+  {
+    title: 'Календарь',
+    path: '/calendar',
+    icon: 'IconCalendar'
+  }
 ])
 
 function renderIcon(icon) {
@@ -56,6 +58,8 @@ function renderIcon(icon) {
       return IconInstructions
     case "IconMarketingMaterials":
       return IconMarketingMaterials
+    case "IconCalendar":
+      return IconCalendar
   }
 }
 </script>
