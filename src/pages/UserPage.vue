@@ -142,7 +142,7 @@ import {useRootStore} from "@/stores/usersStore";
 import {storeToRefs} from "pinia";
 import {useRoute} from "vue-router";
 import TheImage from "@/components/TheImage.vue";
-import PlaceholderPerson from "@/assets/img/person-fallback.webp";
+import PlaceholderPerson from "@/assets/img/profile-fallback.svg";
 
 const params = useRoute().params;
 const toast = useToast();

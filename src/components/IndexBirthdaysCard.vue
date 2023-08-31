@@ -36,13 +36,12 @@
 </template>
 
 <script setup>
-import IconBirthday from '@/components/icons/IconBirthday.vue';
 import {getMonthName} from '@/functions/getMonthName';
 import PlaceholderPerson from "@/assets/img/person-fallback.webp";
 
-import {useRootStore} from "@/stores/birthdaysStore";
 import {storeToRefs} from "pinia";
 import TheImage from "@/components/TheImage.vue";
+import {useRootStore} from "@/stores/birthdaysStore";
 import IconGift from "@/components/icons/IconGift.vue";
 import IconGiftBlue from "@/components/icons/IconGiftBlue.vue";
 
