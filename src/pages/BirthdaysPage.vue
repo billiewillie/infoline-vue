@@ -14,7 +14,8 @@
               :to="`users/${item.login}`"
               class="card rounded shadow"
               :class="{ active: isBirthday(item)}"
-              v-for="item in birthdays[activeMonth]">
+              v-for="item in birthdays[activeMonth]"
+              :key="item.login">
             <div class="icon">
               <IconGift/>
             </div>
