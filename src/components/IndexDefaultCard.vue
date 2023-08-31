@@ -97,7 +97,7 @@ h2.title .line {
   right: 0;
   margin: auto;
   width: 180px;
-  height: 4px;
+  height: 2px;
   opacity: 0.8;
   -webkit-border-radius: 30px;
   -moz-border-radius: 30px;

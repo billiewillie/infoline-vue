@@ -25,7 +25,7 @@
               :image="`https://users.trifonov.space/images/users/${item.login}/gallery_1.webp`"
               alt="alt"/>
         </div>
-        <span class="birthdays-name">{{ item.firstname }} <br> {{ item.lastname }}</span>
+        <span class="birthdays-name">{{ item.firstname }} {{ item.lastname }}</span>
         <div class="birthdays-date">
           <span>{{ item.day }}</span>
           <span>{{ getMonthName(item.month) }}</span>
