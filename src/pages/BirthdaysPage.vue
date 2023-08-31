@@ -21,6 +21,7 @@
             <div class="photo">
               <TheImage
                   alt=""
+                  :fallback="PlaceholderPerson"
                   :image="`https://users.trifonov.space/images/users/${item.login}/gallery_1.webp`"
               />
             </div>
@@ -36,20 +37,21 @@
 </template>
 
 <script setup>
-import IconGift from "@/components/icons/IconGift.vue";
-import TheTabs from "@/components/TheTabs.vue";
 import {ref} from "vue";
-import {useRootStore} from "@/stores/birthdaysStore";
 import {storeToRefs} from "pinia";
-import {getMonthName} from "@/functions/getMonthName";
+import TheTabs from "@/components/TheTabs.vue";
 import TheImage from "@/components/TheImage.vue";
+import IconGift from "@/components/icons/IconGift.vue";
+import {useRootStore} from "@/stores/birthdaysStore";
+import {getMonthName} from "@/functions/getMonthName";
+import PlaceholderPerson from "@/assets/img/placeholder-person.jpeg";
 
 const months = [
   "Январь",
   "Февраль",
   "Март",
   "Апрель",
-  "Май",
+  "Май",
   "Июнь",
   "Июль",
   "Август",
@@ -63,7 +65,7 @@ const data = ref([])
 
 const date = new Date();
 const activeMonth = ref(months[date.getMonth()]);
-const activeMonthNumber = ref(date.getMonth())
+const activeMonthNumber = ref(date.getMonth());
 
 const setActiveMonth = (month) => {
   activeMonth.value = month;
