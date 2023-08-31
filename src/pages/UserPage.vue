@@ -10,6 +10,7 @@
         <SwiperSlide v-for="i in 3" :key="i">
           <TheImage
               :alt="`${user.firstname} ${user.lastname}`"
+              :fallback="PlaceholderPerson"
               :image="`https://users.trifonov.space/images/users/${user.login}/gallery_${i}.webp`"
           />
         </SwiperSlide>
@@ -141,6 +142,7 @@ import {useRootStore} from "@/stores/usersStore";
 import {storeToRefs} from "pinia";
 import {useRoute} from "vue-router";
 import TheImage from "@/components/TheImage.vue";
+import PlaceholderPerson from "@/assets/img/person-fallback.webp";
 
 const params = useRoute().params;
 const toast = useToast();

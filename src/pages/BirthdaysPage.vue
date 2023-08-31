@@ -45,7 +45,7 @@ import TheImage from "@/components/TheImage.vue";
 import IconGift from "@/components/icons/IconGift.vue";
 import {useRootStore} from "@/stores/birthdaysStore";
 import {getMonthName} from "@/functions/getMonthName";
-import PlaceholderPerson from "@/assets/img/placeholder-person.jpeg";
+import PlaceholderPerson from "@/assets/img/person-fallback.webp";
 
 const months = [
   "Январь",

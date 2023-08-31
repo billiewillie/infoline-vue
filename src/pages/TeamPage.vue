@@ -4,15 +4,23 @@
       <h1 class="title">Наша команда</h1>
       <div class="content">
         <div class="row row-head">
-          <router-link to="/users/belinovich" class="card shadow rounded">
-            <TheImage alt="Семенов А. В." :image="SemenovAVWebp"/>
+          <router-link to="/users/semenov" class="card shadow rounded">
+            <TheImage
+                alt="Семенов А. В."
+                :fallback="PlaceholderPerson"
+                :image="`https://users.trifonov.space/images/users/semenov/gallery_1.webp`"
+            />
             <h2 class="name title"><span class="surname">Семенов</span> Александр Владимирович</h2>
             <p class="position">Генеральный директор БиоЛайн</p>
           </router-link>
         </div>
         <div class="row">
-          <router-link to="/users/belinovich" class="card shadow rounded">
-            <TheImage alt="Дулаева О. Е." :image="DulaevaWebp"/>
+          <router-link to="/users/dulaeva" class="card shadow rounded">
+            <TheImage
+                alt="Дулаева О. Е."
+                :fallback="PlaceholderPerson"
+                :image="`https://users.trifonov.space/images/users/dulaeva/gallery_1.webp`"
+            />
             <h2 class="name title"><span class="surname">Дулаева</span> Оксана Евгеньевна</h2>
             <p class="position">Заместитель генерального директора по маркетингу и продажам БиоСистемы</p>
           </router-link>
@@ -28,8 +36,12 @@
           </div>
         </div>
         <div class="row row-inner-one">
-          <router-link to="/users/belinovich" class="card shadow rounded">
-            <TheImage alt="Дмитриева М. О." :image="DmitrievaWebp"/>
+          <router-link to="/users/dmitrieva_mo" class="card shadow rounded">
+            <TheImage
+                alt="Дмитриева М. О."
+                :fallback="PlaceholderPerson"
+                :image="`https://users.trifonov.space/images/users/dmitrieva_mo/gallery_1.webp`"
+            />
             <h2 class="name title"><span class="surname">Дмитриева</span> Марина Олеговна</h2>
             <p class="position">Директор по маркетингу и продажам общелабораторного оборудования</p>
           </router-link>
@@ -45,8 +57,12 @@
           </div>
         </div>
         <div class="row row-above-multiple-employees">
-          <router-link to="/users/belinovich" class="card shadow rounded">
-            <TheImage alt="Солнцева О. С." :image="SolntsevaWebp"/>
+          <router-link to="/users/solntseva" class="card shadow rounded">
+            <TheImage
+                alt="Солнцева О. С."
+                :fallback="PlaceholderPerson"
+                :image="`https://users.trifonov.space/images/users/solntseva/gallery_1.webp`"
+            />
             <h2 class="name title"><span class="surname">Солнцева</span> Ольга Станиславовна</h2>
             <p class="position">Заместитель генерального директора по маркетингу и продажам БиоЛайна</p>
           </router-link>
@@ -65,15 +81,22 @@
           </div>
         </div>
         <div class="row row-inner no-departments">
-          <router-link to="/users/belinovich" class="card shadow rounded">
-            <TheImage alt="Евтеев А. В." :image="EvteevWebp"/>
+          <router-link to="/users/evteev" class="card shadow rounded">
+            <TheImage
+                alt="Евтеев А. В."
+                :fallback="PlaceholderPerson"
+                :image="`https://users.trifonov.space/images/users/evteev/gallery_1.webp`"
+            />
             <h2 class="name title"><span class="surname">Евтеев</span> Андрей Владимирович</h2>
             <p class="position">Директор по развитию продукции для научных исследований</p>
           </router-link>
         </div>
         <div class="row row-inner">
-          <router-link to="/users/belinovich" class="card shadow rounded">
-            <TheImage alt="Кислов П. В." :image="KislovWebp"/>
+          <router-link to="/users/kislov" class="card shadow rounded">
+            <TheImage
+                alt="Кислов П. В."
+                :fallback="PlaceholderPerson"
+                :image="`https://users.trifonov.space/images/users/kislov/gallery_1.webp`"/>
             <h2 class="name title"><span class="surname">Кислов</span> Павел Владимирович</h2>
             <p class="position">Директор по маркетингу и продажам продукции для гистологии/цитологии</p>
           </router-link>
@@ -98,8 +121,11 @@
           </div>
         </div>
         <div class="row">
-          <router-link to="/users/belinovich" class="card shadow rounded">
-            <TheImage alt="Каюкова Л. Л." :image="KaukovaWebp"/>
+          <router-link to="/users/kajukova" class="card shadow rounded">
+            <TheImage
+                alt="Каюкова Л. Л."
+                :fallback="PlaceholderPerson"
+                :image="`https://users.trifonov.space/images/users/kajukova/gallery_1.webp`"/>
             <h2 class="name title"><span class="surname">Каюкова</span> Людмила Леонидовна</h2>
             <p class="position">Заместитель генерального директора по сопровождению корпоративного бизнеса</p>
           </router-link>
@@ -110,8 +136,11 @@
           </div>
         </div>
         <div class="row row-inner-one">
-          <router-link to="/users/belinovich" class="card shadow rounded">
-            <TheImage alt="Коденюк В. А." :image="KodenukWebp"/>
+          <router-link to="/users/kodenuk" class="card shadow rounded">
+            <TheImage
+                alt="Коденюк В. А."
+                :fallback="PlaceholderPerson"
+                :image="`https://users.trifonov.space/images/users/kodenuk/gallery_1.webp`"/>
             <h2 class="name title"><span class="surname">Коденюк</span> Владимир Анатольевич</h2>
             <p class="position">Директор по административно-хозяйственным вопросам</p>
           </router-link>
@@ -121,8 +150,11 @@
           </div>
         </div>
         <div class="row">
-          <router-link to="/users/belinovich" class="card shadow rounded">
-            <TheImage alt="Шубаев П. А." :image="ShubaevWebp"/>
+          <router-link to="/users/shubaev" class="card shadow rounded">
+            <TheImage
+                alt="Шубаев П. А."
+                :fallback="PlaceholderPerson"
+                :image="`https://users.trifonov.space/images/users/shubaev/gallery_1.webp`"/>
             <h2 class="name title"><span class="surname">Шубаев</span> Павел Андреевич</h2>
             <p class="position">Директор по логистике</p>
           </router-link>
@@ -134,8 +166,11 @@
           </div>
         </div>
         <div class="row">
-          <router-link to="/users/belinovich" class="card shadow rounded">
-            <TheImage alt="Гусева Н. К." :image="GusevaWebp"/>
+          <router-link to="/users/guseva" class="card shadow rounded">
+            <TheImage
+                alt="Гусева Н. К."
+                :fallback="PlaceholderPerson"
+                :image="`https://users.trifonov.space/images/users/guseva/gallery_1.webp`"/>
             <h2 class="name title"><span class="surname">Гусева</span> Наталья Константиновна</h2>
             <p class="position">Директор по правовым вопросам</p>
           </router-link>
@@ -146,8 +181,11 @@
           </div>
         </div>
         <div class="row">
-          <router-link to="/users/belinovich" class="card shadow rounded">
-            <TheImage alt="Гвоздарев А. В." :image="GvozdarevWebp"/>
+          <router-link to="/users/gvozdarev" class="card shadow rounded">
+            <TheImage
+                alt="Гвоздарев А. В."
+                :fallback="PlaceholderPerson"
+                :image="`https://users.trifonov.space/images/users/gvozdarev/gallery_1.webp`"/>
             <h2 class="name title"><span class="surname">Гвоздарев</span> Андрей Владимирович</h2>
             <p class="position">Директор IT</p>
           </router-link>
@@ -156,8 +194,11 @@
           </div>
         </div>
         <div class="row">
-          <router-link to="/users/belinovich" class="card shadow rounded">
-            <TheImage alt="Заруцкий Д. М." :image="ZarutskyiWebp"/>
+          <router-link to="/users/zarutsky" class="card shadow rounded">
+            <TheImage
+                alt="Заруцкий Д. М."
+                :fallback="PlaceholderPerson"
+                :image="`https://users.trifonov.space/images/users/zarutsky/gallery_1.webp`"/>
             <h2 class="name title"><span class="surname">Заруцкий</span> Дмитрий Михайлович</h2>
             <p class="position">Заместитель генерального директора по маркетингу и продажам БиоСистемы</p>
           </router-link>
@@ -167,8 +208,11 @@
           </div>
         </div>
         <div class="row">
-          <router-link to="/users/belinovich" class="card shadow rounded">
-            <TheImage alt="Абрамов М. Н." :image="AbramovWebp"/>
+          <router-link to="/users/abramov" class="card shadow rounded">
+            <TheImage
+                :fallback="PlaceholderPerson"
+                alt="Абрамов М. Н."
+                :image="`https://users.trifonov.space/images/users/abramov/gallery_1.webp`"/>
             <h2 class="name title"><span class="surname">Абрамов</span> Максим Николаевич</h2>
             <p class="position">Финансовый директор</p>
           </router-link>
@@ -189,8 +233,11 @@
           </div>
         </div>
         <div class="row row-special">
-          <router-link to="/users/belinovich" class="card shadow rounded">
-            <TheImage alt="Семенов А. А." :image="SemenovZaminWebp"/>
+          <router-link to="/users/semenov_aa" class="card shadow rounded">
+            <TheImage
+                :fallback="PlaceholderPerson"
+                alt="Семенов А. А."
+                :image="`https://users.trifonov.space/images/users/semenov_aa/gallery_1.webp`"/>
             <h2 class="name title"><span class="surname">Семенов</span> Алексей Александрович</h2>
             <p class="position">Генеральный директор БиоСистемы</p>
           </router-link>
@@ -225,35 +272,8 @@
 </template>
 
 <script setup>
-import SemenovAV from '@/assets/img/users/semenov.jpg';
-import SemenovAVWebp from '@/assets/img/users/semenov.webp';
-import Dulaeva from '@/assets/img/users/dulaeva.jpg';
-import DulaevaWebp from '@/assets/img/users/dulaeva.webp';
-import Dmitrieva from '@/assets/img/users/dmitrieva.jpg';
-import DmitrievaWebp from '@/assets/img/users/dmitrieva.webp';
-import Solntseva from '@/assets/img/users/solntseva.jpg';
-import SolntsevaWebp from '@/assets/img/users/solntseva.webp';
-import Evteev from '@/assets/img/users/evteev.jpg';
-import EvteevWebp from '@/assets/img/users/evteev.webp';
-import Kislov from '@/assets/img/users/kislov.jpg';
-import KislovWebp from '@/assets/img/users/kislov.webp';
-import Kaukova from '@/assets/img/users/kaukova.jpg';
-import KaukovaWebp from '@/assets/img/users/kaukova.webp';
-import Kodenuk from '@/assets/img/users/kodenuk.jpg';
-import KodenukWebp from '@/assets/img/users/kodenuk.webp';
-import Shubaev from '@/assets/img/users/shubaev.jpg';
-import ShubaevWebp from '@/assets/img/users/shubaev.webp';
-import Guseva from '@/assets/img/users/guseva.jpg';
-import GusevaWebp from '@/assets/img/users/guseva.webp';
-import Gvozdarev from '@/assets/img/users/gvozdarev.jpg';
-import GvozdarevWebp from '@/assets/img/users/gvozdarev.webp';
-import Zarutskyi from '@/assets/img/users/zarutskiy.jpg';
-import ZarutskyiWebp from '@/assets/img/users/zarutskiy.webp';
-import Abramov from '@/assets/img/users/abramov.jpg';
-import AbramovWebp from '@/assets/img/users/abramov.webp';
-import SemenovZamin from '@/assets/img/users/semenov-zam.jpg';
-import SemenovZaminWebp from '@/assets/img/users/semenov-zam.webp';
 import TheImage from "@/components/TheImage.vue";
+import PlaceholderPerson from "@/assets/img/person-fallback.webp";
 </script>
 
 <style scoped>

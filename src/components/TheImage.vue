@@ -2,17 +2,22 @@
   <div class="image">
     <div class="cover" :class="isLoaded ? 'loaded' : ''"></div>
     <img
-        v-show="isLoaded"
         @load="isLoaded = true"
-        @error="console.log(222)"
+        @error="handleImageBroken"
         :src="image"
-        v-if="image"
+        v-if="image && !isImageBroken"
         :alt="alt"/>
+    <img
+        v-else
+        :src="fallback"
+        :alt="alt">
   </div>
 </template>
 
 <script setup>
 import {ref} from "vue";
+const isLoaded = ref(false);
+const isImageBroken = ref(false);
 
 const props = defineProps({
   image: {
@@ -22,11 +27,14 @@ const props = defineProps({
   alt: {
     type: String,
     required: true,
+  },
+  fallback: {
+    type: String,
   }
 });
 
-const isLoaded = ref(false);
-const onImgLoaded = () => {
+const handleImageBroken = () => {
+  isImageBroken.value = true;
   isLoaded.value = true;
 }
 </script>

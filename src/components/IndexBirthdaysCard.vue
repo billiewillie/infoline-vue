@@ -21,6 +21,7 @@
         </div>
         <div class="birthdays-avatar overflow-hidden">
           <TheImage
+              :fallback="PlaceholderPerson"
               :image="`https://users.trifonov.space/images/users/${item.login}/gallery_1.webp`"
               alt="alt"/>
         </div>
@@ -37,6 +38,7 @@
 <script setup>
 import IconBirthday from '@/components/icons/IconBirthday.vue';
 import {getMonthName} from '@/functions/getMonthName';
+import PlaceholderPerson from "@/assets/img/person-fallback.webp";
 
 import {useRootStore} from "@/stores/birthdaysStore";
 import {storeToRefs} from "pinia";
