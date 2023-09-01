@@ -241,4 +241,9 @@ const isBirthday = (item) => {
 .active .icon {
   display: flex;
 }
+
+.icon svg {
+  width: 18px;
+  height: 18px;
+}
 </style>

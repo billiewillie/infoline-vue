@@ -44,7 +44,7 @@ const handleImageBroken = () => {
   position: relative;
   height: 100%;
   animation: skeleton 1s linear infinite alternate;
-  animation-delay: 0.2s;
+  animation-delay: 0.1s;
 }
 
 img {
@@ -60,7 +60,7 @@ img {
   height: 100%;
   z-index: 1;
   backdrop-filter: blur(30px);
-  transition: backdrop-filter 0.5s ease-in-out;
+  transition: backdrop-filter 0.3s ease-in-out;
 }
 
 .cover.loaded {
