@@ -50,7 +50,17 @@
             </div>
             <p class="title">{{ event.title }}</p>
           </header>
-          <div class="item-content" v-if="event.url">
+          <div class="item-content">
+            <div class="item-content__block">
+              <div class="item__content__block-row">
+                <div class="item-detail">
+                  <div class="icon">
+                    <IconCalendarBlue/>
+                  </div>
+                  <span class="text">{{ new Date(event.date_start).getDate() }} {{ getMonthName(new Date(event.date_start).getMonth() + 1) }} - {{ new Date(event.date_end).getDate() }} {{ getMonthName(new Date(event.date_end).getMonth() + 1) }}</span>
+                </div>
+              </div>
+            </div>
             <div class="item-content__block">
               <div class="item-detail" v-if="event.url">
                 <router-link :to="`${event.url}`" class="link">Подробнее</router-link>
@@ -82,7 +92,17 @@
             </div>
             <p class="title">{{ event.title }}</p>
           </header>
-          <div class="item-content" v-if="event.url">
+          <div class="item-content">
+            <div class="item-content__block">
+              <div class="item__content__block-row">
+                <div class="item-detail">
+                  <div class="icon">
+                    <IconCalendarBlue/>
+                  </div>
+                  <span class="text">{{ new Date(event.date_start).getDate() }} {{ getMonthName(new Date(event.date_start).getMonth() + 1) }} - {{ new Date(event.date_end).getDate() }} {{ getMonthName(new Date(event.date_end).getMonth() + 1) }}</span>
+                </div>
+              </div>
+            </div>
             <div class="item-content__block">
               <template v-if="event.url">
                 <router-link :to="`${event.url}`" class="link">Подробнее</router-link>
@@ -472,7 +492,7 @@ h2.title {
   align-items: center;
   font-size: 14px;
   color: var(--blue-dark);
-  width: 50%;
+  line-height: 1;
 
   @media (min-width: 1280px) {
     font-size: 11px;
