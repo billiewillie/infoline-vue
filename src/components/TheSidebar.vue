@@ -2,16 +2,16 @@
   <Transition name="slide-sidebar" appear>
     <aside class="aside">
       <DocsNav :withIcons="true"/>
-<!--      <transition name="fade">-->
-<!--        <div class="button-up" v-show="isOpen" @click="clickUp">-->
-<!--          <div class="button-container">-->
-<!--            <div class="icon">-->
-<!--              <IconArrow/>-->
-<!--            </div>-->
-<!--            <span>наверх</span>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </transition>-->
+      <transition name="fade">
+        <div class="button-up" v-show="isOpen" @click="clickUp">
+          <div class="button-container">
+            <div class="icon">
+              <IconArrow/>
+            </div>
+            <span>наверх</span>
+          </div>
+        </div>
+      </transition>
     </aside>
   </Transition>
 </template>

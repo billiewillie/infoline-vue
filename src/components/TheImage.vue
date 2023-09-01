@@ -1,6 +1,8 @@
 <template>
   <div class="image">
-    <div class="cover" :class="isLoaded ? 'loaded' : ''"></div>
+    <div
+        class="cover"
+        :class="isLoaded ? 'loaded' : ''"></div>
     <img
         @load="isLoaded = true"
         @error="handleImageBroken"
