@@ -75,8 +75,8 @@ h2.title {
   font-size: 26px;
   font-weight: 700;
   color: var(--blue-dark);
-  height: 100%;
   display: flex;
+  height: 100%;
   align-items: center;
   justify-content: center;
   padding-top: 30px;

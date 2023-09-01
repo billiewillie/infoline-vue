@@ -41,6 +41,7 @@
                   <div class="search-results__avatar rounded shadow overflow-hidden">
                     <TheImage
                         alt="search"
+                        :fallback="PlaceholderPerson"
                         :image="`https://users.trifonov.space/images/users/${user.login}/avatar.webp`"/>
                   </div>
                   <div class="search-results__description">
@@ -132,6 +133,7 @@ import IconClose from "@/components/icons/IconClose.vue";
 import IconArrow from "@/components/icons/IconArrow.vue";
 import {nextTick, ref} from "vue";
 import imageWeb from "@/assets/img/news-cover-search.webp";
+import PlaceholderPerson from "@/assets/img/person-fallback.webp";
 
 import TheImage from "@/components/TheImage.vue";
 import axios from "axios";
