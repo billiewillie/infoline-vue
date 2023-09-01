@@ -14,6 +14,7 @@
     <div
         class="search-overlay"
         v-show="isActive === true"
+        @keydown.esc="$emit('toggleStatus', false);clearSearchValue()"
         @click="$emit('toggleStatus', false);clearSearchValue()">
       <div class="container">
         <transition name="search-header">
@@ -25,8 +26,8 @@
                 v-model="searchValue"
                 ref="searchInput"/>
             <span class="search-icon" @click="clearSearchValue()">
-            <IconClose/>
-          </span>
+              <IconClose/>
+            </span>
           </header>
         </transition>
         <main class="search-main" v-if="isShownResultsList">
@@ -128,15 +129,14 @@
 </template>
 
 <script setup>
+import axios from "axios";
+import {nextTick, ref} from "vue";
 import IconLoop from "@/components/icons/IconLoop.vue";
 import IconClose from "@/components/icons/IconClose.vue";
 import IconArrow from "@/components/icons/IconArrow.vue";
-import {nextTick, ref} from "vue";
 import imageWeb from "@/assets/img/news-cover-search.webp";
 import PlaceholderPerson from "@/assets/img/person-fallback.webp";
-
 import TheImage from "@/components/TheImage.vue";
-import axios from "axios";
 import IconDoc from "@/components/icons/IconDoc.vue";
 import IconDocSearch from "@/components/icons/IconDocSearch.vue";
 
