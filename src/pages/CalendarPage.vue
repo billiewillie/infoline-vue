@@ -40,7 +40,7 @@
             <div class="icon">
               <IconMarker/>
             </div>
-            <p>{{ activeCountry }} {{ event.city }}</p>
+            <p>{{ activeCountry }}, {{ event.city }}</p>
           </div>
           <header class="item-header">
             <div class="icon">
@@ -82,7 +82,7 @@
             <div class="icon">
               <IconMarker/>
             </div>
-            <p>{{ activeCountry }} {{ event.city }}</p>
+            <p>{{ activeCountry }}, {{ event.city }}</p>
           </div>
           <header class="item-header">
             <div class="icon">
