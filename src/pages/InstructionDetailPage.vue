@@ -16,6 +16,7 @@
           <a :href="`https://instructions.trifonov.space/${instruction.media?.documents[0]?.url}`" download>Скачать
             инструкцию</a>
         </div>
+        <p v-else>Инструкция скоро будет</p>
       </div>
     </div>
   </div>

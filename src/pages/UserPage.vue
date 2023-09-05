@@ -17,6 +17,7 @@
       </Swiper>
     </div>
     <header class="user-header shadow rounded">
+      <router-link to="/users/belinovich">belinovich</router-link>
       <div class="user-name">
         <span class="user-name__surname">{{ user.lastname }}</span>
         <span class="user-name__name">{{ user.firstname }} {{ user.middlename }}</span>
@@ -140,13 +141,16 @@ import IconMail from "@/components/icons/IconMail.vue";
 import IconCopy from "@/components/icons/IconCopy.vue";
 import {useRootStore} from "@/stores/usersStore";
 import {storeToRefs} from "pinia";
-import {useRoute} from "vue-router";
+import {onBeforeRouteUpdate, useRoute} from "vue-router";
 import TheImage from "@/components/TheImage.vue";
 import PlaceholderPerson from "@/assets/img/profile-fallback.svg";
+import {onMounted, ref} from "vue";
+import axios from "axios";
 
 const params = useRoute().params;
 const toast = useToast();
 const modules = [Navigation];
+const user = ref({});
 
 const isBDay = () => {
   const date = new Date();
@@ -167,9 +171,31 @@ const copyPhone = (phone) => {
   })
 }
 
-const usersStore = useRootStore();
-usersStore.getUser(params.id);
-const {user} = storeToRefs(usersStore);
+// const usersStore = useRootStore();
+// usersStore.getUser(params.id);
+// const {user} = storeToRefs(usersStore);
+
+onMounted(() => {
+  axios
+      .get(`https://users.trifonov.space/api/show/user/${params.id}`)
+      .then(res => {
+        user.value = res.data;
+      })
+      .catch(err => {
+        console.log(err);
+      })
+})
+
+onBeforeRouteUpdate((to) => {
+  axios
+      .get(`https://users.trifonov.space/api/show/user/${to.params.id}`)
+      .then(res => {
+        user.value = res.data;
+      })
+      .catch(err => {
+        console.log(err);
+      })
+});
 </script>
 
 <style scoped>

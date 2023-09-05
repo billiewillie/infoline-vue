@@ -1,5 +1,5 @@
 import {defineStore} from "pinia";
-import {ref, shallowRef} from "vue";
+import {ref} from "vue";
 import axios from "axios";
 
 export const useRootStore = defineStore(
