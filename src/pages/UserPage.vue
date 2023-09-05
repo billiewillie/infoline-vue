@@ -68,23 +68,27 @@
         <div class="user-contacts__column-value">
           <span>Мобильный: </span>
         </div>
-        <div class="user-contacts__column-value phone-value">
+        <div
+            v-if="phones.length > 0"
+            class="user-contacts__column-value phone-value">
           <template
-              v-for="item in user.companies"
-              :key="item.id">
-            <template v-if="item.department.phone">
-              <div class="user-contacts__column-value-row">
-                <div class="user-contacts__column-value">
-                  <a :href="`tel:${item.department.phone}`">{{ formatPhoneNumber(item.department.phone) }}</a>
-                </div>
-                <span class="icon icon-copy">
-                  <IconCopy @click="copyPhone(item.department.phone)"/>
+              v-for="(item, index) in phones"
+              :key="`${item}_${index}`">
+            <div class="user-contacts__column-value-row">
+              <div class="user-contacts__column-value">
+                <a :href="`tel:${item}`">{{ formatPhoneNumber(item) }}</a>
+              </div>
+              <span class="icon icon-copy">
+                  <IconCopy @click="copyPhone(item)"/>
                   <span class="tooltip">Копировать</span>
                 </span>
-              </div>
-            </template>
-            <span v-else>Нет</span>
+            </div>
           </template>
+        </div>
+        <div
+            v-else
+            class="user-contacts__column-value phone-value">
+          <span>Нет</span>
         </div>
       </div>
     </div>
@@ -154,6 +158,7 @@ const toast = useToast();
 const modules = [Navigation];
 const user = ref({});
 const isRendered = ref(true);
+const phones = ref([]);
 
 const updateComponent = async () => {
   isRendered.value = false;
@@ -180,15 +185,14 @@ const copyPhone = (phone) => {
   })
 }
 
-// const usersStore = useRootStore();
-// usersStore.getUser(params.id);
-// const {user} = storeToRefs(usersStore);
-
 onMounted(() => {
   axios
       .get(`https://users.trifonov.space/api/show/user/${params.id}`)
       .then(res => {
         user.value = res.data;
+        phones.value = res.data.companies
+            .map(item => item?.department?.phone)
+            .filter(item => item.length > 0);
       })
       .catch(err => {
         console.log(err);
@@ -200,6 +204,9 @@ onBeforeRouteUpdate((to) => {
       .get(`https://users.trifonov.space/api/show/user/${to.params.id}`)
       .then(res => {
         user.value = res.data;
+        phones.value = res.data.companies
+            .map(item => item?.department?.phone)
+            .filter(item => item.length > 0);
         updateComponent();
       })
       .catch(err => {
