@@ -163,7 +163,6 @@ const setSearchValue = async (e) => {
         .catch((err) => {
           console.log(err);
         })
-    console.log(data.value);
     isShownResultsList.value = true;
   }
 };

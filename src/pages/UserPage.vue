@@ -11,19 +11,21 @@
           <TheImage
               :alt="`${user.firstname} ${user.lastname}`"
               :fallback="PlaceholderPerson"
+              v-if="isRendered"
               :image="`https://users.trifonov.space/images/users/${user.login}/gallery_${i}.webp`"
           />
         </SwiperSlide>
       </Swiper>
     </div>
     <header class="user-header shadow rounded">
-      <router-link to="/users/belinovich">belinovich</router-link>
       <div class="user-name">
         <span class="user-name__surname">{{ user.lastname }}</span>
         <span class="user-name__name">{{ user.firstname }} {{ user.middlename }}</span>
       </div>
       <div class="user-birthday">
-        <span class="icon rounded" v-if="isBDay()">
+        <span
+            class="icon rounded"
+            v-if="isBDay()">
           <IconBirthday/>
         </span>
         <span class="user-birthday__column-title">День рождения: </span>
@@ -144,13 +146,20 @@ import {storeToRefs} from "pinia";
 import {onBeforeRouteUpdate, useRoute} from "vue-router";
 import TheImage from "@/components/TheImage.vue";
 import PlaceholderPerson from "@/assets/img/profile-fallback.svg";
-import {onMounted, ref} from "vue";
+import {onMounted, ref, nextTick} from "vue";
 import axios from "axios";
 
 const params = useRoute().params;
 const toast = useToast();
 const modules = [Navigation];
 const user = ref({});
+const isRendered = ref(true);
+
+const updateComponent = async () => {
+  isRendered.value = false;
+  await nextTick();
+  isRendered.value = true;
+};
 
 const isBDay = () => {
   const date = new Date();
@@ -191,6 +200,7 @@ onBeforeRouteUpdate((to) => {
       .get(`https://users.trifonov.space/api/show/user/${to.params.id}`)
       .then(res => {
         user.value = res.data;
+        updateComponent();
       })
       .catch(err => {
         console.log(err);
