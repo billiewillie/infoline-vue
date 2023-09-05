@@ -93,6 +93,7 @@ const {
 
   @media (min-width: 1280px) {
     gap: 48px;
+    padding: 20px 36px;
     grid-template-columns: repeat(2, 1fr);
   }
 

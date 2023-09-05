@@ -197,7 +197,7 @@ onMounted(() => {
       .catch(err => {
         console.log(err);
       })
-})
+});
 
 onBeforeRouteUpdate((to) => {
   axios
