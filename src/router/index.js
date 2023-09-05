@@ -28,7 +28,7 @@ const routes = [
             default: () => import('@/pages/LoginPage.vue'),
         },
         beforeEnter: () => {
-            if(localStorage.getItem('isLoggedIn') === '1') {
+            if (localStorage.getItem('isLoggedIn') === '1') {
                 return {
                     path: '/'
                 }
@@ -61,18 +61,18 @@ const routes = [
         beforeEnter: getLoginPage
     },
     {
-        path: '/about',
+        path: '/news/:id',
         components: {
-            default: () => import('@/pages/AboutPage.vue'),
+            default: () => import('@/pages/NewsDetailPage.vue'),
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },
         beforeEnter: getLoginPage
     },
     {
-        path: '/news/:id',
+        path: '/about',
         components: {
-            default: () => import('@/pages/NewsDetailPage.vue'),
+            default: () => import('@/pages/AboutPage.vue'),
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },
@@ -152,8 +152,6 @@ const routes = [
     },
     {
         path: '/instructions/:id',
-        name: 'Instruction',
-        props: true,
         components: {
             default: () => import('@/pages/InstructionDetailPage.vue'),
             Header: () => import('@/components/TheHeader.vue'),

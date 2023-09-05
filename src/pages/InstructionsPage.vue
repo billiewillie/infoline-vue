@@ -1,22 +1,3 @@
-<script setup>
-import TheTabs from "@/components/TheTabs.vue";
-
-import {useRootStore} from "@/stores/instructionsStore";
-import {storeToRefs} from "pinia";
-
-const instructionsStore = useRootStore();
-instructionsStore.getInstructions();
-
-const {
-  departmentsList,
-  departmentsTitles,
-  activeDepartment,
-  categoriesTitles,
-  activeCategory,
-  activeTypesList
-} = storeToRefs(instructionsStore);
-</script>
-
 <template>
   <div class="basepage default-page">
     <h1 class="title">Инструкции</h1>
@@ -61,6 +42,25 @@ const {
     </div>
   </div>
 </template>
+
+<script setup>
+import TheTabs from "@/components/TheTabs.vue";
+import {useRootStore} from "@/stores/instructionsStore";
+import {storeToRefs} from "pinia";
+
+const instructionsStore = useRootStore();
+instructionsStore.getInstructions();
+
+const {
+  departmentsList,
+  departmentsTitles,
+  activeDepartment,
+  categoriesTitles,
+  activeCategory,
+  activeTypesList
+} = storeToRefs(instructionsStore);
+
+</script>
 
 <style scoped>
 .content {

@@ -150,8 +150,7 @@ const modules = [Navigation];
 
 const isBDay = () => {
   const date = new Date();
-  return date.getDate() === user.value.day
-      && date.getMonth() + 1 === user.value.month;
+  return date.getDate() === user.value.day && date.getMonth() + 1 === user.value.month;
 };
 
 const copyMail = (email) => {
@@ -159,7 +158,7 @@ const copyMail = (email) => {
   toast.success('скопировано', {
     timeout: 2000
   })
-}
+};
 
 const copyPhone = (phone) => {
   navigator.clipboard.writeText(`+${phone}`);
