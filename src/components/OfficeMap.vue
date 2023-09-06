@@ -31,13 +31,7 @@ import Floor3 from "@/assets/img/floor-3.svg";
 const props = defineProps({
   location: {
     type: Object,
-    default: {
-      country: "Россия",
-      city: "Санкт-Петербург",
-      street: "ул. Профессора Попова",
-      floor: 1,
-      office: 122
-    }
+    default: {},
   },
   isMapShow: {
     type: Boolean,
