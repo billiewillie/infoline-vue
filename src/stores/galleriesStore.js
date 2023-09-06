@@ -81,20 +81,20 @@ export const useRootStore = defineStore(
         }
 
         return {
-            galleries,
-            gallery,
-            galleryImgs,
             years,
-            galleriesIndexPage,
+            gallery,
+            galleries,
+            activeYear,
+            galleryLink,
+            galleryImgs,
             galleryTitle,
             activeGalleries,
-            galleryLink,
-            activeYear,
+            galleriesIndexPage,
             getGalleriesIndexPage,
             setGalleryTitle,
             setGalleryLink,
-            getGalleries,
             setActiveYear,
+            getGalleries,
             getGallery
         }
     })

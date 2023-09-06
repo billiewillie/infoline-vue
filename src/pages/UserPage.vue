@@ -109,7 +109,7 @@
             <span class="user-position__column-title">Компания: </span>
             <span class="user-position__column-value">{{ item.title }}</span>
           </div>
-          <div class="user-position__row">
+          <div class="user-position__row" v-if="item.department.title">
             <span class="user-position__column-title">Отдел: </span>
             <router-link :to="`/departments/advertising`" class="user-position__column-value">
               {{ item.department.title }}
@@ -127,31 +127,46 @@
       </Swiper>
     </div>
     <div class="user-location shadow rounded">
-      <img src="@/assets/img/map.jpg" alt="map">
+      <header class="user-location__header">
+        <div class="left">
+          <span>этаж <b>{{ user?.location?.floor }}</b></span>,
+          <span>кабинет <b>{{ user?.location?.office }}</b></span>
+        </div>
+        <div
+            class="icon"
+            v-if="user?.location?.city === 'Санкт-Петербург'"
+            @click="isMapShow = true">
+          <IconExpand/>
+        </div>
+      </header>
     </div>
+    <OfficeMap
+        :location="user?.location"
+        @closeMap="closeMap"
+        :isMapShow="isMapShow" />
   </div>
 </template>
 
 <script setup>
+import 'swiper/css';
+import 'swiper/css/navigation';
 import {Navigation} from 'swiper';
+import "vue-toastification/dist/index.css";
+import {useToast} from "vue-toastification";
 import {Swiper, SwiperSlide} from 'swiper/vue';
 import {getMonthName} from "@/functions/getMonthName";
 import {formatPhoneNumber} from "@/functions/formatPhoneNumber";
-import {useToast} from "vue-toastification";
-import "vue-toastification/dist/index.css";
-import 'swiper/css';
-import 'swiper/css/navigation';
 import IconBirthday from "@/components/icons/IconBirthday.vue";
 import IconPhone from "@/components/icons/IconPhone.vue";
 import IconMail from "@/components/icons/IconMail.vue";
 import IconCopy from "@/components/icons/IconCopy.vue";
-import {useRootStore} from "@/stores/usersStore";
-import {storeToRefs} from "pinia";
 import {onBeforeRouteUpdate, useRoute} from "vue-router";
 import TheImage from "@/components/TheImage.vue";
 import PlaceholderPerson from "@/assets/img/profile-fallback.svg";
 import {onMounted, ref, nextTick} from "vue";
 import axios from "axios";
+import IconExpand from "@/components/icons/IconExpand.vue";
+import OfficeMap from "@/components/OfficeMap.vue";
 
 const params = useRoute().params;
 const toast = useToast();
@@ -159,6 +174,8 @@ const modules = [Navigation];
 const user = ref({});
 const isRendered = ref(true);
 const phones = ref([]);
+const isMapShow = ref(false);
+
 
 const updateComponent = async () => {
   isRendered.value = false;
@@ -185,6 +202,10 @@ const copyPhone = (phone) => {
   })
 }
 
+const closeMap = () => {
+  isMapShow.value = false;
+}
+
 onMounted(() => {
   axios
       .get(`https://users.trifonov.space/api/show/user/${params.id}`)
@@ -204,6 +225,7 @@ onBeforeRouteUpdate((to) => {
       .get(`https://users.trifonov.space/api/show/user/${to.params.id}`)
       .then(res => {
         user.value = res.data;
+        isMapShow.value = false;
         phones.value = res.data.companies
             .map(item => item?.department?.phone)
             .filter(item => item.length > 0);
@@ -229,7 +251,7 @@ onBeforeRouteUpdate((to) => {
     gap: 16px;
   }
 
-  @media (min-width: 1920px) {
+  @media (min-width: 1900px) {
     gap: 20px;
   }
 }
@@ -262,7 +284,7 @@ onBeforeRouteUpdate((to) => {
     padding: 30px 40px;
   }
 
-  @media (min-width: 1920px) {
+  @media (min-width: 1900px) {
     row-gap: 20px;
     padding: 50px 64px;
   }
@@ -278,7 +300,7 @@ onBeforeRouteUpdate((to) => {
     font-size: 40px;
   }
 
-  @media (min-width: 1920px) {
+  @media (min-width: 1900px) {
     font-size: 66px;
     min-height: 160px;
   }
@@ -378,7 +400,7 @@ onBeforeRouteUpdate((to) => {
     padding: 40px 44px;
   }
 
-  @media (min-width: 1920px) {
+  @media (min-width: 1900px) {
     padding: 60px 64px;
   }
 }
@@ -409,7 +431,7 @@ onBeforeRouteUpdate((to) => {
     font-size: 12px;
   }
 
-  @media (min-width: 1920px) {
+  @media (min-width: 1900px) {
     font-size: 16px;
   }
 }
@@ -444,7 +466,7 @@ a.user-position__column-value {
     padding: 30px 44px;
   }
 
-  @media (min-width: 1920px) {
+  @media (min-width: 1900px) {
     padding: 60px 64px;
   }
 }
@@ -465,7 +487,7 @@ a.user-position__column-value {
     font-size: 12px;
   }
 
-  @media (min-width: 1920px) {
+  @media (min-width: 1900px) {
     font-size: 19px;
   }
 }
@@ -479,7 +501,7 @@ a.user-position__column-value {
     font-size: 12px;
   }
 
-  @media (min-width: 1920px) {
+  @media (min-width: 1900px) {
     font-size: 19px;
   }
 }
@@ -515,5 +537,36 @@ a.user-position__column-value {
 .user-contacts__column-value-row {
   display: flex;
   column-gap: 10px;
+}
+
+.user-location__header {
+  z-index: 3;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  background-color: var(--blue-dark);
+  -webkit-border-radius: 3px 3px 0 0;
+  -moz-border-radius: 3px 3px 0 0;
+  border-radius: 3px 3px 0 0;
+  padding: 0 0 0 10px;
+  height: 32px;
+  font-size: 16px;
+}
+
+.user-location__header .icon {
+  width: 32px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--blue-light);
+  cursor: pointer;
+}
+
+.user-location__header .icon svg {
+  width: 24px;
+  height: 24px;
 }
 </style>

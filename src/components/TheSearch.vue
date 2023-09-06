@@ -239,15 +239,15 @@ const setInputFocused = () => {
 
 .search-overlay {
   position: fixed;
+  display: flex;
   top: 0;
   left: 0;
   right: 0;
-  display: flex;
-  justify-content: center;
-  z-index: 2;
-  background-color: rgba(0, 0, 0, 0.61);
+  z-index: 20;
   width: 100vw;
   height: 100vh;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.61);
   backdrop-filter: blur(10px);
   transition: backdrop-filter 0.3s ease-in-out;
 }

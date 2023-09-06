@@ -59,7 +59,6 @@ const {
   activeCategory,
   activeTypesList
 } = storeToRefs(instructionsStore);
-
 </script>
 
 <style scoped>
@@ -110,10 +109,10 @@ const {
 
 .docs {
   display: flex;
-  flex-direction: column;
   row-gap: 10px;
-  padding: 0 10px 0 30px;
   list-style: disc;
+  flex-direction: column;
+  padding: 0 10px 0 30px;
 }
 
 .docs__item::marker {
