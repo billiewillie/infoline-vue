@@ -373,7 +373,7 @@ const setFloorImage = () => {
   position: absolute;
   left: 50%;
   top: 80px;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .map-overlay .text.hidden {
