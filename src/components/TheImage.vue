@@ -18,9 +18,9 @@
 
 <script setup>
 import {ref} from "vue";
+
 const isLoaded = ref(false);
 const isImageBroken = ref(false);
-
 const props = defineProps({
   image: {
     type: String,

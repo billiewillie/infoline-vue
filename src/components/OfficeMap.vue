@@ -33,7 +33,11 @@
             class="spot"
             :style="{top: `${spot.yLg}px`,left: `${spot.xLg}px`}"
             v-for="spot in floors[location?.floor]">
-          <i class="icon" :style="{opacity: spot.number === location?.office ? 1 : 0}">
+          <i
+              class="icon"
+              :style="{
+                opacity: spot.number === location?.office && spot.floor === location?.floor ? 1 : 0
+              }">
             <IconPin/>
           </i>
           <span
@@ -76,6 +80,7 @@ const floors = {
   1: {
     113: {
       number: 113,
+      floor: 1,
       name: "Импорт",
       xLg: 160,
       yLg: 30,
@@ -84,6 +89,7 @@ const floors = {
     },
     115: {
       number: 115,
+      floor: 1,
       name: "Отдел персонала",
       xLg: 410,
       yLg: 10,
@@ -92,6 +98,7 @@ const floors = {
     },
     116: {
       number: 116,
+      floor: 1,
       name: "Отдел закупок",
       xLg: 530,
       yLg: 170,
@@ -100,6 +107,7 @@ const floors = {
     },
     122: {
       number: 122,
+      floor: 1,
       name: "Отдел рекламы",
       xLg: 980,
       yLg: 160,
@@ -108,6 +116,7 @@ const floors = {
     },
     126: {
       number: 126,
+      floor: 1,
       name: "Заруцкий Д.М.",
       xLg: 803,
       yLg: 440,
@@ -116,6 +125,7 @@ const floors = {
     },
     127: {
       number: 127,
+      floor: 1,
       name: "Техсервис",
       xLg: 660,
       yLg: 400,
@@ -124,6 +134,7 @@ const floors = {
     },
     129: {
       number: 129,
+      floor: 1,
       name: "Коденюк В.А.",
       xLg: 520,
       yLg: 320,
@@ -132,6 +143,7 @@ const floors = {
     },
     128: {
       number: 128,
+      floor: 1,
       name: "Логистика",
       xLg: 490,
       yLg: 440,
@@ -140,6 +152,7 @@ const floors = {
     },
     130: {
       number: 130,
+      floor: 1,
       name: "Шубаев П.А.",
       xLg: 380,
       yLg: 440,
@@ -148,6 +161,7 @@ const floors = {
     },
     131: {
       number: 131,
+      floor: 1,
       name: "Учебная комната",
       xLg: 180,
       yLg: 440,
@@ -158,14 +172,16 @@ const floors = {
   2: {
     201: {
       number: 201,
+      floor: 2,
       name: "Главные бухгалтеры",
       xLg: 25,
       yLg: 290,
-      xLgDecreased: 290,
+      xLgDecreased: 0,
       yLgDecreased: 25,
     },
     204: {
       number: 204,
+      floor: 2,
       name: "Бухгалтерия БС",
       xLg: 25,
       yLg: 290,
@@ -174,6 +190,7 @@ const floors = {
     },
     205: {
       number: 205,
+      floor: 2,
       name: "Бухгалтерия БЛ",
       xLg: 25,
       yLg: 290,
@@ -182,6 +199,7 @@ const floors = {
     },
     207: {
       number: 207,
+      floor: 2,
       name: "Ген. дир. БС",
       xLg: 25,
       yLg: 290,
@@ -189,63 +207,71 @@ const floors = {
       yLgDecreased: 25,
     },
     208: {
-      number: 201,
+      number: 208,
+      floor: 2,
       name: "Ген. дир. Семенов А.В.",
-      xLg: 25,
-      yLg: 290,
-      xLgDecreased: 290,
-      yLgDecreased: 25,
+      xLg: 520,
+      yLg: 180,
+      xLgDecreased: -350,
+      yLgDecreased: 100,
     },
     209: {
       number: 209,
+      floor: 2,
       name: "Помощник ген. директора",
-      xLg: 25,
-      yLg: 290,
-      xLgDecreased: 290,
+      xLg: 591,
+      yLg: 180,
+      xLgDecreased: -250,
       yLgDecreased: 25,
     },
     210: {
       number: 210,
+      floor: 2,
       name: "IT отдел",
-      xLg: 25,
-      yLg: 290,
-      xLgDecreased: 290,
+      xLg: 680,
+      yLg: 180,
+      xLgDecreased: -260,
       yLgDecreased: 25,
     },
     211: {
       number: 201,
+      floor: 2,
       name: "Гвоздарев А.",
-      xLg: 25,
-      yLg: 290,
+      xLg: 745,
+      yLg: 180,
       xLgDecreased: 290,
       yLgDecreased: 25,
     },
     212: {
       number: 212,
-      name: "IT отдела",
-      xLg: 25,
-      yLg: 290,
+      floor: 2,
+      name: "IT отдел",
+      xLg: 820,
+      yLg: 180,
       xLgDecreased: 290,
       yLgDecreased: 25,
     },
     213: {
       number: 213,
+      floor: 2,
       name: "Гусева Н.К.",
-      xLg: 25,
-      yLg: 290,
+      xLg: 896,
+      yLg: 180,
       xLgDecreased: 290,
       yLgDecreased: 25,
     },
     214: {
       number: 214,
+      floor: 2,
       name: "Юридический отдел",
-      xLg: 25,
-      yLg: 290,
+      xLg: 980,
+      yLg: 180,
       xLgDecreased: 290,
       yLgDecreased: 25,
     },
     224: {
       number: 224,
+      floor: 2,
       name: "Регистрация",
       xLg: 25,
       yLg: 290,
@@ -254,6 +280,7 @@ const floors = {
     },
     225: {
       number: 225,
+      floor: 2,
       name: "Отдел продукции для материнства и детства",
       xLg: 25,
       yLg: 290,
@@ -262,6 +289,7 @@ const floors = {
     },
     226: {
       number: 226,
+      floor: 2,
       name: "Финанс. отдел",
       xLg: 25,
       yLg: 290,
@@ -270,6 +298,7 @@ const floors = {
     },
     227: {
       number: 227,
+      floor: 2,
       name: "Абрамов М.Н.",
       xLg: 25,
       yLg: 290,
@@ -278,6 +307,7 @@ const floors = {
     },
     228: {
       number: 228,
+      floor: 2,
       name: "Экономич. отдел",
       xLg: 25,
       yLg: 290,
@@ -286,6 +316,7 @@ const floors = {
     },
     229: {
       number: 229,
+      floor: 2,
       name: "Каюкова Л.Л.",
       xLg: 25,
       yLg: 290,
@@ -294,6 +325,7 @@ const floors = {
     },
     230: {
       number: 230,
+      floor: 2,
       name: "ОКП",
       xLg: 25,
       yLg: 290,
@@ -302,6 +334,7 @@ const floors = {
     },
     231: {
       number: 231,
+      floor: 2,
       name: "Тендерный отдел",
       xLg: 25,
       yLg: 290,
@@ -431,7 +464,7 @@ const setFloorImage = () => {
   @media (min-width: 1920px) {
     bottom: 20px;
     right: 20px;
-    height: 32%;
+    height: 31%;
   }
 }
 
