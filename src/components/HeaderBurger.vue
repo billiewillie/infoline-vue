@@ -107,7 +107,7 @@ const props = defineProps({
   width: 100%;
   height: 100%;
   background-color: var(--blue-dark);
-  z-index: 2;
+  z-index: 3;
   opacity: 0;
   visibility: hidden;
   transition: visibility .3s ease-in-out, opacity .3s ease-in-out, left .3s ease-in-out;

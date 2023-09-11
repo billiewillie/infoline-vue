@@ -42,7 +42,7 @@
           <IconPhone/>
         </span>
         <div class="user-contacts__column-value">
-          <span>Местный телефон: </span>
+          <span>Местный тел: </span>
           <span v-if="user.localphone && user.localphone > 0">{{ user.localphone }}</span>
           <span v-else>Нет</span>
         </div>
@@ -52,7 +52,7 @@
           <IconMail/>
         </span>
         <div class="user-contacts__column-value">
-          <span>Эл. почта: </span>
+          <span>Email: </span>
           <a v-if="user.email && user.email.length > 0" :href="`mailto:${user.email}`">{{ user.email }}</a>
           <span v-else>Нет</span>
         </div>
@@ -66,7 +66,7 @@
           <IconPhone/>
         </span>
         <div class="user-contacts__column-value">
-          <span>Мобильный: </span>
+          <span>Моб: </span>
         </div>
         <div
             v-if="phones.length > 0"
@@ -98,12 +98,16 @@
           :slides-per-view="1"
           navigation
           loop
-          v-if="user.companies"
-      >
+          v-if="user.companies">
         <SwiperSlide v-for="item in user.companies" :key="item.id">
           <div class="user-position__row">
             <span class="user-position__column-title">Регион/ДП: </span>
-            <span class="user-position__column-value">{{ item.department.locations }}</span>
+            <router-link
+                v-if="item.department?.locations_url > 0"
+                :to="`/location/${item.department?.locations}`"
+                class="user-position__column-value">{{ item.department?.locations }}
+            </router-link>
+            <span class="user-position__column-value" v-else>{{ item.department.locations }}</span>
           </div>
           <div class="user-position__row">
             <span class="user-position__column-title">Компания: </span>
@@ -126,29 +130,13 @@
         </SwiperSlide>
       </Swiper>
     </div>
-    <div class="user-location shadow rounded">
-      <header class="user-location__header">
-        <div class="left">
-          <span>этаж <b>{{ user?.location?.floor }}</b></span>,
-          <span>кабинет <b>{{ user?.location?.office }}</b></span>
-        </div>
-        <div
-            class="icon"
-            v-if="user?.location?.city === 'Санкт-Петербург'"
-            @click="isMapShow = true">
-          <IconExpand/>
-        </div>
-      </header>
-    </div>
-    <OfficeMap
-        :location="user?.location"
-        @closeMap="closeMap"
-        :isMapShow="isMapShow" />
+    <OfficeMap :location="user?.location"/>
   </div>
 </template>
 
 <script setup>
 import 'swiper/css';
+import axios from "axios";
 import 'swiper/css/navigation';
 import {Navigation} from 'swiper';
 import "vue-toastification/dist/index.css";
@@ -164,8 +152,6 @@ import {onBeforeRouteUpdate, useRoute} from "vue-router";
 import TheImage from "@/components/TheImage.vue";
 import PlaceholderPerson from "@/assets/img/profile-fallback.svg";
 import {onMounted, ref, nextTick} from "vue";
-import axios from "axios";
-import IconExpand from "@/components/icons/IconExpand.vue";
 import OfficeMap from "@/components/OfficeMap.vue";
 
 const params = useRoute().params;
@@ -175,7 +161,6 @@ const user = ref({});
 const isRendered = ref(true);
 const phones = ref([]);
 const isMapShow = ref(false);
-
 
 const updateComponent = async () => {
   isRendered.value = false;
@@ -200,10 +185,6 @@ const copyPhone = (phone) => {
   toast.success('скопировано', {
     timeout: 2000
   })
-}
-
-const closeMap = () => {
-  isMapShow.value = false;
 }
 
 onMounted(() => {
@@ -357,7 +338,7 @@ onBeforeRouteUpdate((to) => {
 .icon-copy {
   cursor: pointer;
   position: relative;
-  opacity: 0;
+  opacity: 1;
   transition: opacity .3s ease-in-out;
 }
 
@@ -373,10 +354,6 @@ onBeforeRouteUpdate((to) => {
 }
 
 .icon-copy:hover .tooltip {
-  opacity: 1;
-}
-
-.user-contacts__column:hover .icon-copy {
   opacity: 1;
 }
 
@@ -403,14 +380,6 @@ onBeforeRouteUpdate((to) => {
   @media (min-width: 1900px) {
     padding: 60px 64px;
   }
-}
-
-.user-location {
-  background-color: var(--white);
-}
-
-.user-location img {
-  object-fit: contain;
 }
 
 .user-position {
@@ -445,6 +414,7 @@ a.user-position__column-value {
 
 .user-position__row {
   display: flex;
+  align-items: baseline;
   column-gap: 20px;
 
   @media (min-width: 1280px) {
@@ -537,36 +507,5 @@ a.user-position__column-value {
 .user-contacts__column-value-row {
   display: flex;
   column-gap: 10px;
-}
-
-.user-location__header {
-  z-index: 3;
-  color: var(--white);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-  background-color: var(--blue-dark);
-  -webkit-border-radius: 3px 3px 0 0;
-  -moz-border-radius: 3px 3px 0 0;
-  border-radius: 3px 3px 0 0;
-  padding: 0 0 0 10px;
-  height: 32px;
-  font-size: 16px;
-}
-
-.user-location__header .icon {
-  width: 32px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--blue-light);
-  cursor: pointer;
-}
-
-.user-location__header .icon svg {
-  width: 24px;
-  height: 24px;
 }
 </style>

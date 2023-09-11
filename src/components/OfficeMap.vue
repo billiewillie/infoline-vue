@@ -1,15 +1,25 @@
 <template>
+  <div class="user-location shadow rounded">
+    <header class="user-location__header">
+      <div class="left">
+        <span>этаж <b>{{ location?.floor }}</b></span>,
+        <span>кабинет <b>{{ location?.office }}</b></span>
+      </div>
+      <div
+          class="icon"
+          v-if="location?.city === 'Санкт-Петербург'"
+          @click="isMapShow = true;scrollView(floors[location?.floor][location?.office].xLg)">
+        <IconExpand/>
+      </div>
+    </header>
+  </div>
   <div
       v-if="location?.city === 'Санкт-Петербург'"
       class="map-overlay"
       :class="{expand: isMapShow}">
-    <div class="map-container">
-      <div class="text" :class="{hidden: !isMapShow}" :style="{opacity: isMapShow ? 1 : 0}">
-        <h2 class="title">{{ location?.floor }} этаж</h2>
-        <div class="row">
-          <span>{{ location?.office }} кабинет</span>
-        </div>
-      </div>
+    <div
+        class="map-container"
+        ref="map">
       <div
           class="map"
           :style="{
@@ -36,42 +46,49 @@
     <div
         class="map-close"
         :class="{hidden: !isMapShow}"
-        @click="emit('closeMap')">x
+        @click="closeMap">
+      <span></span>
+      <span></span>
+    </div>
+    <div class="text"
+         :class="{hidden: !isMapShow}"
+         :style="{opacity: isMapShow ? 1 : 0}">
+      <h2 class="title">{{ location?.floor }} этаж</h2>
+      <div class="row">
+        <span>кабинет: </span><span>{{ location?.office }}</span>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import {ref} from "vue";
 import Floor1 from "@/assets/img/floor-1.svg";
 import Floor2 from "@/assets/img/floor-2.svg";
 import Floor3 from "@/assets/img/floor-3.svg";
 import IconPin from "@/components/icons/IconPin.vue";
+import IconExpand from "@/components/icons/IconExpand.vue";
+
+const map = ref(null);
+const isMapShow = ref(false);
 
 const floors = {
   1: {
-    106: {
-      number: 106,
-      name: "Кухня",
-      xLg: 25,
-      yLg: 290,
-      xLgDecreased: 290,
-      yLgDecreased: 25,
-    },
     113: {
       number: 113,
       name: "Импорт",
-      xLg: 170,
+      xLg: 160,
       yLg: 30,
-      xLgDecreased: 170,
-      yLgDecreased: 300,
+      xLgDecreased: 0,
+      yLgDecreased: 320,
     },
     115: {
       number: 115,
       name: "Отдел персонала",
       xLg: 410,
       yLg: 10,
-      xLgDecreased: 410,
-      yLgDecreased: 10,
+      xLgDecreased: -250,
+      yLgDecreased: 360,
     },
     116: {
       number: 116,
@@ -81,69 +98,61 @@ const floors = {
       xLgDecreased: -400,
       yLgDecreased: 170,
     },
-    118: {
-      number: 118,
-      name: "Комната для собеседований",
-      xLg: 658,
-      yLg: 170,
-      xLgDecreased: -520,
-      yLgDecreased: 170,
-    },
     122: {
       number: 122,
       name: "Отдел рекламы",
       xLg: 980,
       yLg: 160,
-      xLgDecreased: -980,
-      yLgDecreased: 160,
+      xLgDecreased: -900,
+      yLgDecreased: 180,
     },
     126: {
       number: 126,
       name: "Заруцкий Д.М.",
       xLg: 803,
       yLg: 440,
-      xLgDecreased: -673,
-      yLgDecreased: 440,
+      xLgDecreased: -630,
+      yLgDecreased: -350,
     },
     127: {
       number: 127,
       name: "Техсервис",
-      xLg: 675,
+      xLg: 660,
       yLg: 400,
-      xLgDecreased: -540,
-      yLgDecreased: 440,
+      xLgDecreased: -410,
+      yLgDecreased: -330,
     },
     129: {
       number: 129,
       name: "Коденюк В.А.",
       xLg: 520,
       yLg: 320,
-      xLgDecreased: -400,
-      yLgDecreased: 440,
+      xLgDecreased: -340,
+      yLgDecreased: -140,
     },
     128: {
       number: 128,
       name: "Логистика",
-      xLg: 495,
+      xLg: 490,
       yLg: 440,
-      xLgDecreased: -365,
-      yLgDecreased: 440,
+      xLgDecreased: -315,
+      yLgDecreased: -320,
     },
     130: {
       number: 130,
       name: "Шубаев П.А.",
       xLg: 380,
       yLg: 440,
-      xLgDecreased: -250,
-      yLgDecreased: 440,
+      xLgDecreased: -200,
+      yLgDecreased: -340,
     },
     131: {
       number: 131,
       name: "Учебная комната",
       xLg: 180,
       yLg: 440,
-      xLgDecreased: -250,
-      yLgDecreased: 440,
+      xLgDecreased: 0,
+      yLgDecreased: -400,
     }
   },
   2: {
@@ -302,18 +311,29 @@ const floors = {
   }
 }
 
+const closeMap = () => {
+  isMapShow.value = false;
+  setTimeout(() => {
+    map.value.scrollLeft = 0;
+  }, 400)
+}
+
 const props = defineProps({
   location: {
     type: Object,
     default: {},
-  },
-  isMapShow: {
-    type: Boolean,
-    default: false,
   }
 });
 
-const emit = defineEmits(['closeMap']);
+const scrollView = (value) => {
+  setTimeout(() => {
+    if (value > 200 && value < 600) {
+      map.value.scrollLeft += value / 2;
+    } else if (value > 600) {
+      map.value.scrollLeft += (value / 2 + 200);
+    }
+  }, 400)
+};
 
 const setFloorImage = () => {
   switch (props.location?.floor) {
@@ -328,6 +348,37 @@ const setFloorImage = () => {
 </script>
 
 <style>
+.user-location__header {
+  z-index: 3;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  background-color: var(--blue-dark);
+  -webkit-border-radius: 3px 3px 0 0;
+  -moz-border-radius: 3px 3px 0 0;
+  border-radius: 3px 3px 0 0;
+  padding: 0 0 0 10px;
+  height: 32px;
+  font-size: 16px;
+}
+
+.user-location__header .icon {
+  width: 32px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--blue-light);
+  cursor: pointer;
+}
+
+.user-location__header .icon svg {
+  width: 24px;
+  height: 24px;
+}
+
 .map-close {
   position: absolute;
   width: 30px;
@@ -335,6 +386,22 @@ const setFloorImage = () => {
   right: 30px;
   top: 30px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.map-close span {
+  position: absolute;
+  width: 30px;
+  height: 1px;
+  background-color: var(--black);
+  transform: rotate(45deg);
+  transform-origin: center center;
+}
+
+.map-close span:nth-child(2) {
+  transform: rotate(-45deg);
 }
 
 .map-close.hidden {
@@ -344,19 +411,27 @@ const setFloorImage = () => {
 .map-overlay {
   position: absolute;
   display: flex;
-  bottom: 16px;
-  right: 16px;
-  justify-content: center;
+  bottom: 10px;
+  right: 10px;
   z-index: 2;
-  background-color: var(--white);
-  width: calc(33% - 46px);
-  height: calc(30% - 10px);
+  height: 260px;
   overflow: hidden;
+  justify-content: center;
+  width: calc(100% - 20px);
+  background-color: var(--white);
   transition: all 0.3s ease-in-out;
+
+  @media (min-width: 1280px) {
+    width: calc(33% - 46px);
+    height: 33%;
+    bottom: 16px;
+    right: 16px;
+  }
 
   @media (min-width: 1920px) {
     bottom: 20px;
     right: 20px;
+    height: 32%;
   }
 }
 
@@ -367,13 +442,32 @@ const setFloorImage = () => {
   align-items: center;
   width: 100%;
   height: 100%;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
 }
 
 .map-overlay .text {
   position: absolute;
+  top: 30px;
   left: 50%;
-  top: 80px;
+  transform: translateX(-50%);
   transition: opacity 0.5s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+
+  @media (min-width: 1280px) {
+    top: 80px;
+    transform: none;
+  }
+
+  @media (min-width: 1920px) {
+    top: 180px;
+  }
+}
+
+.map-overlay .text span:first-child {
+  color: var(--gray-dark);
 }
 
 .map-overlay .text.hidden {
@@ -381,13 +475,25 @@ const setFloorImage = () => {
 }
 
 .map-overlay.expand {
+  position: fixed;
   z-index: 4;
-  width: calc(100vw - 82px);
-  height: calc(100vh - 82px);
+  width: 100vw;
+  height: 100vh;
+  right: 0;
+  bottom: 0;
+
+  @media (min-width: 1280px) {
+    width: calc(100vw - 82px);
+    height: calc(100vh - 82px);
+    right: 16px;
+    bottom: 16px;
+  }
 
   @media (min-width: 1920px) {
     width: calc(100vw - 110px);
     height: calc(100vh - 110px);
+    right: 20px;
+    bottom: 20px;
   }
 }
 
@@ -398,8 +504,8 @@ const setFloorImage = () => {
   right: 0;
   bottom: 0;
   margin: auto;
-  width: 600px;
-  height: 400px;
+  width: 1100px;
+  height: 600px;
   transition: all 0.3s ease-in-out;
 
   @media (min-width: 1280px) {
@@ -442,5 +548,14 @@ const setFloorImage = () => {
 
 .spot .pin {
   position: absolute;
+}
+
+.user-location {
+  background-color: var(--white);
+  min-height: 260px;
+}
+
+.user-location img {
+  object-fit: contain;
 }
 </style>
