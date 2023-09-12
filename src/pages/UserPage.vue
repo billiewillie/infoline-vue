@@ -449,10 +449,6 @@ a.user-position__column-value {
   row-gap: 10px;
 }
 
-.user-contacts__column-value > span {
-  line-height: 1;
-}
-
 .user-contacts__column-value:nth-child(2) {
   display: flex;
   column-gap: 10px;

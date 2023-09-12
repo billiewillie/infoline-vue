@@ -2,8 +2,8 @@
   <div class="user-location shadow rounded">
     <header class="user-location__header">
       <div class="left">
-        <span>этаж <b>{{ location?.floor }}</b></span>,
-        <span>кабинет <b>{{ location?.office }}</b></span>
+        <span>этаж <b>{{ location.floor ? location.floor : 1 }}</b></span>,
+        <span>кабинет <b>{{ location.office ? location.office : 1 }}</b></span>
       </div>
       <div
           class="icon"
@@ -22,7 +22,10 @@
         ref="map">
       <div
           class="map"
-          :style="{left: !isMapShow ? `${floors[location?.floor][location?.office].xLgDecreased}px` : '0',top: !isMapShow ? `${floors[location?.floor][location?.office].yLgDecreased}px` : '0'}">
+          :style="{
+            left: !isMapShow ? `${floors[location?.floor][location?.office].xLgDecreased}px` : '0',
+            top: !isMapShow ? `${floors[location?.floor][location?.office].yLgDecreased}px` : '0'
+          }">
         <img
             :src="setFloorImage()"
             alt="floor"/>
@@ -32,9 +35,7 @@
             v-for="spot in floors[location?.floor]">
           <i
               class="icon"
-              :style="{
-                opacity: spot.number === location?.office && spot.floor === location?.floor ? 1 : 0
-              }">
+              :style="{opacity: spot.number === location?.office && spot.floor === location?.floor ? 1 : 0}">
             <IconPin/>
           </i>
           <span

@@ -22,9 +22,9 @@ import HeaderProfile from '@/components/HeaderProfile.vue';
 import HeaderBurger from '@/components/HeaderBurger.vue';
 import {onMounted, ref} from 'vue';
 
+const isShown = ref(false);
 const isActive = ref(false);
 const isActiveMobileNav = ref(false);
-const isShown = ref(false);
 
 const toggleStatus = (value) => {
   isActive.value = value;

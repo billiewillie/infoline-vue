@@ -256,9 +256,9 @@ const setInputFocused = () => {
 }
 
 .search-header {
-  display: flex;
-  height: 56px;
   width: 100%;
+  height: 56px;
+  display: flex;
   animation: slidein 0.3s ease-in-out forwards;
 
   @media (min-width: 1280px) {
@@ -272,18 +272,18 @@ const setInputFocused = () => {
 
 .search-header input {
   flex: auto;
+  outline: none;
   padding: 0 23px;
   font-size: 16px;
   font-family: var(--font-base);
-  outline: none;
 }
 
 .search-main {
   display: flex;
-  flex-direction: column;
-  overflow-y: scroll;
   max-height: 90%;
+  overflow-y: scroll;
   scrollbar-width: none;
+  flex-direction: column;
 }
 
 .search-main::-webkit-scrollbar {
@@ -314,8 +314,8 @@ const setInputFocused = () => {
   column-gap: 22px;
   align-items: center;
   padding: 11px 24px 11px 11px;
-  grid-template-columns: 70px 1fr 11px;
   background-color: var(--white);
+  grid-template-columns: 70px 1fr 11px;
   transition: background-color 0.3s ease-in-out;
 }
 
@@ -324,11 +324,11 @@ const setInputFocused = () => {
 }
 
 .search-results__avatar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 70px;
   height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: var(--white);
   filter: drop-shadow(0 1px 5px rgba(0, 0, 0, 0.21));
 }
