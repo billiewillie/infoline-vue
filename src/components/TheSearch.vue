@@ -17,8 +17,9 @@
         @keydown.esc="$emit('toggleStatus', false);clearSearchValue()"
         @click="$emit('toggleStatus', false);clearSearchValue()">
       <div class="container">
-        <transition name="search-header">
-          <header class="search-header">
+        <header
+            :class="{show: isActive === true}"
+            class="search-header">
             <input
                 placeholder="Поиск..."
                 @click.stop
@@ -29,7 +30,6 @@
               <IconClose/>
             </span>
           </header>
-        </transition>
         <main class="search-main" v-if="isShownResultsList">
           <section class="search-results" v-if="data.users && data.users.length > 0">
             <header class="search-results__header" @click.stop>Пользователи</header>
@@ -247,9 +247,7 @@ const setInputFocused = () => {
   width: 100vw;
   height: 100vh;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.61);
-  backdrop-filter: blur(10px);
-  transition: backdrop-filter 0.3s ease-in-out;
+  animation: blurin 0.3s ease-in-out forwards;
 }
 
 .search-overlay .container {
@@ -261,6 +259,7 @@ const setInputFocused = () => {
   display: flex;
   height: 56px;
   width: 100%;
+  animation: slidein 0.3s ease-in-out forwards;
 
   @media (min-width: 1280px) {
     height: 50px;
@@ -354,5 +353,25 @@ const setInputFocused = () => {
 .search-results__position {
   color: var(--gray-dark);
   font-size: 13px;
+}
+
+@keyframes slidein {
+  from {
+    top: -70px;
+  }
+  to {
+    top: 0;
+  }
+}
+
+@keyframes blurin {
+  from {
+    backdrop-filter: blur(0px);
+    background-color: rgba(0, 0, 0, 0);
+  }
+  to {
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.61);
+  }
 }
 </style>

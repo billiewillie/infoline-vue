@@ -47,7 +47,7 @@ aside.aside {
 
   @media (min-width: 1280px) {
     position: fixed;
-    right: calc(100% - 190px);
+    right: calc(100% - 50px);
     top: 50px;
     width: 190px;
     display: flex;
