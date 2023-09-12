@@ -688,7 +688,7 @@ h1.title {
   text-align: center;
   row-gap: 30px;
   width: 100%;
-  max-width: 1400px;
+  max-width: 1600px;
   margin: auto;
 
   @media (min-width: 1280px) {
