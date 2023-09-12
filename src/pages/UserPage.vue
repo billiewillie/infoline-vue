@@ -238,6 +238,8 @@ onBeforeRouteUpdate((to) => {
 }
 
 .userpage .gallery {
+  min-height: 555px;
+
   @media (min-width: 1280px) {
     grid-row-start: 1;
     grid-row-end: 4;
@@ -445,6 +447,10 @@ a.user-position__column-value {
   display: flex;
   flex-direction: column;
   row-gap: 10px;
+}
+
+.user-contacts__column-value > span {
+  line-height: 1;
 }
 
 .user-contacts__column-value:nth-child(2) {

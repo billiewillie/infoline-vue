@@ -26,7 +26,7 @@
               :slides-per-view="1"
               loop
               navigation>
-            <swiper-slide v-for="slide in slides1">
+            <swiper-slide v-for="slide in slides1" :key="slide">
               <TheImage alt="slide" :image="slide"/>
             </swiper-slide>
           </swiper>
@@ -56,7 +56,7 @@
               :slides-per-view="1"
               loop
               navigation>
-            <swiper-slide v-for="slide in slides2">
+            <swiper-slide v-for="slide in slides2" :key="slide">
               <TheImage alt="slide" :image="slide"/>
             </swiper-slide>
           </swiper>
@@ -425,7 +425,7 @@ h1.title {
 .content .container {
   display: flex;
   flex-direction: column;
-  max-width: 1400px;
+  max-width: 1600px;
   margin: auto;
   padding: 0 10px;
   row-gap: 30px;

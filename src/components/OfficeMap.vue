@@ -22,10 +22,7 @@
         ref="map">
       <div
           class="map"
-          :style="{
-            left: !isMapShow ? `${floors[location?.floor][location?.office].xLgDecreased}px` : '0',
-            top: !isMapShow ? `${floors[location?.floor][location?.office].yLgDecreased}px` : '0'
-          }">
+          :style="{left: !isMapShow ? `${floors[location?.floor][location?.office].xLgDecreased}px` : '0',top: !isMapShow ? `${floors[location?.floor][location?.office].yLgDecreased}px` : '0'}">
         <img
             :src="setFloorImage()"
             alt="floor"/>
@@ -174,44 +171,44 @@ const floors = {
       number: 201,
       floor: 2,
       name: "Главные бухгалтеры",
-      xLg: 25,
+      xLg: 10,
       yLg: 290,
       xLgDecreased: 0,
-      yLgDecreased: 25,
+      yLgDecreased: -50,
     },
     204: {
       number: 204,
       floor: 2,
       name: "Бухгалтерия БС",
-      xLg: 25,
-      yLg: 290,
-      xLgDecreased: 290,
-      yLgDecreased: 25,
+      xLg: 50,
+      yLg: 0,
+      xLgDecreased: 0,
+      yLgDecreased: 350,
     },
     205: {
       number: 205,
       floor: 2,
       name: "Бухгалтерия БЛ",
-      xLg: 25,
-      yLg: 290,
-      xLgDecreased: 290,
-      yLgDecreased: 25,
+      xLg: 190,
+      yLg: 0,
+      xLgDecreased: 0,
+      yLgDecreased: 350,
     },
     207: {
       number: 207,
       floor: 2,
       name: "Ген. дир. БС",
-      xLg: 25,
-      yLg: 290,
-      xLgDecreased: 290,
-      yLgDecreased: 25,
+      xLg: 440,
+      yLg: 0,
+      xLgDecreased: -300,
+      yLgDecreased: 350,
     },
     208: {
       number: 208,
       floor: 2,
       name: "Ген. дир. Семенов А.В.",
       xLg: 520,
-      yLg: 180,
+      yLg: 160,
       xLgDecreased: -350,
       yLgDecreased: 100,
     },
@@ -219,44 +216,44 @@ const floors = {
       number: 209,
       floor: 2,
       name: "Помощник ген. директора",
-      xLg: 591,
-      yLg: 180,
-      xLgDecreased: -250,
-      yLgDecreased: 25,
+      xLg: 593,
+      yLg: 160,
+      xLgDecreased: -420,
+      yLgDecreased: 130,
     },
     210: {
       number: 210,
       floor: 2,
       name: "IT отдел",
       xLg: 680,
-      yLg: 180,
-      xLgDecreased: -260,
-      yLgDecreased: 25,
+      yLg: 160,
+      xLgDecreased: -460,
+      yLgDecreased: 130,
     },
     211: {
-      number: 201,
+      number: 211,
       floor: 2,
       name: "Гвоздарев А.",
-      xLg: 745,
-      yLg: 180,
-      xLgDecreased: 290,
-      yLgDecreased: 25,
+      xLg: 744,
+      yLg: 160,
+      xLgDecreased: -540,
+      yLgDecreased: 135,
     },
     212: {
       number: 212,
       floor: 2,
       name: "IT отдел",
-      xLg: 820,
-      yLg: 180,
-      xLgDecreased: 290,
-      yLgDecreased: 25,
+      xLg: 824,
+      yLg: 160,
+      xLgDecreased: -640,
+      yLgDecreased: 125,
     },
     213: {
       number: 213,
       floor: 2,
       name: "Гусева Н.К.",
       xLg: 896,
-      yLg: 180,
+      yLg: 160,
       xLgDecreased: 290,
       yLgDecreased: 25,
     },
@@ -265,81 +262,227 @@ const floors = {
       floor: 2,
       name: "Юридический отдел",
       xLg: 980,
-      yLg: 180,
-      xLgDecreased: 290,
-      yLgDecreased: 25,
+      yLg: 160,
+      xLgDecreased: -750,
+      yLgDecreased: 130,
     },
     224: {
       number: 224,
       floor: 2,
       name: "Регистрация",
-      xLg: 25,
-      yLg: 290,
-      xLgDecreased: 290,
-      yLgDecreased: 25,
+      xLg: 780,
+      yLg: 400,
+      xLgDecreased: -600,
+      yLgDecreased: -325,
     },
     225: {
       number: 225,
       floor: 2,
       name: "Отдел продукции для материнства и детства",
-      xLg: 25,
-      yLg: 290,
-      xLgDecreased: 290,
-      yLgDecreased: 25,
+      xLg: 630,
+      yLg: 400,
+      xLgDecreased: -600,
+      yLgDecreased: -325,
     },
     226: {
       number: 226,
       floor: 2,
       name: "Финанс. отдел",
-      xLg: 25,
-      yLg: 290,
-      xLgDecreased: 290,
-      yLgDecreased: 25,
+      xLg: 532,
+      yLg: 400,
+      xLgDecreased: -380,
+      yLgDecreased: -325,
     },
     227: {
       number: 227,
       floor: 2,
       name: "Абрамов М.Н.",
-      xLg: 25,
-      yLg: 290,
-      xLgDecreased: 290,
-      yLgDecreased: 25,
+      xLg: 462,
+      yLg: 400,
+      xLgDecreased: -310,
+      yLgDecreased: -325,
     },
     228: {
       number: 228,
       floor: 2,
       name: "Экономич. отдел",
-      xLg: 25,
-      yLg: 290,
-      xLgDecreased: 290,
-      yLgDecreased: 25,
+      xLg: 382,
+      yLg: 400,
+      xLgDecreased: -230,
+      yLgDecreased: -325,
     },
     229: {
       number: 229,
       floor: 2,
       name: "Каюкова Л.Л.",
-      xLg: 25,
-      yLg: 290,
-      xLgDecreased: 290,
-      yLgDecreased: 25,
+      xLg: 320,
+      yLg: 400,
+      xLgDecreased: -230,
+      yLgDecreased: -325,
     },
     230: {
       number: 230,
       floor: 2,
       name: "ОКП",
-      xLg: 25,
-      yLg: 290,
-      xLgDecreased: 290,
-      yLgDecreased: 25,
+      xLg: 260,
+      yLg: 400,
+      xLgDecreased: -120,
+      yLgDecreased: -325,
     },
     231: {
       number: 231,
       floor: 2,
       name: "Тендерный отдел",
-      xLg: 25,
-      yLg: 290,
-      xLgDecreased: 290,
-      yLgDecreased: 25,
+      xLg: 128,
+      yLg: 400,
+      xLgDecreased: -50,
+      yLgDecreased: -325,
+    },
+  },
+  3: {
+    302: {
+      number: 302,
+      floor: 3,
+      name: "Гистология Цитология",
+      xLg: 46,
+      yLg: 50,
+      xLgDecreased: 0,
+      yLgDecreased: 350,
+    },
+    303: {
+      number: 303,
+      floor: 3,
+      name: "ПРК БЛ",
+      xLg: 204,
+      yLg: 50,
+      xLgDecreased: 0,
+      yLgDecreased: 350,
+    },
+    306: {
+      number: 306,
+      floor: 3,
+      name: "Ген. дир. БС",
+      xLg: 446,
+      yLg: 0,
+      xLgDecreased: -300,
+      yLgDecreased: 350,
+    },
+    307: {
+      number: 307,
+      floor: 3,
+      name: "Молекуляр. диагностика",
+      xLg: 520,
+      yLg: 160,
+      xLgDecreased: -350,
+      yLgDecreased: 100,
+    },
+    308: {
+      number: 308,
+      floor: 3,
+      name: "Мед. мебель",
+      xLg: 604,
+      yLg: 160,
+      xLgDecreased: -420,
+      yLgDecreased: 130,
+    },
+    309: {
+      number: 309,
+      floor: 3,
+      name: "Дулаева Оксана",
+      xLg: 666,
+      yLg: 160,
+      xLgDecreased: -460,
+      yLgDecreased: 130,
+    },
+    310: {
+      number: 310,
+      floor: 3,
+      name: "Дмитриева М.",
+      xLg: 744,
+      yLg: 160,
+      xLgDecreased: -540,
+      yLgDecreased: 135,
+    },
+    311: {
+      number: 311,
+      floor: 3,
+      name: "Преаналитика Продажи ОЛО и РМ",
+      xLg: 840,
+      yLg: 160,
+      xLgDecreased: -640,
+      yLgDecreased: 125,
+    },
+    315: {
+      number: 315,
+      floor: 3,
+      name: "Лаб. мебель",
+      xLg: 1020,
+      yLg: 160,
+      xLgDecreased: -750,
+      yLgDecreased: 130,
+    },
+    329: {
+      number: 329,
+      floor: 3,
+      name: "ОЛО",
+      xLg: 780,
+      yLg: 400,
+      xLgDecreased: -600,
+      yLgDecreased: -325,
+    },
+    330: {
+      number: 330,
+      floor: 2,
+      name: "ПРК БС",
+      xLg: 680,
+      yLg: 400,
+      xLgDecreased: -600,
+      yLgDecreased: -325,
+    },
+    331: {
+      number: 331,
+      floor: 3,
+      name: "ИГХ",
+      xLg: 610,
+      yLg: 400,
+      xLgDecreased: -380,
+      yLgDecreased: -325,
+    },
+    332: {
+      number: 332,
+      floor: 3,
+      name: "Проточка Диз и Клиника",
+      xLg: 490,
+      yLg: 400,
+      xLgDecreased: -310,
+      yLgDecreased: -325,
+    },
+    333: {
+      number: 333,
+      floor: 3,
+      name: "Павел Кислов",
+      xLg: 388,
+      yLg: 400,
+      xLgDecreased: -230,
+      yLgDecreased: -325,
+    },
+    334: {
+      number: 334,
+      floor: 3,
+      name: "Солнцева Ольга",
+      xLg: 314,
+      yLg: 400,
+      xLgDecreased: -120,
+      yLgDecreased: -325,
+    },
+    335: {
+      number: 335,
+      floor: 2,
+      name: "Наука микроскопия Наука проточка",
+      xLg: 170,
+      yLg: 400,
+      xLgDecreased: -50,
+      yLgDecreased: -325,
     },
   }
 }
@@ -416,8 +559,8 @@ const setFloorImage = () => {
   position: absolute;
   width: 30px;
   height: 30px;
-  right: 30px;
-  top: 30px;
+  right: 20px;
+  top: 20px;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -481,13 +624,13 @@ const setFloorImage = () => {
 
 .map-overlay .text {
   position: absolute;
-  top: 30px;
+  top: 20px;
   left: 50%;
   transform: translateX(-50%);
   transition: opacity 0.5s ease-in-out;
   display: flex;
   flex-direction: column;
-  row-gap: 10px;
+  row-gap: 5px;
 
   @media (min-width: 1280px) {
     top: 80px;
@@ -581,6 +724,11 @@ const setFloorImage = () => {
 
 .spot .pin {
   position: absolute;
+}
+
+.spot .icon {
+  width: 39px;
+  height: 49px;
 }
 
 .user-location {

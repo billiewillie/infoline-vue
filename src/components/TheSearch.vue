@@ -311,11 +311,12 @@ const setInputFocused = () => {
 }
 
 .search-results__link {
-  padding: 11px 24px 11px 11px;
-  background-color: var(--white);
-  display: flex;
-  align-items: center;
+  display: grid;
   column-gap: 22px;
+  align-items: center;
+  padding: 11px 24px 11px 11px;
+  grid-template-columns: 70px 1fr 11px;
+  background-color: var(--white);
   transition: background-color 0.3s ease-in-out;
 }
 
