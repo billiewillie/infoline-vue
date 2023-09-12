@@ -43,7 +43,7 @@
       <div class="about-page-title">
         <img class="bg-about-title" :src="BgAboutTitle" alt="bg-about-title">
         <div class="container">
-          <span class="blue">Наша миссия -</span>
+          <span class="blue">Наша миссия</span>
           <p class="subtitle">поиск, внедрение и адаптация новых технологий в диагностику и медицину.</p>
           <p class="description">Мы стремимся создавать инновационные решения, которые помогут улучшить качество жизни
             пациентов и повысить эффективность работы медицинских учреждений.</p>
@@ -102,7 +102,7 @@
       <div class="about-page-title">
         <img class="bg-about-title" :src="BgAboutTitle" alt="bg-about-title">
         <div class="container">
-          <span class="blue">Наша продукция -</span>
+          <span class="blue">Наша продукция</span>
           <p class="subtitle">самые значимые технологии в лабораторном и медицинском мире.</p>
           <p class="description">Самые крупные мировые производители доверяют нам своё имя, а мы всегда оправдываем их
             доверие.</p>

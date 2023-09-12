@@ -25,7 +25,7 @@ import IconArrow from '@/components/icons/IconArrow.vue';
 		justify-content: center;
 		background-color: var(--blue-light);
 		width: 50px;
-		padding: 10px 0;
+		padding: 10px;
 		row-gap: 10px;
 		font-size: 11px;
 	}

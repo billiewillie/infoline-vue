@@ -65,7 +65,12 @@ function renderIcon(icon) {
 </script>
 
 <style>
+
 .docs-nav__item a {
   color: var(--white);
+}
+
+.docs-nav__item:hover {
+  background-color: var(--blue-light);
 }
 </style>

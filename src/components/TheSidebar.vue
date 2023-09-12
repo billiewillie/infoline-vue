@@ -47,7 +47,7 @@ aside.aside {
 
   @media (min-width: 1280px) {
     position: fixed;
-    right: calc(100% - 50px);
+    right: calc(100% - 190px);
     top: 50px;
     width: 190px;
     display: flex;
@@ -79,12 +79,7 @@ aside.aside .docs-nav__menu {
 
   @media (min-width: 1280px) {
     align-items: flex-end;
-    padding: 16px 0;
-    row-gap: 40px;
-  }
-
-  @media (min-width: 1920px) {
-    padding: 20px 0;
+    width: 100%;
   }
 }
 
@@ -93,9 +88,12 @@ aside.aside .docs-nav__item {
   align-items: center;
   width: 100%;
   justify-content: flex-end;
+  padding: 16px 0;
+  transition: background-color 0.3s ease-out;
 
   @media (min-width: 1280px) {
     min-height: 31px;
+    padding: 20px 0;
   }
 }
 
