@@ -82,12 +82,11 @@ const {activeMaterials, activeCategory, categories} = storeToRefs(marketingMater
 
   @media (min-width: 1280px) {
     grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: minmax(250px, 450px);
+    grid-auto-rows: 350px;
   }
 
   @media (min-width: 1920px) {
     grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 300px;
   }
 }
 
@@ -108,6 +107,14 @@ const {activeMaterials, activeCategory, categories} = storeToRefs(marketingMater
 
 .card .image {
   box-shadow: var(--base-shadow);
+
+  @media (min-width: 1280px) {
+    height: 350px;
+  }
+
+  @media (min-width: 1920px) {
+    height: 350px;
+  }
 }
 
 .card-content {
