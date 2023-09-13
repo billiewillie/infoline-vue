@@ -105,11 +105,7 @@ const {
 
   @media (min-width: 1280px) {
     grid-template-columns: 2fr 3fr;
-    gap: 40px;
-  }
-
-  @media (min-width: 1920px) {
-    gap: 60px;
+    gap: 30px;
   }
 }
 
