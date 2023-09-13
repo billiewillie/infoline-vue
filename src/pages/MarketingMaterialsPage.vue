@@ -23,6 +23,10 @@
                 <span class="field-text">{{ item.format }}</span>
               </p>
               <p class="field">
+                <span class="field-title">Бренд:</span>
+                <span class="field-text">{{ item.brand[0] }}</span>
+              </p>
+              <p class="field">
                 <span class="field-title">Дата:</span>
                 <span class="field-text">{{ item.update_at ? item.update_at : item.created_at }}</span>
               </p>
