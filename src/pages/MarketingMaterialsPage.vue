@@ -27,7 +27,7 @@
                 <span class="field-text">{{ item.update_at ? item.update_at : item.created_at }}</span>
               </p>
               <div class="buttons">
-                <a class="button" :href="`https://marketing-materials.trifonov.space/materials/${item.id}/${item.prev}.webp`" target="_blank">
+                <a class="button" :href="`https://marketing-materials.trifonov.space/materials/${item.id}/${item.source}.${item.extension}`" target="_blank">
                 <span class="icon">
                   <IconShare/>
                 </span>

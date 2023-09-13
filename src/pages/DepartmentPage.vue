@@ -10,6 +10,7 @@
               :key="user.id">
             <TheImage
                 :alt="`${user.firstname} ${user.lastname}`"
+                :fallback="PlaceholderPerson"
                 :image="`https://users.trifonov.space/images/users/${user.login}/gallery_1.webp`"/>
             <router-link
                 class="title name"
@@ -66,6 +67,7 @@
           <div class="card shadow rounded" v-for="user in item.users" :key="user.id">
             <TheImage
                 :alt="`${user.firstname} ${user.lastname}`"
+                :fallback="PlaceholderPerson"
                 :image="`https://users.trifonov.space/images/users/${user.login}/gallery_1.webp`"/>
             <router-link :to="`/users/${user.login}`" class="title name">
               <span class="surname">{{ user.lastname }}</span>{{ user.firstname }} {{ user.middlename }}
@@ -125,8 +127,6 @@ import IconMobileBlue from "@/components/icons/IconMobileBlue.vue";
 import IconEmailBlue from "@/components/icons/IconEmailBlue.vue";
 import IconGiftBlue from "@/components/icons/IconGiftBlue.vue";
 import {getMonthName} from "@/functions/getMonthName";
-import imageWeb from '@/assets/img/lazareva.webp';
-import image from '@/assets/img/lazareva.jpg';
 import {formatPhoneNumber} from "@/functions/formatPhoneNumber";
 import {useToast} from "vue-toastification";
 import "vue-toastification/dist/index.css";
@@ -134,6 +134,7 @@ import {useRootStore} from "@/stores/departmentsStore";
 import {storeToRefs} from "pinia";
 import {useRoute} from "vue-router";
 import TheImage from "@/components/TheImage.vue";
+import PlaceholderPerson from "@/assets/img/person-fallback.webp";
 
 const toast = useToast();
 const params = useRoute().params;
