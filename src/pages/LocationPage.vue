@@ -1,12 +1,12 @@
 <template>
   <div class="basepage centered-page">
     <div class="page-container">
-      <h1 class="title">{{ department.title }}</h1>
+      <h1 class="title">{{ location.title }}</h1>
       <section>
         <div class="content">
           <div
               class="card shadow rounded"
-              v-for="user in department.users_not_part_group"
+              v-for="user in location.users_not_part_group"
               :key="user.id">
             <TheImage
                 :alt="`${user.firstname} ${user.lastname}`"
@@ -67,7 +67,7 @@
           </div>
         </div>
       </section>
-      <section v-for="item in department.groups" :key="item.id">
+      <section v-for="item in location.groups" :key="item.id">
         <template v-if="item?.users.length > 0">
           <h2 class="title group-title">{{ item.title }}</h2>
           <div class="content">
@@ -133,20 +133,20 @@
 </template>
 
 <script setup>
-import IconCopy from "@/components/icons/IconCopy.vue";
-import IconPhoneBlue from "@/components/icons/IconPhoneBlue.vue";
-import IconMobileBlue from "@/components/icons/IconMobileBlue.vue";
-import IconEmailBlue from "@/components/icons/IconEmailBlue.vue";
-import IconGiftBlue from "@/components/icons/IconGiftBlue.vue";
-import {getMonthName} from "@/functions/getMonthName";
-import {formatPhoneNumber} from "@/functions/formatPhoneNumber";
-import {useToast} from "vue-toastification";
-import "vue-toastification/dist/index.css";
-import {useRootStore} from "@/stores/departmentsStore";
 import {storeToRefs} from "pinia";
 import {useRoute} from "vue-router";
+import "vue-toastification/dist/index.css";
+import {useToast} from "vue-toastification";
 import TheImage from "@/components/TheImage.vue";
+import {useRootStore} from "@/stores/locationStore";
+import {getMonthName} from "@/functions/getMonthName";
+import IconCopy from "@/components/icons/IconCopy.vue";
+import IconGiftBlue from "@/components/icons/IconGiftBlue.vue";
+import {formatPhoneNumber} from "@/functions/formatPhoneNumber";
+import IconPhoneBlue from "@/components/icons/IconPhoneBlue.vue";
+import IconEmailBlue from "@/components/icons/IconEmailBlue.vue";
 import PlaceholderPerson from "@/assets/img/person-fallback.webp";
+import IconMobileBlue from "@/components/icons/IconMobileBlue.vue";
 
 const toast = useToast();
 const params = useRoute().params;
@@ -165,9 +165,9 @@ const copyPhone = (phone) => {
   })
 }
 
-const departmentsStore = useRootStore();
-departmentsStore.getDepartment(params.id);
-const {department} = storeToRefs(departmentsStore);
+const locationStore = useRootStore();
+locationStore.getLocation(params.id);
+const {location} = storeToRefs(locationStore);
 </script>
 
 <style scoped>
@@ -282,21 +282,6 @@ const {department} = storeToRefs(departmentsStore);
   }
 }
 
-.contacts-item span.icon.copy .tooltip {
-  position: absolute;
-  bottom: 130%;
-  width: 70px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 12px !important;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.contacts-item span.icon.copy:hover .tooltip {
-  opacity: 1;
-}
-
 .contacts-item span:nth-child(2) {
   width: 110px;
 
@@ -378,7 +363,18 @@ section {
   gap: 18px;
 }
 
-.copy-contact:hover span.icon.copy {
+.contacts-item span.icon.copy .tooltip {
+  position: absolute;
+  bottom: 130%;
+  width: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px !important;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.contacts-item span.icon.copy:hover .tooltip {
   opacity: 1;
 }
 </style>

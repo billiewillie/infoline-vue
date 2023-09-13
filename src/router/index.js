@@ -88,18 +88,18 @@ const routes = [
         beforeEnter: getLoginPage
     },
     {
-        path: '/birthdays',
+        path: '/locations/:id',
         components: {
-            default: () => import('@/pages/BirthdaysPage.vue'),
+            default: () => import('@/pages/LocationPage.vue'),
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },
         beforeEnter: getLoginPage
     },
     {
-        path: '/newbie',
+        path: '/birthdays',
         components: {
-            default: () => import('@/pages/NewbiePage.vue'),
+            default: () => import('@/pages/BirthdaysPage.vue'),
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },
@@ -154,15 +154,6 @@ const routes = [
         path: '/instructions/:id',
         components: {
             default: () => import('@/pages/InstructionDetailPage.vue'),
-            Header: () => import('@/components/TheHeader.vue'),
-            Sidebar: () => import('@/components/TheSidebar.vue'),
-        },
-        beforeEnter: getLoginPage
-    },
-    {
-        path: '/orders',
-        components: {
-            default: () => import('@/pages/OrdersPage.vue'),
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },
