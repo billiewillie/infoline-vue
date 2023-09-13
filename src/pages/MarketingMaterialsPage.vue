@@ -78,9 +78,11 @@ const {activeMaterials, activeCategory, categories} = storeToRefs(marketingMater
   display: grid;
   grid-template-columns: 1fr;
   gap: 60px;
+  width: 100%;
 
   @media (min-width: 1280px) {
     grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: minmax(250px, 450px);
   }
 
   @media (min-width: 1920px) {
@@ -96,7 +98,6 @@ const {activeMaterials, activeCategory, categories} = storeToRefs(marketingMater
   @media (min-width: 1280px) {
     grid-template-columns: 2fr 3fr;
     gap: 40px;
-    height: 250px;
   }
 
   @media (min-width: 1920px) {
