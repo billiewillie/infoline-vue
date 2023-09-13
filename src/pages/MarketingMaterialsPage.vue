@@ -53,7 +53,11 @@ import IconSave from "@/components/icons/IconSave.vue";
 const marketingMaterialsStore = useRootStore();
 marketingMaterialsStore.getMaterials();
 
-const {activeMaterials, activeCategory, categories} = storeToRefs(marketingMaterialsStore);
+const {
+  activeMaterials,
+  activeCategory,
+  categories
+} = storeToRefs(marketingMaterialsStore);
 </script>
 
 <style scoped>

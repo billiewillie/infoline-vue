@@ -7,14 +7,15 @@ export const useRootStore = defineStore(
     () => {
         const materials = ref([]);
         const activeMaterials = ref([]);
-        const categories = ref(['Проточная цитометрия', 'Патоморфология', 'FISH', 'Научные исследования', 'ОЛО', 'Взятие проб', 'Штрихкодирование', 'Медицинское оборудование', 'Материнство и детство']);
-        const activeCategory = ref(categories.value[0]);
+        const categories = ref([]);
+        const activeCategory = ref();
 
         const getMaterials = async () => {
             try {
-                const res = await axios
-                    .get('https://marketing-materials.trifonov.space/api/marketing-materials/show/all');
+                const res = await axios.get('https://marketing-materials.trifonov.space/api/marketing-materials/show/all');
                 materials.value = res.data;
+                res.data.forEach(item => categories.value.push(item.title));
+                activeCategory.value = categories.value[0];
                 getActiveMaterials();
             } catch (e) {
                 console.log(e);
