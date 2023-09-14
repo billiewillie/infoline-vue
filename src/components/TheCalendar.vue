@@ -14,9 +14,9 @@
 </template>
 
 <script setup>
-import {DatePicker} from 'v-calendar';
-import 'v-calendar/style.css';
 import {ref} from 'vue';
+import 'v-calendar/style.css';
+import {DatePicker} from 'v-calendar';
 
 const calendar = ref(null);
 const date = ref(new Date());
@@ -47,7 +47,6 @@ function setClick() {
     emit('toggleDate', date.value);
   }
 }
-
 </script>
 
 <style>

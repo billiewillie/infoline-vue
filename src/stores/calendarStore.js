@@ -45,7 +45,11 @@ export const useRootStore = defineStore(
         ]);
 
         const attributesIndexPage = ref([]);
-        const fullDate = ref([date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-'));
+
+        const fullDate = ref([
+            date.getFullYear(),
+            date.getMonth() + 1,
+            date.getDate()].join('-'));
         const activeDate = ref(fullDate.value);
 
         const getDates = (item) => {
@@ -101,9 +105,23 @@ export const useRootStore = defineStore(
                 const getColor = () => {
                     if (item.category === 'Производственный календарь') {
                         return 'red';
-                    } else {
+                    } else if (item.category === 'Корпоративные мероприятия') {
                         return 'blue';
+                    } else {
+                        return 'green';
                     }
+                }
+
+                const datesOfEventStart = () => {
+                    const dateStart = String(new Date(item?.date_start).getDate()).padStart(2, '0');
+                    const monthStart = String(new Date(item?.date_start).getMonth()).padStart(2, '0');
+                    return [dateStart, monthStart].join('.');
+                }
+
+                const datesOfEventEnd = () => {
+                    const dateEnd = String(new Date(item?.date_end).getDate()).padStart(2, '0');
+                    const monthEnd = String(new Date(item?.date_end).getMonth()).padStart(2, '0');
+                    return [dateEnd, monthEnd].join('.');
                 }
 
                 return {
@@ -112,7 +130,7 @@ export const useRootStore = defineStore(
                         color: getColor(),
                     },
                     popover: {
-                        label: item.title
+                        label: `(${datesOfEventStart()}-${datesOfEventEnd()}) ${item.title}`
                     }
                 }
             })
@@ -199,12 +217,12 @@ export const useRootStore = defineStore(
             dayEvents,
             countries,
             attributes,
-            attributesIndexPage,
             categories,
             activeDate,
             monthEvents,
             activeCountry,
             activeCategory,
+            attributesIndexPage,
             getData,
             toggleDate,
             toggleMonth,
