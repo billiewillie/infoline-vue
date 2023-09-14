@@ -192,9 +192,10 @@ const router = createRouter({
         return new Promise((resolve) => {
             setTimeout(() => {
                 resolve({
-                    top: 0
+                    top: 0,
+                    behavior: 'instant'
                 })
-            }, 500)
+            }, 400)
         })
     }
 })
