@@ -310,11 +310,13 @@ onBeforeRouteUpdate((to) => {
 .content {
   padding: 40px 10px;
   font-size: 16px;
+  line-height: 1.5;
   font-weight: 400;
   background-color: var(--white);
 
   @media (min-width: 1280px) {
     padding: 40px 0;
+    font-size: 18px;
   }
 }
 

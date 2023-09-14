@@ -226,7 +226,7 @@
         </div>
         <div class="row row-only-department">
           <div class="department-group one-group">
-            <router-link to="/departments/biomebel" class="department rounded">ООО «БИОМЕБЕЛЬ»</router-link>
+            <router-link to="/locations/biomebel" class="department rounded">ООО «БИОМЕБЕЛЬ»</router-link>
           </div>
         </div>
       </div>

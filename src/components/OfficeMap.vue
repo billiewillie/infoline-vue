@@ -479,7 +479,7 @@ const floors = {
     335: {
       number: 335,
       floor: 2,
-      name: "Отдел Диз \\ Отдел Клин",
+      name: "Отдел Диз / Отдел Клин",
       xLg: 170,
       yLg: 400,
       xLgDecreased: -50,
