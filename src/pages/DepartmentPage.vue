@@ -24,7 +24,8 @@
                   <IconPhoneBlue/>
                 </div>
                 <span>Мест. телефон:</span>
-                <span>{{ user.localphone }}</span>
+                <span v-if="user.localphone">{{ user.localphone }}</span>
+                <span v-else>нет номера</span>
               </div>
               <div class="contacts-item">
                 <span class="icon">

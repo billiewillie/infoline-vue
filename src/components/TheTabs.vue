@@ -210,6 +210,10 @@ const vClickOutside = {
   padding: 10px 20px;
   cursor: pointer;
   height: 100%;
+
+  @media (min-width: 1280px) {
+    text-align: center;
+  }
 }
 
 .tabs__item.active {

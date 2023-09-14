@@ -3,7 +3,7 @@
     <g id="building-08">
       <path id="Icon"
             d="M3 21.0002H21M6 18.0002V10.0002M10 18.0002V10.0002M14 18.0002V10.0002M18 18.0002V10.0002M20 7.00022L12.424 2.26522C12.2702 2.16908 12.1933 2.12102 12.1108 2.10227C12.0379 2.0857 11.9621 2.0857 11.8892 2.10227C11.8067 2.12102 11.7298 2.16908 11.576 2.26522L4 7.00022H20Z"
-            stroke="#57E8DF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            stroke="#2B365A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </g>
   </svg>
 </template>

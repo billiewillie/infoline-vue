@@ -5,8 +5,7 @@
           :attributes="attributes"
           :activeDay="activeDate"
           @toggleDate="calendarStore.toggleDate"
-          @toggleMonth="calendarStore.toggleMonth"
-      />
+          @toggleMonth="calendarStore.toggleMonth"/>
       <div class="filters rounded shadow">
         <TheTabs
             v-if="countries"
@@ -57,7 +56,13 @@
                   <div class="icon">
                     <IconCalendarBlue/>
                   </div>
-                  <span class="text">{{ new Date(event.date_start).getDate() }} {{ getMonthName(new Date(event.date_start).getMonth() + 1) }} - {{ new Date(event.date_end).getDate() }} {{ getMonthName(new Date(event.date_end).getMonth() + 1) }}</span>
+                  <span class="text">{{
+                      new Date(event.date_start).getDate()
+                    }} {{
+                      getMonthName(new Date(event.date_start).getMonth() + 1)
+                    }} - {{
+                      new Date(event.date_end).getDate()
+                    }} {{ getMonthName(new Date(event.date_end).getMonth() + 1) }}</span>
                 </div>
               </div>
             </div>
@@ -99,7 +104,13 @@
                   <div class="icon">
                     <IconCalendarBlue/>
                   </div>
-                  <span class="text">{{ new Date(event.date_start).getDate() }} {{ getMonthName(new Date(event.date_start).getMonth() + 1) }} - {{ new Date(event.date_end).getDate() }} {{ getMonthName(new Date(event.date_end).getMonth() + 1) }}</span>
+                  <span class="text">{{
+                      new Date(event.date_start).getDate()
+                    }} {{
+                      getMonthName(new Date(event.date_start).getMonth() + 1)
+                    }} - {{
+                      new Date(event.date_end).getDate()
+                    }} {{ getMonthName(new Date(event.date_end).getMonth() + 1) }}</span>
                 </div>
               </div>
             </div>
@@ -117,19 +128,18 @@
 </template>
 
 <script setup>
-import TheCalendar from "@/components/TheCalendar.vue";
-import {ref, shallowRef} from "vue";
+import {shallowRef} from "vue";
+import {storeToRefs} from "pinia";
 import TheTabs from "@/components/TheTabs.vue";
+import {useRootStore} from "@/stores/calendarStore";
+import {getMonthName} from "@/functions/getMonthName";
+import TheCalendar from "@/components/TheCalendar.vue";
+import IconMarker from "@/components/icons/IconMarker.vue";
 import IconProdCalendar from "@/components/icons/IconProdCalendar.vue";
 import IconCorpCalendar from "@/components/icons/IconCorpCalendar.vue";
 import IconExhibition from "@/components/icons/IconExhibition.vue";
 import IconElseEvents from "@/components/icons/IconElseEvents.vue";
-import IconClock from "@/components/icons/IconClock.vue";
 import IconCalendarBlue from "@/components/icons/IconCalendarBlue.vue";
-import IconMarker from "@/components/icons/IconMarker.vue";
-import {getMonthName} from "@/functions/getMonthName";
-import {useRootStore} from "@/stores/calendarStore";
-import {storeToRefs} from "pinia";
 
 const date = new Date();
 const icons = {
@@ -160,6 +170,7 @@ const categories = shallowRef([
 
 const calendarStore = useRootStore();
 calendarStore.getData();
+
 const {
   data,
   dayEvents,

@@ -104,7 +104,7 @@
             <span class="user-position__column-title">Регион/ДП: </span>
             <router-link
                 v-if="item.department?.locations_url.length > 0"
-                :to="`/location/${item.department?.locations_url}`"
+                :to="`/locations/${item.department?.locations_url}`"
                 class="user-position__column-value">{{ item.department?.locations }}
             </router-link>
             <span class="user-position__column-value" v-else>{{ item.department.locations }}</span>

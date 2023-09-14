@@ -1,6 +1,6 @@
+import axios from "axios";
 import {defineStore} from "pinia";
 import {ref, shallowRef} from "vue";
-import axios from "axios";
 import {setDaysEvents} from "@/functions/setDaysEvents";
 import {setMonthsEvents} from "@/functions/setMonthsEvents";
 
@@ -28,40 +28,23 @@ export const useRootStore = defineStore(
         const activeCountry = ref('');
         const dayEvents = ref([]);
         const monthEvents = ref([]);
+
         const attributes = ref([
             {
-                highlight: 'blue',
+                highlight: 'green',
                 dates: [],
             },
             {
                 highlight: 'red',
                 dates: [],
+            },
+            {
+                highlight: 'blue',
+                dates: [],
             }
         ]);
-        const attributesIndexPage = ref([
-            {
-                dates: [
-                    new Date('2023-07-27')
-                ],
-                dot: {
-                    color: 'blue',
-                },
-                popover: {
-                    label: "Здравоохранение - TIHE 2023 руддщ вавыа ва ыаы выа"
-                }
-            },
-            {
-                dates: [
-                    new Date('2023-07-27')
-                ],
-                dot: {
-                    color: 'blue',
-                },
-                popover: {
-                    label: "11 День России выаыв выавыа выав ыаываы вавыа"
-                }
-            },
-        ]);
+
+        const attributesIndexPage = ref([]);
         const fullDate = ref([date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-'));
         const activeDate = ref(fullDate.value);
 
@@ -150,7 +133,7 @@ export const useRootStore = defineStore(
                     new Date(),
                     ...data
                         .value[activeCountry.value]
-                        .filter(item => item.category !== 'Производственный календарь')
+                        .filter(item => item.category === 'Выставки и семинары')
                         .map(getDates)
                 ].flat();
 
@@ -158,6 +141,13 @@ export const useRootStore = defineStore(
                     ...data
                         .value[activeCountry.value]
                         .filter(item => item.category === 'Производственный календарь')
+                        .map(getDates)
+                ].flat();
+
+                attributes.value[2].dates = [
+                    ...data
+                        .value[activeCountry.value]
+                        .filter(item => item.category === 'Корпоративные мероприятия')
                         .map(getDates)
                 ].flat();
 

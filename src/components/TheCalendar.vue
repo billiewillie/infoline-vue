@@ -203,7 +203,6 @@ function setClick() {
   height: 31px;
   min-width: 31px;
   aspect-ratio: 1 / 1;
-  background-color: var(--blue-light);
 
   @media (min-width: 1280px) {
     height: 100%;
