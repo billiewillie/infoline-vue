@@ -56,7 +56,7 @@
     </div>
     <div class="content rounded shadow">
       <p class="description">{{ post.description }}</p>
-      <div class="post-center" v-html="post.content"></div>
+      <div class="post-content post-center" v-html="post.content"></div>
       <div class="comment-new">
         <header class="post-header">
           <h2 class="title post-center">
@@ -499,5 +499,9 @@ onBeforeRouteUpdate((to) => {
 .news-more .title {
   color: var(--blue-dark);
   text-align: center;
+}
+
+.post-content {
+  padding-bottom: 40px;
 }
 </style>

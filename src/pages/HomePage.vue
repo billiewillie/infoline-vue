@@ -20,7 +20,7 @@
         <NewsSkeleton/>
       </template>
     </div>
-    <TheCalendar :attributes="attributesIndexPage"/>
+    <TheCalendar :attributes="attributesIndexPage" class="home-page-calendar"/>
     <SliderGallery/>
     <IndexBirthdaysCard/>
     <IndexDefaultCard
@@ -151,5 +151,21 @@ const {attributesIndexPage} = storeToRefs(calendarStore);
 .news-item__footer .btn .icon {
   width: 7px;
   height: 11px;
+}
+
+.calendar .vc-day.is-today .vc-blue .vc-highlight {
+  display: block;
+}
+
+.home-page-calendar .is-today .vc-highlight-bg-solid {
+  background-color: var(--blue-light);
+}
+
+.home-page-calendar .vc-highlight-bg-solid {
+  background-color: var(--gray);
+}
+
+.home-page-calendar .vc-day-content {
+  color: var(--black);
 }
 </style>

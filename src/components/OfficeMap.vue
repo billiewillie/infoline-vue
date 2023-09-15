@@ -371,7 +371,7 @@ const floors = {
     307: {
       number: 307,
       floor: 3,
-      name: "Молекуляр. диагностика",
+      name: "Отдел ДИЗ",
       xLg: 520,
       yLg: 160,
       xLgDecreased: -350,
@@ -479,7 +479,7 @@ const floors = {
     335: {
       number: 335,
       floor: 2,
-      name: "Отдел Диз / Отдел Клин",
+      name: "Отдел КИМ / Молекулярная диагностика",
       xLg: 170,
       yLg: 400,
       xLgDecreased: -50,
