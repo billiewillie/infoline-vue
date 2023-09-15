@@ -14,11 +14,10 @@
     <footer class="item-footer">
       <IconSave/>
       <a
+          download
           class="link"
           :href="`https://regulations.trifonov.space/documents/${props.doc.link}`"
-          download
-          :target="props.doc.ext === 'jpg' ? '_blank' : '_self'"
-      >скачать</a>
+          :target="props.doc.ext === 'jpg' ? '_blank' : '_self'">скачать</a>
     </footer>
   </div>
 </template>

@@ -7,6 +7,7 @@
     <div class="news-item__image">
       <TheImage
           alt="news-cover"
+          :fallback="PlaceholderImage"
           :image="`https://news.trifonov.space/images/posts/${item.id}/${item.preview_image}.webp`"/>
     </div>
     <div class="news-item__content">
@@ -41,9 +42,8 @@ import IconView from '@/components/icons/IconView.vue';
 import IconLike from '@/components/icons/IconLike.vue';
 import IconCalendar from '@/components/icons/IconCalendar.vue';
 import ButtonComponent from '@/components/UI/ButtonComponent.vue';
-import imageWeb from '@/assets/img/index-news-img.webp';
-import image from '@/assets/img/index-news-img.jpg';
 import TheImage from "@/components/TheImage.vue";
+import PlaceholderImage from "@/assets/img/flowers.webp";
 
 const props = defineProps({
   item: {

@@ -12,8 +12,8 @@
             v-if="categoriesTitles"
             class="inner-tab__item"
             v-for="item in categoriesTitles"
-            @click="instructionsStore.setActiveCategory(item)"
-            :class="{active: activeCategory === item}">
+            :class="{active: activeCategory === item}"
+            @click="instructionsStore.setActiveCategory(item)">
           {{ item }}
         </div>
       </div>

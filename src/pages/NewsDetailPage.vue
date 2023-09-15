@@ -26,7 +26,10 @@
       </div>
     </div>
     <div class="news-cover rounded shadow">
-      <TheImage alt="alt" :image="`https://news.trifonov.space/images/posts/${post.id}/${post.preview_image}.webp`"/>
+      <TheImage
+          alt="alt"
+          :fallback="PlaceholderImage"
+          :image="`https://news.trifonov.space/images/posts/${post.id}/${post.preview_image}.webp`"/>
       <header class="news-header rounded overflow-hidden">
         <div class="news-header__top">
           <div class="news-header__top-item date">
@@ -54,6 +57,7 @@
     <div class="content rounded shadow">
       <p class="description">{{ post.description }}</p>
       <div class="post-content post-center" v-html="post.content"></div>
+
     </div>
   </div>
 </template>
@@ -73,6 +77,7 @@ import IconShare from "@/components/icons/IconShare.vue";
 import IconNew from "@/components/icons/IconNew.vue";
 import IconDislike from "@/components/icons/IconDislike.vue";
 import {onBeforeRouteUpdate, useRoute} from "vue-router";
+import PlaceholderImage from "@/assets/img/flowers.webp";
 
 const post = ref({});
 const params = useRoute().params;

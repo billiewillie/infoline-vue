@@ -50,6 +50,6 @@ span {
   font-size: 9px;
   line-height: 1;
   font-weight: 900;
-  color: var(--blue-light);
+  color: var(--blue-dark);
 }
 </style>
