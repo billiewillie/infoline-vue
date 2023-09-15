@@ -5,7 +5,7 @@
         <div class="icon">
           <IconComment/>
         </div>
-        <div class="text">2</div>
+        <div class="text">{{ post.comments.length > 0 ? post.comments.length : 0 }}</div>
       </div>
       <div class="news-stats-item">
         <div class="icon">
@@ -26,10 +26,7 @@
       </div>
     </div>
     <div class="news-cover rounded shadow">
-      <TheImage
-          alt="alt"
-          :image="`https://news.trifonov.space/images/posts/10/img_124.webp`"
-      />
+      <TheImage alt="alt" :image="`https://news.trifonov.space/images/posts/${post.id}/${post.preview_image}.webp`"/>
       <header class="news-header rounded overflow-hidden">
         <div class="news-header__top">
           <div class="news-header__top-item date">
