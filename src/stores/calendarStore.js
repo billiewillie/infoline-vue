@@ -124,13 +124,24 @@ export const useRootStore = defineStore(
                     return [dateEnd, monthEnd].join('.');
                 }
 
+                const isEqualDates = () => {
+                    const date1 = datesOfEventStart();
+                    const date2 = datesOfEventEnd();
+
+                    if(date1 === date2) {
+                        return `(${datesOfEventStart()}) ${item.title}`;
+                    } else {
+                        return `(${datesOfEventStart()}-${datesOfEventEnd()}) ${item.title}`
+                    }
+                }
+
                 return {
                     dates: getDates(item),
                     dot: {
                         color: getColor(),
                     },
                     popover: {
-                        label: `(${datesOfEventStart()}-${datesOfEventEnd()}) ${item.title}`
+                        label: isEqualDates()
                     }
                 }
             })
