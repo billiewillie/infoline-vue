@@ -57,7 +57,6 @@
     <div class="content rounded shadow">
       <p class="description">{{ post.description }}</p>
       <div class="post-content post-center" v-html="post.content"></div>
-
     </div>
   </div>
 </template>

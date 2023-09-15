@@ -148,6 +148,10 @@ const props = defineProps({
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (min-width: 1280px) {
+    bottom: -1px;
+  }
 }
 
 .news-item__footer-stats {
