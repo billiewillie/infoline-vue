@@ -163,7 +163,7 @@ onBeforeRouteUpdate((to) => {
 
   @media (min-width: 1280px) {
     flex-direction: column-reverse;
-    height: 500px;
+    height: 590px;
   }
 }
 
