@@ -109,6 +109,10 @@ function setClick() {
   background-color: var(--white);
 }
 
+.calendar .vc-day.is-today .vc-blue .vc-highlight {
+  display: none;
+}
+
 .calendar .vc-day.is-today.is-not-in-month {
   background-color: var(--gray);
 }
@@ -240,5 +244,24 @@ function setClick() {
   @media (min-width: 1280px) {
     padding-bottom: 5px;
   }
+}
+
+.vc-green {
+  --vc-accent-50: var(--blue-light);
+  --vc-accent-100: var(--blue-light);
+  --vc-accent-200: var(--blue-light);
+  --vc-accent-300: var(--blue-light);
+  --vc-accent-400: var(--blue-light);
+  --vc-accent-500: var(--blue-light);
+  --vc-accent-600: var(--blue-light);
+  --vc-accent-700: var(--blue-light);
+  --vc-accent-800: var(--blue-light);
+  --vc-accent-900: var(--blue-light);
+}
+
+.calendar .vc-focus:focus-within {
+  background-color: var(--white);
+  color: var(--black);
+  border: 2px solid var(--blue-light);
 }
 </style>
