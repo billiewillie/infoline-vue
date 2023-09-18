@@ -325,6 +325,7 @@ const {department} = storeToRefs(departmentsStore);
   color: var(--blue-dark);
   text-align: center;
   width: 92%;
+  text-underline-offset: 4px;
   border-bottom: 1px solid var(--gray-medium);
 
   @media (min-width: 1280px) {
@@ -335,7 +336,12 @@ const {department} = storeToRefs(departmentsStore);
     text-align: left;
     font-size: 22px;
     width: 25%;
+    text-underline-offset: 5px;
   }
+}
+
+.name:hover {
+  text-decoration: underline;
 }
 
 .surname {
