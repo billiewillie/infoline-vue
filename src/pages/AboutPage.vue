@@ -75,6 +75,7 @@
         <swiper
             :modules="[FreeMode]"
             :freeMode="true"
+            slidesOffsetBefore="10"
             :slides-per-view="'auto'"
             :breakpoints="{
                 '768': {
@@ -84,10 +85,10 @@
                   slidesPerView: 3
                 },
                 '1900': {
-                  slidesPerView: 4
+                  slidesPerView: 4,
+                  slidesOffsetBefore: 120
                 }
-              }"
-        >
+              }">
           <swiper-slide
               class="timeline-slide"
               v-for="slide in timelineSlides">
@@ -334,14 +335,14 @@ const timelineSlides = [
     year: 2020,
     text: 'локализация производства медицинских функциональных кроватей Pardo на базе компании “Биомебель”'
   },
-]
+];
 
 const icons = {
   IconLogoBioline,
   IconLogoBioBaby,
   IconLogoBioMebel,
   IconLogoBioSystemy,
-}
+};
 
 const logos = [
   {
@@ -360,7 +361,7 @@ const logos = [
     logo: icons.IconLogoBioBaby,
     text: "Направление B2C, продукция для материнства и детства."
   }
-]
+];
 
 const modules = [Navigation];
 </script>
@@ -688,7 +689,6 @@ h1.title {
   text-align: center;
   row-gap: 30px;
   width: 100%;
-  max-width: 1600px;
   margin: auto;
 
   @media (min-width: 1280px) {

@@ -28,7 +28,6 @@ export const useRootStore = defineStore(
         const activeCountry = ref('');
         const dayEvents = ref([]);
         const monthEvents = ref([]);
-
         const attributes = ref([
             {
                 highlight: 'blue',
@@ -39,9 +38,7 @@ export const useRootStore = defineStore(
                 dates: [],
             },
         ]);
-
         const attributesIndexPage = ref([]);
-
         const fullDate = ref([
             date.getFullYear(),
             date.getMonth() + 1,
