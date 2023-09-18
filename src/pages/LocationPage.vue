@@ -68,6 +68,67 @@
           </div>
         </div>
       </section>
+      <section v-for="item in location.departments" :key="item.id">
+        <template v-if="item?.users.length > 0">
+          <h2 class="title group-title">{{ item.title }}</h2>
+          <div class="content">
+            <div class="card shadow rounded" v-for="user in item.users" :key="user.id">
+              <TheImage
+                  :alt="`${user.firstname} ${user.lastname}`"
+                  :fallback="PlaceholderPerson"
+                  :image="`https://users.trifonov.space/images/users/${user.login}/gallery_1.webp`"/>
+              <router-link :to="`/users/${user.login}`" class="title name">
+                <span class="surname">{{ user.lastname }}</span>{{ user.firstname }} {{ user.middlename }}
+              </router-link>
+              <p class="position">{{ user.position }}</p>
+              <div class="contacts">
+                <div class="contacts-item">
+                <span class="icon">
+                  <IconPhoneBlue/>
+                </span>
+                  <span>Мест. телефон:</span>
+                  <span>{{ user.localphone }}</span>
+                </div>
+                <div class="contacts-item">
+                  <span class="icon">
+                    <IconMobileBlue/>
+                  </span>
+                  <span>Мобильный:</span>
+                  <div class="copy-contact">
+                    <a :href="`tel:+${user.phone}`" v-if="user.phone">{{ formatPhoneNumber(user.phone) }}</a>
+                    <span v-else>нет номера</span>
+                    <span class="icon copy" v-if="user.phone.length > 0">
+                      <IconCopy @click="copyPhone(user.phone)"/>
+                      <span class="tooltip">Копировать</span>
+                    </span>
+                  </div>
+                </div>
+                <div class="contacts-item">
+                  <span class="icon">
+                    <IconEmailBlue/>
+                  </span>
+                  <span>E-mail:</span>
+                  <div class="copy-contact">
+                    <a :href="`mailto:${user.email}`" v-if="user.email">{{ user.email }}</a>
+                    <span v-else>нет электронной почты</span>
+                    <span class="icon copy" v-if="user.email.length > 0">
+                      <IconCopy @click="copyMail(user.email)"/>
+                      <span class="tooltip">Копировать</span>
+                    </span>
+                  </div>
+                </div>
+                <div class="contacts-item">
+                <span class="icon">
+                  <IconGiftBlue/>
+                </span>
+                  <span>День рождения:</span>
+                  <span>{{ user.day }} {{ getMonthName(user.month) }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+      </section>
       <section v-for="item in location.groups" :key="item.id">
         <template v-if="item?.users.length > 0">
           <h2 class="title group-title">{{ item.title }}</h2>
