@@ -31,17 +31,13 @@ export const useRootStore = defineStore(
 
         const attributes = ref([
             {
-                highlight: 'green',
+                highlight: 'blue',
                 dates: [],
             },
             {
                 highlight: 'red',
                 dates: [],
             },
-            {
-                highlight: 'blue',
-                dates: [],
-            }
         ]);
 
         const attributesIndexPage = ref([]);
@@ -162,7 +158,7 @@ export const useRootStore = defineStore(
                     new Date(),
                     ...data
                         .value[activeCountry.value]
-                        .filter(item => item.category === 'Выставки и семинары')
+                        .filter(item => item.category !== 'Производственный календарь')
                         .map(getDates)
                 ].flat();
 
@@ -170,13 +166,6 @@ export const useRootStore = defineStore(
                     ...data
                         .value[activeCountry.value]
                         .filter(item => item.category === 'Производственный календарь')
-                        .map(getDates)
-                ].flat();
-
-                attributes.value[2].dates = [
-                    ...data
-                        .value[activeCountry.value]
-                        .filter(item => item.category === 'Корпоративные мероприятия')
                         .map(getDates)
                 ].flat();
 
