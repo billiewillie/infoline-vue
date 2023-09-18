@@ -16,12 +16,6 @@
           class="header-profile__nav shadow"
           v-show="isOpen"
           v-click-outside="handleClickOutside">
-        <div class="header-profile__item">
-          <div class="icon">
-            <IconSettings/>
-          </div>
-          <span class="text">Сменить пароль</span>
-        </div>
         <div class="header-profile__item" @click="setLoggedOut">
           <div class="icon">
             <IconLogout/>
