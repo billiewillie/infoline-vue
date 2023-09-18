@@ -101,10 +101,8 @@ export const useRootStore = defineStore(
                 const getColor = () => {
                     if (item.category === 'Производственный календарь') {
                         return 'red';
-                    } else if (item.category === 'Корпоративные мероприятия') {
-                        return 'blue';
                     } else {
-                        return 'green';
+                        return 'blue';
                     }
                 }
 
