@@ -140,7 +140,7 @@
                 alt="Гусева Н. К."
                 :fallback="PlaceholderPerson"
                 :image="`https://users.trifonov.space/images/users/guseva/gallery_1.webp`"/>
-            <h2 class="name title"><span class="surname">Гусева</span> Наталья Константиновна</h2>
+            <h2 class="name title"><span class="surname">Гусева</span> Наталия Константиновна</h2>
             <p class="position">Директор по правовым вопросам</p>
           </router-link>
           <div class="department-group">

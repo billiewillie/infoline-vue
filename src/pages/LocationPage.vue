@@ -35,7 +35,7 @@
                 <div class="copy-contact">
                   <a
                       :href="`tel:+${user.phone}`"
-                      v-if="user.phone">{{ formatPhoneNumber(user.phone) }}</a>
+                      v-if="user.phone">{{ formatPhoneNumber(user.phone, location.url) }}</a>
                   <span v-else>нет номера</span>
                   <span class="icon copy" v-if="user.phone.length > 0">
                     <IconCopy @click="copyPhone(user.phone)"/>
@@ -87,7 +87,8 @@
                   <IconPhoneBlue/>
                 </span>
                   <span>Мест. телефон:</span>
-                  <span>{{ user.localphone }}</span>
+                  <span v-if="user.localphone">{{ user.localphone }}</span>
+                  <span v-else>нет номера</span>
                 </div>
                 <div class="contacts-item">
                   <span class="icon">
@@ -95,7 +96,7 @@
                   </span>
                   <span>Мобильный:</span>
                   <div class="copy-contact">
-                    <a :href="`tel:+${user.phone}`" v-if="user.phone">{{ formatPhoneNumber(user.phone) }}</a>
+                    <a :href="`tel:+${user.phone}`" v-if="user.phone">{{ formatPhoneNumber(user.phone, location.url) }}</a>
                     <span v-else>нет номера</span>
                     <span class="icon copy" v-if="user.phone.length > 0">
                       <IconCopy @click="copyPhone(user.phone)"/>
@@ -148,7 +149,8 @@
                   <IconPhoneBlue/>
                 </span>
                   <span>Мест. телефон:</span>
-                  <span>{{ user.localphone }}</span>
+                  <span v-if="user.localphone">{{ user.localphone }}</span>
+                  <span v-else>нет номера</span>
                 </div>
                 <div class="contacts-item">
                   <span class="icon">

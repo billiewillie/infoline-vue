@@ -5,7 +5,7 @@
         <div class="icon">
           <IconComment/>
         </div>
-        <div class="text">{{ post.comments.length > 0 ? post.comments.length : 0 }}</div>
+        <div class="text">{{ post?.comments?.length > 0 ? post?.comments?.length : 0 }}</div>
       </div>
       <div class="news-stats-item">
         <div class="icon">

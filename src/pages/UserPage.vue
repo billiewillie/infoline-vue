@@ -76,7 +76,7 @@
               :key="`${item}_${index}`">
             <div class="user-contacts__column-value-row">
               <div class="user-contacts__column-value">
-                <a :href="`tel:${item}`">{{ formatPhoneNumber(item) }}</a>
+                <a :href="`tel:${item}`">{{ formatPhoneNumber(item, user?.companies[0]?.department?.locations_url) }}</a>
               </div>
               <span class="icon icon-copy">
                   <IconCopy @click="copyPhone(item)"/>
