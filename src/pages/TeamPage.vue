@@ -171,7 +171,7 @@
             <p class="position">Заместитель генерального директора по маркетингу и продажам БиоСистемы</p>
           </router-link>
           <div class="department-group one-group">
-            <router-link to="/departments/department-technical-service" class="department rounded">Служба технического сервиса</router-link>
+            <router-link to="/locations/department-technical-service" class="department rounded">Служба технического сервиса</router-link>
           </div>
         </div>
         <div class="row">
