@@ -25,8 +25,8 @@ const navList = ref([
     path: '/team'
   },
   {
-    title: 'Календарь',
-    path: '/calendar'
+    title: 'Дни рождения',
+    path: '/birthdays'
   },
   {
     title: 'О компании',

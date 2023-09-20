@@ -27,8 +27,9 @@
     </div>
     <div class="news-cover rounded shadow">
       <TheImage
-          alt="alt"
+          :alt="`image-${post.id}`"
           :fallback="PlaceholderImage"
+          v-if="isRendered"
           :image="`https://news.trifonov.space/images/posts/${post.id}/${post.preview_image}.webp`"/>
       <header class="news-header rounded overflow-hidden">
         <div class="news-header__top">
@@ -62,7 +63,7 @@
 </template>
 
 <script setup>
-import {onMounted, ref} from "vue";
+import {nextTick, onMounted, ref} from "vue";
 import axios from "axios";
 import {NEWS_URL} from "@/constants";
 import TheImage from "@/components/TheImage.vue";
@@ -77,9 +78,16 @@ import IconNew from "@/components/icons/IconNew.vue";
 import IconDislike from "@/components/icons/IconDislike.vue";
 import {onBeforeRouteUpdate, useRoute} from "vue-router";
 import PlaceholderImage from "@/assets/img/flowers.webp";
+const isRendered = ref(true);
 
 const post = ref({});
 const params = useRoute().params;
+
+const updateComponent = async () => {
+  isRendered.value = false;
+  await nextTick();
+  isRendered.value = true;
+};
 
 onMounted(() => {
   axios
@@ -97,6 +105,7 @@ onBeforeRouteUpdate((to) => {
       .get(`${NEWS_URL}/${to.params.id}`)
       .then(res => {
         post.value = res.data;
+        updateComponent();
       })
       .catch(err => {
         console.log(err);
@@ -176,6 +185,7 @@ onBeforeRouteUpdate((to) => {
   -moz-border-radius: 3px;
   border-radius: 3px;
   overflow: hidden;
+  aspect-ratio: 2/1;
 
   @media (min-width: 1280px) {
     position: absolute;
@@ -183,6 +193,7 @@ onBeforeRouteUpdate((to) => {
     left: 0;
     width: 100%;
     height: 100%;
+    aspect-ratio: inherit;
   }
 }
 

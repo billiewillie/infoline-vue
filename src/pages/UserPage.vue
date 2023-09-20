@@ -1,5 +1,10 @@
 <template>
   <div class="basepage userpage">
+    <ConfettiExplosion
+        v-if="isConfettiVisible"
+        :particleCount="200"
+        :force="0.3"
+        :duration="5000"/>
     <div class="gallery shadow rounded overflow-hidden">
       <Swiper
           :modules="modules"
@@ -76,7 +81,9 @@
               :key="`${item}_${index}`">
             <div class="user-contacts__column-value-row">
               <div class="user-contacts__column-value">
-                <a :href="`tel:${item}`">{{ formatPhoneNumber(item, user?.companies[0]?.department?.locations_url) }}</a>
+                <a :href="`tel:${item}`">{{
+                    formatPhoneNumber(item, user?.companies[0]?.department?.locations_url)
+                  }}</a>
               </div>
               <span class="icon icon-copy">
                   <IconCopy @click="copyPhone(item)"/>
@@ -149,6 +156,7 @@ import "vue-toastification/dist/index.css";
 import {useToast} from "vue-toastification";
 import {Swiper, SwiperSlide} from 'swiper/vue';
 import {getMonthName} from "@/functions/getMonthName";
+import ConfettiExplosion from "vue-confetti-explosion";
 import {formatPhoneNumber} from "@/functions/formatPhoneNumber";
 import IconBirthday from "@/components/icons/IconBirthday.vue";
 import IconPhone from "@/components/icons/IconPhone.vue";
@@ -167,6 +175,7 @@ const user = ref({});
 const isRendered = ref(true);
 const phones = ref([]);
 const isMapShow = ref(false);
+const isConfettiVisible = ref(false);
 
 const updateComponent = async () => {
   isRendered.value = false;
@@ -177,7 +186,7 @@ const updateComponent = async () => {
 const isBDay = () => {
   const date = new Date();
   return date.getDate() === user.value.day && date.getMonth() + 1 === user.value.month;
-};
+}
 
 const copyMail = (email) => {
   navigator.clipboard.writeText(email);
@@ -193,6 +202,12 @@ const copyPhone = (phone) => {
   })
 }
 
+const explode = async () => {
+  isConfettiVisible.value = false;
+  await nextTick();
+  isConfettiVisible.value = true;
+};
+
 onMounted(() => {
   axios
       .get(`https://users.trifonov.space/api/show/user/${params.id}`)
@@ -205,6 +220,12 @@ onMounted(() => {
       .catch(err => {
         console.log(err);
       })
+
+  if(isBDay() === true) {
+    setTimeout(() => {
+      explode();
+    }, 600)
+  }
 });
 
 onBeforeRouteUpdate((to) => {
@@ -221,10 +242,33 @@ onBeforeRouteUpdate((to) => {
       .catch(err => {
         console.log(err);
       })
+
+  if(isBDay() === true) {
+    setTimeout(() => {
+      explode();
+    }, 600)
+  }
 });
 </script>
 
 <style scoped>
+.confetti-container {
+  position: fixed !important;
+  top: 100px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  --floor-height: 100vh !important;
+
+  @media (min-width: 1280px) {
+    top: 150px;
+  }
+
+  @media (min-width: 1920px) {
+    top: 200px;
+  }
+}
+
 .userpage {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
@@ -271,6 +315,7 @@ onBeforeRouteUpdate((to) => {
   @media (min-width: 1280px) {
     row-gap: 20px;
     padding: 30px 40px;
+    justify-content: center;
   }
 
   @media (min-width: 1900px) {
