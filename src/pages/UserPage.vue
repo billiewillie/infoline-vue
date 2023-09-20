@@ -218,16 +218,15 @@ onMounted(() => {
         phones.value = res.data.companies
             .map(item => item?.department?.phone)
             .filter(item => item.length > 0);
+        if (isBDay() === true) {
+          setTimeout(() => {
+            explode();
+          }, 600)
+        }
       })
       .catch(err => {
         console.log(err);
       })
-
-  if(isBDay() === true) {
-    setTimeout(() => {
-      explode();
-    }, 600)
-  }
 });
 
 onBeforeRouteUpdate((to) => {
@@ -240,16 +239,15 @@ onBeforeRouteUpdate((to) => {
             .map(item => item?.department?.phone)
             .filter(item => item.length > 0);
         updateComponent();
+        if (isBDay() === true) {
+          setTimeout(() => {
+            explode();
+          }, 600)
+        }
       })
       .catch(err => {
         console.log(err);
       })
-
-  if(isBDay() === true) {
-    setTimeout(() => {
-      explode();
-    }, 600)
-  }
 });
 </script>
 
