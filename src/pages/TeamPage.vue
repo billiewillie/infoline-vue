@@ -41,7 +41,6 @@
           <div class="department-group">
             <router-link to="/departments/olodep" class="department rounded">Отдел общелабораторного оборудования</router-link>
             <router-link to="/departments/labfur" class="department rounded">Отдел лабораторной мебели</router-link>
-            <router-link to="/departments/vacuumdep" class="department rounded">Отдел преаналитических систем и расходных материалов</router-link>
           </div>
         </div>
         <div class="row row-above-multiple-employees">

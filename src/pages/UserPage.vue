@@ -476,10 +476,6 @@ a.user-position__column-value {
   display: flex;
   align-items: baseline;
   column-gap: 20px;
-
-  @media (min-width: 1280px) {
-    column-gap: 60px;
-  }
 }
 
 .userpage .swiper-wrapper {

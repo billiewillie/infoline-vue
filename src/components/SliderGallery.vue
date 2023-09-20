@@ -4,9 +4,9 @@
         :to="`/galleries/${galleryLink}`"
         class="title gallery-title">
       <span class="icon">
-      <IconGallery/>
+        <IconGallery/>
       </span>
-      {{ galleryTitle }}
+      <p>{{ galleryTitle }}</p>
     </router-link>
     <swiper
         :modules="modules"
@@ -65,18 +65,29 @@ const onSlideChange = (swiper) => {
   position: absolute;
   left: 0;
   top: 0;
-  font-size: 13px;
-  color: var(--white);
-  padding: 7px;
   z-index: 2;
-  min-width: 40%;
+  width: 50%;
+  padding: 7px;
+  color: var(--white);
   background-color: var(--blue-dark);
   -webkit-border-radius: 3px 0 3px 0;
   -moz-border-radius: 3px 0 3px 0;
   border-radius: 3px 0 3px 0;
 }
 
+.gallery-title p {
+  font-size: 13px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 700;
+  width: calc(100% - 33px);
+}
+
 .icon {
+  display: block;
   width: 18px;
   height: 18px;
 }
