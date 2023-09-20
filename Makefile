@@ -1,4 +1,4 @@
-gt:
+git:
 	git add .
-	git commit -m "update"
+	git commit -m "$c"
 	git push

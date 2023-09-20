@@ -61,7 +61,7 @@
           <a v-if="user.email && user.email.length > 0" :href="`mailto:${user.email}`">{{ user.email }}</a>
           <span v-else>Нет</span>
         </div>
-        <span class="icon icon-copy">
+        <span class="icon icon-copy" v-if="user.email && user.email.length > 0">
           <IconCopy @click="copyMail(user.email)"/>
           <span class="tooltip">Копировать</span>
         </span>
@@ -143,9 +143,16 @@
         </SwiperSlide>
       </Swiper>
     </div>
-    <template v-if="user?.location">
-      <OfficeMap :location="user?.location"/>
-    </template>
+    <OfficeMap
+        v-if="user?.location"
+        :location="user?.location"/>
+    <div class="fallback shadow rounded overflow-hidden" v-else>
+      <p v-for="(company, index) in user?.companies" :key="company.id">
+        <template v-if="index === 0">
+          {{ company?.department?.locations }}
+        </template>
+      </p>
+    </div>
   </div>
 </template>
 
@@ -560,5 +567,23 @@ a.user-position__column-value {
 .user-contacts__column-value-row {
   display: flex;
   column-gap: 10px;
+}
+
+.fallback {
+  display: flex;
+  min-height: 260px;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--white);
+  color: var(--blue-light);
+}
+
+.fallback p {
+  font-weight: 700;
+  font-size: 20px;
+
+  @media (min-width: 1280px) {
+    font-size: 24px;
+  }
 }
 </style>

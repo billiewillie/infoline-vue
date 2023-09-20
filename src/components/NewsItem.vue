@@ -99,6 +99,12 @@ const props = defineProps({
 .news-item__content .text {
   font-weight: 400;
   font-size: 15px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--gray-dark);
 
   @media (min-width: 1280px) {
     font-size: 13px;

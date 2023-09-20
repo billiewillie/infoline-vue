@@ -83,10 +83,14 @@ input {
     align-items: center;
 }
 
+.post-content p {
+    margin-bottom: 8px;
+}
+
 h1.title {
     text-align: center;
-    color: var(--blue-dark);
     margin-bottom: 35px;
+    color: var(--blue-dark);
 }
 
 .subtitle {

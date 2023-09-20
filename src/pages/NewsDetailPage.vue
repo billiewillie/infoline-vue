@@ -59,11 +59,40 @@
       <p class="description">{{ post.description }}</p>
       <div class="post-content post-center" v-html="post.content"></div>
     </div>
+    <div class="news-more">
+      <h2 class="title">Похожие новости</h2>
+      <div class="news-grid">
+        <Swiper
+            :modules="modules"
+            :slides-per-view="1"
+            navigation
+            space-between="10"
+            v-if="newsIndexPage && newsIndexPage.length"
+            :breakpoints="{
+              768: {
+                slidesPerView: 2
+              },
+              1280: {
+                slidesPerView: 3
+              }
+            }"
+            loop>
+          <SwiperSlide
+              v-for="item in newsIndexPage"
+              :key="item.id">
+            <NewsItem :item="item"/>
+          </SwiperSlide>
+        </Swiper>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
 import {nextTick, onMounted, ref} from "vue";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import {Navigation} from 'swiper';
 import axios from "axios";
 import {NEWS_URL} from "@/constants";
 import TheImage from "@/components/TheImage.vue";
@@ -78,6 +107,16 @@ import IconNew from "@/components/icons/IconNew.vue";
 import IconDislike from "@/components/icons/IconDislike.vue";
 import {onBeforeRouteUpdate, useRoute} from "vue-router";
 import PlaceholderImage from "@/assets/img/flowers.webp";
+import {Swiper, SwiperSlide} from "swiper/vue";
+import NewsItem from "@/components/NewsItem.vue";
+import {storeToRefs} from "pinia";
+import {useRootStore as useNewsStore} from "@/stores/newsStore";
+
+const modules = [Navigation];
+const newsStore = useNewsStore();
+newsStore.getNewsIndexPage();
+const {newsIndexPage} = storeToRefs(newsStore);
+
 const isRendered = ref(true);
 
 const post = ref({});
@@ -241,11 +280,12 @@ onBeforeRouteUpdate((to) => {
 }
 
 .content {
-  padding: 40px 10px;
+  padding: 30px 10px;
   font-size: 16px;
   line-height: 1.5;
   font-weight: 400;
   background-color: var(--white);
+  margin-bottom: 40px;
 
   @media (min-width: 1280px) {
     padding: 40px 0;
@@ -429,12 +469,18 @@ onBeforeRouteUpdate((to) => {
   width: 100%;
 }
 
+.news-more {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
 .news-more .title {
   color: var(--blue-dark);
   text-align: center;
 }
 
 .post-content {
-  padding-bottom: 40px;
+  padding-bottom: 30px;
 }
 </style>
