@@ -143,7 +143,9 @@
         </SwiperSlide>
       </Swiper>
     </div>
-    <OfficeMap :location="user?.location"/>
+    <template v-if="user?.location">
+      <OfficeMap :location="user?.location"/>
+    </template>
   </div>
 </template>
 
