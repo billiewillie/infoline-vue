@@ -61,7 +61,6 @@ const defaultCards = ref([
   },
 ]);
 const modules = [Navigation];
-
 const newsStore = useNewsStore();
 const calendarStore = useCalendarStore();
 calendarStore.getData();

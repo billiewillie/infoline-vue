@@ -39,12 +39,6 @@
             </div>
             <span>{{ post.published_date }}</span>
           </div>
-          <div class="news-header__top-item category">
-            <div class="icon">
-              <IconTag/>
-            </div>
-            <span>юбиляры</span>
-          </div>
           <div class="news-header__top-item author">
             <div class="icon">
               <IconUser/>
@@ -58,6 +52,20 @@
     <div class="content rounded shadow">
       <p class="description">{{ post.description }}</p>
       <div class="post-content post-center" v-html="post.content"></div>
+    </div>
+    <div class="comments">
+      <header class="post-header">
+        <h2 class="title post-center">
+          <span class="icon">
+            <IconComment/>
+          </span>
+          <span>Комментарии</span>
+        </h2>
+      </header>
+      <CommentComponent
+          v-for="comment in post.comments"
+          :comment="comment"
+          :key="comment.id"/>
     </div>
     <div class="news-more">
       <h2 class="title">Похожие новости</h2>
@@ -111,6 +119,7 @@ import {Swiper, SwiperSlide} from "swiper/vue";
 import NewsItem from "@/components/NewsItem.vue";
 import {storeToRefs} from "pinia";
 import {useRootStore as useNewsStore} from "@/stores/newsStore";
+import CommentComponent from "@/components/CommentComponent.vue";
 
 const modules = [Navigation];
 const newsStore = useNewsStore();
@@ -381,92 +390,6 @@ onBeforeRouteUpdate((to) => {
   width: 100%;
   max-width: 740px;
   margin: 0 auto;
-}
-
-.comment {
-  padding: 20px 0;
-  border-bottom: 1px solid var(--gray-medium);
-}
-
-.comment:nth-of-type(even) {
-  background-color: #fafafa;
-}
-
-.comment-inner {
-  display: flex;
-  justify-content: space-between;
-  column-gap: 20px;
-}
-
-.comment-avatar {
-  width: 54px;
-  height: 54px;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-.comment-header {
-  display: flex;
-  flex-direction: column;
-  row-gap: 15px;
-
-  @media (min-width: 1280px) {
-    flex-direction: row;
-    column-gap: 15px;
-  }
-}
-
-.comment-author {
-  font-size: 16px;
-  color: var(--blue-dark);
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-.comment-stats {
-  display: flex;
-  column-gap: 15px;
-}
-
-.comment-stats-item {
-  display: flex;
-  column-gap: 5px;
-  color: var(--blue-dark);
-}
-
-.comment-content {
-  display: flex;
-  flex: auto;
-  flex-direction: column;
-  row-gap: 15px;
-}
-
-.comment-dialog-trigger {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  row-gap: 3px;
-
-}
-
-.comment-dialog-trigger span {
-  width: 4px;
-  height: 4px;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
-  background-color: var(--blue-dark);
-}
-
-.comment-answer-textarea {
-  max-width: 740px;
-  margin: 0 auto;
-}
-
-.comment-answer-textarea textarea {
-  width: 100%;
 }
 
 .news-more {

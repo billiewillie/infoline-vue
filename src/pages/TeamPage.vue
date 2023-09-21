@@ -18,8 +18,7 @@
             <TheImage
                 alt="Дулаева О. Е."
                 :fallback="PlaceholderPerson"
-                :image="`https://users.trifonov.space/images/users/dulaeva/gallery_1.webp`"
-            />
+                :image="`https://users.trifonov.space/images/users/dulaeva/gallery_1.webp`"/>
             <h2 class="name title"><span class="surname">Дулаева</span> Оксана Евгеньевна</h2>
             <p class="position">Заместитель генерального директора по маркетингу и продажам БиоСистемы</p>
           </router-link>
