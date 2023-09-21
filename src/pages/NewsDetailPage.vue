@@ -28,8 +28,8 @@
     <div class="news-cover rounded shadow">
       <TheImage
           :alt="`image-${post.id}`"
-          :fallback="PlaceholderImage"
           v-if="isRendered"
+          :fallback="`https://news.trifonov.space/images/posts/${post.id}/${post.preview_image}.webp`"
           :image="`https://news.trifonov.space/images/posts/${post.id}/${post.preview_image}.webp`"/>
       <header class="news-header rounded overflow-hidden">
         <div class="news-header__top">
@@ -97,12 +97,12 @@
 </template>
 
 <script setup>
-import {nextTick, onMounted, ref} from "vue";
 import 'swiper/css';
+import axios from "axios";
 import 'swiper/css/navigation';
 import {Navigation} from 'swiper';
-import axios from "axios";
 import {NEWS_URL} from "@/constants";
+import {nextTick, onMounted, ref} from "vue";
 import TheImage from "@/components/TheImage.vue";
 import IconCalendar from "@/components/icons/IconCalendar.vue";
 import IconTag from "@/components/icons/IconTag.vue";
@@ -341,6 +341,12 @@ onBeforeRouteUpdate((to) => {
 .post-header {
   background-color: var(--blue-dark);
   padding: 0 10px;
+}
+
+.comments .post-header {
+  -webkit-border-radius: 3px 3px 0 0;
+  -moz-border-radius: 3px 3px 0 0;
+  border-radius: 3px 3px 0 0;
 }
 
 .post-header h2 {

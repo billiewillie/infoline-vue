@@ -25,7 +25,8 @@ const {news, newsCategories, activeCategory, activeNews} = storeToRefs(newsStore
 
 <style scoped>
 .title {
-  margin-bottom: 35px;
+  margin-bottom: 20px;
+  line-height: 1;
 }
 
 .news-list {
