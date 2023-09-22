@@ -429,6 +429,8 @@ onBeforeRouteUpdate((to) => {
 }
 
 .swiper {
-  padding-bottom: 2px;
+  @media (min-width: 1280px) {
+    padding-bottom: 2px;
+  }
 }
 </style>
