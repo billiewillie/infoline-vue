@@ -33,25 +33,40 @@
             </div>
           </div>
         </div>
-        <div class="comment-text">
+        <div
+            v-if="!isCommentEditing"
+            class="comment-text">
           {{ comment.content }}
         </div>
         <div
-            v-if="isAnswerOpen === false"
-            class="comment-answer">
+            class="comment-text__edited"
+            v-else>
+          <textarea rows="5" v-model="editedComment"></textarea>
+          <button class="comment-answer-send">отправить</button>
+          <div
+              @click="isCommentEditing = false;editedComment = ''"
+              class="close comment-answer-close">
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <div v-if="isAnswerOpen === false" class="comment-answer">
           <i class="icon">
             <IconComment/>
           </i>
           <div
-              @click="isAnswerOpen = true"
-              class="comment-answer-button">Ответить
-          </div>
+              @click="isAnswerOpen = true;isCommentEditing = false"
+              class="comment-answer-button">Ответить</div>
         </div>
-        <div
-            v-if="isAnswerOpen"
-            class="comment-answer-textarea">
-          <textarea rows="3"></textarea>
+        <div v-if="isAnswerOpen" class="comment-answer-textarea">
+          <textarea rows="5" v-model="answer"></textarea>
           <button class="comment-answer-send">отправить</button>
+          <div
+              @click="isAnswerOpen = false;answer = ''"
+              class="close comment-answer-close">
+            <span></span>
+            <span></span>
+          </div>
         </div>
       </div>
       <div
@@ -70,10 +85,14 @@
               v-show="isModalOpen"
               v-click-outside="handleClickOutside">
             <div class="modal-row">
-              <span @click="console.log('edit')">Редактировать</span>
+              <span @click="
+              isAnswerOpen = false;
+              answer = '';
+              isCommentEditing = true;
+              console.log('edit')">Редактировать</span>
             </div>
             <div class="modal-row">
-              <span @click="console.log('delete')">Удалить</span>
+              <span @click="isAnswerOpen = false;answer = '';console.log('delete')">Удалить</span>
             </div>
           </div>
         </transition>
@@ -83,7 +102,7 @@
 </template>
 
 <script setup>
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import TheImage from "@/components/TheImage.vue";
 import IconLike from "@/components/icons/IconLike.vue";
 import IconDislike from "@/components/icons/IconDislike.vue";
@@ -92,14 +111,17 @@ import PlaceholderPerson from "@/assets/img/profile-fallback.svg";
 import IconComment from "@/components/icons/IconComment.vue";
 import ButtonComponent from "@/components/UI/ButtonComponent.vue";
 
-const isAnswerOpen = ref(false);
-const isModalOpen = ref(false);
+const answer = ref('');
 const props = defineProps({
   comment: {
     type: Object,
     required: true,
   }
 });
+const editedComment = ref('');
+const isModalOpen = ref(false);
+const isAnswerOpen = ref(false);
+const isCommentEditing = ref(false);
 
 const handleClickOutside = () => {
   isModalOpen.value = false;
@@ -118,6 +140,10 @@ const vClickOutside = {
     document.body.removeEventListener('click', el.__ClickOutsideHandler__);
   },
 };
+
+onMounted(() => {
+  editedComment.value = props.comment.content
+})
 </script>
 
 <style scoped>
@@ -236,35 +262,72 @@ const vClickOutside = {
   text-decoration: underline;
 }
 
+.comment-text__edited,
 .comment-answer-textarea {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   width: 100%;
   position: relative;
   max-width: 740px;
   margin: 0 auto;
   font-size: 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid var(--gray-medium);
 }
 
+.comment-text__edited textarea,
 .comment-answer-textarea textarea {
   width: 100%;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
   padding: 8px;
+  resize: none;
   font-family: var(--font-base);
-  border: 1px solid var(--gray-medium);
+  border: 1px solid var(--white);
+  outline: none;
 }
 
 .comment-answer-send {
   background-color: var(--blue-light);
-  bottom: 0;
-  right: 0;
   border: 0;
   color: var(--white);
   font-weight: bold;
   padding: 10px 20px;
+  bottom: -1px;
+  right: -1px;
   -webkit-border-radius: 3px 0 3px 0;
   -moz-border-radius: 3px 0 3px 0;
   border-radius: 3px 0 3px 0;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.comment-answer-close {
+  position: absolute;
+  top: 0;
+  width: 18px;
+  height: 18px;
+  right: -38px;
+  cursor: pointer;
+}
+
+.comment-answer-close span {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  top: 50%;
+  left: 0;
+  background-color: var(--black);
+  transform-origin: center;
+  transform: rotate(45deg);
+}
+
+.comment-answer-close span:last-child {
+  transform: rotate(-45deg);
 }
 
 .icon {

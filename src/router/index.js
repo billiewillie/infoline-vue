@@ -198,6 +198,6 @@ const router = createRouter({
             }, 400)
         })
     }
-})
+});
 
 export default router

@@ -28,10 +28,9 @@
     <div class="news-cover rounded shadow">
       <TheImage
           :alt="`image-${post.id}`"
-          v-if="isRendered"
           :fallback="`https://news.trifonov.space/images/posts/${post.id}/${post.preview_image}.webp`"
           :image="`https://news.trifonov.space/images/posts/${post.id}/${post.preview_image}.webp`"/>
-      <header class="news-header rounded overflow-hidden">
+      <header class="news-header overflow-hidden">
         <div class="news-header__top">
           <div class="news-header__top-item date">
             <div class="icon">
@@ -52,6 +51,20 @@
     <div class="content rounded shadow">
       <p class="description">{{ post.description }}</p>
       <div class="post-content post-center" v-html="post.content"></div>
+    </div>
+    <div class="comment-new">
+      <header class="post-header">
+        <h2 class="title post-center">
+          <span class="icon">
+            <IconNew/>
+          </span>
+          <span>Оставить комментарий</span>
+        </h2>
+      </header>
+      <div class="comment-new-textarea">
+        <textarea rows="5"></textarea>
+        <button class="comment-new-send">отправить</button>
+      </div>
     </div>
     <div class="comments">
       <header class="post-header">
@@ -119,7 +132,6 @@ import IconShare from "@/components/icons/IconShare.vue";
 import IconNew from "@/components/icons/IconNew.vue";
 import IconDislike from "@/components/icons/IconDislike.vue";
 import {onBeforeRouteUpdate, useRoute} from "vue-router";
-import PlaceholderImage from "@/assets/img/flowers.webp";
 import {Swiper, SwiperSlide} from "swiper/vue";
 import NewsItem from "@/components/NewsItem.vue";
 import {storeToRefs} from "pinia";
@@ -130,17 +142,8 @@ const modules = [Navigation];
 const newsStore = useNewsStore();
 newsStore.getNewsIndexPage();
 const {newsIndexPage} = storeToRefs(newsStore);
-
-const isRendered = ref(true);
-
 const post = ref({});
 const params = useRoute().params;
-
-const updateComponent = async () => {
-  isRendered.value = false;
-  await nextTick();
-  isRendered.value = true;
-};
 
 onMounted(() => {
   axios
@@ -151,19 +154,18 @@ onMounted(() => {
       .catch(err => {
         console.log(err);
       })
-})
+});
 
 onBeforeRouteUpdate((to) => {
   axios
       .get(`${NEWS_URL}/${to.params.id}`)
       .then(res => {
         post.value = res.data;
-        updateComponent();
       })
       .catch(err => {
         console.log(err);
       })
-})
+});
 </script>
 
 <style scoped>
@@ -234,9 +236,9 @@ onBeforeRouteUpdate((to) => {
 }
 
 .news-cover .image {
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
+  -webkit-border-radius: 3px 3px 0 0;
+  -moz-border-radius: 3px 3px 0 0;
+  border-radius: 3px 3px 0 0;
   overflow: hidden;
   aspect-ratio: 2/1;
 
@@ -247,6 +249,9 @@ onBeforeRouteUpdate((to) => {
     width: 100%;
     height: 100%;
     aspect-ratio: inherit;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
   }
 }
 
@@ -258,6 +263,9 @@ onBeforeRouteUpdate((to) => {
   color: var(--white);
   padding: 10px;
   z-index: 1;
+  -webkit-border-radius: 0 0 3px 3px;
+  -moz-border-radius: 0 0 3px 3px;
+  border-radius: 0 0 3px 3px;
 
   @media (min-width: 1280px) {
     max-width: 760px;
@@ -396,11 +404,47 @@ onBeforeRouteUpdate((to) => {
   margin-bottom: 40px;
 }
 
-.comment-new-textarea textarea {
+.comment-new-textarea {
   display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   width: 100%;
+  position: relative;
   max-width: 740px;
   margin: 0 auto;
+  font-size: 0;
+  border: 1px solid var(--gray-medium);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.comment-new-textarea textarea {
+  width: 100%;
+  display: flex;
+  margin: 0 auto;
+  max-width: 740px;
+  padding: 8px;
+  outline: none;
+  border: 1px solid var(--white);
+  resize: none;
+  font-family: var(--font-base);
+  line-height: 1.4;
+}
+
+.comment-new-send {
+  background-color: var(--blue-light);
+  border: 0;
+  bottom: -1px;
+  right: -1px;
+  color: var(--white);
+  font-weight: bold;
+  padding: 10px 20px;
+  -webkit-border-radius: 3px 0 3px 0;
+  -moz-border-radius: 3px 0 3px 0;
+  border-radius: 3px 0 3px 0;
+  cursor: pointer;
+  text-transform: uppercase;
 }
 
 .news-more {
@@ -419,7 +463,7 @@ onBeforeRouteUpdate((to) => {
 }
 
 .comments-empty {
-  padding: 20px 0;
+  padding: 20px 10px;
 }
 
 .swiper-slide {

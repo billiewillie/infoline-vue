@@ -407,9 +407,9 @@ onBeforeRouteUpdate((to) => {
   bottom: 130%;
   width: 70px;
   left: 50%;
-  transform: translateX(-50%);
-  font-size: 12px !important;
   opacity: 0;
+  font-size: 12px !important;
+  transform: translateX(-50%);
   transition: opacity 0.3s ease-in-out;
 }
 
@@ -423,22 +423,18 @@ onBeforeRouteUpdate((to) => {
 
 .userpage .user-contacts {
   display: flex;
-  flex-direction: column;
   row-gap: 25px;
+  padding: 30px 24px;
+  color: var(--white);
+  flex-direction: column;
   justify-content: space-between;
   background-color: var(--blue-dark);
-  color: var(--white);
-  padding: 30px 24px;
 
   @media (min-width: 1280px) {
+    row-gap: 20px;
+    padding: 40px;
     flex-direction: row;
     align-items: center;
-    row-gap: 20px;
-    padding: 40px 44px;
-  }
-
-  @media (min-width: 1900px) {
-    padding: 60px 64px;
   }
 }
 
@@ -448,8 +444,8 @@ onBeforeRouteUpdate((to) => {
 
 .user-position__column-title {
   font-size: 13px;
-  font-weight: 400;
   min-width: 80px;
+  font-weight: 400;
   color: var(--gray-dark);
 }
 
@@ -466,10 +462,10 @@ onBeforeRouteUpdate((to) => {
 }
 
 a.user-position__column-value {
+  line-height: 1.5;
   color: var(--blue-dark);
   text-decoration: underline;
   text-underline-offset: 4px;
-  line-height: 1.5;
 }
 
 .user-position__row {
