@@ -36,14 +36,22 @@
         <div class="comment-text">
           {{ comment.content }}
         </div>
-        <div class="comment-answer">
+        <div
+            v-if="isAnswerOpen === false"
+            class="comment-answer">
           <i class="icon">
             <IconComment/>
           </i>
-          <div class="comment-answer-button">Ответить</div>
+          <div
+              @click="isAnswerOpen = true"
+              class="comment-answer-button">Ответить
+          </div>
         </div>
-        <div class="comment-answer-textarea">
-          <textarea></textarea>
+        <div
+            v-if="isAnswerOpen"
+            class="comment-answer-textarea">
+          <textarea rows="3"></textarea>
+          <button class="comment-answer-send">отправить</button>
         </div>
       </div>
       <div
@@ -82,6 +90,7 @@ import IconDislike from "@/components/icons/IconDislike.vue";
 import IconCalendar from "@/components/icons/IconCalendar.vue";
 import PlaceholderPerson from "@/assets/img/profile-fallback.svg";
 import IconComment from "@/components/icons/IconComment.vue";
+import ButtonComponent from "@/components/UI/ButtonComponent.vue";
 
 const isAnswerOpen = ref(false);
 const isModalOpen = ref(false);
@@ -135,10 +144,10 @@ const vClickOutside = {
 .comment-avatar {
   width: 54px;
   height: 54px;
+  overflow: hidden;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
-  overflow: hidden;
 }
 
 .comment-header {
@@ -182,13 +191,17 @@ const vClickOutside = {
   row-gap: 15px;
 }
 
+.comment-dialog-trigger {
+  width: 18px;
+  height: 18px;
+}
+
 .comment-dialog-trigger .button {
   display: flex;
   flex-direction: column;
   align-items: center;
   row-gap: 3px;
   cursor: pointer;
-  width: 20px;
 }
 
 .comment-dialog-trigger .button span {
@@ -224,13 +237,34 @@ const vClickOutside = {
 }
 
 .comment-answer-textarea {
-  display: none;
+  width: 100%;
+  position: relative;
   max-width: 740px;
   margin: 0 auto;
+  font-size: 0;
 }
 
 .comment-answer-textarea textarea {
   width: 100%;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  padding: 8px;
+  font-family: var(--font-base);
+  border: 1px solid var(--gray-medium);
+}
+
+.comment-answer-send {
+  background-color: var(--blue-light);
+  bottom: 0;
+  right: 0;
+  border: 0;
+  color: var(--white);
+  font-weight: bold;
+  padding: 10px 20px;
+  -webkit-border-radius: 3px 0 3px 0;
+  -moz-border-radius: 3px 0 3px 0;
+  border-radius: 3px 0 3px 0;
 }
 
 .icon {

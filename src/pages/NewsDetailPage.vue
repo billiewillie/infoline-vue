@@ -66,6 +66,11 @@
           v-for="comment in post.comments"
           :comment="comment"
           :key="comment.id"/>
+      <div v-if="post.comments && post.comments.length === 0">
+        <div class="post-center comments-empty">
+          <p>Комментариев еще нет</p>
+        </div>
+      </div>
     </div>
     <div class="news-more">
       <h2 class="title">Похожие новости</h2>
@@ -411,5 +416,19 @@ onBeforeRouteUpdate((to) => {
 
 .post-content {
   padding-bottom: 30px;
+}
+
+.comments-empty {
+  padding: 20px 0;
+}
+
+.swiper-slide {
+  @media (min-width: 1280px) {
+    height: auto;
+  }
+}
+
+.swiper {
+  padding-bottom: 2px;
 }
 </style>

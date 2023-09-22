@@ -68,11 +68,7 @@ const props = defineProps({
   -moz-border-radius: 3px 3px 0 0;
   border-radius: 3px 3px 0 0;
   overflow: hidden;
-  aspect-ratio: 185 / 114;
-
-  @media (min-width: 1280px) {
-    aspect-ratio: 37 / 17;
-  }
+  aspect-ratio: 37 / 17;
 }
 
 .news-item__content {
