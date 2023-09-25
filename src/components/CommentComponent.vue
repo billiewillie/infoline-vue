@@ -42,15 +42,28 @@
             class="comment-text__edited"
             v-else>
           <textarea rows="5" v-model="editedComment"></textarea>
-          <button class="comment-answer-send">отправить</button>
+          <button class="comment-answer-send">
+            <span>отправить</span>
+            <i class="icon">
+              <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M1 10L2.76297 8.42742C4.1689 7.17332 4.87187 6.54627 4.98011 5.782C5.00663 5.59474 5.00663 5.40526 4.98011 5.218C4.87187 4.45373 4.1689 3.82668 2.76297 2.57258L1 1"
+                    stroke="var(--white)"
+                    stroke-width="1.5"
+                    stroke-linecap="round"/>
+              </svg>
+            </i>
+          </button>
           <div
-              @click="isCommentEditing = false;editedComment = ''"
+              @click="isCommentEditing = false"
               class="close comment-answer-close">
             <span></span>
             <span></span>
           </div>
         </div>
-        <div v-if="isAnswerOpen === false" class="comment-answer">
+        <div
+            v-if="isAnswerOpen === false"
+            class="comment-answer">
           <i class="icon">
             <IconComment/>
           </i>
@@ -60,7 +73,18 @@
         </div>
         <div v-if="isAnswerOpen" class="comment-answer-textarea">
           <textarea rows="5" v-model="answer"></textarea>
-          <button class="comment-answer-send">отправить</button>
+          <button class="comment-answer-send">
+            <span>отправить</span>
+            <i class="icon">
+              <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M1 10L2.76297 8.42742C4.1689 7.17332 4.87187 6.54627 4.98011 5.782C5.00663 5.59474 5.00663 5.40526 4.98011 5.218C4.87187 4.45373 4.1689 3.82668 2.76297 2.57258L1 1"
+                    stroke="var(--white)"
+                    stroke-width="1.5"
+                    stroke-linecap="round"/>
+              </svg>
+            </i>
+          </button>
           <div
               @click="isAnswerOpen = false;answer = ''"
               class="close comment-answer-close">
@@ -178,8 +202,8 @@ onMounted(() => {
 
 .comment-header {
   display: flex;
-  flex-direction: column;
   row-gap: 15px;
+  flex-direction: column;
 
   @media (min-width: 1280px) {
     flex-direction: row;
@@ -292,10 +316,11 @@ onMounted(() => {
 }
 
 .comment-answer-send {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
   background-color: var(--blue-light);
-  border: 0;
-  color: var(--white);
-  font-weight: bold;
+  border: 1px solid var(--blue-light);
   padding: 10px 20px;
   bottom: -1px;
   right: -1px;
@@ -304,6 +329,37 @@ onMounted(() => {
   border-radius: 3px 0 3px 0;
   cursor: pointer;
   text-transform: uppercase;
+  transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.comment-answer-send span {
+  line-height: 1;
+  color: var(--white);
+  font-weight: bold;
+}
+
+.comment-answer-send i.icon {
+  display: flex;
+  align-items: center;
+  width: 6px;
+  height: 11px;
+}
+
+.comment-answer-send i.icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.comment-answer-send:hover {
+  background-color: var(--white);
+}
+
+.comment-answer-send:hover span {
+  color: var(--blue-light);
+}
+
+.comment-answer-send:hover svg path {
+  stroke: var(--blue-light);
 }
 
 .comment-answer-close {

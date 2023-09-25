@@ -4,7 +4,7 @@
         v-if="isConfettiVisible"
         :particleCount="200"
         :force="0.3"
-        :duration="5000"/>
+        :duration="4000"/>
     <div class="gallery shadow rounded overflow-hidden">
       <Swiper
           :modules="modules"

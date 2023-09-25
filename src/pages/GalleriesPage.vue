@@ -22,7 +22,7 @@
         <div class="gallery-cover rounded overflow-hidden">
           <TheImage
               alt="gallery-cover"
-              :image="`https://gallery.trifonov.space/upload/galleries/${gallery.id}/${gallery.gallery_cover}.jpg`"
+              :image="`https://gallery.trifonov.space/upload/galleries/${gallery.id}/${gallery.gallery_cover}.webp`"
           />
         </div>
         <footer class="gallery-footer">
