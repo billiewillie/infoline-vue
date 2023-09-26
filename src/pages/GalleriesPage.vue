@@ -17,7 +17,7 @@
           <span class="icon">
             <IconCalendar/>
           </span>
-          <span class="date">{{ formateDate(gallery.published_date) }}</span>
+          <span class="date">{{ gallery.published_date }}</span>
         </div>
         <div class="gallery-cover rounded overflow-hidden">
           <TheImage
