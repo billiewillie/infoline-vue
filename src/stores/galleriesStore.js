@@ -23,7 +23,6 @@ export const useRootStore = defineStore(
                     const published_year = String(new Date(item.published_date).getFullYear());
                     years.value.push(published_year);
                 });
-                console.log(galleries.value)
                 years.value = [...new Set(years.value)];
                 activeYear.value = years.value[0];
                 years.value.sort((a, b) => b - a);
