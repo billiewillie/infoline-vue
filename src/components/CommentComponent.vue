@@ -131,7 +131,7 @@ import TheImage from "@/components/TheImage.vue";
 import IconLike from "@/components/icons/IconLike.vue";
 import IconDislike from "@/components/icons/IconDislike.vue";
 import IconCalendar from "@/components/icons/IconCalendar.vue";
-import PlaceholderPerson from "@/assets/img/profile-fallback.svg";
+import PlaceholderPerson from "@/assets/img/profile-fallback.webp";
 import IconComment from "@/components/icons/IconComment.vue";
 import ButtonComponent from "@/components/UI/ButtonComponent.vue";
 

@@ -173,7 +173,7 @@ import IconMail from "@/components/icons/IconMail.vue";
 import IconCopy from "@/components/icons/IconCopy.vue";
 import {onBeforeRouteUpdate, useRoute} from "vue-router";
 import TheImage from "@/components/TheImage.vue";
-import PlaceholderPerson from "@/assets/img/profile-fallback1.webp";
+import PlaceholderPerson from "@/assets/img/profile-fallback.webp";
 import {onMounted, ref, nextTick} from "vue";
 import OfficeMap from "@/components/OfficeMap.vue";
 
