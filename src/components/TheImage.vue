@@ -86,4 +86,7 @@ img {
   }
 }
 
+.description-image img {
+  object-position: center center;
+}
 </style>

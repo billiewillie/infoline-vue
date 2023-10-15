@@ -36,7 +36,6 @@ onMounted(() => {
       .get(`https://instructions.trifonov.space/api/instructions/show/${params.id}`)
       .then(res => {
         instruction.value = res.data[0];
-        console.log(instruction.value);
       })
 })
 </script>

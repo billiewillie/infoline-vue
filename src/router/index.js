@@ -160,6 +160,15 @@ const routes = [
         beforeEnter: getLoginPage
     },
     {
+        path: '/vote/:id',
+        components: {
+            default: () => import('@/pages/VoteDetailPage.vue'),
+            Header: () => import('@/components/TheHeader.vue'),
+            Sidebar: () => import('@/components/TheSidebar.vue'),
+        },
+        beforeEnter: getLoginPage
+    },
+    {
         path: '/calendar',
         components: {
             default: () => import('@/pages/CalendarPage.vue'),

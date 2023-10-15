@@ -61,4 +61,18 @@ span.icon {
   bottom: 0;
   margin: auto;
 }
+
+.contest-card .btn .icon {
+  width: 7px;
+  height: 11px;
+}
+
+.contest-card .btn {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  @media (min-width: 1280px) {
+    padding: 15px 30px;
+  }
+}
 </style>

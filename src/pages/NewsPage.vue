@@ -12,15 +12,12 @@
 
 <script setup>
 import NewsItem from "@/components/NewsItem.vue";
-import TheTabs from "@/components/TheTabs.vue";
-
 import {useRootStore} from "@/stores/newsStore";
 import {storeToRefs} from "pinia";
-import {onMounted} from "vue";
 
 const newsStore = useRootStore();
 newsStore.getNews();
-const {news, newsCategories, activeCategory, activeNews} = storeToRefs(newsStore);
+const {} = storeToRefs(newsStore);
 </script>
 
 <style scoped>

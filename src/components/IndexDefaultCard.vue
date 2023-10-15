@@ -14,17 +14,13 @@
 
 <script setup>
 import IconMarketingDocs from "@/components/icons/IconMarketingDocs.vue";
-import IconUpdates from "@/components/icons/IconUpdates.vue";
-import IconOrders from "@/components/icons/IconOrders.vue";
-import {onMounted} from "vue";
 
 const props = defineProps({
   title: String,
-  text: String,
   background: String,
   component: String,
   link: String
-})
+});
 
 function renderIcon(icon) {
   switch (icon) {
