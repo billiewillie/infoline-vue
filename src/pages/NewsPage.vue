@@ -17,7 +17,7 @@ import {storeToRefs} from "pinia";
 
 const newsStore = useRootStore();
 newsStore.getNews();
-const {} = storeToRefs(newsStore);
+const {news, newsCategories, activeCategory, activeNews} = storeToRefs(newsStore);
 </script>
 
 <style scoped>
