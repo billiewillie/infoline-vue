@@ -13,24 +13,26 @@
     <div class="sidebar shadow rounded overflow-hidden" v-show="isSidebarOpen">
       <header class="sidebar-header">Отобранные фото</header>
       <div class="list" v-show="selectedImages.length > 0">
-        <div
-            class="item rounded overflow-hidden"
-            v-for="item in selectedImages"
-            :key="item.id">
-          <TheImage
-              alt="img"
-              :image="item.url"/>
+        <div v-for="category in selectedImages" :key="category.category">
           <div
-              @click="removeImageFromSelectedImages(item)"
-              class="item-remove rounded">
-            <span></span>
-            <span></span>
+              class="item rounded overflow-hidden"
+              v-for="item in category.data"
+              :key="item.id">
+            <TheImage
+                alt="img"
+                :image="item.url"/>
+            <div
+                @click="contestStore.removeImageFromSelectedImages(item, category.category)"
+                class="item-remove rounded">
+              <span></span>
+              <span></span>
+            </div>
           </div>
         </div>
       </div>
       <div style="padding: 16px" v-show="!selectedImages.length">Нет выбранных фото</div>
       <footer class="sidebar-footer">
-        <i>Голосов осталось:</i> {{ selectedImagesLimit - selectedImages.length }}
+        <i>Голосов осталось:</i> {{ totalLimit }}
       </footer>
     </div>
     <div class="content" v-show="!isSidebarOpen && !isVotingOpen">
@@ -66,64 +68,64 @@
         </div>
       </div>
       <div v-for="category in contestData.list" :key="category.category" class="list">
-        <div
-            v-for="item in category.gallery"
-            :key="item.id"
-            class="card item shadow rounded overflow-hidden">
-          <div class="item-image">
-            <TheImage
-                alt="img"
-                :image="item.url"
-                :fallback="item.url"/>
-          </div>
-          <div class="item-content">
-            <h3 class="title">{{ item.title }}</h3>
-            <div class="item-location">
-              <i class="icon">
-                <IconMarker/>
-              </i>
-              <span>{{ item.location }}</span>
+        <h2 class="list-title">{{ category.category }}</h2>
+        <div class="list-inner">
+          <div v-for="item in category.data" :key="item.id" class="card item shadow rounded overflow-hidden">
+            <div class="item-image">
+              <TheImage
+                  alt="img"
+                  :image="item.url"
+                  :fallback="item.url"/>
             </div>
-            <footer class="item-footer">
-              <div
-                  @click="addImageToSelectedImages(item)"
-                  class="button-like rounded"
-                  :class="{
+            <div class="item-content">
+              <h3 class="title">{{ item.title }}</h3>
+              <div class="item-location" v-if="item.location">
+                <i class="icon">
+                  <IconMarker/>
+                </i>
+                <span>{{ item.location }}</span>
+              </div>
+              <footer class="item-footer">
+                <div
+                    @click="contestStore.addImageToSelectedImages(item, category.category)"
+                    class="button-like rounded"
+                    :class="{
                     disabled: selectedImages.length >= selectedImagesLimit,
                     liked: selectedImages.includes(item)
                  }">
-                <i class="icon">
-                  <svg
-                      fill="var(--blue-light)"
-                      width="64px"
-                      height="64px"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                      stroke="#ffffff">
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                    <g id="SVGRepo_iconCarrier">
+                  <i class="icon">
+                    <svg
+                        fill="var(--blue-light)"
+                        width="64px"
+                        height="64px"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        stroke="#ffffff">
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <path
+                            d="M12 20a1 1 0 0 1-.437-.1C11.214 19.73 3 15.671 3 9a5 5 0 0 1 8.535-3.536l.465.465.465-.465A5 5 0 0 1 21 9c0 6.646-8.212 10.728-8.562 10.9A1 1 0 0 1 12 20z"></path>
+                      </g>
+                    </svg>
+                  </i>
+                </div>
+                <div
+                    class="button-show rounded"
+                    @click="isVotingOpen = true;changeSlides(item.id)">
+                  <span>Подробнее</span>
+                  <i class="icon">
+                    <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
-                          d="M12 20a1 1 0 0 1-.437-.1C11.214 19.73 3 15.671 3 9a5 5 0 0 1 8.535-3.536l.465.465.465-.465A5 5 0 0 1 21 9c0 6.646-8.212 10.728-8.562 10.9A1 1 0 0 1 12 20z"></path>
-                    </g>
-                  </svg>
-                </i>
-              </div>
-              <div
-                  class="button-show rounded"
-                  @click="isVotingOpen = true;changeSlides(item.id)">
-                <span>Подробнее</span>
-                <i class="icon">
-                  <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M1 10L2.76297 8.42742C4.1689 7.17332 4.87187 6.54627 4.98011 5.782C5.00663 5.59474 5.00663 5.40526 4.98011 5.218C4.87187 4.45373 4.1689 3.82668 2.76297 2.57258L1 1"
-                        stroke="#fff"
-                        stroke-width="1.5"
-                        stroke-linecap="round"/>
-                  </svg>
-                </i>
-              </div>
-            </footer>
+                          d="M1 10L2.76297 8.42742C4.1689 7.17332 4.87187 6.54627 4.98011 5.782C5.00663 5.59474 5.00663 5.40526 4.98011 5.218C4.87187 4.45373 4.1689 3.82668 2.76297 2.57258L1 1"
+                          stroke="#fff"
+                          stroke-width="1.5"
+                          stroke-linecap="round"/>
+                    </svg>
+                  </i>
+                </div>
+              </footer>
+            </div>
           </div>
         </div>
       </div>
@@ -143,7 +145,7 @@
             autoUpdate: false
           }">
         <SwiperSlide
-            v-for="item in activeGallery.gallery"
+            v-for="item in activeGallery.data"
             :key="item.id">
           <TheImage alt="img" :image="item.url" :fallback="item.url"/>
           <div class="content">
@@ -157,7 +159,7 @@
             </div>
             <div class="content-footer">
               <div
-                  @click="addImageToSelectedImages(item)"
+                  @click="contestStore.addImageToSelectedImages(item, activeGallery.category)"
                   :class="{
                     disabled: selectedImages.length >= selectedImagesLimit,
                     liked: selectedImages.includes(item)
@@ -199,7 +201,7 @@
             autoUpdate: false
           }">
         <SwiperSlide
-            v-for="item in activeGallery.gallery"
+            v-for="item in activeGallery.data"
             :key="item.id">
           <TheImage alt="img" :image="item.url" :fallback="item.url"/>
           <div class="content">
@@ -213,7 +215,7 @@
             </div>
             <div class="content-footer">
               <div
-                  @click="addImageToSelectedImages(item)"
+                  @click="contestStore.addImageToSelectedImages(item, activeGallery.category)"
                   :class="{disabled: selectedImages.length >= selectedImagesLimit, liked: selectedImages.includes(item)}"
                   class="vote-button rounded">
                 <span v-if="!selectedImages.includes(item)">Проголосовать</span>
@@ -246,7 +248,7 @@
           :watch-slides-progress="true"
           class="thumbs-slider">
         <SwiperSlide
-            v-for="item in activeGallery.gallery"
+            v-for="item in activeGallery.data"
             class="rounded overflow-hidden"
             :key="item.id">
           <TheImage alt="img" :image="item.url" :fallback="item.url"/>
@@ -260,8 +262,6 @@
 <script setup>
 import {ref} from "vue";
 import TheImage from "@/components/TheImage.vue";
-import AboutPhoto11 from "@/assets/img/about-photo-11.webp";
-import AboutPhoto12 from "@/assets/img/about-photo-12.webp";
 import ContestBg from "@/assets/img/contest-bg.webp";
 import IconMarker from "@/components/icons/IconMarker.vue";
 import {Swiper, SwiperSlide} from "swiper/vue";
@@ -273,15 +273,21 @@ import 'swiper/css/navigation';
 import 'swiper/css/effect-fade';
 import {useRootStore} from "@/stores/contestStore";
 import {storeToRefs} from "pinia";
+import {useRoute} from "vue-router";
+import axios from "axios";
 
+const params = useRoute().params;
+const user_id = params.id.split('-')[0];
 const windowWidth = ref(window.innerWidth);
 const thumbsSwiper = ref(null);
+
 const setThumbsSwiper = (swiper) => {
   thumbsSwiper.value = swiper;
 };
 
 const contestStore = useRootStore();
-const {contestData, activeGallery} = storeToRefs(contestStore);
+contestStore.getContestData(params.id);
+const {contestData, activeGallery, totalLimit} = storeToRefs(contestStore);
 
 const selectedImagesLimit = ref(1);
 const sliderRef = ref(null);
@@ -295,36 +301,21 @@ const isSidebarOpen = ref(false);
 const isVotingOpen = ref(false);
 
 const changeSlides = (id) => {
-  const elIndex = activeGallery.value.gallery.findIndex(el => el.id === id);
-  const arrayLength = activeGallery.value.gallery.length;
-  const restOfArray = activeGallery.value.gallery.filter(el => el.id !== id);
+  const elIndex = activeGallery.value.data.findIndex(el => el.id === id);
+  const arrayLength = activeGallery.value.data.length;
+  const restOfArray = activeGallery.value.data.filter(el => el.id !== id);
   if (currentSlide.value === 0) {
-    activeGallery.value.gallery = [activeGallery.value.gallery[elIndex], ...restOfArray];
+    activeGallery.value.data = [activeGallery.value.data[elIndex], ...restOfArray];
   } else if (currentSlide.value === arrayLength - 1) {
-    activeGallery.value.gallery = [...restOfArray].concat(activeGallery.value.gallery[elIndex]);
+    activeGallery.value.data = [...restOfArray].concat(activeGallery.value.data[elIndex]);
   } else {
-    moveItem(activeGallery.value.gallery, currentSlide.value, elIndex);
+    moveItem(activeGallery.value.data, currentSlide.value, elIndex);
   }
 }
 
 const showQueue = () => {
   Array.from(document.querySelectorAll('.main-slider .swiper-slide.swiper-slide-active')).forEach(item => currentSlide.value = item.swiperSlideIndex);
   Array.from(document.querySelectorAll('.main-slider-mobile .swiper-slide.swiper-slide-active')).forEach(item => currentSlide.value = item.swiperSlideIndex);
-}
-
-const removeImageFromSelectedImages = (item) => {
-  selectedImages.value = selectedImages.value.filter(el => el.id !== item.id);
-}
-
-const addImageToSelectedImages = (item) => {
-  if (selectedImages.value.length
-      < selectedImagesLimit.value
-      && !selectedImages.value.includes(item)
-  ) {
-    selectedImages.value.push(item);
-  } else if (selectedImages.value.includes(item)) {
-    selectedImages.value = selectedImages.value.filter(el => el.id !== item.id);
-  }
 }
 </script>
 
@@ -357,7 +348,7 @@ const addImageToSelectedImages = (item) => {
   }
 }
 
-.content .list {
+.content .list-inner {
   display: grid;
   gap: 16px;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -480,6 +471,7 @@ const addImageToSelectedImages = (item) => {
   flex-direction: column;
   row-gap: 16px;
   padding-left: 20px;
+  font-size: 16px;
 }
 
 .rules-list li::marker {
@@ -491,7 +483,7 @@ const addImageToSelectedImages = (item) => {
 }
 
 .description-image {
-  max-height: 260px;
+  max-height: 280px;
   -webkit-border-radius: 3px 3px 0 0;
   -moz-border-radius: 3px 3px 0 0;
   border-radius: 3px 3px 0 0;
@@ -502,13 +494,14 @@ const addImageToSelectedImages = (item) => {
   padding: 16px;
 
   @media (min-width: 1920px) {
-    padding: 24px 40px;
+    padding: 32px;
   }
 }
 
 .rules p {
   font-weight: 700;
   color: var(--blue-dark);
+  font-size: 16px;
 }
 
 .description .card-content p {
@@ -532,6 +525,7 @@ const addImageToSelectedImages = (item) => {
 
 .item-image {
   aspect-ratio: 3 / 2;
+  overflow: hidden;
 }
 
 .item-content {
@@ -558,6 +552,7 @@ const addImageToSelectedImages = (item) => {
   height: 45px;
   cursor: pointer;
   background-color: var(--blue-light);
+  transition: opacity 0.3s ease-in-out;
 }
 
 .button-like.disabled:not(.liked) {
@@ -645,13 +640,15 @@ const addImageToSelectedImages = (item) => {
 
 .item-location {
   display: flex;
-  align-items: center;
+  flex: auto;
+  align-items: flex-start;
   column-gap: 8px;
 }
 
 .item-location i.icon {
   width: 16px;
   height: 16px;
+  display: flex;
 }
 
 .item-location i.icon svg {
@@ -663,6 +660,13 @@ const addImageToSelectedImages = (item) => {
   font-size: 13px;
   color: var(--gray-dark);
   font-style: italic;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: calc(100% - 24px);
+
 }
 
 .sidebar .item-remove {
@@ -704,11 +708,16 @@ const addImageToSelectedImages = (item) => {
 
 .thumbs-slider {
   display: none;
+
   @media (min-width: 1280px) {
     display: block;
     width: 60%;
     margin-left: 0;
   }
+}
+
+.thumbs-slider .swiper-slide-thumb-active {
+  border-bottom: 4px solid var(--blue-dark);
 }
 
 .main-slider {
@@ -755,7 +764,6 @@ const addImageToSelectedImages = (item) => {
   @media (min-width: 1280px) {
     width: 60%;
     height: 100%;
-    aspect-ratio: inherit;
   }
 }
 
@@ -794,12 +802,12 @@ const addImageToSelectedImages = (item) => {
   position: relative;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--blue-light);
   width: 100%;
-  text-align: center;
   height: 60px;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
+  text-align: center;
+  border: 1px solid var(--blue-light);
+  transition: background-color 0.3s ease-in-out, opacity 0.3s ease-in-out;
 
   @media (min-width: 1280px) {
     max-width: 270px;
