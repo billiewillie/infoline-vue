@@ -65,7 +65,7 @@
         </div>
       </div>
       <div v-for="category in contestData.list" :key="category.category" class="list">
-        <h2 class="list-title">{{ category.category }}</h2>
+        <h2 class="list-title title" style="margin-bottom: 16px">{{ category.category }}</h2>
         <div class="list-inner">
           <div v-for="item in category.data" :key="item.id" class="card item shadow rounded overflow-hidden">
             <div class="item-image">
@@ -84,7 +84,7 @@
               </div>
               <footer class="item-footer">
                 <div
-                    @click="contestStore.addImageToSelectedImages(item, category.category);contestStore.sendLikedImages(user_id)"
+                    @click="contestStore.addImageToSelectedImages(item, category.category, user_id);contestStore.sendLikedImages(user_id)"
                     class="button-like rounded"
                     :class="{
                       disabled: selectedImages.find(el => el.category === category.category).data.length >= contestData.list.find(el => el.category === category.category).limit,
@@ -142,7 +142,11 @@
         <SwiperSlide
             v-for="item in activeGallery.data"
             :key="item.id">
-          <TheImage alt="img" :image="item.url" :fallback="item.url"/>
+          <TheImage
+              alt="img"
+              :image="item.url"
+              @click="setActivePhoto()"
+              :fallback="item.url"/>
           <div class="content">
             <h2 class="title">{{ item.title }}</h2>
             <p>{{ item.description }}</p>
@@ -154,7 +158,7 @@
             </div>
             <div class="content-footer">
               <div
-                  @click="contestStore.addImageToSelectedImages(item, activeGallery.category);contestStore.sendLikedImages(user_id)"
+                  @click="contestStore.addImageToSelectedImages(item, activeGallery.category, user_id);contestStore.sendLikedImages(user_id)"
                   :class="{
                     disabled: selectedImages.find(el => el.category === activeGallery.category).data.length >= contestData.list.find(el => el.category === activeGallery.category).limit,
                     liked: selectedImages.find(el => el.category === activeGallery.category).data.includes(item.id)
@@ -219,7 +223,7 @@
             </div>
             <div class="content-footer">
               <div
-                  @click="contestStore.addImageToSelectedImages(item, activeGallery.category);contestStore.sendLikedImages(user_id)"
+                  @click="contestStore.addImageToSelectedImages(item, activeGallery.category, user_id);contestStore.sendLikedImages(user_id)"
                   :class="{
                     disabled: selectedImages.find(el => el.category === activeGallery.category).data.length >= contestData.list.find(el => el.category === activeGallery.category).limit,
                     liked: selectedImages.find(el => el.category === activeGallery.category).data.includes(item.id)
@@ -342,6 +346,10 @@ const showQueue = () => {
 
 const setActivePhoto = () => {
   Array.from(document.querySelectorAll('.main-slider .swiper-slide.swiper-slide-active .image img')).forEach(item => activePhoto.value = item.getAttribute('src'));
+}
+
+const setActivePhotoMobile = () => {
+  Array.from(document.querySelectorAll('.main-slider-mobile .swiper-slide.swiper-slide-active .image img')).forEach(item => activePhoto.value = item.getAttribute('src'));
 }
 </script>
 
@@ -856,7 +864,6 @@ const setActivePhoto = () => {
 .main-slider .swiper-slide {
   display: flex;
   flex-direction: column;
-  height: auto;
 
   @media (min-width: 1280px) {
     flex-direction: row;
