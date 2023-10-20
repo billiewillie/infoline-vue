@@ -49,9 +49,9 @@ export const useRootStore = defineStore(
 
         const addImageToSelectedImages = (item, category, user_id) => {
             if (selectedImages.value.find(el => el.category === category).data.length < contestData.value.list.find(el => el.category === category).limit
-                && !selectedImages.value.find(el => el.category === category).data.includes(item.id)
-                && user_id !== item.author_id) {
+                && !selectedImages.value.find(el => el.category === category).data.includes(item.id)) {
                 selectedImages.value.find(el => el.category === category).data.push(item.id);
+                console.log(user_id === item.author_id);
             } else if (selectedImages.value.find(el => el.category === category).data.includes(item.id)) {
                 selectedImages.value.find(el => el.category === category).data = selectedImages.value
                     .find(el => el.category === category).data
