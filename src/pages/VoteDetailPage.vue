@@ -18,7 +18,7 @@
                 :fallback="contestData.list.find(el => el.category === category.category).data.find(el => el.id === item).url"
                 :image="contestData.list.find(el => el.category === category.category).data.find(el => el.id === item).url"/>
             <div
-                @click="contestStore.removeImageFromSelectedImages(item, category.category)"
+                @click="contestStore.removeImageFromSelectedImages(item, category.category);contestStore.sendLikedImages(user_id)"
                 class="item-remove rounded">
               <span></span>
               <span></span>
