@@ -65,6 +65,10 @@ img {
   transition: backdrop-filter 0.3s ease-in-out;
 }
 
+.vote-page .popup .popup-image .image img {
+  object-fit: contain;
+}
+
 .cover.loaded {
   backdrop-filter: blur(0);
 }

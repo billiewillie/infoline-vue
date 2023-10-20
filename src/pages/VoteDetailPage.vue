@@ -1,26 +1,22 @@
 <template>
   <div class="basepage default-page vote-page">
     <header class="vote-page-header">
-      <h1
-          v-show="!isSidebarOpen"
-          class="title">Фотоконкурс «Место силы»</h1>
+      <h1 v-show="!isSidebarOpen" class="title">Фотоконкурс «Место силы»</h1>
       <p v-show="isSidebarOpen">Отобранные фото</p>
-      <button
-          class="show-selected"
-          @click="isSidebarOpen = !isSidebarOpen;isVotingOpen = false">show
-      </button>
+      <button class="show-selected" @click="isSidebarOpen = !isSidebarOpen;isVotingOpen = false">show</button>
     </header>
     <div class="sidebar shadow rounded overflow-hidden" v-show="isSidebarOpen">
       <header class="sidebar-header">Отобранные фото</header>
       <div class="list" v-show="selectedImages.length > 0">
-        <div v-for="category in selectedImages" :key="category.category">
+        <div class="list-inner" v-for="category in selectedImages" :key="category.category">
           <div
               class="item rounded overflow-hidden"
               v-for="item in category.data"
-              :key="item.id">
+              :key="item">
             <TheImage
                 alt="img"
-                :image="item.url"/>
+                :fallback="contestData.list.find(el => el.category === category.category).data.find(el => el.id === item).url"
+                :image="contestData.list.find(el => el.category === category.category).data.find(el => el.id === item).url"/>
             <div
                 @click="contestStore.removeImageFromSelectedImages(item, category.category)"
                 class="item-remove rounded">
@@ -32,7 +28,8 @@
       </div>
       <div style="padding: 16px" v-show="!selectedImages.length">Нет выбранных фото</div>
       <footer class="sidebar-footer">
-        <i>Голосов осталось:</i> {{ totalLimit }}
+        <i>Голосов осталось: </i>
+        <template v-if="selectedImages.length">{{ totalLimit - selectedImages[0].data.length }}</template>
       </footer>
     </div>
     <div class="content" v-show="!isSidebarOpen && !isVotingOpen">
@@ -87,12 +84,12 @@
               </div>
               <footer class="item-footer">
                 <div
-                    @click="contestStore.addImageToSelectedImages(item, category.category)"
+                    @click="contestStore.addImageToSelectedImages(item, category.category);contestStore.sendLikedImages(user_id)"
                     class="button-like rounded"
                     :class="{
-                    disabled: selectedImages.length >= selectedImagesLimit,
-                    liked: selectedImages.includes(item)
-                 }">
+                      disabled: selectedImages.find(el => el.category === category.category).data.length >= contestData.list.find(el => el.category === category.category).limit,
+                      liked: selectedImages.find(el => el.category === category.category).data.includes(item.id)
+                   }">
                   <i class="icon">
                     <svg
                         fill="var(--blue-light)"
@@ -110,9 +107,7 @@
                     </svg>
                   </i>
                 </div>
-                <div
-                    class="button-show rounded"
-                    @click="isVotingOpen = true;changeSlides(item.id)">
+                <div class="button-show rounded" @click="isVotingOpen = true;changeSlides(item.id)">
                   <span>Подробнее</span>
                   <i class="icon">
                     <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -159,13 +154,13 @@
             </div>
             <div class="content-footer">
               <div
-                  @click="contestStore.addImageToSelectedImages(item, activeGallery.category)"
+                  @click="contestStore.addImageToSelectedImages(item, activeGallery.category);contestStore.sendLikedImages(user_id)"
                   :class="{
-                    disabled: selectedImages.length >= selectedImagesLimit,
-                    liked: selectedImages.includes(item)
+                    disabled: selectedImages.find(el => el.category === activeGallery.category).data.length >= contestData.list.find(el => el.category === activeGallery.category).limit,
+                    liked: selectedImages.find(el => el.category === activeGallery.category).data.includes(item.id)
                   }"
                   class="vote-button rounded">
-                <span v-if="!selectedImages.includes(item)">Проголосовать</span>
+                <span v-if="!selectedImages.find(el => el.category === activeGallery.category).data.includes(item.id)">Проголосовать</span>
                 <span v-else>Снять голос</span>
                 <i class="icon">
                   <svg
@@ -203,7 +198,16 @@
         <SwiperSlide
             v-for="item in activeGallery.data"
             :key="item.id">
-          <TheImage alt="img" :image="item.url" :fallback="item.url"/>
+          <TheImage
+              @click="isPopupOpen = true;setActivePhoto()"
+              alt="img"
+              :image="item.url"
+              :fallback="item.url"/>
+          <div class="image-cover">
+            <i class="icon">
+              <IconLoop/>
+            </i>
+          </div>
           <div class="content">
             <h2 class="title">{{ item.title }}</h2>
             <p>{{ item.description }}</p>
@@ -215,10 +219,13 @@
             </div>
             <div class="content-footer">
               <div
-                  @click="contestStore.addImageToSelectedImages(item, activeGallery.category)"
-                  :class="{disabled: selectedImages.length >= selectedImagesLimit, liked: selectedImages.includes(item)}"
+                  @click="contestStore.addImageToSelectedImages(item, activeGallery.category);contestStore.sendLikedImages(user_id)"
+                  :class="{
+                    disabled: selectedImages.find(el => el.category === activeGallery.category).data.length >= contestData.list.find(el => el.category === activeGallery.category).limit,
+                    liked: selectedImages.find(el => el.category === activeGallery.category).data.includes(item.id)
+                  }"
                   class="vote-button rounded">
-                <span v-if="!selectedImages.includes(item)">Проголосовать</span>
+                <span v-if="!selectedImages.find(el => el.category === activeGallery.category).data.includes(item.id)">Проголосовать</span>
                 <span v-else>Снять голос</span>
                 <i class="icon">
                   <svg
@@ -256,6 +263,19 @@
       </Swiper>
       <button class="voting-close" @click="isVotingOpen = false">close</button>
     </div>
+    <div class="popup" v-show="isPopupOpen">
+      <div class="popup-backdrop" @click="isPopupOpen = false"></div>
+      <div class="popup-image">
+        <TheImage
+            alt="image"
+            :fallback="activePhoto"
+            :image="activePhoto"/>
+      </div>
+      <div class="popup-close" @click="isPopupOpen = false">
+        <span></span>
+        <span></span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -275,6 +295,7 @@ import {useRootStore} from "@/stores/contestStore";
 import {storeToRefs} from "pinia";
 import {useRoute} from "vue-router";
 import axios from "axios";
+import IconLoop from "@/components/icons/IconLoop.vue";
 
 const params = useRoute().params;
 const user_id = params.id.split('-')[0];
@@ -287,18 +308,19 @@ const setThumbsSwiper = (swiper) => {
 
 const contestStore = useRootStore();
 contestStore.getContestData(params.id);
-const {contestData, activeGallery, totalLimit} = storeToRefs(contestStore);
+const {contestData, activeGallery, totalLimit, selectedImages} = storeToRefs(contestStore);
 
 const selectedImagesLimit = ref(1);
 const sliderRef = ref(null);
 const sliderRefMobile = ref(null);
 const sliderThumbs = ref(null);
-const selectedImages = ref([]);
 const currentSlide = ref(0);
 
 const modules = [Navigation, Thumbs, EffectFade];
 const isSidebarOpen = ref(false);
 const isVotingOpen = ref(false);
+const isPopupOpen = ref(false);
+const activePhoto = ref('');
 
 const changeSlides = (id) => {
   const elIndex = activeGallery.value.data.findIndex(el => el.id === id);
@@ -317,9 +339,105 @@ const showQueue = () => {
   Array.from(document.querySelectorAll('.main-slider .swiper-slide.swiper-slide-active')).forEach(item => currentSlide.value = item.swiperSlideIndex);
   Array.from(document.querySelectorAll('.main-slider-mobile .swiper-slide.swiper-slide-active')).forEach(item => currentSlide.value = item.swiperSlideIndex);
 }
+
+const setActivePhoto = () => {
+  Array.from(document.querySelectorAll('.main-slider .swiper-slide.swiper-slide-active .image img')).forEach(item => activePhoto.value = item.getAttribute('src'));
+}
 </script>
 
 <style scoped>
+.image-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60%;
+  height: 100%;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: opacity 0.3s ease-in-out;
+}
+
+.main-slider .image:hover + .image-cover {
+  opacity: 1;
+}
+
+.image-cover i.icon {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.image-cover i.icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 3;
+}
+
+.popup .popup-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+}
+
+.popup .popup-image {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: fit-content;
+  max-height: 90%;
+  z-index: 4;
+}
+
+.popup .popup-close {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 20px;
+  top: 20px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.popup .popup-close span {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background-color: var(--white);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  transform: rotate(45deg)
+}
+
+.popup .popup-close span:nth-child(2) {
+  transform: rotate(-45deg)
+}
+
 .content {
   display: flex;
   flex-direction: column;
@@ -378,7 +496,7 @@ const showQueue = () => {
   }
 }
 
-.sidebar .list {
+.sidebar .list-inner {
   padding: 16px;
   gap: 16px;
   display: grid;
@@ -666,7 +784,6 @@ const showQueue = () => {
   overflow: hidden;
   text-overflow: ellipsis;
   width: calc(100% - 24px);
-
 }
 
 .sidebar .item-remove {
@@ -717,7 +834,7 @@ const showQueue = () => {
 }
 
 .thumbs-slider .swiper-slide-thumb-active {
-  border-bottom: 4px solid var(--blue-dark);
+  border-bottom: 4px solid var(--blue-light);
 }
 
 .main-slider {
@@ -830,12 +947,12 @@ const showQueue = () => {
 
 .vote-button i.icon {
   position: absolute;
-  right: 24px;
+  right: 16px;
   top: 0;
   bottom: 0;
   margin: auto;
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
 }
 
 .vote-button i.icon svg {
@@ -850,7 +967,7 @@ const showQueue = () => {
 .content .location {
   display: flex;
   align-items: center;
-  column-gap: 16px;
+  column-gap: 8px;
 }
 
 .content .location i {

@@ -37,23 +37,24 @@ export const useRootStore = defineStore(
                     user_id,
                     list: selectedImages.value
                 })
-                .then(response => console.log(response))
+                .then(response => console.log(response.status))
                 .catch(error => console.log(error));
         }
 
         const removeImageFromSelectedImages = (item, category) => {
-            selectedImages.value = selectedImages.value
+            selectedImages.value.find(el => el.category === category).data = selectedImages.value
                 .find(el => el.category === category).data
-                .filter(el => el !== item.id);
+                .filter(el => el !== item);
         }
 
         const addImageToSelectedImages = (item, category) => {
-            const selectedImagesOfCategory = selectedImages.value.find(el => el.category === category);
-            if (selectedImagesOfCategory.data.length < selectedImagesOfCategory.limit
-                && !selectedImagesOfCategory.data.includes(item.id)) {
-                selectedImagesOfCategory.data.push(item.id);
-            } else if (selectedImagesOfCategory.data.includes(item.id)) {
-                removeImageFromSelectedImages(item, category);
+            if (selectedImages.value.find(el => el.category === category).data.length < contestData.value.list.find(el => el.category === category).limit
+                && !selectedImages.value.find(el => el.category === category).data.includes(item.id)) {
+                selectedImages.value.find(el => el.category === category).data.push(item.id);
+            } else if (selectedImages.value.find(el => el.category === category).data.includes(item.id)) {
+                selectedImages.value.find(el => el.category === category).data = selectedImages.value
+                    .find(el => el.category === category).data
+                    .filter(el => el !== item.id);
             }
         }
 
