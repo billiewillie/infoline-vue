@@ -117,17 +117,17 @@
                    }">
                   <i class="icon">
                     <svg
-                        fill="var(--blue-light)"
+                        fill="var(--white)"
                         width="64px"
                         height="64px"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
-                        stroke="#ffffff">
+                        stroke-width="2"
+                        stroke="var(--blue-dark)">
                       <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                       <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                       <g id="SVGRepo_iconCarrier">
-                        <path
-                            d="M12 20a1 1 0 0 1-.437-.1C11.214 19.73 3 15.671 3 9a5 5 0 0 1 8.535-3.536l.465.465.465-.465A5 5 0 0 1 21 9c0 6.646-8.212 10.728-8.562 10.9A1 1 0 0 1 12 20z"></path>
+                        <path d="M12 20a1 1 0 0 1-.437-.1C11.214 19.73 3 15.671 3 9a5 5 0 0 1 8.535-3.536l.465.465.465-.465A5 5 0 0 1 21 9c0 6.646-8.212 10.728-8.562 10.9A1 1 0 0 1 12 20z"></path>
                       </g>
                     </svg>
                   </i>
@@ -356,9 +356,10 @@ const isPopupOpen = ref(false);
 const activePhoto = ref('');
 
 const changeSlides = (id) => {
-  const elIndex = activeGallery.value.data.findIndex(el => el.id === id);
   const arrayLength = activeGallery.value.data.length;
+  const elIndex = activeGallery.value.data.findIndex(el => el.id === id);
   const restOfArray = activeGallery.value.data.filter(el => el.id !== id);
+
   if (currentSlide.value === 0) {
     activeGallery.value.data = [activeGallery.value.data[elIndex], ...restOfArray];
   } else if (currentSlide.value === arrayLength - 1) {
@@ -718,7 +719,8 @@ const setActivePhotoMobile = () => {
   width: 45px;
   height: 45px;
   cursor: pointer;
-  background-color: var(--blue-light);
+  background-color: var(--white);
+  border: 1px solid var(--blue-light);
   transition: opacity 0.3s ease-in-out;
 }
 
@@ -734,12 +736,30 @@ const setActivePhotoMobile = () => {
 .button-like i.icon svg {
   width: 100%;
   height: 100%;
-  transition: fill 0.3s ease-in-out;
 }
 
-.button-like.liked i.icon svg,
 .button-like:not(.disabled):hover i.icon svg {
-  fill: var(--white);
+  fill: var(--blue-light);
+  stroke: var(--white);
+}
+
+.button-like.liked i.icon svg {
+  fill: var(--blue-dark);
+  stroke: var(--blue-light);
+}
+
+.button-like.liked:hover i.icon svg {
+  fill: var(--blue-dark);
+  stroke: var(--white);
+}
+
+.button-like:hover {
+  background-color: var(--blue-light);
+}
+
+.button-like.liked {
+  background-color: var(--blue-dark);
+  border: 1px solid var(--blue-dark);
 }
 
 .button-show {
@@ -981,7 +1001,6 @@ const setActivePhotoMobile = () => {
 
 .voting-close span:nth-child(2) {
   transform: translate(-50%, -50%) rotate(-45deg);
-
 }
 
 .vote-button {
