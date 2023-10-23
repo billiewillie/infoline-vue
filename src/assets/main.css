@@ -143,7 +143,7 @@ h1.title {
 
 .vote-page .main-slider .swiper-button-next {
     @media (min-width: 1280px) {
-        right: 40%;
+        right: 0;
     }
 }
 

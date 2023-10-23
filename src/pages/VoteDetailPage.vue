@@ -159,7 +159,7 @@
           navigation
           class="main-slider-mobile"
           style="margin-bottom: 16px"
-          @slide-change-transition-end="showQueue"
+          @slide-change="showQueue"
           :thumbs="{
             swiper: thumbsSwiper,
             autoUpdate: false
@@ -218,8 +218,7 @@
           navigation
           class="main-slider"
           style="margin-bottom: 16px"
-          :effect="'fade'"
-          @slide-change-transition-end="showQueue"
+          @slide-change="showQueue"
           :thumbs="{
             swiper: thumbsSwiper,
             autoUpdate: false
@@ -370,8 +369,9 @@ const changeSlides = (id) => {
 }
 
 const showQueue = () => {
-  Array.from(document.querySelectorAll('.main-slider .swiper-slide.swiper-slide-active')).forEach(item => currentSlide.value = item.swiperSlideIndex);
-  Array.from(document.querySelectorAll('.main-slider-mobile .swiper-slide.swiper-slide-active')).forEach(item => currentSlide.value = item.swiperSlideIndex);
+  console.log(1)
+  // Array.from(document.querySelectorAll('.main-slider .swiper-slide.swiper-slide-active')).forEach(item => currentSlide.value = item.swiperSlideIndex);
+  // Array.from(document.querySelectorAll('.main-slider-mobile .swiper-slide.swiper-slide-active')).forEach(item => currentSlide.value = item.swiperSlideIndex);
 }
 
 const setActivePhoto = () => {
@@ -444,6 +444,7 @@ const setActivePhotoMobile = () => {
   margin: auto;
   width: fit-content;
   max-height: 90%;
+  max-width: 90%;
   z-index: 4;
 }
 
@@ -457,6 +458,7 @@ const setActivePhotoMobile = () => {
   width: 40px;
   height: 40px;
   cursor: pointer;
+  z-index: 5;
 }
 
 .popup .popup-close span {
@@ -937,6 +939,11 @@ const setActivePhotoMobile = () => {
 
 .thumbs-slider .swiper-slide {
   max-height: 60px;
+  height: auto;
+}
+
+.thumbs-slider .swiper-slide .image {
+  width: 100%;
 }
 
 .swiper-slide {

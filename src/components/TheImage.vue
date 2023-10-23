@@ -66,7 +66,7 @@ img {
 }
 
 .vote-page .popup .popup-image .image img {
-  object-fit: contain;
+  object-fit: fill;
 }
 
 .cover.loaded {
