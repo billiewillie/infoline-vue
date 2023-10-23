@@ -7,7 +7,7 @@
     </header>
     <div class="sidebar shadow rounded overflow-hidden" v-show="isSidebarOpen">
       <header class="sidebar-header">Отобранные фото</header>
-      <div class="list" v-show="selectedImages.length > 0">
+      <div class="list" v-if="selectedImages[0] && selectedImages[0].data.length > 0">
         <div class="list-inner" v-for="category in selectedImages" :key="category.category">
           <div
               class="item rounded overflow-hidden"
@@ -26,7 +26,10 @@
           </div>
         </div>
       </div>
-      <div style="padding: 16px" v-show="!selectedImages.length">Нет выбранных фото</div>
+      <div
+          style="padding: 16px"
+          v-else>Нет выбранных фото
+      </div>
       <footer class="sidebar-footer">
         <i>Голосов осталось: </i>
         <template v-if="selectedImages.length">{{ totalLimit - selectedImages[0].data.length }}</template>
@@ -214,8 +217,8 @@
           </div>
           <div class="content">
             <h2 class="title">{{ item.title }}</h2>
-            <p>{{ item.description }}</p>
-            <div class="location">
+            <p v-html="item.description"></p>
+            <div v-if="item.location" class="location">
               <i class="icon">
                 <IconMarker/>
               </i>
@@ -265,7 +268,10 @@
           <TheImage alt="img" :image="item.url" :fallback="item.url"/>
         </SwiperSlide>
       </Swiper>
-      <button class="voting-close" @click="isVotingOpen = false">close</button>
+      <div class="voting-close" @click="isVotingOpen = false">
+        <span></span>
+        <span></span>
+      </div>
     </div>
     <div class="popup" v-show="isPopupOpen">
       <div class="popup-backdrop" @click="isPopupOpen = false"></div>
@@ -919,6 +925,24 @@ const setActivePhotoMobile = () => {
   position: absolute;
   right: 8px;
   top: 8px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.voting-close span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 100%;
+  height: 2px;
+  background-color: var(--black);
+}
+
+.voting-close span:nth-child(2) {
+  transform: translate(-50%, -50%) rotate(-45deg);
+
 }
 
 .vote-button {
