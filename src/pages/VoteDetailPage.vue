@@ -218,7 +218,7 @@
           navigation
           class="main-slider"
           style="margin-bottom: 16px"
-          @slide-change="showQueue"
+          @slide-change-transition-end="showQueue"
           :thumbs="{
             swiper: thumbsSwiper,
             autoUpdate: false
@@ -369,9 +369,8 @@ const changeSlides = (id) => {
 }
 
 const showQueue = () => {
-  console.log(1)
-  // Array.from(document.querySelectorAll('.main-slider .swiper-slide.swiper-slide-active')).forEach(item => currentSlide.value = item.swiperSlideIndex);
-  // Array.from(document.querySelectorAll('.main-slider-mobile .swiper-slide.swiper-slide-active')).forEach(item => currentSlide.value = item.swiperSlideIndex);
+  Array.from(document.querySelectorAll('.main-slider .swiper-slide.swiper-slide-active')).forEach(item => currentSlide.value = item.swiperSlideIndex);
+  Array.from(document.querySelectorAll('.main-slider-mobile .swiper-slide.swiper-slide-active')).forEach(item => currentSlide.value = item.swiperSlideIndex);
 }
 
 const setActivePhoto = () => {
