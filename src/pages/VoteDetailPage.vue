@@ -3,7 +3,29 @@
     <header class="vote-page-header">
       <h1 v-show="!isSidebarOpen" class="title">Фотоконкурс «Место силы»</h1>
       <p v-show="isSidebarOpen">Отобранные фото</p>
-      <button class="show-selected" @click="isSidebarOpen = !isSidebarOpen;isVotingOpen = false">show</button>
+      <div class="show-selected" @click="isSidebarOpen = !isSidebarOpen;isVotingOpen = false">
+        <i class="icon" v-if="isSidebarOpen">
+          <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M5.75 15.75V10.2C5.75 9.78001 5.75 9.56999 5.83175 9.40956C5.90365 9.26843 6.01839 9.1537 6.15951 9.08179C6.31994 9.00005 6.52996 9.00005 6.95 9.00005H9.05C9.47004 9.00005 9.68006 9.00005 9.84049 9.08179C9.98161 9.1537 10.0963 9.26843 10.1683 9.40956C10.25 9.56999 10.25 9.78001 10.25 10.2V15.75M7.26327 2.07306L2.17654 6.0294C1.83652 6.29387 1.6665 6.4261 1.54402 6.5917C1.43552 6.73839 1.3547 6.90365 1.30552 7.07935C1.25 7.2777 1.25 7.49308 1.25 7.92385V13.35C1.25 14.1901 1.25 14.6102 1.41349 14.931C1.5573 15.2133 1.78677 15.4427 2.06901 15.5866C2.38988 15.75 2.80992 15.75 3.65 15.75H12.35C13.1901 15.75 13.6101 15.75 13.931 15.5866C14.2132 15.4427 14.4427 15.2133 14.5865 14.931C14.75 14.6102 14.75 14.1901 14.75 13.35V7.92385C14.75 7.49308 14.75 7.2777 14.6945 7.07935C14.6453 6.90365 14.5645 6.73839 14.456 6.5917C14.3335 6.4261 14.1635 6.29387 13.8235 6.02941L8.73673 2.07306C8.47324 1.86812 8.34149 1.76565 8.19601 1.72626C8.06765 1.69151 7.93235 1.69151 7.80399 1.72626C7.65851 1.76565 7.52677 1.86812 7.26327 2.07306Z"
+                stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </i>
+        <i class="icon" v-else>
+          <svg
+              fill="var(--blue-light)"
+              width="64px"
+              height="64px"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              stroke="var(--white)">
+            <g id="SVGRepo_iconCarrier">
+              <path
+                  d="M12 20a1 1 0 0 1-.437-.1C11.214 19.73 3 15.671 3 9a5 5 0 0 1 8.535-3.536l.465.465.465-.465A5 5 0 0 1 21 9c0 6.646-8.212 10.728-8.562 10.9A1 1 0 0 1 12 20z"></path>
+            </g>
+          </svg>
+        </i>
+      </div>
     </header>
     <div class="sidebar shadow rounded overflow-hidden" v-show="isSidebarOpen">
       <header class="sidebar-header">Отобранные фото</header>
@@ -153,7 +175,7 @@
           <div class="content">
             <h2 class="title">{{ item.title }}</h2>
             <p v-html="item.description"></p>
-            <div class="location">
+            <div class="location" v-if="item.location">
               <i class="icon">
                 <IconMarker/>
               </i>
@@ -306,6 +328,7 @@ import {storeToRefs} from "pinia";
 import {useRoute} from "vue-router";
 import axios from "axios";
 import IconLoop from "@/components/icons/IconLoop.vue";
+import IconLike from "@/components/icons/IconLike.vue";
 
 const params = useRoute().params;
 const user_id = params.id.split('-')[0];
@@ -465,7 +488,6 @@ const setActivePhotoMobile = () => {
 .content-footer {
   display: flex;
   flex: auto;
-  justify-content: flex-end;
   align-items: flex-end;
 }
 
@@ -576,6 +598,9 @@ const setActivePhotoMobile = () => {
 
 .show-selected {
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   right: -10px;
   width: 56px;
   height: 56px;
@@ -585,6 +610,16 @@ const setActivePhotoMobile = () => {
   @media (min-width: 1280px) {
     display: none;
   }
+}
+
+.show-selected i.icon {
+  width: 30px;
+  height: 30px;
+}
+
+.show-selected i.icon svg {
+  height: 100%;
+  width: 100%;
 }
 
 .sidebar-footer {
@@ -874,6 +909,10 @@ const setActivePhotoMobile = () => {
   @media (min-width: 1280px) {
     flex-direction: row;
   }
+}
+
+.main-slider .swiper-slide {
+  height: auto;
 }
 
 .thumbs-slider .swiper-slide {
