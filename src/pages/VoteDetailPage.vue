@@ -152,7 +152,7 @@
               :fallback="item.url"/>
           <div class="content">
             <h2 class="title">{{ item.title }}</h2>
-            <p>{{ item.description }}</p>
+            <p v-html="item.description"></p>
             <div class="location">
               <i class="icon">
                 <IconMarker/>
