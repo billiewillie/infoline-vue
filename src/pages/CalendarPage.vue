@@ -60,9 +60,7 @@
                       new Date(event.date_start).getDate()
                     }} {{
                       getMonthName(new Date(event.date_start).getMonth() + 1)
-                    }} - {{
-                      new Date(event.date_end).getDate()
-                    }} {{ getMonthName(new Date(event.date_end).getMonth() + 1) }}</span>
+                    }} <template v-if="new Date(event.date_start).getTime() !== new Date(event.date_end).getTime()">- {{new Date(event.date_end).getDate() }} {{ getMonthName(new Date(event.date_end).getMonth() + 1) }}</template></span>
                 </div>
               </div>
             </div>
@@ -104,13 +102,7 @@
                   <div class="icon">
                     <IconCalendarBlue/>
                   </div>
-                  <span class="text">{{
-                      new Date(event.date_start).getDate()
-                    }} {{
-                      getMonthName(new Date(event.date_start).getMonth() + 1)
-                    }} - {{
-                      new Date(event.date_end).getDate()
-                    }} {{ getMonthName(new Date(event.date_end).getMonth() + 1) }}</span>
+                  <span class="text">{{new Date(event.date_start).getDate() }} {{getMonthName(new Date(event.date_start).getMonth() + 1) }} <template v-if="new Date(event.date_start).getTime() !== new Date(event.date_end).getTime()">- {{new Date(event.date_end).getDate() }} {{ getMonthName(new Date(event.date_end).getMonth() + 1) }}</template></span>
                 </div>
               </div>
             </div>

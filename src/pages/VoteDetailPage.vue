@@ -89,7 +89,10 @@
           </div>
         </div>
       </div>
-      <div v-for="category in contestData.list" :key="category.category" class="list">
+      <div
+          v-for="category in contestData.list"
+          :key="category.category"
+          class="list">
         <h2 class="list-title title" style="margin-bottom: 16px">{{ category.category }}</h2>
         <div class="list-inner">
           <div v-for="item in category.data" :key="item.id" class="card item shadow rounded overflow-hidden">
