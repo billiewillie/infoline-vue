@@ -9,11 +9,14 @@ export const useRootStore = defineStore(
         const activeGallery = ref({});
         const selectedImages = ref([]);
         const totalLimit = ref(0);
+        const contestTitle = ref('');
+        const galleryImgs = ref([]);
 
         const getContestData = async (id) => {
             try {
                 const res = await axios.get(`https://competition.trifonov.space/api/competition/${id}`);
                 contestData.value = res.data;
+                contestTitle.value = contestData.value.contest_name;
                 activeGallery.value = contestData.value.list[0];
                 selectedImages.value = contestData.value.list.map((item) => {
                     return {
@@ -22,6 +25,7 @@ export const useRootStore = defineStore(
                     };
                 });
                 totalLimit.value = contestData.value.list.reduce((acc, item) => acc + item.limit, 0);
+                galleryImgs.value = contestData.value.list[0].data.map(item => item.src);
             } catch (e) {
                 console.log(e);
             }
@@ -65,6 +69,8 @@ export const useRootStore = defineStore(
             contestData,
             activeGallery,
             selectedImages,
+            contestTitle,
+            galleryImgs,
             getContestData,
             setActiveGallery,
             sendLikedImages,

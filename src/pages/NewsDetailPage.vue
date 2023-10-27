@@ -52,50 +52,6 @@
       <p class="description">{{ post.description }}</p>
       <div class="post-content post-center" v-html="post.content"></div>
     </div>
-    <div class="comment-new">
-      <header class="post-header">
-        <h2 class="title post-center">
-          <span class="icon">
-            <IconNew/>
-          </span>
-          <span>Оставить комментарий</span>
-        </h2>
-      </header>
-      <div class="comment-new-textarea">
-        <textarea rows="5"></textarea>
-        <button class="comment-new-send">
-          <span>отправить</span>
-          <i class="icon">
-            <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                  d="M1 10L2.76297 8.42742C4.1689 7.17332 4.87187 6.54627 4.98011 5.782C5.00663 5.59474 5.00663 5.40526 4.98011 5.218C4.87187 4.45373 4.1689 3.82668 2.76297 2.57258L1 1"
-                  stroke="var(--white)"
-                  stroke-width="1.5"
-                  stroke-linecap="round"/>
-            </svg>
-          </i>
-        </button>
-      </div>
-    </div>
-    <div class="comments">
-      <header class="post-header">
-        <h2 class="title post-center">
-          <span class="icon">
-            <IconComment/>
-          </span>
-          <span>Комментарии</span>
-        </h2>
-      </header>
-      <CommentComponent
-          v-for="comment in post.comments"
-          :comment="comment"
-          :key="comment.id"/>
-      <div v-if="post.comments && post.comments.length === 0">
-        <div class="post-center comments-empty">
-          <p>Комментариев еще нет</p>
-        </div>
-      </div>
-    </div>
     <div class="news-more">
       <h2 class="title">Похожие новости</h2>
       <div class="news-grid">

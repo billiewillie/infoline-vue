@@ -162,7 +162,7 @@ const routes = [
     {
         path: '/vote/:id',
         components: {
-            default: () => import('@/pages/VoteDetailPage.vue'),
+            default: () => import('@/pages/VotePage.vue'),
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },
