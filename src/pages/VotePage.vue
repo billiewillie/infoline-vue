@@ -29,28 +29,30 @@
     </header>
     <div class="sidebar shadow rounded overflow-hidden" v-show="isSidebarOpen">
       <header class="sidebar-header">Отобранные фото</header>
-      <div class="list" v-if="selectedImages[0] && selectedImages[0].data.length > 0">
-        <div class="list-inner" v-for="category in selectedImages" :key="category.category">
+      <div class="list">
+        <template>
           <div
-              class="item rounded overflow-hidden"
-              v-for="item in category.data"
-              :key="item">
-            <TheImage
-                alt="img"
-                :fallback="contestData.list.find(el => el.category === category.category).data.find(el => el.id === item).src"
-                :image="contestData.list.find(el => el.category === category.category).data.find(el => el.id === item).src"/>
+              class="list-inner"
+              v-for="category in selectedImages"
+              :key="category.category">
             <div
-                @click="contestStore.removeImageFromSelectedImages(item, category.category);contestStore.sendLikedImages(user_id)"
-                class="item-remove rounded">
-              <span></span>
-              <span></span>
+                class="item rounded overflow-hidden"
+                v-for="item in category.likedImages"
+                :key="item">
+              <TheImage
+                  alt="img"
+                  :fallback="contestData.list.find(el => el.category === category.category).data.find(el => el.id === item).src"
+                  :image="contestData.list.find(el => el.category === category.category).data.find(el => el.id === item).src"/>
+              <div
+                  @click="contestStore.removeImageFromSelectedImages(item, category.category);contestStore.sendLikedImages(user_id)"
+                  class="item-remove rounded">
+                <span></span>
+                <span></span>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div
-          style="padding: 16px"
-          v-else>Нет выбранных фото
+
+        </template>
       </div>
     </div>
     <div class="content" v-show="!isSidebarOpen">
@@ -92,7 +94,7 @@
         <h2 class="list-title title" style="margin-bottom: 16px">{{ category.category }}</h2>
         <div class="list-inner">
           <div v-for="item in category.data" :key="item.id" class="card item shadow rounded overflow-hidden">
-            <div class="item-image">
+            <div class="item-image" @click="setActiveGallery(category.category);setActiveImage(item);setLightboxOpen()">
               <TheImage
                   alt="img"
                   :image="item.src"
@@ -102,11 +104,11 @@
               <h3 class="title">{{ item.title }}</h3>
               <footer class="item-footer">
                 <div
-                    @click="contestStore.addImageToSelectedImages(item, category.category, user_id);contestStore.sendLikedImages(user_id)"
+                    @click="contestStore.addImageToSelectedImages(item, category.category, user_id)"
                     class="button-like rounded"
                     :class="{
-                      disabled: selectedImages.find(el => el.category === category.category).data.length >= contestData.list.find(el => el.category === category.category).limit,
-                      liked: selectedImages.find(el => el.category === category.category).data.includes(item.id)
+                      disabled: selectedImages.find(el => el.category === category.category).likedImages.length >= contestData.list.find(el => el.category === category.category).limit,
+                      liked: selectedImages.find(el => el.category === category.category).likedImages.includes(item.id)
                    }">
                   <i class="icon">
                     <svg
@@ -132,21 +134,23 @@
         </div>
       </div>
     </div>
-    <div class="lightbox" v-show="isLightboxOpen">
-      <div class="lightbox-dropback"></div>
+    <div class="lightbox" :class="lightboxClasses" v-if="isLightboxOpen">
+      <div class="lightbox-dropback" @click="setLightboxClose">
+        <div class="close icon">X</div>
+      </div>
       <div
-          class="lightbox-list"
-          v-for="category in contestData.list"
-          :key="category.category">
-        <div
-            v-for="item in category.data"
-            :key="item.id"
-            class="lightbox-slide">
-          <TheImage
-              alt="alt"
-              :image="item.src"
-              :fallback="item.src"/>
-          <h2 class="title">{{ item.title }}</h2>
+          @click="prevImage !== null && setActiveImage(prevImage)"
+          class="lightbox-navigation left icon">left
+      </div>
+      <div
+          @click=" nextImage !== null && setActiveImage(nextImage)"
+          @keyup.right="prevImage !== null && setActiveImage(prevImage)"
+          class="lightbox-navigation right icon">right
+      </div>
+      <div class="lightbox-slide">
+        <img :src="activeImage.src" :alt="activeImage.title">
+        <div class="lightbox-slide-footer">
+          <h2 class="title">{{ activeImage.title }}</h2>
           <div class="like">like</div>
         </div>
       </div>
@@ -155,7 +159,7 @@
 </template>
 
 <script setup>
-import {onUpdated, ref} from "vue";
+import {onMounted, onUpdated, ref} from "vue";
 import TheImage from "@/components/TheImage.vue";
 import ContestBg from "@/assets/img/contest-bg.webp";
 import {useRootStore} from "@/stores/contestStore";
@@ -165,20 +169,155 @@ import {useRoute} from "vue-router";
 const params = useRoute().params;
 const user_id = params.id.split('-')[0];
 
-const isLightboxOpen = ref(true);
+const activeGallery = ref({});
+const activeImage = ref({});
+const prevImage = ref(null);
+const nextImage = ref(null);
+
+const isLightboxOpen = ref(false);
+const lightboxClasses = ref('');
 const contestStore = useRootStore();
 contestStore.getContestData(params.id);
-const {contestData, activeGallery, totalLimit, selectedImages, contestTitle, galleryImgs} = storeToRefs(contestStore);
+const {contestData, totalLimit, selectedImages, contestTitle} = storeToRefs(contestStore);
 
 const isSidebarOpen = ref(false);
 
+const setActiveGallery = (category) => {
+  activeGallery.value = contestData.value.list.find(item => item.category === category);
+};
+
+const setActiveImage = (image) => {
+  activeImage.value = image;
+  const activeIdx = activeGallery.value.data.findIndex(item => item.id === image.id);
+  const lastIdx = activeGallery.value.data.length - 1;
+  if (activeIdx === 0) {
+    prevImage.value = null;
+    nextImage.value = activeGallery.value.data[activeGallery.value.data.findIndex(item => item.id === image.id) + 1];
+  } else if (activeIdx === lastIdx) {
+    prevImage.value = activeGallery.value.data[activeGallery.value.data.findIndex(item => item.id === image.id) - 1];
+    nextImage.value = null;
+  } else {
+    nextImage.value = activeGallery.value.data[activeGallery.value.data.findIndex(item => item.id === image.id) + 1];
+    prevImage.value = activeGallery.value.data[activeGallery.value.data.findIndex(item => item.id === image.id) - 1];
+  }
+};
+
+const setLightboxOpen = () => {
+  isLightboxOpen.value = true;
+  setTimeout(() => {
+    lightboxClasses.value = 'lightbox-open';
+  });
+};
+
+const setLightboxClose = () => {
+  lightboxClasses.value = 'lightbox-open lightbox-close';
+  setTimeout(() => {
+    isLightboxOpen.value = false;
+    lightboxClasses.value = '';
+  }, 500);
+};
+
+onMounted(() => {
+  window.addEventListener('keyup', (e) => {
+    if (e.code === 'ArrowLeft' && prevImage.value !== null && isLightboxOpen.value) {
+      setActiveImage(prevImage.value);
+    } else if (e.code === 'ArrowRight' && nextImage.value !== null && isLightboxOpen.value) {
+      setActiveImage(nextImage.value);
+    } else if (e.code === 'Escape' && isLightboxOpen.value) {
+      setLightboxClose();
+    }
+  });
+});
+
 onUpdated(() => {
-  console.log(activeGallery.value)
+  console.log(selectedImages.value);
 })
 </script>
 
 <style scoped>
-.lightbox-dropback {}
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.lightbox.lightbox-open {
+  opacity: 1;
+}
+
+.lightbox.lightbox-open.lightbox-close {
+  opacity: 0;
+}
+
+.lightbox-dropback {
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.lightbox-slide {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-width: 90%;
+  max-height: 90%;
+  transform: translate(-50%, -50%);
+}
+
+.lightbox .close {
+  position: absolute;
+  width: 2em;
+  height: 2em;
+  top: 40px;
+  right: 10px;
+}
+
+.lightbox .icon {
+  opacity: 0.6;
+  color: var(--white);
+  cursor: pointer;
+}
+
+.lightbox .icon.disabled {
+  opacity: 0.2;
+}
+
+.lightbox .icon:not(.disabled):hover {
+  opacity: 1;
+}
+
+.lightbox-navigation {
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  top: 50%;
+}
+
+.lightbox-navigation.left {
+  left: 12px;
+}
+
+.lightbox-navigation.right {
+  right: 12px;
+}
+
+.lightbox-slide-footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  color: var(--white);
+  justify-content: space-between;
+}
 
 .image-cover {
   position: absolute;
@@ -338,11 +477,10 @@ onUpdated(() => {
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 
   @media (min-width: 1280px) {
-    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    grid-template-columns:  repeat(2, 1fr);
   }
 
   @media (min-width: 1920px) {
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
     padding: 20px;
     gap: 20px;
   }
@@ -370,6 +508,11 @@ onUpdated(() => {
 .card {
   background-color: var(--white);
   height: 100%;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
 .vote-page-header {
@@ -492,6 +635,7 @@ onUpdated(() => {
 .item-image {
   aspect-ratio: 3 / 2;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .item-content {
