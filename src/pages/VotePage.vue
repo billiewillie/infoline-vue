@@ -30,28 +30,27 @@
     <div class="sidebar shadow rounded overflow-hidden" v-show="isSidebarOpen">
       <header class="sidebar-header">Отобранные фото</header>
       <div class="list">
-        <template>
-          <div
-              class="list-inner"
-              v-for="category in selectedImages"
-              :key="category.category">
-            <div
-                class="item rounded overflow-hidden"
-                v-for="item in category.likedImages"
-                :key="item">
-              <TheImage
-                  alt="img"
-                  :fallback="contestData.list.find(el => el.category === category.category).data.find(el => el.id === item).src"
-                  :image="contestData.list.find(el => el.category === category.category).data.find(el => el.id === item).src"/>
+        <template v-for="category in selectedImages" :key="category.category">
+          <div v-if="category.likedImages && category.likedImages.length > 0">
+            <h2 class="title">{{ category.category }}</h2>
+            <div class="list-inner">
               <div
-                  @click="contestStore.removeImageFromSelectedImages(item, category.category);contestStore.sendLikedImages(user_id)"
-                  class="item-remove rounded">
-                <span></span>
-                <span></span>
+                  class="item rounded overflow-hidden"
+                  v-for="item in category.likedImages"
+                  :key="item">
+                <TheImage
+                    alt="img"
+                    :fallback="contestData.list.find(el => el.category === category.category).data.find(el => el.id === item).src"
+                    :image="contestData.list.find(el => el.category === category.category).data.find(el => el.id === item).src"/>
+                <div
+                    @click="contestStore.removeImageFromSelectedImages(item, category.category);contestStore.sendLikedImages(user_id)"
+                    class="item-remove rounded">
+                  <span></span>
+                  <span></span>
+                </div>
               </div>
             </div>
           </div>
-
         </template>
       </div>
     </div>
@@ -136,22 +135,64 @@
     </div>
     <div class="lightbox" :class="lightboxClasses" v-if="isLightboxOpen">
       <div class="lightbox-dropback" @click="setLightboxClose">
-        <div class="close icon">X</div>
+        <div class="close icon">
+          <span></span>
+          <span></span>
+        </div>
       </div>
       <div
           @click="prevImage !== null && setActiveImage(prevImage)"
-          class="lightbox-navigation left icon">left
+          :class="{ disabled: prevImage === null }"
+          class="lightbox-navigation left icon">
+        <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+              d="M1 10L2.76297 8.42742C4.1689 7.17332 4.87187 6.54627 4.98011 5.782C5.00663 5.59474 5.00663 5.40526 4.98011 5.218C4.87187 4.45373 4.1689 3.82668 2.76297 2.57258L1 1"
+              stroke="var(--white)"
+              stroke-width="1"
+              stroke-linecap="round"/>
+        </svg>
       </div>
       <div
           @click=" nextImage !== null && setActiveImage(nextImage)"
-          @keyup.right="prevImage !== null && setActiveImage(prevImage)"
-          class="lightbox-navigation right icon">right
+          :class="{ disabled: nextImage === null }"
+          class="lightbox-navigation right icon">
+        <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+              d="M1 10L2.76297 8.42742C4.1689 7.17332 4.87187 6.54627 4.98011 5.782C5.00663 5.59474 5.00663 5.40526 4.98011 5.218C4.87187 4.45373 4.1689 3.82668 2.76297 2.57258L1 1"
+              stroke="var(--white)"
+              stroke-width="1"
+              stroke-linecap="round"/>
+        </svg>
       </div>
       <div class="lightbox-slide">
         <img :src="activeImage.src" :alt="activeImage.title">
         <div class="lightbox-slide-footer">
           <h2 class="title">{{ activeImage.title }}</h2>
-          <div class="like">like</div>
+          <div
+              @click="contestStore.addImageToSelectedImages(activeImage, activeGallery.category, user_id)"
+              class="lightbox-like"
+              :class="{
+                  disabled: selectedImages.find(el => el.category === activeGallery.category).likedImages.length >= contestData.list.find(el => el.category === activeGallery.category).limit,
+                  liked: selectedImages.find(el => el.category === activeGallery.category).likedImages.includes(activeImage.id)
+               }">
+            <i>
+              <svg
+                  fill="transparent"
+                  width="64px"
+                  height="64px"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  stroke-width="1"
+                  stroke="var(--white)">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path
+                      d="M12 20a1 1 0 0 1-.437-.1C11.214 19.73 3 15.671 3 9a5 5 0 0 1 8.535-3.536l.465.465.465-.465A5 5 0 0 1 21 9c0 6.646-8.212 10.728-8.562 10.9A1 1 0 0 1 12 20z"></path>
+                </g>
+              </svg>
+            </i>
+          </div>
         </div>
       </div>
     </div>
@@ -228,10 +269,6 @@ onMounted(() => {
     }
   });
 });
-
-onUpdated(() => {
-  console.log(selectedImages.value);
-})
 </script>
 
 <style scoped>
@@ -267,17 +304,77 @@ onUpdated(() => {
   position: absolute;
   top: 50%;
   left: 50%;
-  max-width: 90%;
-  max-height: 90%;
+  width: 80%;
+  max-width: 90vw;
+  max-height: 90vh;
   transform: translate(-50%, -50%);
+
+  @media (min-width: 1280px) {
+    max-width: 80vw;
+    max-height: 80vh;
+  }
+}
+
+.lightbox-slide img {
+  display: block;
+  width: 100%;
+  height: 90%;
+  max-width: 100vw;
+  max-height: 100vh;
+  object-fit: cover;
+
+  @media (min-width: 1280px) {
+    max-width: 80vw;
+    max-height: 80vh;
+  }
 }
 
 .lightbox .close {
   position: absolute;
   width: 2em;
   height: 2em;
-  top: 40px;
+  top: 20px;
   right: 10px;
+
+  @media (min-width: 1280px) {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.lightbox .close span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  background-color: var(--white);
+}
+
+.lightbox .close span:nth-child(2) {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.lightbox-like.disabled:not(.liked) {
+  opacity: 0.5;
+}
+
+.lightbox-like {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.lightbox-like i, .lightbox-like i svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.lightbox-like.liked i svg {
+  fill: var(--white);
 }
 
 .lightbox .icon {
@@ -299,10 +396,25 @@ onUpdated(() => {
   width: 1em;
   height: 1em;
   top: 50%;
+
+  @media (min-width: 1280px) {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.lightbox-navigation.disabled {
+  opacity: 0.2;
+}
+
+.lightbox-navigation svg {
+  width: 100%;
+  height: 100%;
 }
 
 .lightbox-navigation.left {
   left: 12px;
+  transform: rotate(180deg);
 }
 
 .lightbox-navigation.right {
@@ -311,10 +423,12 @@ onUpdated(() => {
 
 .lightbox-slide-footer {
   position: absolute;
+  padding: 16px 0;
   left: 0;
-  bottom: 0;
+  top: 100%;
   width: 100%;
   display: flex;
+  align-items: center;
   color: var(--white);
   justify-content: space-between;
 }
@@ -406,7 +520,7 @@ onUpdated(() => {
   left: 0;
   right: 0;
   margin: auto;
-  transform: rotate(45deg)
+  transform: rotate(45deg);
 }
 
 .popup .popup-close span:nth-child(2) {
@@ -416,7 +530,7 @@ onUpdated(() => {
 .content {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 24px;
 
   @media (min-width: 1280px) {
     width: 83%;
@@ -470,8 +584,20 @@ onUpdated(() => {
   }
 }
 
-.sidebar .list-inner {
+.sidebar .title {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.sidebar .list {
+  display: flex;
+  flex-direction: column;
+  min-height: 150px;
   padding: 16px;
+  gap: 16px;
+}
+
+.sidebar .list-inner {
   gap: 16px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -481,8 +607,7 @@ onUpdated(() => {
   }
 
   @media (min-width: 1920px) {
-    padding: 20px;
-    gap: 20px;
+    gap: 16px;
   }
 }
 
@@ -695,7 +820,7 @@ onUpdated(() => {
   stroke: var(--white);
 }
 
-.button-like:hover {
+.button-like:not(.disabled):hover {
   background-color: var(--blue-light);
 }
 
