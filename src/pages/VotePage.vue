@@ -310,6 +310,7 @@ onMounted(() => {
   transform: translate(-50%, -50%);
 
   @media (min-width: 1280px) {
+    width: auto;
     max-width: 80vw;
     max-height: 80vh;
   }
@@ -345,7 +346,7 @@ onMounted(() => {
 .lightbox .close span {
   display: block;
   width: 100%;
-  height: 2px;
+  height: 4px;
   position: absolute;
   top: 50%;
   left: 50%;

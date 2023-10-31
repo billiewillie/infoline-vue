@@ -23,6 +23,15 @@ const routes = [
         beforeEnter: getLoginPage
     },
     {
+        path: '/admin',
+        components: {
+            default: () => import('@/pages/AdminPage.vue'),
+            Header: () => import('@/components/TheHeader.vue'),
+            Sidebar: () => import('@/components/TheSidebar.vue'),
+        },
+        beforeEnter: getLoginPage
+    },
+    {
         path: '/login',
         components: {
             default: () => import('@/pages/LoginPage.vue'),
