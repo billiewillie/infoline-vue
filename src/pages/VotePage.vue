@@ -323,6 +323,7 @@ onMounted(() => {
   max-width: 100vw;
   max-height: 100vh;
   object-fit: cover;
+  box-shadow: 0 5px 20px 2px rgba(0, 0, 0, 0.7);
 
   @media (min-width: 1280px) {
     max-width: 80vw;
