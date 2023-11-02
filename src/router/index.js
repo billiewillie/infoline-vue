@@ -1,10 +1,6 @@
 import {createRouter, createWebHistory} from "vue-router";
-import {useRootStore} from "@/stores/usersStore";
-import {storeToRefs} from "pinia";
 
 const getLoginPage = () => {
-    const usersStore = useRootStore();
-    const {isLoggedIn} = storeToRefs(usersStore);
     if (localStorage.getItem('isLoggedIn') !== '1') {
         return {
             path: '/login'

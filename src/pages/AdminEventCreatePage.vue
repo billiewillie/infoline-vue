@@ -112,18 +112,23 @@ const val = ref('Россия');
 
 async function submitHandler(credentials) {
   const event = {
+    access_token: 'sdk',
     title: credentials.title.trim(),
-    category: credentials.category,
-    country: credentials.country,
-    city: credentials.city,
+    category: 1,
+    country: 1,
+    city: 1,
     dateStart: credentials.dateStart,
     dateEnd: credentials.dateEnd,
     url: credentials.url ? credentials.url.trim() : '',
     isPublished: credentials.isPublished,
     sort: 500
   };
-  // const url = "https://aperio.biolinegroup.ru/api/v1/send";
-  // await axios.post(url, event);
+  const url = "https://calendar.trifonov.space/api/calendar/admin/add/event";
+  await axios.post(url, event).then((response) => {
+    console.log(response);
+  }).catch((error) => {
+    console.log(error);
+  })
 }
 
 const d = new Date();
@@ -132,7 +137,6 @@ const todayDate = ref([
   ('0' + (d.getMonth() + 1)).slice(-2),
   ('0' + d.getDate()).slice(-2)
 ].join('-'));
-
 </script>
 
 <style scoped>

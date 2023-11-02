@@ -289,7 +289,7 @@ onBeforeRouteUpdate((to) => {
     gap: 16px;
   }
 
-  @media (min-width: 1900px) {
+  @media (min-width: 1800px) {
     gap: 20px;
   }
 }
@@ -325,7 +325,7 @@ onBeforeRouteUpdate((to) => {
     justify-content: center;
   }
 
-  @media (min-width: 1900px) {
+  @media (min-width: 1800px) {
     row-gap: 20px;
     padding: 50px 64px;
   }
@@ -341,7 +341,7 @@ onBeforeRouteUpdate((to) => {
     font-size: 40px;
   }
 
-  @media (min-width: 1900px) {
+  @media (min-width: 1800px) {
     font-size: 66px;
     min-height: 160px;
   }
@@ -456,7 +456,7 @@ onBeforeRouteUpdate((to) => {
     font-size: 12px;
   }
 
-  @media (min-width: 1900px) {
+  @media (min-width: 1800px) {
     font-size: 16px;
   }
 }
@@ -488,7 +488,7 @@ a.user-position__column-value {
     padding: 30px 44px;
   }
 
-  @media (min-width: 1900px) {
+  @media (min-width: 1800px) {
     padding: 60px 64px;
   }
 }
@@ -509,7 +509,7 @@ a.user-position__column-value {
     font-size: 12px;
   }
 
-  @media (min-width: 1900px) {
+  @media (min-width: 1800px) {
     font-size: 19px;
   }
 }
@@ -523,7 +523,7 @@ a.user-position__column-value {
     font-size: 12px;
   }
 
-  @media (min-width: 1900px) {
+  @media (min-width: 1800px) {
     font-size: 19px;
   }
 }
