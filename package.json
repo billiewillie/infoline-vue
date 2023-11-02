@@ -8,6 +8,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@formkit/icons": "^1.2.2",
+    "@formkit/vue": "^1.2.2",
     "@popperjs/core": "^2.11.7",
     "axios": "^1.4.0",
     "fslightbox-vue": "^2.1.3",

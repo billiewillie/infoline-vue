@@ -32,6 +32,33 @@ const routes = [
         beforeEnter: getLoginPage
     },
     {
+        path: '/admin/events',
+        components: {
+            default: () => import('@/pages/AdminEventsPage.vue'),
+            Header: () => import('@/components/TheHeader.vue'),
+            Sidebar: () => import('@/components/TheSidebar.vue'),
+        },
+        beforeEnter: getLoginPage
+    },
+    {
+        path: '/admin/events/edit/:id',
+        components: {
+            default: () => import('@/pages/AdminEventEditPage.vue'),
+            Header: () => import('@/components/TheHeader.vue'),
+            Sidebar: () => import('@/components/TheSidebar.vue'),
+        },
+        beforeEnter: getLoginPage
+    },
+    {
+        path: '/admin/events/create',
+        components: {
+            default: () => import('@/pages/AdminEventCreatePage.vue'),
+            Header: () => import('@/components/TheHeader.vue'),
+            Sidebar: () => import('@/components/TheSidebar.vue'),
+        },
+        beforeEnter: getLoginPage
+    },
+    {
         path: '/login',
         components: {
             default: () => import('@/pages/LoginPage.vue'),

@@ -43,7 +43,6 @@ async function toggleMonthHandler() {
 }
 
 function setClick(e) {
-  console.log(e)
   if ([date.value.getFullYear(), date.value.getMonth() + 1, date.value.getDate()].join('-') !== props.activeDay) {
     emit('toggleDate', date.value);
   }

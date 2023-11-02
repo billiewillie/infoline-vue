@@ -30,7 +30,6 @@ export const useRootStore = defineStore(
         }
 
         const sendLikedImages = async (user_id) => {
-            console.log({ user_id, list: selectedImages.value})
             axios
                 .post('https://competition.trifonov.space/api/competition/like', {
                     user_id,
