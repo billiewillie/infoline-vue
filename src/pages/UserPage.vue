@@ -195,7 +195,7 @@ const updateComponent = async () => {
 const isBDay = () => {
   const date = new Date();
   return date.getDate() === user.value.day && date.getMonth() + 1 === user.value.month;
-}
+};
 
 const copyMail = (email) => {
   navigator.clipboard.writeText(email);

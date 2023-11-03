@@ -6,7 +6,7 @@ import Toast from "vue-toastification";
 import { plugin, defaultConfig } from '@formkit/vue'
 
 import './assets/main.css'
-import config from "../formkit.config";
+import config from "./formkit.config";
 
 const app = createApp(App)
 app.use(createPinia())
