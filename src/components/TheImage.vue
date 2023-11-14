@@ -91,6 +91,6 @@ img {
 }
 
 .description-image img {
-  object-position: center center;
+  object-position: top center;
 }
 </style>
