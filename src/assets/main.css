@@ -601,6 +601,10 @@ h1.title {
     .about-slider.about__success .swiper .swiper-button-prev {
         top: 50%;
     }
+
+    .instruction-page img {
+        max-width: 60%;
+    }
 }
 
 @media (min-width: 1920px) {

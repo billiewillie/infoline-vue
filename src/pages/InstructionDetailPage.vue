@@ -13,7 +13,7 @@
           </video>
         </div>
         <div v-if="instruction.media?.documents[0]?.url" class="instruction-document">
-          <a :href="`https://instructions.trifonov.space/${instruction.media?.documents[0]?.url}`" download>Скачать
+          <a :href="`${instruction.media?.documents[0]?.url}`" download>Скачать
             инструкцию</a>
         </div>
         <p v-else>Инструкция скоро будет</p>
