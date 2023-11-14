@@ -219,7 +219,7 @@
             <router-link to="/locations/kazakhstan" class="department rounded">Филиал г. ТОО «БиоЛайн-Казахстан»</router-link>
             <router-link to="/locations/ekaterinburg" class="department rounded">Филиал г. Екатеринбург</router-link>
             <router-link to="/locations/belorussia" class="department rounded">БиоЛайн-БС (Республика Беларусь)</router-link>
-            <router-link to="/locations/tashkent" class="department rounded">ООО "BLUBIOMEDICAL"</router-link>
+            <router-link to="/locations/tashkent" class="department rounded">ООО "BLU BIOMEDICAL"</router-link>
           </div>
         </div>
         <div class="row row-only-department">

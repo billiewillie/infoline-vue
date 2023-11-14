@@ -435,7 +435,7 @@ onMounted(() => {
 }
 
 .lightbox-slide-footer .lightbox-like {
-  widht: 24px;
+  width: 24px;
 }
 
 .image-cover {
