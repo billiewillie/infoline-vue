@@ -40,7 +40,6 @@
 import {useRoute} from "vue-router";
 import {onMounted, ref} from "vue";
 import axios from "axios";
-import IconShare from "@/components/icons/IconShare.vue";
 
 const instruction = ref({});
 
