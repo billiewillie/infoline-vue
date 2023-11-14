@@ -1,5 +1,5 @@
 <template>
-  <div class="basepage default-page instruction-page">
+  <div class="basepage default-page basepage default-page instruction-page">
     <h1 class="title">{{ instruction.title }}</h1>
     <div class="content rounded shadow">
       <div class="container">
@@ -41,6 +41,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
+
 .title {
   max-width: 800px;
   margin: 0 auto 20px;
@@ -67,7 +68,11 @@ onMounted(() => {
 .container {
   width: 100%;
   max-width: 1400px;
-  padding: 20px 10px;
+  padding: 24px 8px;
+
+  @media (min-width: 1280px) {
+    padding: 40px 16px  ;
+  }
 }
 
 video {

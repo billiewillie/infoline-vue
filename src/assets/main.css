@@ -58,6 +58,11 @@ img {
     object-position: center;
 }
 
+.instruction-page img {
+    width: auto;
+    max-width: 100%;
+}
+
 input {
     border: none;
 }
