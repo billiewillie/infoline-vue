@@ -9,11 +9,11 @@
             v-html="instruction.body"></div>
         <div v-if="instruction.media?.video[0]?.url" class="instruction-video">
           <video class="video" controls>
-            <source :src="`https://instructions.trifonov.space/${instruction.media?.video[0]?.url}`">
+            <source :src="`${instruction.media?.video[0]?.url}`">
           </video>
         </div>
         <div v-if="instruction.media?.documents[0]?.url" class="instruction-document">
-          <a :href="`${instruction.media?.documents[0]?.url}`" download>Скачать
+          <a :href="`https://instructions.trifonov.space/${instruction.media?.documents[0]?.url}`" download>Скачать
             инструкцию</a>
         </div>
         <p v-else>Инструкция скоро будет</p>
