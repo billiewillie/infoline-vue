@@ -7,14 +7,14 @@
             class="body"
             v-if="instruction.body"
             v-html="instruction.body"></div>
+        <div v-if="instruction.media?.documents[0]?.url" class="instruction-document">
+          <a :href="`https://instructions.trifonov.space/${instruction.media?.documents[0]?.url}`" download>Скачать
+            инструкцию</a>
+        </div>
         <div v-if="instruction.media?.video[0]?.url" class="instruction-video">
           <video class="video" controls>
             <source :src="`${instruction.media?.video[0]?.url}`">
           </video>
-        </div>
-        <div v-if="instruction.media?.documents[0]?.url" class="instruction-document">
-          <a :href="`https://instructions.trifonov.space/${instruction.media?.documents[0]?.url}`" download>Скачать
-            инструкцию</a>
         </div>
         <p v-else>Инструкция скоро будет</p>
       </div>
@@ -77,6 +77,12 @@ onMounted(() => {
 
 video {
   width: 100%;
+
+  @media (min-width: 1280px) {
+    display: block;
+    max-width: 60%;
+    margin: auto;
+  }
 }
 
 .container .body {
