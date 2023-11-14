@@ -8,7 +8,7 @@
             v-if="instruction.body"
             v-html="instruction.body"></div>
         <div v-if="instruction.media?.documents[0]?.url" class="instruction-document">
-          <a class="btn btn-link" :href="`${instruction.media?.documents[0]?.url}`" download>
+          <a class="btn btn-link" :href="`${instruction.media?.documents[0]?.url}`" download target="_blank">
             <span>Скачать инструкцию</span>
             <span class="icon">
               <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
