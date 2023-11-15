@@ -16,10 +16,10 @@
           class="header-profile__nav shadow"
           v-show="isOpen"
           v-click-outside="handleClickOutside">
-        <router-link class="header-profile__item" to="/admin" @click="isOpen = false">
-          <div class="icon">А</div>
-          <span class="text">Админ</span>
-        </router-link>
+<!--        <router-link class="header-profile__item" to="/admin" @click="isOpen = false">-->
+<!--          <div class="icon">А</div>-->
+<!--          <span class="text">Админ</span>-->
+<!--        </router-link>-->
         <div class="header-profile__item" @click="setLoggedOut">
           <div class="icon">
             <IconLogout/>
