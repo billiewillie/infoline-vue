@@ -207,6 +207,15 @@ export const useRootStore = defineStore(
             setActiveEvents();
         }
 
+        const deleteEvent = async (id) => {
+            try {
+                await axios.delete(`https://calendar.trifonov.space/api/calendar/admin/event/${id}`);
+                await getData();
+            } catch (e) {
+                console.log(e);
+            }
+        }
+
         return {
             data,
             dayEvents,
@@ -223,5 +232,6 @@ export const useRootStore = defineStore(
             toggleMonth,
             toggleCategory,
             setActiveCountry,
+            deleteEvent
         }
     })

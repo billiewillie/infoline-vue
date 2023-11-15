@@ -22,7 +22,7 @@
           <div class="event-date">{{ event.date_end }}</div>
           <div class="event-btns">
             <router-link :to="`/admin/events/edit/${event.id}`">Редактировать</router-link>
-            <button>Удалить</button>
+            <button @click="calendarStore.deleteEvent(event.id)">Удалить</button>
           </div>
         </li>
       </ul>
@@ -50,6 +50,7 @@ const {
   activeCountry,
   activeCategory,
 } = storeToRefs(calendarStore);
+
 
 onMounted(() => {
   console.log(data.value);

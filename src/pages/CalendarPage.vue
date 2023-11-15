@@ -66,7 +66,7 @@
             </div>
             <div class="item-content__block">
               <div class="item-detail" v-if="event.url">
-                <router-link :to="`${event.url}`" class="link">Подробнее</router-link>
+                <a :href="`${event.url}`" class="link">Подробнее</a>
               </div>
             </div>
           </div>
