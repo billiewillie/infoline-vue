@@ -17,15 +17,16 @@
       <ul class="events-list">
         <li class="event-item" v-for="event in data[activeCountry]" :key="event.id">
           <h2 class="title event-title">{{ event.title }}</h2>
-          <div>{{event.category}}</div>
-          <div class="event-date">{{event.date_start}}</div>
-          <div class="event-date">{{event.date_end}}</div>
+          <div>{{ event.category }}</div>
+          <div class="event-date">{{ event.date_start }}</div>
+          <div class="event-date">{{ event.date_end }}</div>
           <div class="event-btns">
             <router-link :to="`/admin/events/edit/${event.id}`">Редактировать</router-link>
             <button>Удалить</button>
           </div>
         </li>
       </ul>
+      <div class="pagination"></div>
     </div>
   </div>
 </template>
@@ -34,6 +35,7 @@
 import {storeToRefs} from "pinia";
 import {useRootStore} from "@/stores/calendarStore";
 import TheTabs from "@/components/TheTabs.vue";
+import {onMounted} from "vue";
 
 const calendarStore = useRootStore();
 calendarStore.getData();
@@ -49,7 +51,9 @@ const {
   activeCategory,
 } = storeToRefs(calendarStore);
 
-console.log(data.value['Россия']);
+onMounted(() => {
+  console.log(data.value);
+})
 </script>
 
 <style scoped>
@@ -61,7 +65,7 @@ console.log(data.value['Россия']);
 .events-list {
   display: flex;
   flex-direction: column;
-  row-gap: 8px;
+  row-gap: 16px;
 }
 
 .event-item {
