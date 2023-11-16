@@ -154,7 +154,8 @@ const todayDate = ref([
   ('0' + (d.getMonth() + 1)).slice(-2),
   ('0' + d.getDate()).slice(-2)
 ].join('-'));
-const endDate = ref(todayDate.value)
+const endDate = ref(todayDate.value);
+
 const setDate = (date) => {
   endDate.value = date.target.value;
 }

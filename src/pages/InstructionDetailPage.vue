@@ -25,7 +25,6 @@
             </span>
           </a>
         </div>
-        <p v-else>Инструкция скоро будет</p>
         <div v-if="instruction.media?.video[0]?.url" class="instruction-video">
           <video class="video" controls>
             <source :src="`${instruction.media?.video[0]?.url}`">
