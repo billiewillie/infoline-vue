@@ -210,6 +210,7 @@ const setCities = (value) => {
 
 onMounted(() => {
   getAttributes();
+  console.log('change')
 })
 </script>
 
