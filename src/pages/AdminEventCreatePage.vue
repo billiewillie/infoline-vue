@@ -116,7 +116,7 @@ const allCountries = ref([]);
 
 const countries = ref([]);
 
-const activeCountry = ({});
+const activeCountry = ref({});
 
 const activeCity = ref({});
 
@@ -210,7 +210,7 @@ const setCities = (value) => {
 
 onMounted(() => {
   getAttributes();
-  console.log('change cities')
+  console.log('change cities 111')
 })
 </script>
 
