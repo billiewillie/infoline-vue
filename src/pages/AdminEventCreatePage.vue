@@ -48,16 +48,16 @@
             :validation-messages="{ required: 'Выберите страну мероприятия' }"
         />
 
-<!--        <FormKit-->
-<!--            type="select"-->
-<!--            label="Город мероприятия"-->
-<!--            name="city"-->
-<!--            id="city"-->
-<!--            validation="required"-->
-<!--            :options="cities"-->
-<!--            v-if="cities.length > 0"-->
-<!--            :validation-messages="{ required: 'Выберите город мероприятия' }"-->
-<!--        />-->
+        <FormKit
+            type="select"
+            label="Город мероприятия"
+            name="city"
+            id="city"
+            validation="required"
+            :options="cities"
+            v-if="cities.length > 0"
+            :validation-messages="{ required: 'Выберите город мероприятия' }"
+        />
 
         <FormKit
             type="date"
@@ -110,7 +110,7 @@ import router from "@/router";
 
 const categories = ref({});
 
-const activeCategory = ({});
+const activeCategory = ref({});
 
 const allCountries = ref([]);
 
@@ -189,28 +189,28 @@ async function getAttributes() {
 
     activeCountry.value = String(countries.value[0].value);
 
-    // setCities(activeCountry.value)
+    setCities(activeCountry.value)
   }).catch((error) => {
     console.log(error)
   })
 }
 
-// const setCities = (value) => {
-//   cities.value = allCountries.value
-//       .find(country => country.id === Number(value)).cities
-//       .sort((a, b) => a.id - b.id)
-//       .map(city => {
-//         return {
-//           value: String(city.id),
-//           label: city.title
-//         }
-//       });
-//   activeCity.value = String(cities.value[0].value);
-// }
+const setCities = (value) => {
+  cities.value = allCountries.value
+      .find(country => country.id === Number(value)).cities
+      .sort((a, b) => a.id - b.id)
+      .map(city => {
+        return {
+          value: String(city.id),
+          label: city.title
+        }
+      });
+  activeCity.value = String(cities.value[0].value);
+}
 
 onMounted(() => {
   getAttributes();
-  console.log('change cities fn')
+  console.log('change cities')
 })
 </script>
 
