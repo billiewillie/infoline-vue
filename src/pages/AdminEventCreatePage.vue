@@ -139,9 +139,11 @@ async function submitHandler(credentials) {
   await axios.post(url, event).then((response) => {
     console.log(response);
     if (response.status === 200) {
-      router.push({
-        path: '/admin/events'
-      })
+      setTimeout(() => {
+        router.push({
+          path: '/admin/events'
+        })
+      }, 1000)
     }
   }).catch((error) => {
     console.log(error);

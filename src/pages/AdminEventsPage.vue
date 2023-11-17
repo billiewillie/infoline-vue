@@ -12,16 +12,24 @@
           class="calendar-tabs"/>
     </div>
 
+    <router-link to="/admin/events/create" class="btn rounded">Новое мероприятие</router-link>
     <div class="content shadow rounded">
-      <router-link to="/admin/events/create" class="btn rounded">Новое мероприятие</router-link>
+      <header class="events-header">
+        <div>Название</div>
+        <div>Город</div>
+        <div>Категория</div>
+        <div>Дата начала</div>
+        <div>Действия</div>
+      </header>
       <ul class="events-list">
         <li class="event-item" v-for="event in sortedData" :key="event.id">
           <h2 class="title event-title">{{ event.title }}</h2>
-          <div>{{ event.category }}</div>
-          <div class="event-date">{{ event.date_start }}</div>
-          <div class="event-date">{{ event.date_end }}</div>
+          <div class="event-date">{{ event.city }}</div>
+          <div class="event-category">{{ event.category }}</div>
+          <div class="event-date">{{ formateDateToHumanDate(event.date_start) }}</div>
           <div class="event-btns">
-            <router-link :to="`/admin/events/edit/${event.id}`" class="btn btn-green rounded">Редактировать</router-link>
+            <router-link :to="`/admin/events/edit/${event.id}`" class="btn btn-green rounded">Редактировать
+            </router-link>
             <button @click="calendarStore.deleteEvent(event.id)" class="btn btn-red rounded">Удалить</button>
           </div>
         </li>
@@ -35,7 +43,8 @@
 import {storeToRefs} from "pinia";
 import {useRootStore} from "@/stores/calendarStore";
 import TheTabs from "@/components/TheTabs.vue";
-import {onMounted, onUpdated, ref} from "vue";
+import {onUpdated, ref} from "vue";
+import {formateDateToHumanDate} from "@/functions/formatDateToHumanDate";
 
 const sortedData = ref([]);
 
@@ -63,28 +72,41 @@ onUpdated(() => {
 <style scoped>
 .content {
   background-color: var(--white);
-  padding: 16px;
+  display: flex;
+  flex-direction: column;
 }
 
 .events-list {
   display: flex;
   flex-direction: column;
-  row-gap: 16px;
 }
 
-.event-item {
+.event-item,
+.events-header {
   display: grid;
   align-items: flex-start;
   grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
   gap: 8px;
 }
 
-.event-title {
-  font-size: 16px;
+.events-header {
+  padding: 24px 16px;
 }
 
-.event-date {
-  text-align: center;
+.event-item:nth-child(odd) {
+  background-color: var(--gray-light);
+}
+
+.event-item {
+  padding: 16px;
+}
+
+.events-header div {
+  font-weight: 700;
+}
+
+.event-title, .event-date, .event-category {
+  font-size: 14px;
 }
 
 .event-btns {
@@ -98,13 +120,13 @@ onUpdated(() => {
   margin-bottom: 0;
   flex: 1 1 0;
   justify-content: center;
+  font-size: 14px;
 }
 
 .btn {
   background-color: var(--blue-light);
   color: var(--black);
-  font-weight: 700;
-  padding: 8px;
+  padding: 10px 20px;
   margin-bottom: 24px;
   display: inline-flex;
   line-height: 1;
@@ -114,5 +136,10 @@ onUpdated(() => {
 .btn-red {
   background-color: var(--orange);
   border: 1px solid var(--orange);
+  cursor: pointer;
+}
+
+.calendar-tabs .tabs__list {
+  width: 60%;
 }
 </style>

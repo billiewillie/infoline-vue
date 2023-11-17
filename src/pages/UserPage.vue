@@ -564,7 +564,9 @@ a.user-position__column-value {
 .fallback {
   display: flex;
   min-height: 260px;
+  padding: 24px;
   align-items: center;
+  text-align: center;
   justify-content: center;
   background-color: var(--white);
   color: var(--blue-light);
