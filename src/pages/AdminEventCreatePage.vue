@@ -55,7 +55,7 @@
             id="city"
             validation="required"
             :options="cities"
-            v-if="cities && cities.length > 0"
+            v-if="cities.length > 0"
             :validation-messages="{ required: 'Выберите город мероприятия' }"
         />
 
@@ -120,7 +120,7 @@ const activeCountry = ({});
 
 const activeCity = ref({});
 
-const cities = ref([]);
+let cities = ref([]);
 
 async function submitHandler(credentials) {
   const event = {
