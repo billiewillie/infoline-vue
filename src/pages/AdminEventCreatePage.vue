@@ -189,7 +189,7 @@ async function getAttributes() {
 
     activeCountry.value = String(countries.value[0].value);
 
-    setCities(activeCountry.value)
+    // setCities(activeCountry.value)
   }).catch((error) => {
     console.log(error)
   })
