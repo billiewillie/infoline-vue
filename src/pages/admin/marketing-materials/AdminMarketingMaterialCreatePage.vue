@@ -1,7 +1,7 @@
 <template>
   <div class="basepage admin-page">
     <div class="admin-page-header">
-      <h1 class="title">Админка мероприятий</h1>
+      <h1 class="title">Добавить маркетинговый материал</h1>
     </div>
     <div class="content shadow rounded">
       <FormKit

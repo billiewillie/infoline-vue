@@ -21,7 +21,7 @@ const routes = [
     {
         path: '/admin',
         components: {
-            default: () => import('@/pages/AdminPage.vue'),
+            default: () => import('@/pages/admin/AdminPage.vue'),
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },
@@ -30,7 +30,7 @@ const routes = [
     {
         path: '/admin/events',
         components: {
-            default: () => import('@/pages/AdminEventsPage.vue'),
+            default: () => import('@/pages/admin/events/AdminEventsPage.vue'),
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },
@@ -39,7 +39,7 @@ const routes = [
     {
         path: '/admin/events/edit/:id',
         components: {
-            default: () => import('@/pages/AdminEventEditPage.vue'),
+            default: () => import('@/pages/admin/events/AdminEventEditPage.vue'),
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },
@@ -48,7 +48,7 @@ const routes = [
     {
         path: '/admin/events/create',
         components: {
-            default: () => import('@/pages/AdminEventCreatePage.vue'),
+            default: () => import('@/pages/admin/events/AdminEventCreatePage.vue'),
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },

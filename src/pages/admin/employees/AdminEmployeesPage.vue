@@ -1,7 +1,7 @@
 <template>
   <div class="basepage admin-page">
     <div class="admin-page-header">
-      <h1 class="title">Админка мероприятий</h1>
+      <h1 class="title">Админка сотрудников</h1>
     </div>
     <div class="filters rounded">
       <TheTabs
@@ -12,7 +12,7 @@
           class="calendar-tabs"/>
     </div>
 
-    <router-link to="/admin/events/create" class="btn rounded">Новое мероприятие</router-link>
+    <router-link to="/admin/events/create" class="btn rounded">Новый сотрудник</router-link>
     <div class="content shadow rounded">
       <header class="events-header">
         <div>Название</div>
@@ -105,7 +105,9 @@ onUpdated(() => {
   font-weight: 700;
 }
 
-.event-title, .event-date, .event-category {
+.event-title,
+.event-date,
+.event-category {
   font-size: 14px;
 }
 
