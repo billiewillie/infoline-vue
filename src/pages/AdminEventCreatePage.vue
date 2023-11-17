@@ -136,20 +136,22 @@ async function submitHandler(credentials) {
     isPublished: credentials.isPublished,
     sort: 500
   };
-  console.log(event)
-  // const url = "https://calendar.trifonov.space/api/calendar/admin/add/event";
-  // await axios.post(url, event).then((response) => {
-  //   console.log(response);
-  //   if (response.status === 200) {
-  //     setTimeout(() => {
-  //       router.push({
-  //         path: '/admin/events'
-  //       })
-  //     }, 1000)
-  //   }
-  // }).catch((error) => {
-  //   console.log(error);
-  // })
+  const url = "https://calendar.trifonov.space/api/calendar/admin/add/event";
+  await axios
+      .post(url, event)
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          setTimeout(() => {
+            router.push({
+              path: '/admin/events'
+            })
+          }, 1000)
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      })
 }
 
 const d = new Date();
@@ -232,7 +234,6 @@ onMounted(() => {
 form {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 
   @media (min-width: 1280px) {
     min-width: 360px;
