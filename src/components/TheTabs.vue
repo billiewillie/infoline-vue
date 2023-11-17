@@ -250,6 +250,13 @@ const vClickOutside = {
   }
 }
 
+.admin-page .calendar-tabs .tabs__list {
+  @media (min-width: 1280px) {
+    width: auto;
+    display: flex;
+  }
+}
+
 .calendar-tabs .tabs__item {
   justify-content: center;
 }

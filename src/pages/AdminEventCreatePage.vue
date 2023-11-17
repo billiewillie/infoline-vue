@@ -234,6 +234,7 @@ onMounted(() => {
 form {
   display: flex;
   flex-direction: column;
+  row-gap: 16px;
 
   @media (min-width: 1280px) {
     min-width: 360px;

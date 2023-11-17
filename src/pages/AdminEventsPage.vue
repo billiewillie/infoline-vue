@@ -138,8 +138,4 @@ onUpdated(() => {
   border: 1px solid var(--orange);
   cursor: pointer;
 }
-
-.calendar-tabs .tabs__list {
-  width: 60%;
-}
 </style>
