@@ -195,22 +195,22 @@ async function getAttributes() {
   })
 }
 
-const setCities = (value) => {
-  cities.value = allCountries.value
-      .find(country => country.id === Number(value)).cities
-      .sort((a, b) => a.id - b.id)
-      .map(city => {
-        return {
-          value: String(city.id),
-          label: city.title
-        }
-      });
-  activeCity.value = String(cities.value[0].value);
-}
+// const setCities = (value) => {
+//   cities.value = allCountries.value
+//       .find(country => country.id === Number(value)).cities
+//       .sort((a, b) => a.id - b.id)
+//       .map(city => {
+//         return {
+//           value: String(city.id),
+//           label: city.title
+//         }
+//       });
+//   activeCity.value = String(cities.value[0].value);
+// }
 
 onMounted(() => {
   getAttributes();
-  console.log('change')
+  console.log('change cities fn')
 })
 </script>
 
