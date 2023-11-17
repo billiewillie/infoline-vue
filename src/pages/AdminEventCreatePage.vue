@@ -48,16 +48,16 @@
             :validation-messages="{ required: 'Выберите страну мероприятия' }"
         />
 
-        <FormKit
-            type="select"
-            label="Город мероприятия"
-            name="city"
-            id="city"
-            validation="required"
-            :options="cities"
-            v-if="cities.length > 0"
-            :validation-messages="{ required: 'Выберите город мероприятия' }"
-        />
+<!--        <FormKit-->
+<!--            type="select"-->
+<!--            label="Город мероприятия"-->
+<!--            name="city"-->
+<!--            id="city"-->
+<!--            validation="required"-->
+<!--            :options="cities"-->
+<!--            v-if="cities.length > 0"-->
+<!--            :validation-messages="{ required: 'Выберите город мероприятия' }"-->
+<!--        />-->
 
         <FormKit
             type="date"
@@ -120,7 +120,7 @@ const activeCountry = ({});
 
 const activeCity = ref({});
 
-let cities = ref([]);
+const cities = ref([]);
 
 async function submitHandler(credentials) {
   const event = {
