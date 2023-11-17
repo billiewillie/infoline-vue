@@ -55,7 +55,7 @@
             id="city"
             validation="required"
             :options="cities"
-            v-if="cities.length > 0"
+            v-if="cities && cities.length > 0"
             :validation-messages="{ required: 'Выберите город мероприятия' }"
         />
 
