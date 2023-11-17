@@ -56,6 +56,7 @@
             validation="required"
             :options="cities"
             v-if="cities.length > 0"
+            v-model="activeCity"
             :validation-messages="{ required: 'Выберите город мероприятия' }"
         />
 
@@ -135,19 +136,20 @@ async function submitHandler(credentials) {
     isPublished: credentials.isPublished,
     sort: 500
   };
-  const url = "https://calendar.trifonov.space/api/calendar/admin/add/event";
-  await axios.post(url, event).then((response) => {
-    console.log(response);
-    if (response.status === 200) {
-      setTimeout(() => {
-        router.push({
-          path: '/admin/events'
-        })
-      }, 1000)
-    }
-  }).catch((error) => {
-    console.log(error);
-  })
+  console.log(event)
+  // const url = "https://calendar.trifonov.space/api/calendar/admin/add/event";
+  // await axios.post(url, event).then((response) => {
+  //   console.log(response);
+  //   if (response.status === 200) {
+  //     setTimeout(() => {
+  //       router.push({
+  //         path: '/admin/events'
+  //       })
+  //     }, 1000)
+  //   }
+  // }).catch((error) => {
+  //   console.log(error);
+  // })
 }
 
 const d = new Date();
