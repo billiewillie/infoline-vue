@@ -14,7 +14,11 @@ export const useRootStore = defineStore(
             try {
                 const res = await axios.get('https://marketing-materials.trifonov.space/api/marketing-materials/show/all');
                 materials.value = res.data;
-                res.data.forEach(item => categories.value.push(item.title));
+                res.data.forEach(item => {
+                    if (!categories.value.includes(item.title)) {
+                        categories.value.push(item.title)
+                    }
+                });
                 activeCategory.value = categories.value[0];
                 getActiveMaterials();
             } catch (e) {
@@ -27,7 +31,6 @@ export const useRootStore = defineStore(
         }
 
         const setActiveCategory = (tab) => {
-            console.log(tab)
             activeCategory.value = tab;
             getActiveMaterials();
         }

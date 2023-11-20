@@ -20,16 +20,16 @@
         <header
             :class="{show: isActive === true}"
             class="search-header">
-            <input
-                placeholder="Поиск..."
-                @click.stop
-                @input="setSearchValue"
-                v-model="searchValue"
-                ref="searchInput"/>
-            <span class="search-icon" @click="clearSearchValue()">
+          <input
+              placeholder="Поиск..."
+              @click.stop
+              @input="setSearchValue"
+              v-model="searchValue"
+              ref="searchInput"/>
+          <span class="search-icon" @click="clearSearchValue()">
               <IconClose/>
             </span>
-          </header>
+        </header>
         <main class="search-main" v-if="isShownResultsList">
           <section class="search-results" v-if="data.users && data.users.length > 0">
             <header class="search-results__header" @click.stop>Пользователи</header>
@@ -130,7 +130,7 @@
 
 <script setup>
 import axios from "axios";
-import {nextTick, ref} from "vue";
+import {nextTick, onMounted, ref} from "vue";
 import IconLoop from "@/components/icons/IconLoop.vue";
 import IconClose from "@/components/icons/IconClose.vue";
 import IconArrow from "@/components/icons/IconArrow.vue";
@@ -178,6 +178,17 @@ const setInputFocused = () => {
     searchInput.value.focus();
   })
 }
+
+onMounted(() => {
+  window.addEventListener('keyup', (e) => {
+    if (e.key === 'ArrowDown' && isShownResultsList.value) {
+      console.log('arrow down')
+    }
+    if (e.key === 'ArrowUp' && isShownResultsList.value) {
+      console.log('arrow up')
+    }
+  })
+})
 </script>
 
 <style scoped>
