@@ -55,6 +55,24 @@ const routes = [
         beforeEnter: getLoginPage
     },
     {
+        path: '/admin/marketing-materials',
+        components: {
+            default: () => import('@/pages/admin/marketing-materials/AdminMarketingMaterialsPage.vue'),
+            Header: () => import('@/components/TheHeader.vue'),
+            Sidebar: () => import('@/components/TheSidebar.vue'),
+        },
+        beforeEnter: getLoginPage
+    },
+    {
+        path: '/admin/marketing-materials/create',
+        components: {
+            default: () => import('@/pages/admin/marketing-materials/AdminMarketingMaterialsCreatePage.vue'),
+            Header: () => import('@/components/TheHeader.vue'),
+            Sidebar: () => import('@/components/TheSidebar.vue'),
+        },
+        beforeEnter: getLoginPage
+    },
+    {
         path: '/login',
         components: {
             default: () => import('@/pages/LoginPage.vue'),

@@ -35,11 +35,22 @@ export const useRootStore = defineStore(
             getActiveMaterials();
         }
 
+        const deleteMaterial = async (id) => {
+            try {
+                console.log('delete material')
+                // await axios.delete(`https://marketing-materials.trifonov.space/api/marketing-materials/admin/material/${id}`);
+                // await getMaterials();
+            } catch (e) {
+                console.log(e);
+            }
+        }
+
         return {
             activeMaterials,
             categories,
             activeCategory,
             getMaterials,
-            setActiveCategory
+            deleteMaterial,
+            setActiveCategory,
         }
     })

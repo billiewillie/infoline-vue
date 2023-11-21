@@ -5,32 +5,34 @@
     </div>
     <div class="filters rounded">
       <TheTabs
-          v-if="countries"
-          :tabs="countries"
-          :activeTab="activeCountry"
-          @setActiveTab="calendarStore.setActiveCountry"
-          class="calendar-tabs"/>
+          :tabs="categories"
+          :activeTab="activeCategory"
+          @setActiveTab="marketingMaterialsStore.setActiveCategory"
+      />
     </div>
 
-    <router-link to="/admin/events/create" class="btn rounded">Новый маркетинговый материал</router-link>
+    <router-link to="/admin/marketing-materials/create" class="btn rounded">Новый маркетинговый материал</router-link>
     <div class="content shadow rounded">
       <header class="events-header">
+        <div>Обложка</div>
         <div>Название</div>
-        <div>Город</div>
-        <div>Категория</div>
-        <div>Дата начала</div>
+        <div>Бренды</div>
         <div>Действия</div>
       </header>
       <ul class="events-list">
-        <li class="event-item" v-for="event in sortedData" :key="event.id">
-          <h2 class="title event-title">{{ event.title }}</h2>
-          <div class="event-date">{{ event.city }}</div>
-          <div class="event-category">{{ event.category }}</div>
-          <div class="event-date">{{ formateDateToHumanDate(event.date_start) }}</div>
-          <div class="event-btns">
-            <router-link :to="`/admin/events/edit/${event.id}`" class="btn btn-green rounded">Редактировать
-            </router-link>
-            <button @click="calendarStore.deleteEvent(event.id)" class="btn btn-red rounded">Удалить</button>
+        <li class="event-item" v-for="material in activeMaterials" :key="material.id">
+          <div class="image">
+            <img :src="`https://marketing-materials.trifonov.space/materials/${material.id}/${material.prev}.webp`" :alt="material.title">
+          </div>
+          <h2 class="title material-title">{{ material.title }}</h2>
+          <div class="material-brands">
+            <span v-for="brand in material.brand" :key="brand.id">
+              {{ brand }}
+            </span>
+          </div>
+          <div class="material-btns">
+            <router-link :to="`/admin/marketing-materials/edit/${material.id}`" class="btn btn-green rounded">Редактировать</router-link>
+            <button @click="marketingMaterialsStore.deleteMaterial(material.id)" class="btn btn-red rounded">Удалить</button>
           </div>
         </li>
       </ul>
@@ -41,32 +43,20 @@
 
 <script setup>
 import {storeToRefs} from "pinia";
-import {useRootStore} from "@/stores/calendarStore";
+import {useRootStore} from "@/stores/marketingMaterialsStore";
 import TheTabs from "@/components/TheTabs.vue";
-import {onUpdated, ref} from "vue";
-import {formateDateToHumanDate} from "@/functions/formatDateToHumanDate";
+import {ref} from "vue";
 
 const sortedData = ref([]);
 
-const calendarStore = useRootStore();
-calendarStore.getData();
+const marketingMaterialsStore = useRootStore();
+marketingMaterialsStore.getMaterials();
 
 const {
-  data,
-  dayEvents,
-  activeDate,
-  countries,
-  attributes,
-  monthEvents,
-  activeCountry,
-  activeCategory,
-} = storeToRefs(calendarStore);
-
-onUpdated(() => {
-  sortedData.value = data.value[activeCountry.value].sort((a, b) => {
-    return new Date(b.date_start) - new Date(a.date_start);
-  });
-})
+  activeMaterials,
+  categories,
+  activeCategory
+} = storeToRefs(marketingMaterialsStore);
 </script>
 
 <style scoped>
@@ -85,7 +75,7 @@ onUpdated(() => {
 .events-header {
   display: grid;
   align-items: flex-start;
-  grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
+  grid-template-columns: 1fr 2fr 1fr 2fr;
   gap: 8px;
 }
 

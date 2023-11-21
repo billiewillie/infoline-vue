@@ -91,12 +91,8 @@ const {
   width: 100%;
 
   @media (min-width: 1280px) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
     grid-auto-rows: 350px;
-  }
-
-  @media (min-width: 1920px) {
-    grid-template-columns: repeat(3, 1fr);
   }
 }
 
