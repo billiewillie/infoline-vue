@@ -46,5 +46,7 @@ const pages = ref([
 .admin-item {
   background-color: var(--white);
   padding: 8px;
+  color: var(--blue-dark);
+  font-weight: 700;
 }
 </style>

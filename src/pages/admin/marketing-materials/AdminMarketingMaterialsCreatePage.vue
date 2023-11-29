@@ -44,13 +44,13 @@
 
         <FormKit
             type="select"
-            label="Формат материала"
+            label="Формат документа"
             name="format"
             id="format"
             validation="required"
             v-if="formats.length > 0"
             v-model="formatSelected"
-            :validation-messages="{ required: 'Выберите формат материала' }">
+            :validation-messages="{ required: 'Выберите формат документа' }">
           <option
               v-for="format in formats"
               :value="format.id"
@@ -93,6 +93,7 @@
             label="Документ"
             :accept="extensionsString"
             validation="required"
+            :help="`Расширение документа ${extensionsString}`"
             :validation-messages="{ required: 'Выберите документ' }"
         />
 
@@ -116,19 +117,12 @@ import axios from "axios";
 import router from "@/router";
 
 const categories = ref([]);
-
 const categorySelected = ref(0);
-
 const formats = ref([]);
-
 const formatSelected = ref(0);
-
 const brands = ref([]);
-
 const brandsSelected = ref([]);
-
 const extensions = ref([]);
-
 const extensionsString = ref('');
 
 const submitHandler = async (credentials) => {
@@ -140,11 +134,9 @@ const submitHandler = async (credentials) => {
   formData.append('brands', credentials.brands);
   formData.append('cover', credentials.cover[0].file);
   formData.append('material', credentials.material[0].file);
-  formData.append('extension', credentials.material[0].file.name.split('.').pop());
+  formData.append('extension', extensions.value.find(ext => ext.title === credentials.material[0].file.name.split('.').pop()).id);
   formData.append('isPublished', credentials.isPublished);
   formData.append('sort', 500);
-
-  console.log([...formData])
 
   const url = "https://marketing-materials.trifonov.space/api/marketing-materials/admin/add/material";
   await axios
@@ -184,6 +176,7 @@ async function getAttributes() {
         extensionsString.value = extensions.value
             .map(ext => `.${ext.title}`)
             .join(',');
+        console.log(extensions.value);
       }).catch((error) => {
         console.log(error)
       })

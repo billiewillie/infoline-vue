@@ -344,6 +344,10 @@ onMounted(() => {
   filter: drop-shadow(0 1px 5px rgba(0, 0, 0, 0.21));
 }
 
+.search-results__avatar .image {
+  width: 100%;
+}
+
 .search-results__avatar img {
   object-position: center top;
 }

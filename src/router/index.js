@@ -1,7 +1,7 @@
 import {createRouter, createWebHistory} from "vue-router";
 
 const getLoginPage = () => {
-    if (localStorage.getItem('isLoggedIn') !== '1') {
+    if (localStorage.getItem('login') === '') {
         return {
             path: '/login'
         }
@@ -78,7 +78,7 @@ const routes = [
             default: () => import('@/pages/LoginPage.vue'),
         },
         beforeEnter: () => {
-            if (localStorage.getItem('isLoggedIn') === '1') {
+            if (localStorage.getItem('login') !== '') {
                 return {
                     path: '/'
                 }
@@ -231,6 +231,15 @@ const routes = [
         path: '/marketing-materials',
         components: {
             default: () => import('@/pages/MarketingMaterialsPage.vue'),
+            Header: () => import('@/components/TheHeader.vue'),
+            Sidebar: () => import('@/components/TheSidebar.vue'),
+        },
+        beforeEnter: getLoginPage
+    },
+    {
+        path: '/nominees',
+        components: {
+            default: () => import('@/pages/NomineesPage.vue'),
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },

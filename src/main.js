@@ -4,6 +4,7 @@ import router from './router'
 import App from './App.vue'
 import Toast from "vue-toastification";
 import { plugin, defaultConfig } from '@formkit/vue'
+import './axios'
 
 import './assets/main.css'
 import config from "./formkit.config";

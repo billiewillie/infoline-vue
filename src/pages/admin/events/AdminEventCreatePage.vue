@@ -11,6 +11,7 @@
           @submit="submitHandler"
           :incomplete-message="false"
           type="form">
+
         <FormKit
             type="text"
             name="title"
@@ -99,13 +100,14 @@
             validation="accepted"
             validation-visibility="dirty"
         />
+
       </FormKit>
     </div>
   </div>
 </template>
 
 <script setup>
-import {onMounted, onUpdated, ref} from "vue";
+import {onMounted, ref} from "vue";
 import axios from "axios";
 import router from "@/router";
 

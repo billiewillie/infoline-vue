@@ -75,7 +75,7 @@ const {
 .events-header {
   display: grid;
   align-items: flex-start;
-  grid-template-columns: 1fr 2fr 1fr 2fr;
+  grid-template-columns: 1fr 3fr 1fr 2fr;
   gap: 8px;
 }
 
@@ -89,6 +89,12 @@ const {
 
 .event-item {
   padding: 16px;
+}
+
+.event-item .image img {
+  overflow: hidden;
+  max-height: 100px;
+  max-width: 50px;
 }
 
 .events-header div {

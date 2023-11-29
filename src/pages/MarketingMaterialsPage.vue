@@ -27,7 +27,7 @@
                 <span class="field-text">{{ item.brand[0] }}</span>
               </p>
               <p class="field">
-                <span class="field-title">Дата:</span>
+                <span class="field-title">Загружено:</span>
                 <span class="field-text">{{ item.update_at ? item.update_at : item.created_at }}</span>
               </p>
               <div class="buttons">
@@ -91,7 +91,7 @@ const {
   width: 100%;
 
   @media (min-width: 1280px) {
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
     grid-auto-rows: 350px;
   }
 }
@@ -99,24 +99,16 @@ const {
 .card {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
+  gap: 16px;
 
   @media (min-width: 1280px) {
-    grid-template-columns: 2fr 3fr;
-    gap: 30px;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 .card .image {
   box-shadow: var(--base-shadow);
-
-  @media (min-width: 1280px) {
-    height: 350px;
-  }
-
-  @media (min-width: 1920px) {
-    height: 350px;
-  }
+  aspect-ratio: 3/4;
 }
 
 .card-content {
@@ -194,7 +186,7 @@ const {
 .field-title {
   display: flex;
   font-weight: 400;
-  min-width: 60px;
+  min-width: 80px;
   font-size: 12px;
   color: var(--gray-dark);
 }

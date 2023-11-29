@@ -116,7 +116,7 @@
               console.log('edit')">Редактировать</span>
             </div>
             <div class="modal-row">
-              <span @click="isAnswerOpen = false;answer = '';console.log('delete')">Удалить</span>
+              <span @click="isAnswerOpen = false;answer = ''">Удалить</span>
             </div>
           </div>
         </transition>
@@ -131,7 +131,7 @@ import TheImage from "@/components/TheImage.vue";
 import IconLike from "@/components/icons/IconLike.vue";
 import IconDislike from "@/components/icons/IconDislike.vue";
 import IconCalendar from "@/components/icons/IconCalendar.vue";
-import PlaceholderPerson from "@/assets/img/profile-fallback.webp";
+import PlaceholderPerson from "@/assets/img/person-fallback.webp";
 import IconComment from "@/components/icons/IconComment.vue";
 import ButtonComponent from "@/components/UI/ButtonComponent.vue";
 

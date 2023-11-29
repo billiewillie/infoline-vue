@@ -14,73 +14,104 @@
         <IconLogo/>
       </div>
       <h1 class="title">Добро пожаловать на корпоративный портал info <span class="blue">Line</span>!</h1>
-      <form class="form" @submit.prevent="submitClick">
-        <div class="form-row">
-          <div class="icon">
-            <IconUserForm/>
-          </div>
-          <input
-              type="text"
-              class="rounded input"
-              v-model="login"
-              placeholder="Введите логин"/>
-        </div>
-        <div class="form-row">
-          <div class="icon">
-            <IconKeyForm/>
-          </div>
-          <input
-              type="password"
-              class="rounded input"
-              v-model="password"
-              placeholder="Введите пароль"/>
-        </div>
-        <div class="form-row">
-          <button
-              class="btn"
-              @mouseover="isHovered = true"
-              @mouseleave="isHovered = false">
-            <span class="text">войти</span>
-            <span class="btn-icon">
-              <IconArrow
-                  :stroke="isHovered
-                  ? 'var(--blue-light)'
-                  : 'var(--white)'"
-              />
-            </span>
-          </button>
-        </div>
-      </form>
-      <!--      <router-link to="/forgot" class="forgot">Забыли пароль?</router-link>-->
+      <FormKit
+          id="eventForm"
+          name="eventForm"
+          submit-label="Войти"
+          @submit="submitClick"
+          :incomplete-message="false"
+          type="form">
+
+        <FormKit
+            type="email"
+            validation="required|email"
+            placeholder="Введите email"
+            prefix-icon="email"
+            name="email"
+            v-model="email"
+            :validation-messages="{
+              required: 'Введите email',
+              email: 'Неправильный email',
+            }"
+        />
+
+        <FormKit
+            type="password"
+            name="password"
+            prefix-icon="password"
+            suffix-icon="eyeClosed"
+            @suffix-icon-click="handleIconClick"
+            validation="required|length:6"
+            placeholder="Введите пароль"
+            v-model="password"
+            :validation-messages="{
+              required: 'Введите пароль',
+              length: 'Минимальная длина 6 символов',
+            }"
+        />
+
+      </FormKit>
     </div>
   </div>
 </template>
 
 <script setup>
 import IconLogo from "@/components/icons/IconLogo.vue";
-import IconUserForm from "@/components/icons/IconUserForm.vue";
-import IconKeyForm from "@/components/icons/IconKeyForm.vue";
-import IconArrow from "@/components/icons/IconArrow.vue";
 import {ref} from "vue";
 import {useRootStore} from "@/stores/usersStore";
 import {useRouter} from "vue-router";
 import {storeToRefs} from "pinia";
+import axios from "axios";
 
 const usersStore = useRootStore();
 const {isLoggedIn} = storeToRefs(usersStore);
 
 const router = useRouter();
-const login = ref('');
+const email = ref('');
 const password = ref('');
 const isHovered = ref(false);
 
-const submitClick = () => {
-  usersStore.setLogin(login.value, password.value);
-  if (localStorage.getItem('isLoggedIn') === '1') {
-    router.push({
-      path: '/'
-    })
-  }
+const submitClick = async (data, node) => {
+  await axios
+      .post(
+          'https://users.trifonov.space/api/auth/login',
+          {
+            email: email.value,
+            password: password.value
+          }
+      )
+      .then((response) => {
+        localStorage.setItem('access_token', response.data.access_token);
+        localStorage.setItem('login', response.data.user.login);
+      })
+      .catch((error) => {
+        node.setErrors(['Есть ошибки в email или пароле']);
+        console.error(error);
+      })
+
+  await axios
+      .get(
+          `https://users.trifonov.space/api/show/user/${localStorage.getItem('login')}`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('access_token')}`
+            }
+          }
+      )
+      .then((response) => {
+        usersStore.login(response.data.user);
+        router.push({
+          path: '/'
+        })
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+}
+
+const handleIconClick = (node) => {
+  node.props.suffixIcon = node.props.suffixIcon === 'eye' ? 'eyeClosed' : 'eye'
+  node.props.type = node.props.type === 'password' ? 'text' : 'password'
 }
 </script>
 
@@ -110,7 +141,8 @@ form {
   width: 100%;
 }
 
-.form-row input, button {
+.form-row input,
+button {
   width: 100%;
 }
 
@@ -132,10 +164,6 @@ form {
   z-index: 1;
 }
 
-.input {
-  padding: 14px 14px 14px 45px;
-}
-
 .title {
   font-size: 22px;
   font-weight: 700;
@@ -145,47 +173,5 @@ form {
 .title .blue {
   font-weight: 700;
   color: var(--blue-light);
-}
-
-.btn {
-  position: relative;
-  display: flex;
-  align-items: center;
-  background-color: var(--blue-light);
-  border: 1px solid var(--blue-light);
-  cursor: pointer;
-  padding: 14px;
-  transition: background-color 0.3s ease-in-out;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-}
-
-.btn:hover {
-  background-color: var(--white);
-}
-
-.btn span.text {
-  color: var(--white);
-  font-weight: 700;
-  text-transform: uppercase;
-  flex: auto;
-  transition: color 0.3s ease-in-out;
-}
-
-.btn:hover span.text {
-  color: var(--blue-light);
-}
-
-.btn-icon {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  right: 10px;
-  top: 0;
-  bottom: 0;
-  margin: auto;
 }
 </style>

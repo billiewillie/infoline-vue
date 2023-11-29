@@ -1,10 +1,10 @@
 <template>
   <div class="header-profile" @click="isOpen = !isOpen">
     <div class="header-profile__avatar">
-      <picture>
-        <source srcset="@/assets/img/avatar.webp" type="image/webp"/>
-        <img src="@/assets/img/avatar.jpg" alt="avatar"/>
-      </picture>
+      <TheImage
+          alt="avatar"
+          :fallback="PlaceholderPerson"
+          :image="`https://users.trifonov.space/images/users/${login}/avatar.webp`"      />
     </div>
     <span class="icon" :class="{active: isOpen}">
 			<IconArrow/>
@@ -37,9 +37,14 @@ import IconSettings from '@/components/icons/IconSettings.vue';
 import IconLogout from '@/components/icons/IconLogout.vue';
 import {ref} from 'vue';
 import {useRouter} from "vue-router";
+import TheImage from "@/components/TheImage.vue";
+import PlaceholderPerson from "@/assets/img/person-fallback.webp";
+import {storeToRefs} from "pinia";
+import {useRootStore} from "@/stores/usersStore";
 
 const router = useRouter();
 const isOpen = ref(false);
+const login = localStorage.getItem('login');
 
 const handleClickOutside = () => {
   isOpen.value = false;
@@ -60,11 +65,14 @@ const vClickOutside = {
 };
 
 const setLoggedOut = () => {
-  localStorage.setItem('isLoggedIn', '0');
+  localStorage.setItem('login', '');
+  usersStore.login({})
   router.push({
     path: '/login'
   })
 }
+
+const usersStore = useRootStore();
 </script>
 
 <style scoped>
@@ -84,11 +92,16 @@ const setLoggedOut = () => {
   overflow: hidden;
   width: 30px;
   height: 30px;
+  border: 3px solid var(--blue-light);
 
   @media (min-width: 1920px) {
     width: 40px;
     height: 40px;
   }
+}
+
+.header-profile__avatar .image {
+  overflow: hidden;
 }
 
 .header-profile__avatar img {

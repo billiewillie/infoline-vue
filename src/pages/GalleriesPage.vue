@@ -54,7 +54,6 @@ import IconCalendar from "@/components/icons/IconCalendar.vue";
 import IconPhoto from "@/components/icons/IconPhoto.vue";
 import IconView from "@/components/icons/IconView.vue";
 import TheTabs from "@/components/TheTabs.vue";
-import {formateDate} from "@/functions/formatDate";
 import {useRootStore} from "@/stores/galleriesStore";
 import {storeToRefs} from "pinia";
 import TheImage from "@/components/TheImage.vue";

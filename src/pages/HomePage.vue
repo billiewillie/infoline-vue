@@ -20,30 +20,11 @@
         <NewsSkeleton/>
       </template>
     </div>
-    <TheCalendar :attributes="attributesIndexPage" class="home-page-calendar"/>
+    <TheCalendar
+        :attributes="attributesIndexPage"
+        class="home-page-calendar"/>
     <SliderGallery/>
     <IndexBirthdaysCard/>
-    <!--    <div class="default-card-wrapper">-->
-    <!--      <div class="shadow rounded contest-card overflow-hidden">-->
-    <!--        <swiper-->
-    <!--            :modules="modules2"-->
-    <!--            :allow-touch-move="false"-->
-    <!--            :autoplay="{delay: 4000}"-->
-    <!--            :slides-per-view="1"-->
-    <!--            loop>-->
-    <!--          <SwiperSlide v-for="item in photos" :key="item.id">-->
-    <!--            <TheImage-->
-    <!--                alt="gallery-item"-->
-    <!--                :image="item"/>-->
-    <!--          </SwiperSlide>-->
-    <!--        </swiper>-->
-    <!--        <p class="subtitle">фотоконкурс для корпоративного календаря</p>-->
-    <!--        <h2 class="title">«Место Силы»</h2>-->
-    <!--        <router-link to="/vote/photo-contest-2023">-->
-    <!--          <ButtonComponent class="btn">Перейти к голосованию</ButtonComponent>-->
-    <!--        </router-link>-->
-    <!--      </div>-->
-    <!--    </div>-->
     <IndexDefaultCard
         v-for="item in defaultCards"
         :key="item.title"
@@ -69,8 +50,6 @@ import {useRootStore as useNewsStore} from "@/stores/newsStore";
 import {useRootStore as useCalendarStore} from "@/stores/calendarStore";
 import {storeToRefs} from "pinia";
 import NewsSkeleton from "@/components/NewsSkeleton.vue";
-import ButtonComponent from "@/components/UI/ButtonComponent.vue";
-import TheImage from "@/components/TheImage.vue";
 import AboutPhoto11 from "@/assets/img/about-photo-11.webp";
 import AboutPhoto12 from "@/assets/img/about-photo-12.webp";
 import IndexDefaultCard from "@/components/IndexDefaultCard.vue";

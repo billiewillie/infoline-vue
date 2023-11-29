@@ -105,13 +105,13 @@ export const useRootStore = defineStore(
 
                 const datesOfEventStart = () => {
                     const dateStart = String(new Date(item?.date_start).getDate()).padStart(2, '0');
-                    const monthStart = String(new Date(item?.date_start).getMonth()).padStart(2, '0');
+                    const monthStart = String(new Date(item?.date_start).getMonth() + 1).padStart(2, '0');
                     return [dateStart, monthStart].join('.');
                 }
 
                 const datesOfEventEnd = () => {
                     const dateEnd = String(new Date(item?.date_end).getDate()).padStart(2, '0');
-                    const monthEnd = String(new Date(item?.date_end).getMonth()).padStart(2, '0');
+                    const monthEnd = String(new Date(item?.date_end).getMonth() + 1).padStart(2, '0');
                     return [dateEnd, monthEnd].join('.');
                 }
 
@@ -119,7 +119,7 @@ export const useRootStore = defineStore(
                     const date1 = datesOfEventStart();
                     const date2 = datesOfEventEnd();
 
-                    if(date1 === date2) {
+                    if (date1 === date2) {
                         return `(${datesOfEventStart()}) ${item.title}`;
                     } else {
                         return `(${datesOfEventStart()}-${datesOfEventEnd()}) ${item.title}`

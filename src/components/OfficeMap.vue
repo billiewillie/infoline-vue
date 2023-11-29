@@ -76,6 +76,15 @@ const isMapShow = ref(false);
 
 const floors = {
   1: {
+    100: {
+      number: 100,
+      floor: 1,
+      name: "Ресепшен",
+      xLg: 810,
+      yLg: 330,
+      xLgDecreased: -650,
+      yLgDecreased: -220,
+    },
     113: {
       number: 113,
       floor: 1,
@@ -130,15 +139,6 @@ const floors = {
       xLgDecreased: -410,
       yLgDecreased: -330,
     },
-    129: {
-      number: 129,
-      floor: 1,
-      name: "Коденюк В.А.",
-      xLg: 520,
-      yLg: 320,
-      xLgDecreased: -340,
-      yLgDecreased: -140,
-    },
     128: {
       number: 128,
       floor: 1,
@@ -148,13 +148,22 @@ const floors = {
       xLgDecreased: -315,
       yLgDecreased: -320,
     },
+    129: {
+      number: 129,
+      floor: 1,
+      name: "Коденюк В.А.",
+      xLg: 520,
+      yLg: 320,
+      xLgDecreased: -340,
+      yLgDecreased: -140,
+    },
     130: {
       number: 130,
       floor: 1,
       name: "Шубаев П.А.",
       xLg: 380,
       yLg: 440,
-      xLgDecreased: -200,
+      xLgDecreased: -150,
       yLgDecreased: -340,
     },
     131: {
@@ -255,8 +264,8 @@ const floors = {
       name: "Гусева Н.К.",
       xLg: 896,
       yLg: 160,
-      xLgDecreased: 290,
-      yLgDecreased: 25,
+      xLgDecreased: -700,
+      yLgDecreased: 125,
     },
     214: {
       number: 214,
@@ -362,8 +371,8 @@ const floors = {
     306: {
       number: 306,
       floor: 3,
-      name: "Ген. дир. БС",
-      xLg: 446,
+      name: "Отдел медицинской микроскопии",
+      xLg: 435,
       yLg: 0,
       xLgDecreased: -300,
       yLgDecreased: 350,
@@ -372,7 +381,7 @@ const floors = {
       number: 307,
       floor: 3,
       name: "Отдел ДИЗ",
-      xLg: 520,
+      xLg: 535,
       yLg: 160,
       xLgDecreased: -350,
       yLgDecreased: 100,
@@ -389,8 +398,8 @@ const floors = {
     309: {
       number: 309,
       floor: 3,
-      name: "Дулаева Оксана",
-      xLg: 666,
+      name: "Дулаева О.",
+      xLg: 680,
       yLg: 160,
       xLgDecreased: -460,
       yLgDecreased: 130,
@@ -461,10 +470,10 @@ const floors = {
     333: {
       number: 333,
       floor: 3,
-      name: "Солнцева Ольга",
-      xLg: 383,
+      name: "Солнцева О.",
+      xLg: 390,
       yLg: 400,
-      xLgDecreased: -230,
+      xLgDecreased: -130,
       yLgDecreased: -325,
     },
     334: {

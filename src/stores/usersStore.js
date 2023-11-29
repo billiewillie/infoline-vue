@@ -17,11 +17,6 @@ export const useRootStore = defineStore(
             }
         }
 
-        const setLogin = (login, password) => {
-            if (login === 'test' && password === 'test') {
-                localStorage.setItem('isLoggedIn', '1')
-            }
-        }
 
         const login = (obj) => {
             logedUser.value = obj;
@@ -31,7 +26,6 @@ export const useRootStore = defineStore(
             user,
             logedUser,
             getUser,
-            login,
-            setLogin
+            login
         }
     })
