@@ -479,7 +479,7 @@ const floors = {
     334: {
       number: 334,
       floor: 3,
-      name: "Павел Кислов",
+      name: "Кислов Павел",
       xLg: 316,
       yLg: 400,
       xLgDecreased: -120,

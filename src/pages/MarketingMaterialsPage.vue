@@ -92,7 +92,7 @@ const {
 
   @media (min-width: 1280px) {
     grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
-    grid-auto-rows: 350px;
+    grid-template-rows: auto;
   }
 }
 
