@@ -86,29 +86,38 @@ const {
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 60px;
   width: 100%;
 
-  @media (min-width: 1280px) {
+  @media (min-width: 768px) {
     grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
     grid-template-rows: auto;
   }
 }
 
 .card {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 16px;
 
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+
   @media (min-width: 1280px) {
-    grid-template-columns: repeat(2, 1fr);
+    max-height: 400px;
   }
 }
 
 .card .image {
   box-shadow: var(--base-shadow);
-  aspect-ratio: 3/4;
+  overflow: hidden;
+
+  @media (min-width: 768px) {
+    aspect-ratio: 3/4;
+    flex: 1;
+  }
 }
 
 .card-content {
@@ -116,8 +125,9 @@ const {
   flex-direction: column;
   gap: 20px;
   width: 100%;
+  flex: 1;
 
-  @media (min-width: 1280px) {
+  @media (min-width: 768px) {
     justify-content: space-between;
   }
 }
