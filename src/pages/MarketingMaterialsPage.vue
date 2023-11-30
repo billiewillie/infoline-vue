@@ -70,24 +70,24 @@ const {
 .content {
   display: flex;
   background-color: var(--white);
-  padding: 20px;
+  padding: 16px;
   flex: auto;
 
   @media (min-width: 1280px) {
-    padding: 40px;
+    padding: 16px;
     gap: 40px;
     flex-wrap: wrap;
   }
 
   @media (min-width: 1920px) {
-    padding: 40px;
+    padding: 20px;
   }
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 60px;
+  gap: 32px;
   width: 100%;
 
   @media (min-width: 768px) {
@@ -106,7 +106,7 @@ const {
   }
 
   @media (min-width: 1280px) {
-    max-height: 400px;
+    max-height: 360px;
   }
 }
 
@@ -141,6 +141,7 @@ const {
 .card-title {
   color: var(--blue-dark);
   padding-bottom: 20px;
+  font-size: 18px;
 }
 
 .card-title::after {

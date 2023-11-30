@@ -93,4 +93,8 @@ img {
 .description-image img {
   object-position: top center;
 }
+
+.marketing-materials-page .image img {
+  object-position: center;
+}
 </style>
