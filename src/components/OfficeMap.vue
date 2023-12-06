@@ -243,7 +243,7 @@ const floors = {
     211: {
       number: 211,
       floor: 2,
-      name: "Гвоздарев А.",
+      name: "Гвоздарев А.В.",
       xLg: 744,
       yLg: 160,
       xLgDecreased: -540,
@@ -389,7 +389,7 @@ const floors = {
     308: {
       number: 308,
       floor: 3,
-      name: "Мед. мебель",
+      name: "Отдел лабораторной мебели",
       xLg: 604,
       yLg: 160,
       xLgDecreased: -420,
@@ -398,7 +398,7 @@ const floors = {
     309: {
       number: 309,
       floor: 3,
-      name: "Дулаева О.",
+      name: "Дулаева О.Е.",
       xLg: 680,
       yLg: 160,
       xLgDecreased: -460,
@@ -407,7 +407,7 @@ const floors = {
     310: {
       number: 310,
       floor: 3,
-      name: "Дмитриева М.",
+      name: "Дмитриева М.О.",
       xLg: 744,
       yLg: 160,
       xLgDecreased: -540,
@@ -470,7 +470,7 @@ const floors = {
     333: {
       number: 333,
       floor: 3,
-      name: "Солнцева О.",
+      name: "Солнцева О.С.",
       xLg: 390,
       yLg: 400,
       xLgDecreased: -130,
@@ -479,7 +479,7 @@ const floors = {
     334: {
       number: 334,
       floor: 3,
-      name: "Кислов Павел",
+      name: "Кислов П.В.",
       xLg: 316,
       yLg: 400,
       xLgDecreased: -120,

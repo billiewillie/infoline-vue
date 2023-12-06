@@ -150,7 +150,6 @@ import {useRootStore as useNewsStore} from "@/stores/newsStore";
 import CommentComponent from "@/components/CommentComponent.vue";
 import PlaceholderPerson from "@/assets/img/person-fallback.webp";
 
-
 const modules = [Navigation];
 const newsStore = useNewsStore();
 newsStore.getNewsIndexPage();
@@ -165,29 +164,31 @@ const copyLink = () => {
 };
 
 const toggleLike = async () => {
-  if (isLikedByCurrentUser.value) {
-    await axios
-        .post(`https://news.trifonov.space/api/likes?post_id=${params.id}&user_token=${localStorage.getItem('login')}`, {})
-        .then(() => {
-          likes.value = likes.value.filter(like => like.user_token !== localStorage.getItem('login'));
-          isLikedByCurrentUser.value = false;
-        })
-        .catch(err => {
-          console.error(err)
-        })
-  } else {
-    await axios
-        .post(`https://news.trifonov.space/api/likes?post_id=${params.id}&user_token=${localStorage.getItem('login')}`, {})
-        .then(res => {
-          isLikedByCurrentUser.value = true;
-          likes.value.push({
-            post_id: params.id,
-            user_token: localStorage.getItem('login')
-          });
-        })
-        .catch(err => {
-          console.error(err)
-        })
+  if(localStorage.getItem('login') !== 'test') {
+    if (isLikedByCurrentUser.value) {
+      await axios
+          .post(`https://news.trifonov.space/api/likes?post_id=${params.id}&user_token=${localStorage.getItem('login')}`, {})
+          .then(() => {
+            likes.value = likes.value.filter(like => like.user_token !== localStorage.getItem('login'));
+            isLikedByCurrentUser.value = false;
+          })
+          .catch(err => {
+            console.error(err)
+          })
+    } else {
+      await axios
+          .post(`https://news.trifonov.space/api/likes?post_id=${params.id}&user_token=${localStorage.getItem('login')}`, {})
+          .then(res => {
+            isLikedByCurrentUser.value = true;
+            likes.value.push({
+              post_id: params.id,
+              user_token: localStorage.getItem('login')
+            });
+          })
+          .catch(err => {
+            console.error(err)
+          })
+    }
   }
 }
 
