@@ -34,7 +34,7 @@
                 :key="item.id" class="list-item overflow-hidden">
               <TheImage
                   :alt="`${item.id}`"
-                  :fallback="`https://users.trifonov.space/images/users/${item.user_token}/avatar.webp`"
+                  :fallback="PlaceholderPerson"
                   :image="`https://users.trifonov.space/images/users/${item.user_token}/avatar.webp`"/>
             </router-link>
           </div>
@@ -148,6 +148,8 @@ import NewsItem from "@/components/NewsItem.vue";
 import {storeToRefs} from "pinia";
 import {useRootStore as useNewsStore} from "@/stores/newsStore";
 import CommentComponent from "@/components/CommentComponent.vue";
+import PlaceholderPerson from "@/assets/img/person-fallback.webp";
+
 
 const modules = [Navigation];
 const newsStore = useNewsStore();
@@ -278,6 +280,10 @@ onBeforeRouteUpdate((to) => {
   width: 30px;
   height: 30px;
   transition: border 0.3s ease-in-out;
+}
+
+.news-stats-item .list-item .image {
+  width: 100%;
 }
 
 .news-stats-item:hover > .list {
