@@ -28,8 +28,7 @@
           <div class="event-category">{{ event.category }}</div>
           <div class="event-date">{{ formateDateToHumanDate(event.date_start) }}</div>
           <div class="event-btns">
-            <router-link :to="`/admin/events/edit/${event.id}`" class="btn btn-green rounded">Редактировать
-            </router-link>
+<!--            <router-link :to="`/admin/events/edit/${event.id}`" class="btn btn-green rounded">Редактировать</router-link>-->
             <button @click="calendarStore.deleteEvent(event.id)" class="btn btn-red rounded">Удалить</button>
           </div>
         </li>

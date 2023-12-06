@@ -54,7 +54,6 @@ import {useRootStore} from "@/stores/marketingMaterialsStore";
 import {storeToRefs} from "pinia";
 import TheImage from "@/components/TheImage.vue";
 import IconShare from "@/components/icons/IconShare.vue";
-import IconSave from "@/components/icons/IconSave.vue";
 
 const marketingMaterialsStore = useRootStore();
 marketingMaterialsStore.getMaterials();

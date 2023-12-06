@@ -17,8 +17,7 @@
               :alt="`${user.firstname} ${user.lastname}`"
               :fallback="PlaceholderPerson"
               v-if="isRendered"
-              :image="`https://users.trifonov.space/images/users/${user.login}/gallery_${i}.webp`"
-          />
+              :image="`https://users.trifonov.space/images/users/${user.login}/gallery_${i}.webp`"/>
         </SwiperSlide>
       </Swiper>
     </div>

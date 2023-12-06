@@ -128,6 +128,7 @@ const {galleries, years, activeYear, activeGalleries} = storeToRefs(galleriesSto
   z-index: 2;
   padding: 7px;
   background-color: var(--blue-dark);
+  line-height: 1;
   display: flex;
   column-gap: 7px;
   align-items: center;

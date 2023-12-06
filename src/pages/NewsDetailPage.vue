@@ -8,10 +8,37 @@
         <div class="text">{{ post?.comments?.length > 0 ? post?.comments?.length : 0 }}</div>
       </div>
       <div class="news-stats-item">
-        <div class="icon">
-          <IconLike/>
+        <div
+            @click="toggleLike"
+            class="icon">
+          <svg
+              :fill="isLikedByCurrentUser ? 'var(--blue-light)' : 'none'"
+              width="64px"
+              height="64px"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              stroke-width="2"
+              stroke="var(--blue-light)">
+            <g id="SVGRepo_iconCarrier">
+              <path
+                  d="M12 20a1 1 0 0 1-.437-.1C11.214 19.73 3 15.671 3 9a5 5 0 0 1 8.535-3.536l.465.465.465-.465A5 5 0 0 1 21 9c0 6.646-8.212 10.728-8.562 10.9A1 1 0 0 1 12 20z"></path>
+            </g>
+          </svg>
         </div>
-        <div class="text">{{ post.like_count ? post.like_count : 0 }}</div>
+        <div class="text">{{ likes.length ? likes.length : 0 }}</div>
+        <div class="list list-aside rounded" v-if="likes.length > 0">
+          <div class="list-wrapper">
+            <router-link
+                v-for="item in likes"
+                :to="`/users/${item.user_token}`"
+                :key="item.id" class="list-item overflow-hidden">
+              <TheImage
+                  :alt="`${item.id}`"
+                  :fallback="`https://users.trifonov.space/images/users/${item.user_token}/avatar.webp`"
+                  :image="`https://users.trifonov.space/images/users/${item.user_token}/avatar.webp`"/>
+            </router-link>
+          </div>
+        </div>
       </div>
       <div class="news-stats-item">
         <div class="icon">
@@ -20,8 +47,29 @@
         <div class="text">{{ post.show_count ? post.show_count : 0 }}</div>
       </div>
       <div class="news-stats-item">
-        <div class="icon">
-          <IconShare/>
+        <div
+            class="icon icon-copy"
+            @click="copyLink">
+          <svg
+              width="19"
+              height="19"
+              viewBox="0 0 19 19"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+            <g id="share-06">
+              <path
+                  id="Icon"
+                  d="M16.1677 10.0645C16.3508 9.9076 16.4424 9.82914 16.4759 9.73576C16.5054 9.65381 16.5054 9.56416 16.4759 9.48221C16.4424 9.38883 16.3508 9.31036 16.1677 9.15343L9.81469 3.70796C9.49952 3.43781 9.34194 3.30274 9.20852 3.29943C9.09257 3.29656 8.98181 3.3475 8.90853 3.43741C8.82422 3.54086 8.82422 3.74841 8.82422 4.16351V7.38496C7.22321 7.66505 5.75791 8.4763 4.669 9.69438C3.48184 11.0224 2.82514 12.7409 2.82422 14.5222V14.9812C3.61122 14.0331 4.59385 13.2664 5.70479 12.7334C6.68424 12.2636 7.74303 11.9852 8.82422 11.9119V15.0545C8.82422 15.4696 8.82422 15.6771 8.90853 15.7806C8.98181 15.8705 9.09257 15.9214 9.20852 15.9185C9.34194 15.9152 9.49952 15.7802 9.81469 15.51L16.1677 10.0645Z"
+                  stroke="#57E8DF"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+              />
+            </g>
+          </svg>
+          <div class="tooltip rounded">
+            <span class="tooltip-wrapper">Копировать ссылку</span>
+          </div>
         </div>
       </div>
     </div>
@@ -94,8 +142,6 @@ import IconUser from "@/components/icons/IconUser.vue";
 import IconComment from "@/components/icons/IconComment.vue";
 import IconLike from "@/components/icons/IconLike.vue";
 import IconView from "@/components/icons/IconView.vue";
-import IconShare from "@/components/icons/IconShare.vue";
-import IconNew from "@/components/icons/IconNew.vue";
 import {onBeforeRouteUpdate, useRoute} from "vue-router";
 import {Swiper, SwiperSlide} from "swiper/vue";
 import NewsItem from "@/components/NewsItem.vue";
@@ -109,12 +155,47 @@ newsStore.getNewsIndexPage();
 const {newsIndexPage} = storeToRefs(newsStore);
 const post = ref({});
 const params = useRoute().params;
+const likes = ref([]);
+const isLikedByCurrentUser = ref(false);
+
+const copyLink = () => {
+  navigator.clipboard.writeText(window.location.href);
+};
+
+const toggleLike = async () => {
+  if (isLikedByCurrentUser.value) {
+    await axios
+        .post(`https://news.trifonov.space/api/likes?post_id=${params.id}&user_token=${localStorage.getItem('login')}`, {})
+        .then(() => {
+          likes.value = likes.value.filter(like => like.user_token !== localStorage.getItem('login'));
+          isLikedByCurrentUser.value = false;
+        })
+        .catch(err => {
+          console.error(err)
+        })
+  } else {
+    await axios
+        .post(`https://news.trifonov.space/api/likes?post_id=${params.id}&user_token=${localStorage.getItem('login')}`, {})
+        .then(res => {
+          isLikedByCurrentUser.value = true;
+          likes.value.push({
+            post_id: params.id,
+            user_token: localStorage.getItem('login')
+          });
+        })
+        .catch(err => {
+          console.error(err)
+        })
+  }
+}
 
 onMounted(() => {
   axios
       .get(`${NEWS_URL}/${params.id}`)
       .then(res => {
         post.value = res.data;
+        likes.value = res.data.likes;
+        isLikedByCurrentUser.value = res.data.likes.filter(like => like.user_token === localStorage.getItem('login')).length > 0;
       })
       .catch(err => {
         console.log(err);
@@ -126,6 +207,8 @@ onBeforeRouteUpdate((to) => {
       .get(`${NEWS_URL}/${to.params.id}`)
       .then(res => {
         post.value = res.data;
+        likes.value = res.data.likes;
+        isLikedByCurrentUser.value = res.data.likes.filter(like => like.user_token === localStorage.getItem('login')).length > 0;
       })
       .catch(err => {
         console.log(err);
@@ -157,13 +240,64 @@ onBeforeRouteUpdate((to) => {
 .news-stats-item {
   display: flex;
   align-items: center;
-  column-gap: 10px;
+  column-gap: 8px;
   color: var(--white);
+  position: relative;
+}
+
+.news-stats-item .text {
+  min-width: 25px;
+}
+
+.news-stats-item .list {
+  position: absolute;
+  padding-right: 30px;
+  top: 50%;
+  right: 100%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.news-stats-item .list .list-wrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  padding: 8px;
+  width: 160px;
+  gap: 8px;
+  background-color: var(--blue-dark);
+}
+
+.news-stats-item .list-item {
+  display: flex;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  border: 2px solid var(--blue-light);
+  width: 30px;
+  height: 30px;
+  transition: border 0.3s ease-in-out;
+}
+
+.news-stats-item:hover > .list {
+  opacity: 1;
+}
+
+.news-stats-item .list-item:hover {
+  border: 2px solid var(--blue-dark);
 }
 
 .news-stats-item .icon {
   width: 18px;
   height: 18px;
+  cursor: pointer;
+}
+
+.news-stats-item .icon svg {
+  width: 100%;
+  height: 100%;
+  transition: fill 0.3s ease-in-out;
 }
 
 .news-detail-page {
@@ -477,5 +611,32 @@ onBeforeRouteUpdate((to) => {
   @media (min-width: 1280px) {
     padding-bottom: 2px;
   }
+}
+
+.icon-copy {
+  position: relative;
+  cursor: pointer;
+}
+
+.tooltip {
+  position: absolute;
+  right: 100%;
+  padding-right: 30px;
+  width: 162px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.tooltip-wrapper {
+  padding: 8px;
+  background-color: var(--blue-dark);
+  text-align: center;
+  font-size: 12px;
+}
+
+.icon-copy:hover .tooltip {
+  opacity: 1;
 }
 </style>
