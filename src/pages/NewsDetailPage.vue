@@ -131,6 +131,7 @@
 
 <script setup>
 import 'swiper/css';
+import "vue-toastification/dist/index.css";
 import axios from "axios";
 import 'swiper/css/navigation';
 import {Navigation} from 'swiper';
@@ -140,31 +141,38 @@ import TheImage from "@/components/TheImage.vue";
 import IconCalendar from "@/components/icons/IconCalendar.vue";
 import IconUser from "@/components/icons/IconUser.vue";
 import IconComment from "@/components/icons/IconComment.vue";
-import IconLike from "@/components/icons/IconLike.vue";
 import IconView from "@/components/icons/IconView.vue";
 import {onBeforeRouteUpdate, useRoute} from "vue-router";
 import {Swiper, SwiperSlide} from "swiper/vue";
 import NewsItem from "@/components/NewsItem.vue";
 import {storeToRefs} from "pinia";
 import {useRootStore as useNewsStore} from "@/stores/newsStore";
-import CommentComponent from "@/components/CommentComponent.vue";
 import PlaceholderPerson from "@/assets/img/person-fallback.webp";
+import {useToast} from "vue-toastification";
 
 const modules = [Navigation];
 const newsStore = useNewsStore();
 newsStore.getNewsIndexPage();
+
 const {newsIndexPage} = storeToRefs(newsStore);
 const post = ref({});
 const params = useRoute().params;
 const likes = ref([]);
 const isLikedByCurrentUser = ref(false);
 
+const toast = useToast();
+
 const copyLink = () => {
   navigator.clipboard.writeText(window.location.href);
+  toast.success(
+      'скопировано',
+      {
+        timeout: 2000
+      });
 };
 
 const toggleLike = async () => {
-  if(localStorage.getItem('login') !== 'test') {
+  if (localStorage.getItem('login') !== 'test') {
     if (isLikedByCurrentUser.value) {
       await axios
           .post(`https://news.trifonov.space/api/likes?post_id=${params.id}&user_token=${localStorage.getItem('login')}`, {})
@@ -178,7 +186,7 @@ const toggleLike = async () => {
     } else {
       await axios
           .post(`https://news.trifonov.space/api/likes?post_id=${params.id}&user_token=${localStorage.getItem('login')}`, {})
-          .then(res => {
+          .then(() => {
             isLikedByCurrentUser.value = true;
             likes.value.push({
               post_id: params.id,
