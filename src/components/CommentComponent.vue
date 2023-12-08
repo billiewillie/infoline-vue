@@ -1,35 +1,27 @@
 <template>
   <div class="comment">
-    <div class="post-center comment-inner">
+    <div
+        :class="comment.parent_id !== null ? 'comment-child-inner' : ''"
+        class="post-center comment-inner">
       <div class="comment-avatar">
         <div class="image">
           <TheImage
               :alt="`comment-avatar-${String(comment.id)}`"
               :fallback="PlaceholderPerson"
-              image="https://users.trifonov.space/images/users/belinovich/avatar.webp"/>
+              :image="`https://users.trifonov.space/images/users/${comment.user_token}/avatar.webp`"/>
         </div>
       </div>
       <div class="comment-content">
         <div class="comment-header">
-          <h3 class="comment-author title">Иван Иванов</h3>
+          <h3 class="comment-author title">{{ comment.firstname }} {{ comment.lastname }}</h3>
           <div class="comment-stats">
             <div class="comment-stats-item">
               <div class="icon">
                 <IconCalendar/>
               </div>
-              <span>08.08.2023</span>
-            </div>
-            <div class="comment-stats-item">
-              <div class="icon">
-                <IconLike/>
-              </div>
-              <span>12</span>
-            </div>
-            <div class="comment-stats-item">
-              <div class="icon">
-                <IconDislike/>
-              </div>
-              <span>12</span>
+              <span>{{ new Date(comment.created_at).getDate() }}/{{
+                  new Date(comment.created_at).getMonth()
+                }}/{{ new Date(comment.created_at).getFullYear() }}</span>
             </div>
           </div>
         </div>
@@ -61,19 +53,17 @@
             <span></span>
           </div>
         </div>
-        <div
-            v-if="isAnswerOpen === false"
-            class="comment-answer">
+        <div v-if="isAnswerOpen === false && comment.parent_id === null" class="comment-answer">
           <i class="icon">
             <IconComment/>
           </i>
-          <div
-              @click="isAnswerOpen = true;isCommentEditing = false"
-              class="comment-answer-button">Ответить</div>
+          <div @click="isAnswerOpen = true;isCommentEditing = false" class="comment-answer-button">Ответить</div>
         </div>
         <div v-if="isAnswerOpen" class="comment-answer-textarea">
           <textarea rows="5" v-model="answer"></textarea>
-          <button class="comment-answer-send">
+          <button
+              @click="sendAnswer"
+              class="comment-answer-send">
             <span>отправить</span>
             <i class="icon">
               <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -94,6 +84,7 @@
         </div>
       </div>
       <div
+          v-show="comment.user_token === storageLogin"
           @click="isModalOpen = !isModalOpen"
           class="comment-dialog-trigger">
         <div
@@ -116,7 +107,7 @@
               console.log('edit')">Редактировать</span>
             </div>
             <div class="modal-row">
-              <span @click="isAnswerOpen = false;answer = ''">Удалить</span>
+              <span @click="isAnswerOpen = false;answer = '';emit('deleteComment', comment.id)">Удалить</span>
             </div>
           </div>
         </transition>
@@ -134,18 +125,24 @@ import IconCalendar from "@/components/icons/IconCalendar.vue";
 import PlaceholderPerson from "@/assets/img/person-fallback.webp";
 import IconComment from "@/components/icons/IconComment.vue";
 import ButtonComponent from "@/components/UI/ButtonComponent.vue";
+import axios from "axios";
 
 const answer = ref('');
 const props = defineProps({
   comment: {
     type: Object,
     required: true,
+  },
+  postId: {
+    type: String,
   }
 });
+const emit = defineEmits(['deleteComment']);
 const editedComment = ref('');
 const isModalOpen = ref(false);
 const isAnswerOpen = ref(false);
 const isCommentEditing = ref(false);
+const storageLogin = localStorage.getItem('login');
 
 const handleClickOutside = () => {
   isModalOpen.value = false;
@@ -165,6 +162,24 @@ const vClickOutside = {
   },
 };
 
+const sendAnswer = () => {
+  if (answer.value.length > 3) {
+    axios
+        .post('https://news.trifonov.space/api/comments', {
+          "content": "тест",
+          "parent_id": null,
+          "user_token": localStorage.getItem('login'),
+          "post_id": props.postId,
+        })
+        .then(res => {
+          console.log(res)
+        })
+        .catch(err => {
+          console.error(err)
+        })
+  }
+};
+
 onMounted(() => {
   editedComment.value = props.comment.content
 })
@@ -177,7 +192,7 @@ onMounted(() => {
 }
 
 .comment {
-  padding: 20px 0;
+  padding: 16px 8px;
   border-bottom: 1px solid var(--gray-medium);
 }
 
@@ -191,6 +206,10 @@ onMounted(() => {
   column-gap: 20px;
 }
 
+.comment-child-inner {
+  padding-left: 32px;
+}
+
 .comment-avatar {
   width: 54px;
   height: 54px;
@@ -202,12 +221,12 @@ onMounted(() => {
 
 .comment-header {
   display: flex;
-  row-gap: 15px;
+  row-gap: 8px;
   flex-direction: column;
 
   @media (min-width: 1280px) {
     flex-direction: row;
-    column-gap: 15px;
+    column-gap: 16px;
   }
 }
 
@@ -232,6 +251,7 @@ onMounted(() => {
 
 .comment-stats-item span {
   line-height: 1;
+  font-size: 14px;
 }
 
 .comment-content {
@@ -239,6 +259,7 @@ onMounted(() => {
   flex: auto;
   flex-direction: column;
   row-gap: 15px;
+  line-height: 1.4;
 }
 
 .comment-dialog-trigger {

@@ -154,16 +154,22 @@ const params = useRoute().params;
 
 const copyMail = (email) => {
   navigator.clipboard.writeText(email);
-  toast.success('скопировано', {
-    timeout: 2000
-  })
+  toast.success(
+      'скопировано',
+      {
+        timeout: 2000
+      }
+  )
 }
 
 const copyPhone = (phone) => {
   navigator.clipboard.writeText(`+${phone}`);
-  toast.success('скопировано', {
-    timeout: 2000
-  })
+  toast.success(
+      'скопировано',
+      {
+        timeout: 2000
+      }
+  )
 }
 
 const departmentsStore = useRootStore();

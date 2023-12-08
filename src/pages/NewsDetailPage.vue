@@ -100,6 +100,58 @@
       <p class="description">{{ post.description }}</p>
       <div class="post-content post-center" v-html="post.content"></div>
     </div>
+    <div class="comment-new">
+      <header class="post-header">
+        <h2 class="title post-center">
+          <span class="icon">
+            <IconNew/>
+          </span>
+          <span>Оставить комментарий</span>
+        </h2>
+      </header>
+      <div class="comment-new-textarea">
+        <textarea
+            rows="5"
+            placeholder="Напишите комментарий"
+            v-model="newComment"></textarea>
+        <button
+            @click="sendComment"
+            class="comment-new-send">
+          <span>отправить</span>
+          <i class="icon">
+            <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                  d="M1 10L2.76297 8.42742C4.1689 7.17332 4.87187 6.54627 4.98011 5.782C5.00663 5.59474 5.00663 5.40526 4.98011 5.218C4.87187 4.45373 4.1689 3.82668 2.76297 2.57258L1 1"
+                  stroke="var(--white)"
+                  stroke-width="1.5"
+                  stroke-linecap="round"/>
+            </svg>
+          </i>
+        </button>
+      </div>
+    </div>
+    <div class="comments">
+      <header class="post-header">
+        <h2 class="title post-center">
+          <span class="icon">
+            <IconComment/>
+          </span>
+          <span>Комментарии</span>
+        </h2>
+      </header>
+      <CommentComponent
+          v-for="comment in comments"
+          :comment="comment"
+          @deleteComment="deleteComment"
+          :postId="params.id"
+          :parentId="comment.parent_id ? comment.parent_id : null"
+          :key="comment.id"/>
+      <div v-if="post.comments && post.comments.length === 0">
+        <div class="post-center comments-empty">
+          <p>Комментариев еще нет</p>
+        </div>
+      </div>
+    </div>
     <div class="news-more">
       <h2 class="title">Похожие новости</h2>
       <div class="news-grid">
@@ -149,6 +201,8 @@ import {storeToRefs} from "pinia";
 import {useRootStore as useNewsStore} from "@/stores/newsStore";
 import PlaceholderPerson from "@/assets/img/person-fallback.webp";
 import {useToast} from "vue-toastification";
+import CommentComponent from "@/components/CommentComponent.vue";
+import IconNew from "@/components/icons/IconNew.vue";
 
 const modules = [Navigation];
 const newsStore = useNewsStore();
@@ -159,8 +213,11 @@ const post = ref({});
 const params = useRoute().params;
 const likes = ref([]);
 const isLikedByCurrentUser = ref(false);
-
+const comments = ref([]);
+const commentsParents = ref([]);
+const commentsChildren = ref([]);
 const toast = useToast();
+const newComment = ref('');
 
 const copyLink = () => {
   navigator.clipboard.writeText(window.location.href);
@@ -200,6 +257,68 @@ const toggleLike = async () => {
   }
 }
 
+const sendComment = async () => {
+  if (localStorage.getItem('login') !== 'test' && newComment.value.length > 3) {
+    await axios
+        .post('https://news.trifonov.space/api/comments', {
+          "content": newComment.value,
+          "parent_id": null,
+          "user_token": localStorage.getItem('login'),
+          "post_id": params.id,
+        })
+        .then(res => {
+          toast.success(
+              'комментарий добавлен',
+              {
+                timeout: 2000
+              }
+          )
+          comments.value.push(res.data);
+          newComment.value = '';
+        })
+        .catch(err => {
+          toast.error(
+              'ошибка',
+              {
+                timeout: 2000
+              }
+          )
+          console.error(err)
+        })
+  }
+}
+
+const deleteComment = async (id) => {
+  await axios
+      .delete(`https://news.trifonov.space/api/comments`, {
+        data: {
+          "id": id
+        }
+      })
+      .then(() => {
+        toast.success(
+            'комментарий удален',
+            {
+              timeout: 2000
+            }
+        )
+        comments.value.forEach(comment => {
+          if (comment.id === id) {
+            comment.content = "Комментарий удален."
+          }
+        });
+      })
+      .catch(err => {
+        toast.error(
+            'ошибка',
+            {
+              timeout: 2000
+            }
+        )
+        console.error(err)
+      })
+}
+
 onMounted(() => {
   axios
       .get(`${NEWS_URL}/${params.id}`)
@@ -207,6 +326,16 @@ onMounted(() => {
         post.value = res.data;
         likes.value = res.data.likes;
         isLikedByCurrentUser.value = res.data.likes.filter(like => like.user_token === localStorage.getItem('login')).length > 0;
+        commentsParents.value = res.data.comments.filter(comment => comment.parent_id === null);
+        commentsChildren.value = res.data.comments.filter(comment => comment.parent_id !== null);
+        commentsParents.value.forEach(parent => {
+          comments.value.push(parent);
+          commentsChildren.value.forEach(child => {
+            if (parent.id === child.parent_id) {
+              comments.value.push(child);
+            }
+          })
+        })
       })
       .catch(err => {
         console.log(err);

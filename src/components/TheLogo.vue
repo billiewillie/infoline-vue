@@ -4,14 +4,21 @@
       <IconLogo/>
     </div>
     <span class="logo-name">info <span class="blue">Line</span></span>
+    <img class="nytree" :src="NYTree" alt="new year tree">
   </router-link>
 </template>
 
 <script setup>
 import IconLogo from "@/components/icons/IconLogo.vue";
+import NYTree from "@/assets/img/NYTree.svg";
 </script>
 
 <style scoped>
+.nytree {
+  height: 100%;
+  width: inherit;
+  object-fit: contain;
+}
 .logo {
   display: flex;
   align-items: center;

@@ -3,7 +3,7 @@
     <path
         d="M1 10L2.76297 8.42742C4.1689 7.17332 4.87187 6.54627 4.98011 5.782C5.00663 5.59474 5.00663 5.40526 4.98011 5.218C4.87187 4.45373 4.1689 3.82668 2.76297 2.57258L1 1"
         :stroke="stroke"
-        stroke-width="1.5"
+        stroke-width="2"
         stroke-linecap="round"/>
   </svg>
 </template>
@@ -18,7 +18,7 @@ const props = defineProps({
 </script>
 
 <style scoped>
-path{
+path {
   transition: stroke 0.3s ease-in-out;
 }
 
