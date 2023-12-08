@@ -9,8 +9,8 @@
 </template>
 
 <script setup>
+import NYTree from "@/assets/img/nytree.webp";
 import IconLogo from "@/components/icons/IconLogo.vue";
-import NYTree from "@/assets/img/NYTree.svg";
 </script>
 
 <style scoped>
