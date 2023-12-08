@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-import NYTree from "@/assets/img/nytree.webp";
+import NYTree from "@/assets/img/nytree.svg";
 import IconLogo from "@/components/icons/IconLogo.vue";
 </script>
 
