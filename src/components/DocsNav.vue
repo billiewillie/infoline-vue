@@ -4,9 +4,7 @@
       <router-link
           class="docs-nav__link"
           :to="`${item.path}`">
-        <span class="docs-nav__title">
-          {{ item.title }}
-        </span>
+        <span class="docs-nav__title">{{ item.title }}</span>
         <span class="docs-nav__icon" v-if="withIcons">
           <component :is="renderIcon(item.icon)"/>
         </span>
@@ -51,7 +49,7 @@ const navList = ref([
     path: '/calendar',
     icon: 'IconCalendarBlack'
   }
-])
+]);
 
 function renderIcon(icon) {
   switch (icon) {
@@ -68,7 +66,6 @@ function renderIcon(icon) {
 </script>
 
 <style>
-
 .docs-nav__item a {
   color: var(--white);
 }
