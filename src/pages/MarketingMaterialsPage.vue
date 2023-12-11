@@ -16,7 +16,10 @@
               alt="alt"
               :image="`https://marketing-materials.trifonov.space/materials/${item.id}/${item.prev}.webp`"/>
           <div class="card-content">
-            <h2 class="title card-title">{{ item.title }}</h2>
+            <a
+                :href="`https://marketing-materials.trifonov.space/materials/${item.id}/${item.source}.${item.extension}`"
+                target="_blank"
+                class="title card-title">{{ item.title }}</a>
             <div class="card-content-footer">
               <p class="field">
                 <span class="field-title">Формат:</span>
