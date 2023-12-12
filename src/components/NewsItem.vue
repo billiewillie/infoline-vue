@@ -2,7 +2,7 @@
   <div class="news-item shadow rounded">
     <span class="news-item__date">
       <span class="icon"><IconCalendar/></span>
-      <span class="text">{{ new Date(item.published_date).getDay() }}-{{ new Date(item.published_date).getMonth() + 1 }}-{{ new Date(item.published_date).getFullYear() }}</span>
+      <span class="text">{{ new Date(item.published_date).getDay() }}.{{ new Date(item.published_date).getMonth() + 1 }}.{{ new Date(item.published_date).getFullYear() }}</span>
     </span>
     <div class="news-item__image">
       <TheImage

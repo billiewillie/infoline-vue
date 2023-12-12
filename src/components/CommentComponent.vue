@@ -21,9 +21,9 @@
               <div class="icon">
                 <IconCalendar/>
               </div>
-              <span>{{ new Date(comment.created_at).getDate() }}/{{
+              <span>{{ new Date(comment.created_at).getDate() }}.{{
                   new Date(comment.created_at).getMonth() + 1
-                }}/{{ new Date(comment.created_at).getFullYear() }}</span>
+                }}.{{ new Date(comment.created_at).getFullYear() }}</span>
             </div>
           </div>
         </div>
