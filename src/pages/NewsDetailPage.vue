@@ -83,7 +83,7 @@
             <div class="icon">
               <IconCalendar/>
             </div>
-            <span>{{ new Date(post.published_date).getDay() }}-{{ new Date(post.published_date).getMonth() }}-{{ new Date(post.published_date).getFullYear() }}</span>
+            <span>{{ new Date(post.published_date).getDay() }}-{{ new Date(post.published_date).getMonth() + 1 }}-{{ new Date(post.published_date).getFullYear() }}</span>
           </div>
           <div class="news-header__top-item author">
             <div class="icon">
