@@ -4,8 +4,7 @@
     <TheTabs
         :tabs="categories"
         :activeTab="activeCategory"
-        @setActiveTab="marketingMaterialsStore.setActiveCategory"
-    />
+        @setActiveTab="marketingMaterialsStore.setActiveCategory"/>
     <div class="content shadow rounded overflow-hidden">
       <div class="grid">
         <div

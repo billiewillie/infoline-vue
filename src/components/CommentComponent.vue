@@ -4,12 +4,14 @@
         :class="comment.parent_id !== null ? 'comment-child-inner' : ''"
         class="post-center comment-inner">
       <div class="comment-avatar">
-        <div class="image">
-          <TheImage
-              :alt="`comment-avatar-${String(comment.id)}`"
-              :fallback="PlaceholderPerson"
-              :image="`https://users.trifonov.space/images/users/${comment.user_token}/avatar.webp`"/>
-        </div>
+        <router-link :to="`/users/${comment.user_token}`">
+          <div class="image">
+            <TheImage
+                :alt="`comment-avatar-${String(comment.id)}`"
+                :fallback="PlaceholderPerson"
+                :image="`https://users.trifonov.space/images/users/${comment.user_token}/avatar.webp`"/>
+          </div>
+        </router-link>
       </div>
       <div class="comment-content">
         <div class="comment-header">
@@ -20,21 +22,17 @@
                 <IconCalendar/>
               </div>
               <span>{{ new Date(comment.created_at).getDate() }}/{{
-                  new Date(comment.created_at).getMonth()
+                  new Date(comment.created_at).getMonth() + 1
                 }}/{{ new Date(comment.created_at).getFullYear() }}</span>
             </div>
           </div>
         </div>
-        <div
-            v-if="!isCommentEditing"
-            class="comment-text">
+        <div v-if="!isCommentEditing" class="comment-text">
           {{ comment.content }}
         </div>
-        <div
-            class="comment-text__edited"
-            v-else>
+        <div class="comment-text__edited" v-else>
           <textarea rows="5" v-model="editedComment"></textarea>
-          <button class="comment-answer-send">
+          <button class="comment-answer-send" @click="emit('editComment', comment.id, editedComment); isCommentEditing = false">
             <span>отправить</span>
             <i class="icon">
               <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -62,7 +60,7 @@
         <div v-if="isAnswerOpen" class="comment-answer-textarea">
           <textarea rows="5" v-model="answer"></textarea>
           <button
-              @click="sendAnswer"
+              @click="emit('sendAnswer', comment.id, answer); isAnswerOpen = false; answer = ''"
               class="comment-answer-send">
             <span>отправить</span>
             <i class="icon">
@@ -100,11 +98,12 @@
               v-show="isModalOpen"
               v-click-outside="handleClickOutside">
             <div class="modal-row">
-              <span @click="
-              isAnswerOpen = false;
-              answer = '';
-              isCommentEditing = true;
-              console.log('edit')">Редактировать</span>
+              <span
+                  @click="
+                    isAnswerOpen = false;
+                    answer = '';
+                    isCommentEditing = true;
+                    console.log('edit')">Редактировать</span>
             </div>
             <div class="modal-row">
               <span @click="isAnswerOpen = false;answer = '';emit('deleteComment', comment.id)">Удалить</span>
@@ -119,12 +118,9 @@
 <script setup>
 import {onMounted, ref} from "vue";
 import TheImage from "@/components/TheImage.vue";
-import IconLike from "@/components/icons/IconLike.vue";
-import IconDislike from "@/components/icons/IconDislike.vue";
 import IconCalendar from "@/components/icons/IconCalendar.vue";
 import PlaceholderPerson from "@/assets/img/person-fallback.webp";
 import IconComment from "@/components/icons/IconComment.vue";
-import ButtonComponent from "@/components/UI/ButtonComponent.vue";
 import axios from "axios";
 
 const answer = ref('');
@@ -137,7 +133,7 @@ const props = defineProps({
     type: String,
   }
 });
-const emit = defineEmits(['deleteComment']);
+const emit = defineEmits(['deleteComment', 'editComment', 'sendAnswer']);
 const editedComment = ref('');
 const isModalOpen = ref(false);
 const isAnswerOpen = ref(false);
@@ -160,24 +156,6 @@ const vClickOutside = {
   unmounted(el) {
     document.body.removeEventListener('click', el.__ClickOutsideHandler__);
   },
-};
-
-const sendAnswer = () => {
-  if (answer.value.length > 3) {
-    axios
-        .post('https://news.trifonov.space/api/comments', {
-          "content": "тест",
-          "parent_id": null,
-          "user_token": localStorage.getItem('login'),
-          "post_id": props.postId,
-        })
-        .then(res => {
-          console.log(res)
-        })
-        .catch(err => {
-          console.error(err)
-        })
-  }
 };
 
 onMounted(() => {

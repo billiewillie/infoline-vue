@@ -21,7 +21,21 @@
           <span class="news-item__footer-stats-digit">{{ item.comments.length }}</span>
         </div>
         <span class="likes-count news-item__footer-item">
-					<span class="icon"><IconLike/></span>
+					<span class="icon">
+            <svg
+                fill="none"
+                width="19px"
+                height="19px"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                stroke-width="2"
+                stroke="var(--blue-light)">
+            <g id="SVGRepo_iconCarrier">
+              <path
+                  d="M12 20a1 1 0 0 1-.437-.1C11.214 19.73 3 15.671 3 9a5 5 0 0 1 8.535-3.536l.465.465.465-.465A5 5 0 0 1 21 9c0 6.646-8.212 10.728-8.562 10.9A1 1 0 0 1 12 20z"></path>
+            </g>
+          </svg>
+          </span>
 					<span class="news-item__footer-stats-digit">{{ item.like_count }}</span>
 				</span>
         <span class="views-count news-item__footer-item">
@@ -158,7 +172,7 @@ const props = defineProps({
 
 .news-item__footer-stats {
   display: flex;
-  column-gap: 13px;
+  column-gap: 16px;
   padding: 0 16px;
 }
 
@@ -185,7 +199,7 @@ const props = defineProps({
 .news-item__footer-item {
   display: flex;
   align-items: center;
-  column-gap: 8px;
+  column-gap: 4px;
 }
 
 .news-item__footer-item .icon {

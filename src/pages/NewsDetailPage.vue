@@ -20,8 +20,7 @@
               stroke-width="2"
               stroke="var(--blue-light)">
             <g id="SVGRepo_iconCarrier">
-              <path
-                  d="M12 20a1 1 0 0 1-.437-.1C11.214 19.73 3 15.671 3 9a5 5 0 0 1 8.535-3.536l.465.465.465-.465A5 5 0 0 1 21 9c0 6.646-8.212 10.728-8.562 10.9A1 1 0 0 1 12 20z"></path>
+              <path d="M12 20a1 1 0 0 1-.437-.1C11.214 19.73 3 15.671 3 9a5 5 0 0 1 8.535-3.536l.465.465.465-.465A5 5 0 0 1 21 9c0 6.646-8.212 10.728-8.562 10.9A1 1 0 0 1 12 20z"></path>
             </g>
           </svg>
         </div>
@@ -75,7 +74,7 @@
     </div>
     <div class="news-cover rounded shadow">
       <TheImage
-          :alt="`image-${post.id}`"
+          alt=""
           :fallback="`https://news.trifonov.space/images/posts/${post.id}/${post.preview_image}.webp`"
           :image="`https://news.trifonov.space/images/posts/${post.id}/${post.preview_image}.webp`"/>
       <header class="news-header overflow-hidden">
@@ -140,13 +139,15 @@
         </h2>
       </header>
       <CommentComponent
+          :postId="params.id"
           v-for="comment in comments"
           :comment="comment"
           @deleteComment="deleteComment"
-          :postId="params.id"
+          @editComment="editComment"
+          @sendAnswer="sendAnswer"
           :parentId="comment.parent_id ? comment.parent_id : null"
           :key="comment.id"/>
-      <div v-if="post.comments && post.comments.length === 0">
+      <div v-if="comments && comments.length === 0">
         <div class="post-center comments-empty">
           <p>Комментариев еще нет</p>
         </div>
@@ -288,6 +289,45 @@ const sendComment = async () => {
   }
 }
 
+const sendAnswer = async (parent_id, content) => {
+  if (localStorage.getItem('login') !== 'test') {
+    await axios
+        .post(
+            'https://news.trifonov.space/api/comments',
+            {
+              "content": content,
+              "parent_id": parent_id,
+              "user_token": localStorage.getItem('login'),
+              "post_id": params.id,
+            }
+        )
+        .then((res) => {
+          toast.success(
+              'комментарий добавлен',
+              {
+                timeout: 2000
+              }
+          )
+          const filteredComment = comments.value.filter(comment => comment.id === parent_id || comment.parent_id === parent_id).pop();
+          console.log(filteredComment)
+          comments.value.forEach((comment, index) => {
+            if (comment.id === filteredComment.id) {
+              comments.value.splice(index + 1, 0, res.data);
+            }
+          })
+        })
+        .catch(err => {
+          toast.error(
+              'ошибка',
+              {
+                timeout: 2000
+              }
+          )
+          console.error(err)
+        })
+  }
+}
+
 const deleteComment = async (id) => {
   await axios
       .delete(`https://news.trifonov.space/api/comments`, {
@@ -307,6 +347,39 @@ const deleteComment = async (id) => {
             comment.content = "Комментарий удален."
           }
         });
+      })
+      .catch(err => {
+        toast.error(
+            'ошибка',
+            {
+              timeout: 2000
+            }
+        )
+        console.error(err)
+      })
+}
+
+const editComment = async (id, content) => {
+  await axios
+      .patch(
+          'https://news.trifonov.space/api/comments',
+          {
+            "id": id,
+            "content": content
+          })
+      .then((res) => {
+        toast.success(
+            'комментарий изменен',
+            {
+              timeout: 2000
+            }
+        )
+        comments.value.forEach(comment => {
+          if (comment.id === id) {
+            comment.content = content
+          }
+        })
+        console.log(comments.value)
       })
       .catch(err => {
         toast.error(

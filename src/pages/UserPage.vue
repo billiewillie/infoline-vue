@@ -111,33 +111,31 @@
             <router-link
                 v-if="item.department?.locations_url.length > 0"
                 :to="`/locations/${item.department?.locations_url}`"
-                class="user-position__column-value">{{ item.department?.locations }}
+                class="user-position__column-value swiper-no-swiping">{{ item.department?.locations }}
             </router-link>
-            <span class="user-position__column-value" v-else>{{ item.department.locations }}</span>
+            <span class="user-position__column-value swiper-no-swiping" v-else>{{ item.department.locations }}</span>
           </div>
           <div class="user-position__row">
             <span class="user-position__column-title">Компания: </span>
-            <span class="user-position__column-value">{{ item.title }}</span>
+            <span class="user-position__column-value swiper-no-swiping">{{ item.title }}</span>
           </div>
-          <div
-              class="user-position__row"
-              v-if="item.department?.title">
+          <div class="user-position__row" v-if="item.department?.title">
             <span class="user-position__column-title">Отдел: </span>
             <router-link
                 v-if="item.department?.url.length > 0"
                 :to="`/departments/${item.department?.url}`"
-                class="user-position__column-value">
+                class="user-position__column-value swiper-no-swiping">
               {{ item.department?.title }}
             </router-link>
-            <span class="user-position__column-value" v-else>{{ item.department?.title }}</span>
+            <span class="user-position__column-value swiper-no-swiping" v-else>{{ item.department?.title }}</span>
           </div>
-          <div class="user-position__row" v-show="item.department.groups.title">
+          <div class="user-position__row swiper-no-swiping" v-show="item.department.groups.title">
             <span class="user-position__column-title">Группа: </span>
             <span class="user-position__column-value">{{ item.department.groups.title }}</span>
           </div>
           <div class="user-position__row">
             <span class="user-position__column-title">Должность: </span>
-            <span class="user-position__column-value">{{ item.department.groups.position.title }}</span>
+            <span class="user-position__column-value swiper-no-swiping">{{ item.department.groups.position.title }}</span>
           </div>
         </SwiperSlide>
       </Swiper>
