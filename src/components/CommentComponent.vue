@@ -51,7 +51,7 @@
             <span></span>
           </div>
         </div>
-        <div v-if="isAnswerOpen === false" class="comment-answer">
+        <div v-if="isAnswerOpen === false && comment.parent_id === null" class="comment-answer">
           <i class="icon"><IconComment/></i>
           <div @click="isAnswerOpen = true;isCommentEditing = false" class="comment-answer-button">Ответить</div>
         </div>
