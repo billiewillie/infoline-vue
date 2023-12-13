@@ -51,10 +51,8 @@
             <span></span>
           </div>
         </div>
-        <div v-if="isAnswerOpen === false && comment.parent_id === null" class="comment-answer">
-          <i class="icon">
-            <IconComment/>
-          </i>
+        <div v-if="isAnswerOpen === false" class="comment-answer">
+          <i class="icon"><IconComment/></i>
           <div @click="isAnswerOpen = true;isCommentEditing = false" class="comment-answer-button">Ответить</div>
         </div>
         <div v-if="isAnswerOpen" class="comment-answer-textarea">
@@ -102,8 +100,7 @@
                   @click="
                     isAnswerOpen = false;
                     answer = '';
-                    isCommentEditing = true;
-                    console.log('edit')">Редактировать</span>
+                    isCommentEditing = true">Редактировать</span>
             </div>
             <div class="modal-row">
               <span @click="isAnswerOpen = false;answer = '';emit('deleteComment', comment.id)">Удалить</span>

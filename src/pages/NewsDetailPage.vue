@@ -25,8 +25,8 @@
           </svg>
         </div>
         <div class="text">{{ likes.length ? likes.length : 0 }}</div>
-        <div class="list list-aside rounded" v-if="likes.length > 0">
-          <div class="list-wrapper">
+        <div class="list list-aside" v-if="likes.length > 0">
+          <div class="list-wrapper rounded">
             <router-link
                 v-for="item in likes"
                 :to="`/users/${item.user_token}`"
@@ -66,8 +66,8 @@
               />
             </g>
           </svg>
-          <div class="tooltip rounded">
-            <span class="tooltip-wrapper">Копировать ссылку</span>
+          <div class="tooltip">
+            <span class="tooltip-wrapper rounded">Копировать ссылку</span>
           </div>
         </div>
       </div>
@@ -464,11 +464,11 @@ onBeforeRouteUpdate((to) => {
 
 .news-stats-item .list {
   position: absolute;
+  display: none;
   padding-right: 30px;
   top: 50%;
   right: 100%;
   transform: translateY(-50%);
-  opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
 
@@ -498,7 +498,7 @@ onBeforeRouteUpdate((to) => {
 }
 
 .news-stats-item:hover > .list {
-  opacity: 1;
+  display: flex;
 }
 
 .news-stats-item .list-item:hover {
@@ -837,13 +837,12 @@ onBeforeRouteUpdate((to) => {
 
 .tooltip {
   position: absolute;
+  display: none;
   right: 100%;
   padding-right: 30px;
   width: 162px;
   top: 50%;
   transform: translateY(-50%);
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
 }
 
 .tooltip-wrapper {
@@ -854,6 +853,6 @@ onBeforeRouteUpdate((to) => {
 }
 
 .icon-copy:hover .tooltip {
-  opacity: 1;
+  display: block;
 }
 </style>
