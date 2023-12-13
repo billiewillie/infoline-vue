@@ -32,7 +32,8 @@
         </div>
         <div class="comment-text__edited" v-else>
           <textarea rows="5" v-model="editedComment"></textarea>
-          <button class="comment-answer-send" @click="emit('editComment', comment.id, editedComment); isCommentEditing = false">
+          <button class="comment-answer-send"
+                  @click="emit('editComment', comment.id, editedComment); isCommentEditing = false">
             <span>отправить</span>
             <i class="icon">
               <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -51,8 +52,10 @@
             <span></span>
           </div>
         </div>
-        <div v-if="isAnswerOpen === false && comment.parent_id === null" class="comment-answer">
-          <i class="icon"><IconComment/></i>
+        <div v-if="isAnswerOpen === false" class="comment-answer">
+          <i class="icon">
+            <IconComment/>
+          </i>
           <div @click="isAnswerOpen = true;isCommentEditing = false" class="comment-answer-button">Ответить</div>
         </div>
         <div v-if="isAnswerOpen" class="comment-answer-textarea">
@@ -79,12 +82,11 @@
           </div>
         </div>
       </div>
-      <div
-          v-show="comment.user_token === storageLogin"
-          @click="isModalOpen = !isModalOpen"
-          class="comment-dialog-trigger">
+      <div class="comment-dialog-trigger">
         <div
             :class="{active: isModalOpen}"
+            v-show="comment.user_token === storageLogin && storageLogin !== 'test' && comment.content !== 'Комментарий удален.'"
+            @click="isModalOpen = !isModalOpen"
             class="button">
           <span></span>
           <span></span>
@@ -296,6 +298,7 @@ onMounted(() => {
   -moz-border-radius: 3px;
   border-radius: 3px;
   border: 1px solid var(--gray-medium);
+  background-color: var(--white);
 }
 
 .comment-text__edited textarea,

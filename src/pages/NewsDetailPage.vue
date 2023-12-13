@@ -83,7 +83,9 @@
             <div class="icon">
               <IconCalendar/>
             </div>
-            <span>{{ new Date(post.published_date).getDay() }}.{{ new Date(post.published_date).getMonth() + 1 }}.{{ new Date(post.published_date).getFullYear() }}</span>
+            <span>{{ new Date(post.published_date).getDay() }}.{{
+                new Date(post.published_date).getMonth() + 1
+              }}.{{ new Date(post.published_date).getFullYear() }}</span>
           </div>
           <div class="news-header__top-item author">
             <div class="icon">
@@ -139,14 +141,15 @@
         </h2>
       </header>
       <CommentComponent
-          :postId="params.id"
-          v-for="comment in comments"
+          :key="comment.id"
           :comment="comment"
+          :postId="params.id"
+          :parentId="comment.parent_id ? comment.parent_id : null"
+          v-for="comment in comments"
           @deleteComment="deleteComment"
           @editComment="editComment"
           @sendAnswer="sendAnswer"
-          :parentId="comment.parent_id ? comment.parent_id : null"
-          :key="comment.id"/>
+      />
       <div v-if="comments && comments.length === 0">
         <div class="post-center comments-empty">
           <p>Комментариев еще нет</p>
@@ -226,7 +229,8 @@ const copyLink = () => {
       'скопировано',
       {
         timeout: 2000
-      });
+      }
+  );
 };
 
 const toggleLike = async () => {
@@ -439,7 +443,7 @@ onBeforeRouteUpdate((to) => {
   padding: 20px;
   z-index: 2;
   flex-direction: column;
-  row-gap: 30px;
+  row-gap: 24px;
   -webkit-border-radius: 3px 0 0 3px;
   -moz-border-radius: 3px 0 0 3px;
   border-radius: 3px 0 0 3px;
