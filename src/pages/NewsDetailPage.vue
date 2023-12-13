@@ -83,7 +83,7 @@
             <div class="icon">
               <IconCalendar/>
             </div>
-            <span>{{ new Date(post.published_date).getDay() }}.{{
+            <span>{{ new Date(post.published_date).getDate() }}.{{
                 new Date(post.published_date).getMonth() + 1
               }}.{{ new Date(post.published_date).getFullYear() }}</span>
           </div>

@@ -49,11 +49,11 @@ const navList = ref([
     path: '/calendar',
     icon: 'IconCalendarBlack'
   },
-  {
-    title: 'Номинации',
-    path: '/nominees',
-    icon: 'IconAchievement'
-  }
+  // {
+  //   title: 'Номинации',
+  //   path: '/nominees',
+  //   icon: 'IconAchievement'
+  // }
 ]);
 
 function renderIcon(icon) {
