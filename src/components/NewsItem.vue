@@ -53,7 +53,6 @@
 <script setup>
 import IconComment from '@/components/icons/IconComment.vue';
 import IconView from '@/components/icons/IconView.vue';
-import IconLike from '@/components/icons/IconLike.vue';
 import IconCalendar from '@/components/icons/IconCalendar.vue';
 import ButtonComponent from '@/components/UI/ButtonComponent.vue';
 import TheImage from "@/components/TheImage.vue";

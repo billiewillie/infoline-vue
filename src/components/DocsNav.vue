@@ -1,6 +1,9 @@
 <template>
   <ul class="docs-nav__menu">
-    <li v-for="item in navList" :key="item.title" class="docs-nav__item">
+    <li
+        v-for="item in navList"
+        :key="item.title"
+        class="docs-nav__item">
       <router-link
           class="docs-nav__link"
           :to="`${item.path}`">

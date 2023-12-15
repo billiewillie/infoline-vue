@@ -37,6 +37,15 @@ const routes = [
         beforeEnter: getLoginPage
     },
     {
+        path: '/admin/employees',
+        components: {
+            default: () => import('@/pages/admin/employees/AdminEmployeesPage.vue'),
+            Header: () => import('@/components/TheHeader.vue'),
+            Sidebar: () => import('@/components/TheSidebar.vue'),
+        },
+        beforeEnter: getLoginPage
+    },
+    {
         path: '/admin/events/edit/:id',
         components: {
             default: () => import('@/pages/admin/events/AdminEventEditPage.vue'),
@@ -49,6 +58,15 @@ const routes = [
         path: '/admin/events/create',
         components: {
             default: () => import('@/pages/admin/events/AdminEventCreatePage.vue'),
+            Header: () => import('@/components/TheHeader.vue'),
+            Sidebar: () => import('@/components/TheSidebar.vue'),
+        },
+        beforeEnter: getLoginPage
+    },
+    {
+        path: '/admin/employees/create',
+        components: {
+            default: () => import('@/pages/admin/employees/AdminEmployeeCreatePage.vue'),
             Header: () => import('@/components/TheHeader.vue'),
             Sidebar: () => import('@/components/TheSidebar.vue'),
         },

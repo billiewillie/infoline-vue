@@ -6,6 +6,7 @@ export const useRootStore = defineStore(
     "users",
     () => {
         const user = ref({});
+        const users = ref([]);
         const logedUser = ref({});
 
         const getUser = async (login) => {
@@ -17,6 +18,14 @@ export const useRootStore = defineStore(
             }
         }
 
+        const getAllUsers = async () => {
+            try {
+                const res = await axios.get(`https://users.trifonov.space/api/show/all-users`);
+                users.value = res.data;
+            } catch (err) {
+                console.error(err);
+            }
+        }
 
         const login = (obj) => {
             logedUser.value = obj;
@@ -24,8 +33,10 @@ export const useRootStore = defineStore(
 
         return {
             user,
+            users,
             logedUser,
             getUser,
+            getAllUsers,
             login
         }
     })

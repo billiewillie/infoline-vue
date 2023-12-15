@@ -20,7 +20,8 @@
               stroke-width="2"
               stroke="var(--blue-light)">
             <g id="SVGRepo_iconCarrier">
-              <path d="M12 20a1 1 0 0 1-.437-.1C11.214 19.73 3 15.671 3 9a5 5 0 0 1 8.535-3.536l.465.465.465-.465A5 5 0 0 1 21 9c0 6.646-8.212 10.728-8.562 10.9A1 1 0 0 1 12 20z"></path>
+              <path
+                  d="M12 20a1 1 0 0 1-.437-.1C11.214 19.73 3 15.671 3 9a5 5 0 0 1 8.535-3.536l.465.465.465-.465A5 5 0 0 1 21 9c0 6.646-8.212 10.728-8.562 10.9A1 1 0 0 1 12 20z"></path>
             </g>
           </svg>
         </div>
@@ -76,7 +77,8 @@
       <TheImage
           alt=""
           :fallback="`https://news.trifonov.space/images/posts/${post.id}/${post.preview_image}.webp`"
-          :image="`https://news.trifonov.space/images/posts/${post.id}/${post.preview_image}.webp`"/>
+          :image="`https://news.trifonov.space/images/posts/${post.id}/${post.preview_image}.webp`"
+      />
       <header class="news-header overflow-hidden">
         <div class="news-header__top">
           <div class="news-header__top-item date">
@@ -313,7 +315,6 @@ const sendAnswer = async (parent_id, content) => {
               }
           )
           const filteredComment = comments.value.filter(comment => comment.id === parent_id || comment.parent_id === parent_id).pop();
-          console.log(filteredComment)
           comments.value.forEach((comment, index) => {
             if (comment.id === filteredComment.id) {
               comments.value.splice(index + 1, 0, res.data);

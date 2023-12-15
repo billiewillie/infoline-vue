@@ -3,34 +3,20 @@
     <div class="admin-page-header">
       <h1 class="title">Админка сотрудников</h1>
     </div>
-    <div class="filters rounded">
-      <TheTabs
-          v-if="countries"
-          :tabs="countries"
-          :activeTab="activeCountry"
-          @setActiveTab="calendarStore.setActiveCountry"
-          class="calendar-tabs"/>
-    </div>
 
-    <router-link to="/admin/events/create" class="btn rounded">Новый сотрудник</router-link>
+    <router-link to="/admin/employees/create" class="btn rounded">Новый сотрудник</router-link>
     <div class="content shadow rounded">
       <header class="events-header">
-        <div>Название</div>
-        <div>Город</div>
-        <div>Категория</div>
-        <div>Дата начала</div>
+        <div>Имя</div>
         <div>Действия</div>
       </header>
       <ul class="events-list">
-        <li class="event-item" v-for="event in sortedData" :key="event.id">
-          <h2 class="title event-title">{{ event.title }}</h2>
-          <div class="event-date">{{ event.city }}</div>
-          <div class="event-category">{{ event.category }}</div>
-          <div class="event-date">{{ formateDateToHumanDate(event.date_start) }}</div>
+        <li class="event-item" v-for="user in users" :key="user.id">
+          <p class="event-title">{{ user.firstname }} {{ user.lastname }}</p>
           <div class="event-btns">
-            <router-link :to="`/admin/events/edit/${event.id}`" class="btn btn-green rounded">Редактировать
-            </router-link>
-            <button @click="calendarStore.deleteEvent(event.id)" class="btn btn-red rounded">Удалить</button>
+            <router-link
+                :to="`/admin/users/edit/${user.id}`"
+                class="btn btn-green rounded">Редактировать</router-link>
           </div>
         </li>
       </ul>
@@ -41,32 +27,19 @@
 
 <script setup>
 import {storeToRefs} from "pinia";
-import {useRootStore} from "@/stores/calendarStore";
-import TheTabs from "@/components/TheTabs.vue";
-import {onUpdated, ref} from "vue";
-import {formateDateToHumanDate} from "@/functions/formatDateToHumanDate";
+import {useRootStore} from "@/stores/usersStore";
+import {ref} from "vue";
 
 const sortedData = ref([]);
 
-const calendarStore = useRootStore();
-calendarStore.getData();
+const usersStore = useRootStore();
+usersStore.getAllUsers();
 
 const {
-  data,
-  dayEvents,
-  activeDate,
-  countries,
-  attributes,
-  monthEvents,
-  activeCountry,
-  activeCategory,
-} = storeToRefs(calendarStore);
-
-onUpdated(() => {
-  sortedData.value = data.value[activeCountry.value].sort((a, b) => {
-    return new Date(b.date_start) - new Date(a.date_start);
-  });
-})
+  user,
+  users,
+  logedUser
+} = storeToRefs(usersStore);
 </script>
 
 <style scoped>
@@ -85,7 +58,7 @@ onUpdated(() => {
 .events-header {
   display: grid;
   align-items: flex-start;
-  grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
+  grid-template-columns: 3fr 1fr;
   gap: 8px;
 }
 

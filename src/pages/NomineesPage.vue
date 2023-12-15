@@ -44,13 +44,15 @@
             <p v-if="activeMenu.subtitle">{{ activeMenu.subtitle }}</p>
           </div>
           <div class="image">
-            <img :src="activeMenu.statueImage" alt="award">
+            <img
+                :src="activeMenu.statueImage ? activeMenu.statueImage : defaultStatueImage"
+                alt="award">
           </div>
         </div>
         <div class="main-content content-container">
           <h2 class="title">Номинанты</h2>
           <ul class="list">
-            <template v-if="activeMenu.people.length > 0">
+            <template v-if="activeMenu.people &&activeMenu.people.length > 0">
               <li
                   class="list-item"
                   v-for="person in activeMenu.people"
@@ -80,14 +82,13 @@
 </template>
 
 <script setup>
-import {ref} from "vue";
 import {storeToRefs} from "pinia";
 import {useRootStore} from "@/stores/awardsStore";
-const awardsStore = useRootStore();
-const {menu} = storeToRefs(awardsStore);
+import defaultStatueImage from "@/assets/img/award.png";
 
-const activeMenu = ref(menu.value[0]);
-const openAsideMenu = ref(menu.value[0].title);
+const awardsStore = useRootStore();
+awardsStore.getData();
+const {menu, activeMenu, openAsideMenu} = storeToRefs(awardsStore);
 
 const openMenu = (item) => {
   openAsideMenu.value = item.title;
@@ -98,6 +99,7 @@ const menuClickHandler = (item) => {
     activeMenu.value = item
   }
 }
+
 </script>
 
 <style scoped>
@@ -115,7 +117,11 @@ const menuClickHandler = (item) => {
   display: flex;
   flex-direction: column;
   width: 24%;
-  background-color: var(--white);
+  background-color: var(--blue-dark);
+
+  @media (min-width: 1280px) {
+    min-height: 389px;
+  }
 }
 
 .inner-menu {
@@ -213,12 +219,17 @@ const menuClickHandler = (item) => {
   padding-bottom: 16px;
   background-color: var(--blue-dark);
   color: var(--white);
+
+  @media (min-width: 1389px) {
+    min-height: 389px;
+  }
 }
 
 .main-header .image {
   display: flex;
   justify-content: center;
   width: 50%;
+  max-height: 355px;
   font-size: 0;
   background: radial-gradient(50% 50% at 50% 50%, #2659FF 0%, rgba(43, 54, 90, 0.80) 100%);
 

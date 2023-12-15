@@ -31,9 +31,12 @@
           {{ comment.content }}
         </div>
         <div class="comment-text__edited" v-else>
-          <textarea rows="5" v-model="editedComment"></textarea>
-          <button class="comment-answer-send"
-                  @click="emit('editComment', comment.id, editedComment); isCommentEditing = false">
+          <textarea
+              rows="5"
+              v-model="editedComment"></textarea>
+          <button
+              class="comment-answer-send"
+              @click="emit('editComment', comment.id, editedComment); isCommentEditing = false">
             <span>отправить</span>
             <i class="icon">
               <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">

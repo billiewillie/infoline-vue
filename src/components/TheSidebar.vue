@@ -37,7 +37,6 @@ onBeforeMount(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('scroll', showButtonUp);
 });
-
 </script>
 
 <style>
