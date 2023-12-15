@@ -52,10 +52,11 @@
         <div class="main-content content-container">
           <h2 class="title">Номинанты</h2>
           <ul class="list">
-            <template v-if="activeMenu.people &&activeMenu.people.length > 0">
-              <li
+            <template v-if="activeMenu.people && activeMenu.people.length > 0">
+              <router-link
                   class="list-item"
                   v-for="person in activeMenu.people"
+                  :to="`/users/${person.login}`"
                   :key="person.id">
                 <img
                     :src="person.image"
@@ -64,7 +65,7 @@
                 <h2 class="name">{{ person.name }} {{ person.surname }}</h2>
                 <p class="position">{{ person.position }}</p>
                 <span class="city">{{ person.city }}</span>
-              </li>
+              </router-link>
             </template>
             <template v-else>
               <li
@@ -91,7 +92,11 @@ awardsStore.getData();
 const {menu, activeMenu, openAsideMenu} = storeToRefs(awardsStore);
 
 const openMenu = (item) => {
-  openAsideMenu.value = item.title;
+  if (item.title === openAsideMenu.value) {
+    openAsideMenu.value = null
+  } else {
+    openAsideMenu.value = item.title;
+  }
 }
 
 const menuClickHandler = (item) => {
@@ -176,6 +181,10 @@ const menuClickHandler = (item) => {
 }
 
 .aside-item .aside-item-title .icon {
+  display: flex;
+  height: 11px;
+  width: 6px;
+  transform-origin: center;
   transition: transform 0.3s ease;
 }
 
