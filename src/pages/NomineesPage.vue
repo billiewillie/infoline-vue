@@ -2,7 +2,7 @@
   <div class="basepage newspage">
     <h1 class="title">Итоги <span>2023</span> года</h1>
     <div class="content">
-      <aside class="content-aside rounded shadow overflow-hidden">
+      <aside class="content-aside rounded shadow overflow-hidden" v-if="menu.length && menu.length > 0">
         <div
             class="aside-item"
             :class="{ open: item.title === openAsideMenu }"
@@ -35,6 +35,49 @@
               </div>
             </div>
           </template>
+        </div>
+      </aside>
+      <aside class="content-aside rounded shadow overflow-hidden" v-else>
+        <div class="aside-item">
+          <p class="aside-item-title">Дебют года</p>
+        </div>
+        <div class="aside-item">
+          <p class="aside-item-title">Специалист года <i class="icon">
+            <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                  d="M1 10L2.76297 8.42742C4.1689 7.17332 4.87187 6.54627 4.98011 5.782C5.00663 5.59474 5.00663 5.40526 4.98011 5.218C4.87187 4.45373 4.1689 3.82668 2.76297 2.57258L1 1"
+                  stroke="var(--white)"
+                  stroke-width="1"
+                  stroke-linecap="round"/>
+            </svg>
+          </i>
+          </p>
+        </div>
+        <div class="aside-item">
+          <p class="aside-item-title">Проект года <i class="icon">
+            <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                  d="M1 10L2.76297 8.42742C4.1689 7.17332 4.87187 6.54627 4.98011 5.782C5.00663 5.59474 5.00663 5.40526 4.98011 5.218C4.87187 4.45373 4.1689 3.82668 2.76297 2.57258L1 1"
+                  stroke="var(--white)"
+                  stroke-width="1"
+                  stroke-linecap="round"/>
+            </svg>
+          </i>
+          </p>
+        </div>
+        <div class="aside-item">
+          <p class="aside-item-title">Команда года <i class="icon">
+            <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                  d="M1 10L2.76297 8.42742C4.1689 7.17332 4.87187 6.54627 4.98011 5.782C5.00663 5.59474 5.00663 5.40526 4.98011 5.218C4.87187 4.45373 4.1689 3.82668 2.76297 2.57258L1 1"
+                  stroke="var(--white)"
+                  stroke-width="1"
+                  stroke-linecap="round"/>
+            </svg>
+          </i></p>
+        </div>
+        <div class="aside-item">
+          <p class="aside-item-title">Менеджер года</p>
         </div>
       </aside>
       <main class="content-main rounded shadow overflow-hidden">
