@@ -29,4 +29,5 @@ export const useRootStore = defineStore(
             openAsideMenu,
             getData
         }
-    })
+    }
+)

@@ -40,7 +40,7 @@
       <main class="content-main rounded shadow overflow-hidden">
         <div class="main-header content-container">
           <div class="text">
-            <h1>{{ activeMenu.title ? activeMenu.title : 'Дебют года' }} «БиоЛайн»</h1>
+            <h1>{{ activeMenu.title ? activeMenu.title : 'Дебют года' }}</h1>
             <p v-if="activeMenu.subtitle">{{ activeMenu.subtitle }}</p>
           </div>
           <div class="image">

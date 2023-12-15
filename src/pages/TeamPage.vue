@@ -14,7 +14,7 @@
           </router-link>
         </div>
         <div class="row">
-          <router-link to="/users/dulaeva" class="card shadow rounded">
+          <router-link to="/users/dulaeva" class="card shadow rounded card-front">
             <TheImage
                 alt="Дулаева О. Е."
                 :fallback="PlaceholderPerson"
@@ -88,7 +88,7 @@
           </div>
         </div>
         <div class="row">
-          <router-link to="/users/kajukova" class="card shadow rounded">
+          <router-link to="/users/kajukova" class="card shadow rounded card-front">
             <TheImage
                 alt="Каюкова Л. Л."
                 :fallback="PlaceholderPerson"
@@ -583,6 +583,10 @@ import PlaceholderPerson from "@/assets/img/person-fallback.webp";
   width: 2px;
   top: 100%;
   background-color: var(--blue-light);
+}
+
+.card-front {
+  z-index: 1;
 }
 
 @media (min-width: 1280px) {
