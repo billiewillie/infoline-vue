@@ -129,7 +129,7 @@
 <script setup>
 import {storeToRefs} from "pinia";
 import {useRootStore} from "@/stores/awardsStore";
-import defaultStatueImage from "@/assets/img/award.png";
+import defaultStatueImage from "@/assets/img/award.webp";
 import TheImage from "@/components/TheImage.vue";
 import PersonFallback from "@/assets/img/person-fallback.webp";
 
