@@ -13,14 +13,15 @@
               class="aside-item-title">{{ item.title }} <i
               class="icon"
               v-if="item.innerMenu && item.innerMenu.length > 0">
-            <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                  d="M1 10L2.76297 8.42742C4.1689 7.17332 4.87187 6.54627 4.98011 5.782C5.00663 5.59474 5.00663 5.40526 4.98011 5.218C4.87187 4.45373 4.1689 3.82668 2.76297 2.57258L1 1"
-                  stroke="var(--white)"
-                  stroke-width="1"
-                  stroke-linecap="round"/>
-            </svg>
-          </i></p>
+              <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M1 10L2.76297 8.42742C4.1689 7.17332 4.87187 6.54627 4.98011 5.782C5.00663 5.59474 5.00663 5.40526 4.98011 5.218C4.87187 4.45373 4.1689 3.82668 2.76297 2.57258L1 1"
+                    stroke="var(--white)"
+                    stroke-width="1"
+                    stroke-linecap="round"/>
+              </svg>
+            </i>
+          </p>
           <template v-if="item.innerMenu && item.innerMenu.length > 0">
             <div class="inner-menu">
               <div class="overflow-hidden">
@@ -101,10 +102,12 @@
                   v-for="person in activeMenu.people"
                   :to="`/users/${person.login}`"
                   :key="person.id">
-                <img
-                    :src="person.image"
-                    alt="photo"
-                    class="shadow rounded overflow-hidden">
+<!--                <img-->
+<!--                    :src="person.image"-->
+<!--                    alt="photo"-->
+<!--                    class="shadow rounded overflow-hidden">-->
+                <TheImage alt="nominee" :image="person.image" :fallback="person.image" />
+
                 <h2 class="name">{{ person.name }} {{ person.surname }}</h2>
                 <p class="position">{{ person.position }}</p>
                 <span class="city">{{ person.city }}</span>
@@ -129,6 +132,7 @@
 import {storeToRefs} from "pinia";
 import {useRootStore} from "@/stores/awardsStore";
 import defaultStatueImage from "@/assets/img/award.png";
+import TheImage from "@/components/TheImage.vue";
 
 const awardsStore = useRootStore();
 awardsStore.getData();
@@ -366,7 +370,10 @@ const menuClickHandler = (item) => {
   width: 100%;
 }
 
-.main-content .list .list-item img {
+.main-content .list .list-item .image {
+  width: auto;
+  height: auto;
+  overflow: hidden;
   aspect-ratio: 1/1;
   object-position: top center;
 }
