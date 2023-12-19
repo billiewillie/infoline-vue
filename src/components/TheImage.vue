@@ -81,10 +81,10 @@ img {
 
 @keyframes skeleton {
   from {
-    background-color: var(--gray-medium);
+    background-color: var(--gray-dark);
   }
   to {
-    background-color: var(--white);
+    background-color: var(--gray-medium);
   }
 }
 
