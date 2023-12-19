@@ -1,8 +1,6 @@
 import {defineStore} from "pinia";
 import {ref} from "vue";
 import axios from "axios";
-import AboutDanilova from "@/assets/img/about-danilova.webp";
-import award from "@/assets/img/award.png";
 
 export const useRootStore = defineStore(
     "awardsStore",
