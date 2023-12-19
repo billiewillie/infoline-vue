@@ -95,31 +95,47 @@
         </div>
         <div class="main-content content-container">
           <h2 class="title">Номинанты</h2>
-          <ul class="list">
+          <div class="list">
             <template v-if="activeMenu.people && activeMenu.people.length > 0">
-              <router-link
-                  class="list-item"
+              <template
                   v-for="person in activeMenu.people"
-                  :to="`/users/${person.login}`"
-                  :key="person.id">
-                <TheImage
-                    alt="nominee"
-                    :image="person.image"
-                    :fallback="PersonFallback"/>
-                <h2 class="name">{{ person.name }} {{ person.surname }}</h2>
-                <p class="position">{{ person.position }}</p>
-                <span class="city">{{ person.city }}</span>
-              </router-link>
+                  :key="person.id"
+              >
+                <router-link
+                    class="list-item"
+                    v-if="person.login"
+                    :to="`/users/${person.login}`">
+                  <TheImage
+                      alt="nominee"
+                      :image="person.image"
+                      :fallback="PersonFallback"/>
+                  <h2 class="name">{{ person.name }} {{ person.surname }}</h2>
+                  <p class="position">{{ person.position }}</p>
+                  <span class="city">{{ person.city }}</span>
+                </router-link>
+                <div
+                    v-else
+                    class="list-item"
+                >
+                  <TheImage
+                      alt="nominee"
+                      :image="person.image"
+                      :fallback="PersonFallback"/>
+                  <h2 class="name">{{ person.name }} {{ person.surname }}</h2>
+                  <p class="position">{{ person.position }}</p>
+                  <span class="city">{{ person.city }}</span>
+                </div>
+              </template>
             </template>
             <template v-else>
-              <li
+              <div
                   class="list-item list-item__team rounded"
                   v-for="department in activeMenu.departments"
                   :key="department">
                 <p class="department">{{ department }}</p>
-              </li>
+              </div>
             </template>
-          </ul>
+          </div>
         </div>
       </main>
     </div>
