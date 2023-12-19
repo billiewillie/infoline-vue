@@ -367,11 +367,14 @@ const menuClickHandler = (item) => {
   justify-content: flex-start;
   align-self: stretch;
   padding: 8px;
-  border: 1px solid var(--blue-light);
+  border: 1px solid var(--blue-dark);
+  background-color: var(--blue-dark);
 }
 
 .main-content .list .list-item.list-item__team p {
   width: 100%;
+  color: var(--white);
+  font-weight: 700;
 }
 
 .main-content .list .list-item .image {
