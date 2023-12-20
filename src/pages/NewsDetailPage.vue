@@ -236,7 +236,7 @@ const copyLink = () => {
 };
 
 const toggleLike = async () => {
-  if (localStorage.getItem('login') !== 'test') {
+  if (localStorage.getItem('login') !== 'test' && localStorage.getItem('login') !== '') {
     if (isLikedByCurrentUser.value) {
       await axios
           .post(`https://news.trifonov.space/api/likes?post_id=${params.id}&user_token=${localStorage.getItem('login')}`, {})

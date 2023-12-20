@@ -99,8 +99,7 @@
             <template v-if="activeMenu.people && activeMenu.people.length > 0">
               <template
                   v-for="person in activeMenu.people"
-                  :key="person.id"
-              >
+                  :key="person.id">
                 <router-link
                     class="list-item"
                     v-if="person.login"
