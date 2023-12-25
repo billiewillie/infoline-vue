@@ -5,7 +5,10 @@
       <aside class="content-aside rounded shadow overflow-hidden" v-if="menu.length && menu.length > 0">
         <div
             class="aside-item"
-            :class="{ open: item.title === openAsideMenu }"
+            :class="{
+              open: item.title === openAsideMenu,
+              active: item.id === activeMenu.id
+            }"
             v-for="item in menu"
             :key="item.title">
           <p
@@ -16,7 +19,7 @@
             <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                   d="M1 10L2.76297 8.42742C4.1689 7.17332 4.87187 6.54627 4.98011 5.782C5.00663 5.59474 5.00663 5.40526 4.98011 5.218C4.87187 4.45373 4.1689 3.82668 2.76297 2.57258L1 1"
-                  stroke="var(--white)"
+                  :stroke="item.id === activeMenu.id ? 'var(--blue-light)' : 'var(--white)'"
                   stroke-width="1"
                   stroke-linecap="round"/>
             </svg>
@@ -27,11 +30,14 @@
               <div class="overflow-hidden">
                 <div
                     class="inner-menu-item"
+                    :class="{ active: subItem.id === activeMenu.id }"
                     v-for="subItem in item.innerMenu"
                     @click="menuClickHandler(subItem)"
                     :key="subItem.title">
-                  <p><b>{{ subItem.title }}</b></p>
-                  <p>{{ subItem.subtitle }}</p>
+                  <div class="inner-menu-item__container">
+                    <p class="inner-menu-item-title">{{ subItem.title }}</p>
+                    <p class="inner-menu-item-subtitle">{{ subItem.subtitle }}</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -96,43 +102,39 @@
         <div class="main-content content-container">
           <h2 class="title">Номинанты</h2>
           <div class="list">
-            <template v-if="activeMenu.people && activeMenu.people.length > 0">
-              <template
-                  v-for="person in activeMenu.people"
-                  :key="person.id">
+            <template
+                v-for="item in content"
+                :key="Math.random() * 100">
+              <template v-if="item.name">
                 <router-link
                     class="list-item"
-                    v-if="person.login"
-                    :to="`/users/${person.login}`">
+                    v-if="item.login"
+                    :to="`/users/${item.login}`">
                   <TheImage
                       alt="nominee"
-                      :image="person.image"
+                      :image="item.image"
                       :fallback="PersonFallback"/>
-                  <h2 class="name">{{ person.name }} {{ person.surname }}</h2>
-                  <p class="position">{{ person.position }}</p>
-                  <span class="city">{{ person.city }}</span>
+                  <h2 class="name">{{ item.name }} {{ item.surname }}</h2>
+                  <p class="position">{{ item.position }}</p>
+                  <span class="city">{{ item.city }}</span>
                 </router-link>
                 <div
                     v-else
-                    class="list-item"
-                >
+                    class="list-item">
                   <TheImage
                       alt="nominee"
-                      :image="person.image"
+                      :image="item.image"
                       :fallback="PersonFallback"/>
-                  <h2 class="name">{{ person.name }} {{ person.surname }}</h2>
-                  <p class="position">{{ person.position }}</p>
-                  <span class="city">{{ person.city }}</span>
+                  <h2 class="name">{{ item.name }} {{ item.surname }}</h2>
+                  <p class="position">{{ item.position }}</p>
+                  <span class="city">{{ item.city }}</span>
                 </div>
               </template>
-            </template>
-            <template v-else>
-              <div
-                  class="list-item list-item__team rounded"
-                  v-for="department in activeMenu.departments"
-                  :key="department">
-                <p class="department">{{ department }}</p>
-              </div>
+              <template v-else>
+                <div class="list-item list-item__team rounded">
+                  <p class="department">{{ item }}</p>
+                </div>
+              </template>
             </template>
           </div>
         </div>
@@ -150,20 +152,23 @@ import PersonFallback from "@/assets/img/person-fallback.webp";
 
 const awardsStore = useRootStore();
 awardsStore.getData();
-const {menu, activeMenu, openAsideMenu} = storeToRefs(awardsStore);
+const {menu, activeMenu, openAsideMenu, content} = storeToRefs(awardsStore);
 
 const openMenu = (item) => {
   if (item.title === openAsideMenu.value) {
+
     openAsideMenu.value = null
+
   } else {
+
     openAsideMenu.value = item.title;
+
   }
 }
 
 const menuClickHandler = (item) => {
-  if (!item.innerMenu || item.innerMenu.length === 0) {
-    activeMenu.value = item
-  }
+  activeMenu.value = item
+  awardsStore.setContent(item)
 }
 
 </script>
@@ -195,7 +200,7 @@ const menuClickHandler = (item) => {
   grid-template-rows: 0fr;
   transition: 0.3s grid-template-rows ease;
   background-color: var(--white);
-  padding: 0 24px;
+  padding: 0;
 }
 
 .aside-item.open .inner-menu {
@@ -203,14 +208,25 @@ const menuClickHandler = (item) => {
 }
 
 .inner-menu-item {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
   cursor: pointer;
   color: var(--black);
-  padding: 16px 0;
+  padding: 0 24px;
   font-size: 16px;
+}
+
+.inner-menu-item.active {
+  background-color: var(--blue-light);
+}
+
+.inner-menu-item__container {
+  padding: 16px 0;
   border-bottom: 1px solid var(--gray-medium);
 }
 
-.inner-menu-item:last-child {
+.inner-menu-item:last-child .inner-menu-item__container{
   border-bottom: none;
 }
 
@@ -249,7 +265,7 @@ const menuClickHandler = (item) => {
   transition: transform 0.3s ease;
 }
 
-.aside-item.open .aside-item-title {
+.aside-item.active .aside-item-title {
   color: var(--blue-light);
 }
 
@@ -417,5 +433,9 @@ const menuClickHandler = (item) => {
 .main-content .list .list-item .city {
   color: var(--gray-dark);
   font-size: 16px;
+}
+
+.inner-menu-item-title {
+  font-weight: 700;
 }
 </style>

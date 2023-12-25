@@ -1,4 +1,14 @@
 <template>
+  <!--  <div class="default-card-wrapper">-->
+  <!--    <div class="default-card shadow rounded">-->
+  <!--      <img :src="AwardImage" alt="award">-->
+  <!--      <h2 class="title">{{ title }}</h2>-->
+  <!--      <span>шорт-лист</span>-->
+  <!--      <router-link :to="`${link}`">-->
+  <!--        <ButtonComponent class="btn">Подробнее</ButtonComponent>-->
+  <!--      </router-link>-->
+  <!--    </div>-->
+  <!--  </div>-->
   <div class="default-card-wrapper">
     <router-link :to="`${link}`" class="default-card shadow rounded">
       <span class="icon">
@@ -14,6 +24,8 @@
 
 <script setup>
 import IconMarketingDocs from "@/components/icons/IconMarketingDocs.vue";
+import ButtonComponent from "@/components/UI/ButtonComponent.vue";
+import AwardImage from "@/assets/img/award-template.png";
 
 const props = defineProps({
   title: String,
@@ -53,6 +65,18 @@ function renderIcon(icon) {
     grid-template-columns: 310px;
     gap: 0;
   }
+}
+
+.default-card img {
+  width: auto;
+  height: 60%;
+}
+
+span {
+  color: var(--white);
+  line-height: 1;
+  top: -3px;
+  font-size: 18px;
 }
 
 span.icon {
@@ -120,5 +144,15 @@ p.text {
     font-size: 14px;
     padding-right: 130px;
   }
+}
+
+.btn {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.btn span.icon {
+  position: relative;
 }
 </style>

@@ -75,4 +75,15 @@ span.icon {
     padding: 15px 30px;
   }
 }
+
+.default-card-wrapper .btn .icon {
+  position: relative;
+  right: 0;
+  width: 8px;
+  height: 12px;
+}
+
+.default-card-wrapper .btn {
+  column-gap: 8px;
+}
 </style>

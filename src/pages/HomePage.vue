@@ -31,7 +31,8 @@
         :title="item.title"
         :background="item.background"
         :link="item.link"
-        :component="item.component"/>
+        :component="item.component"
+    />
   </div>
 </template>
 
@@ -55,6 +56,12 @@ import AboutPhoto12 from "@/assets/img/about-photo-12.webp";
 import IndexDefaultCard from "@/components/IndexDefaultCard.vue";
 
 const defaultCards = ref([
+  // {
+  //   title: "Итоги года 2023",
+  //   background: 'var(--blue-dark)',
+  //   link: "/nominees",
+  //   component: "IconMarketingDocs"
+  // },
   {
     title: "Маркетинговые материалы",
     background: '#BAF7F3',
@@ -62,10 +69,8 @@ const defaultCards = ref([
     component: "IconMarketingDocs"
   },
 ]);
-const photos = [AboutPhoto11, AboutPhoto12];
 
 const modules = [Navigation];
-const modules2 = [Autoplay];
 const newsStore = useNewsStore();
 const calendarStore = useCalendarStore();
 calendarStore.getData();
