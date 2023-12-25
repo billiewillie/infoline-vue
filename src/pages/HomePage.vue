@@ -56,18 +56,12 @@ import AboutPhoto12 from "@/assets/img/about-photo-12.webp";
 import IndexDefaultCard from "@/components/IndexDefaultCard.vue";
 
 const defaultCards = ref([
-  // {
-  //   title: "Итоги года 2023",
-  //   background: 'var(--blue-dark)',
-  //   link: "/nominees",
-  //   component: "IconMarketingDocs"
-  // },
   {
-    title: "Маркетинговые материалы",
-    background: '#BAF7F3',
-    link: "/marketing-materials",
+    title: "Итоги года 2023",
+    background: 'var(--blue-dark)',
+    link: "/nominees",
     component: "IconMarketingDocs"
-  },
+  }
 ]);
 
 const modules = [Navigation];

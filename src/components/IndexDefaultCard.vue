@@ -1,24 +1,13 @@
 <template>
-  <!--  <div class="default-card-wrapper">-->
-  <!--    <div class="default-card shadow rounded">-->
-  <!--      <img :src="AwardImage" alt="award">-->
-  <!--      <h2 class="title">{{ title }}</h2>-->
-  <!--      <span>шорт-лист</span>-->
-  <!--      <router-link :to="`${link}`">-->
-  <!--        <ButtonComponent class="btn">Подробнее</ButtonComponent>-->
-  <!--      </router-link>-->
-  <!--    </div>-->
-  <!--  </div>-->
   <div class="default-card-wrapper">
-    <router-link :to="`${link}`" class="default-card shadow rounded">
-      <span class="icon">
-        <component :is="renderIcon(component)"/>
-      </span>
-      <h2 class="title">
-        {{ title }}
-        <span class="line"></span>
-      </h2>
-    </router-link>
+    <div class="default-card shadow rounded">
+      <img :src="AwardImage" alt="award">
+      <h2 class="title">{{ title }}</h2>
+      <span>шорт-лист</span>
+      <router-link :to="`${link}`">
+        <ButtonComponent class="btn">Подробнее</ButtonComponent>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -50,21 +39,15 @@ function renderIcon(icon) {
 }
 
 .default-card {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
   height: 100%;
   text-align: center;
   align-items: center;
-  background-color: var(--white);
+  background: radial-gradient(50% 50% at 50% 50%, #2659FF 0%, rgba(43, 54, 90, 1) 100%);
   justify-content: center;
-  gap: 30px;
-
-  @media (min-width: 1280px) {
-    grid-template-columns: 310px;
-    gap: 0;
-  }
+  row-gap: 12px;
 }
 
 .default-card img {
@@ -93,13 +76,14 @@ span.icon svg {
 h2.title {
   position: relative;
   font-size: 26px;
+  line-height: 1;
   font-weight: 700;
-  color: var(--blue-dark);
+  color: var(--white);
   display: flex;
-  height: 100%;
   align-items: center;
   justify-content: center;
   padding-top: 30px;
+  text-transform: uppercase;
 
   @media (min-width: 1280px) {
     font-size: 22px;
