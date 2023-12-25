@@ -186,9 +186,13 @@ const menuClickHandler = (item) => {
 
 .content-aside {
   display: flex;
+  width: 100%;
   flex-direction: column;
-  width: 24%;
   background-color: var(--blue-dark);
+
+  @media (min-width: 768px) {
+    width: 24%;
+  }
 
   @media (min-width: 1280px) {
     min-height: 389px;
@@ -275,13 +279,23 @@ const menuClickHandler = (item) => {
 
 .content {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
   column-gap: 16px;
+  row-gap: 16px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 }
 
 .content-container {
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  @media (min-width: 768px) {
+    padding-left: 40px;
+    padding-right: 40px;  }
 
   @media (min-width: 1800px) {
     padding-left: 80px;
@@ -291,20 +305,31 @@ const menuClickHandler = (item) => {
 
 .content-main {
   display: flex;
-  width: 76%;
+
   flex-direction: column;
   background-color: var(--white);
+
+  @media (min-width: 768px) {
+    width: 76%;
+  }
 }
 
 .main-header {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   column-gap: 32px;
+  row-gap: 32px;
   padding-top: 16px;
   padding-bottom: 16px;
   background-color: var(--blue-dark);
   color: var(--white);
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 
   @media (min-width: 1280px) {
     min-height: 389px;
@@ -314,10 +339,13 @@ const menuClickHandler = (item) => {
 .main-header .image {
   display: flex;
   justify-content: center;
-  width: 50%;
   max-height: 355px;
   font-size: 0;
   background: radial-gradient(50% 50% at 50% 50%, #2659FF 0%, rgba(43, 54, 90, 0.80) 100%);
+
+  @media (min-width: 768px) {
+    width: 50%;
+  }
 
   @media (min-width: 1800px) {
     width: 43%;
@@ -326,15 +354,25 @@ const menuClickHandler = (item) => {
 
 .main-header img {
   height: auto;
-  width: auto;
+  width: 100%;
   object-fit: contain;
+
+  @media (min-width: 768px) {
+    width: auto;
+  }
 }
 
 .main-header .text {
   display: flex;
   flex-direction: column;
   row-gap: 16px;
-  width: 50%;
+  width: 100%;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    width: 50%;
+    text-align: left;
+  }
 
   @media (min-width: 1800px) {
     width: 57%;
@@ -342,8 +380,12 @@ const menuClickHandler = (item) => {
 }
 
 .main-header h1 {
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 700;
+
+  @media (min-width: 1280px) {
+    font-size: 40px;
+  }
 
   @media (min-width: 1800px) {
     font-size: 55px;

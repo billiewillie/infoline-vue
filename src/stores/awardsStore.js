@@ -57,7 +57,6 @@ export const useRootStore = defineStore(
 
                 }
 
-                console.log(content.value)
             }
         }
 
