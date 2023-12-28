@@ -109,6 +109,7 @@
                 <router-link
                     class="list-item"
                     v-if="item.login"
+                    target="_blank"
                     :to="`/users/${item.login}`">
                   <TheImage
                       alt="nominee"
