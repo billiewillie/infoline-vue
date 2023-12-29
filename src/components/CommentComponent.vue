@@ -181,9 +181,9 @@ onMounted(() => {
 }
 
 .comment-inner {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
   column-gap: 20px;
+  grid-template-columns: 54px 1fr 18px;
 }
 
 .comment-child-inner {

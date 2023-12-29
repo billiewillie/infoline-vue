@@ -1,7 +1,7 @@
 import {createRouter, createWebHistory} from "vue-router";
 
 const getLoginPage = () => {
-    if (localStorage.getItem('login') === '') {
+    if (localStorage.getItem('login') === '' || localStorage.getItem('login') === 'test') {
         return {
             path: '/login'
         }

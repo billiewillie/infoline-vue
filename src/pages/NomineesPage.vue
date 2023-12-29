@@ -4,24 +4,24 @@
     <div class="content">
       <aside class="content-aside rounded shadow overflow-hidden" v-if="menu.length && menu.length > 0">
         <div
-            class="aside-item"
-            :class="{
+          class="aside-item"
+          :class="{
               open: item.title === openAsideMenu,
               active: item.id === activeMenu.id
             }"
-            v-for="item in menu"
-            :key="item.title">
+          v-for="item in menu"
+          :key="item.title">
           <p
-              @click="menuClickHandler(item); openMenu(item)"
-              class="aside-item-title">{{ item.title }} <i
-              class="icon"
-              v-if="item.innerMenu && item.innerMenu.length > 0">
+            @click="menuClickHandler(item); openMenu(item)"
+            class="aside-item-title">{{ item.title }} <i
+            class="icon"
+            v-if="item.innerMenu && item.innerMenu.length > 0">
             <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
-                  d="M1 10L2.76297 8.42742C4.1689 7.17332 4.87187 6.54627 4.98011 5.782C5.00663 5.59474 5.00663 5.40526 4.98011 5.218C4.87187 4.45373 4.1689 3.82668 2.76297 2.57258L1 1"
-                  :stroke="item.id === activeMenu.id ? 'var(--blue-light)' : 'var(--white)'"
-                  stroke-width="1"
-                  stroke-linecap="round"/>
+                d="M1 10L2.76297 8.42742C4.1689 7.17332 4.87187 6.54627 4.98011 5.782C5.00663 5.59474 5.00663 5.40526 4.98011 5.218C4.87187 4.45373 4.1689 3.82668 2.76297 2.57258L1 1"
+                :stroke="item.id === activeMenu.id ? 'var(--blue-light)' : 'var(--white)'"
+                stroke-width="1"
+                stroke-linecap="round"/>
             </svg>
           </i>
           </p>
@@ -29,11 +29,11 @@
             <div class="inner-menu">
               <div class="overflow-hidden">
                 <div
-                    class="inner-menu-item"
-                    :class="{ active: subItem.id === activeMenu.id }"
-                    v-for="subItem in item.innerMenu"
-                    @click="menuClickHandler(subItem)"
-                    :key="subItem.title">
+                  class="inner-menu-item"
+                  :class="{ active: subItem.id === activeMenu.id }"
+                  v-for="subItem in item.innerMenu"
+                  @click="menuClickHandler(subItem)"
+                  :key="subItem.title">
                   <div class="inner-menu-item__container">
                     <p class="inner-menu-item-title">{{ subItem.title }}</p>
                     <p class="inner-menu-item-subtitle">{{ subItem.subtitle }}</p>
@@ -52,10 +52,10 @@
           <p class="aside-item-title">Специалист года <i class="icon">
             <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
-                  d="M1 10L2.76297 8.42742C4.1689 7.17332 4.87187 6.54627 4.98011 5.782C5.00663 5.59474 5.00663 5.40526 4.98011 5.218C4.87187 4.45373 4.1689 3.82668 2.76297 2.57258L1 1"
-                  stroke="var(--white)"
-                  stroke-width="1"
-                  stroke-linecap="round"/>
+                d="M1 10L2.76297 8.42742C4.1689 7.17332 4.87187 6.54627 4.98011 5.782C5.00663 5.59474 5.00663 5.40526 4.98011 5.218C4.87187 4.45373 4.1689 3.82668 2.76297 2.57258L1 1"
+                stroke="var(--white)"
+                stroke-width="1"
+                stroke-linecap="round"/>
             </svg>
           </i>
           </p>
@@ -64,10 +64,10 @@
           <p class="aside-item-title">Проект года <i class="icon">
             <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
-                  d="M1 10L2.76297 8.42742C4.1689 7.17332 4.87187 6.54627 4.98011 5.782C5.00663 5.59474 5.00663 5.40526 4.98011 5.218C4.87187 4.45373 4.1689 3.82668 2.76297 2.57258L1 1"
-                  stroke="var(--white)"
-                  stroke-width="1"
-                  stroke-linecap="round"/>
+                d="M1 10L2.76297 8.42742C4.1689 7.17332 4.87187 6.54627 4.98011 5.782C5.00663 5.59474 5.00663 5.40526 4.98011 5.218C4.87187 4.45373 4.1689 3.82668 2.76297 2.57258L1 1"
+                stroke="var(--white)"
+                stroke-width="1"
+                stroke-linecap="round"/>
             </svg>
           </i>
           </p>
@@ -76,10 +76,10 @@
           <p class="aside-item-title">Команда года <i class="icon">
             <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
-                  d="M1 10L2.76297 8.42742C4.1689 7.17332 4.87187 6.54627 4.98011 5.782C5.00663 5.59474 5.00663 5.40526 4.98011 5.218C4.87187 4.45373 4.1689 3.82668 2.76297 2.57258L1 1"
-                  stroke="var(--white)"
-                  stroke-width="1"
-                  stroke-linecap="round"/>
+                d="M1 10L2.76297 8.42742C4.1689 7.17332 4.87187 6.54627 4.98011 5.782C5.00663 5.59474 5.00663 5.40526 4.98011 5.218C4.87187 4.45373 4.1689 3.82668 2.76297 2.57258L1 1"
+                stroke="var(--white)"
+                stroke-width="1"
+                stroke-linecap="round"/>
             </svg>
           </i></p>
         </div>
@@ -95,37 +95,37 @@
           </div>
           <div class="image">
             <img
-                :src="activeMenu.statueImage ? activeMenu.statueImage : defaultStatueImage"
-                alt="award">
+              :src="activeMenu.statueImage ? activeMenu.statueImage : defaultStatueImage"
+              alt="award">
           </div>
         </div>
         <div class="main-content content-container">
           <h2 class="title">Номинанты</h2>
           <div class="list">
             <template
-                v-for="item in content"
-                :key="Math.random() * 100">
+              v-for="item in content"
+              :key="Math.random() * 100">
               <template v-if="item.name">
                 <router-link
-                    class="list-item"
-                    v-if="item.login"
-                    target="_blank"
-                    :to="`/users/${item.login}`">
+                  class="list-item"
+                  v-if="item.login"
+                  target="_blank"
+                  :to="`/users/${item.login}`">
                   <TheImage
-                      alt="nominee"
-                      :image="item.image"
-                      :fallback="PersonFallback"/>
+                    alt="nominee"
+                    :image="item.image"
+                    :fallback="PersonFallback"/>
                   <h2 class="name">{{ item.name }} {{ item.surname }}</h2>
                   <p class="position">{{ item.position }}</p>
                   <span class="city">{{ item.city }}</span>
                 </router-link>
                 <div
-                    v-else
-                    class="list-item">
+                  v-else
+                  class="list-item">
                   <TheImage
-                      alt="nominee"
-                      :image="item.image"
-                      :fallback="PersonFallback"/>
+                    alt="nominee"
+                    :image="item.image"
+                    :fallback="PersonFallback"/>
                   <h2 class="name">{{ item.name }} {{ item.surname }}</h2>
                   <p class="position">{{ item.position }}</p>
                   <span class="city">{{ item.city }}</span>
@@ -231,7 +231,7 @@ const menuClickHandler = (item) => {
   border-bottom: 1px solid var(--gray-medium);
 }
 
-.inner-menu-item:last-child .inner-menu-item__container{
+.inner-menu-item:last-child .inner-menu-item__container {
   border-bottom: none;
 }
 
@@ -296,7 +296,8 @@ const menuClickHandler = (item) => {
 
   @media (min-width: 768px) {
     padding-left: 40px;
-    padding-right: 40px;  }
+    padding-right: 40px;
+  }
 
   @media (min-width: 1800px) {
     padding-left: 80px;
