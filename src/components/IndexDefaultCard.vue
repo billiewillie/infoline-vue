@@ -3,7 +3,7 @@
     <div class="default-card shadow rounded">
       <img :src="AwardImage" alt="award">
       <h2 class="title">{{ title }}</h2>
-      <span>шорт-лист</span>
+      <span>Победители в номинациях</span>
       <router-link :to="`${link}`">
         <ButtonComponent class="btn">Подробнее</ButtonComponent>
       </router-link>
