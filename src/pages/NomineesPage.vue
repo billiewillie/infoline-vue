@@ -100,7 +100,7 @@
           </div>
         </div>
         <div class="main-content content-container">
-          <h2 class="title">Номинанты</h2>
+          <h2 class="title">Победители</h2>
           <div class="list">
             <template
               v-for="item in content"
