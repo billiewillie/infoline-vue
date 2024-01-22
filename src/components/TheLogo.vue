@@ -4,7 +4,8 @@
       <IconLogo/>
     </div>
     <span class="logo-name">info <span class="blue">Line</span></span>
-    <img class="nytree" :src="NYTree" alt="new year tree">
+<!--    uncomment this to add new year tree-->
+<!--    <img class="nytree" :src="NYTree" alt="new year tree">-->
   </router-link>
 </template>
 

@@ -1,6 +1,7 @@
 <template>
   <Transition name="slide" appear>
-    <header class="header snow">
+<!--    add class snow to header for snow effect-->
+    <header class="header">
       <div class="header-left">
         <TheLogo @click="toggleStatusMobileNav(false)"/>
         <BaseNav/>
