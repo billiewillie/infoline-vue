@@ -7,3 +7,13 @@
     </g>
   </svg>
 </template>
+
+<style scoped>
+path {
+  stroke: var(--white);
+
+  @media (min-width: 1280px) {
+    stroke: var(--blue-light);
+  }
+}
+</style>

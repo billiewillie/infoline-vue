@@ -1,38 +1,65 @@
 <template>
   <div
-      class="content-item"
-      :key="props.doc.id"
-      :class="{ expand: showFooter }">
+    class="content-item"
+    :id="props.doc.link.split('.')[0]"
+    :class="{ expand: showFooter }">
     <div
-        @click="showFooter = !showFooter"
-        class="icon">
+      @click="showFooter = !showFooter"
+      class="icon">
       <IconDoc :ext="props.doc.ext"/>
     </div>
     <p
-        @click="showFooter = !showFooter"
-        class="name">{{ props.doc.name }}</p>
+      @click="showFooter = !showFooter"
+      class="name">{{ props.doc.name }}</p>
     <footer class="item-footer">
-      <IconSave/>
-      <a
+      <div>
+        <IconSave/>
+        <a
           download
           class="link"
           :href="`https://regulations.trifonov.space/documents/${props.doc.link}`"
           :target="props.doc.ext === 'jpg' ? '_blank' : '_self'">скачать</a>
+      </div>
+      <div>
+        <IconShare/>
+        <span
+          @click="copyLink(`${domain}/docs?department=${props.department}&doc=${props.doc.id}`)"
+          class="link pointer">Скопировать ссылку</span>
+      </div>
     </footer>
   </div>
 </template>
 
 <script setup>
+import "vue-toastification/dist/index.css";
+import {useToast} from "vue-toastification";
 import IconDoc from "@/components/icons/IconDoc.vue";
 import {ref} from "vue";
 import IconSave from "@/components/icons/IconSave.vue";
+import IconShare from "@/components/icons/IconShare.vue";
+
+const toast = useToast();
+const domain = window.location.origin;
 
 const props = defineProps({
   doc: {
     type: Object,
     required: true
+  },
+  department: {
+    type: Number,
   }
 })
+
+const copyLink = (link) => {
+  navigator.clipboard.writeText(link);
+  toast.success(
+    'скопировано',
+    {
+      timeout: 2000
+    }
+  )
+}
 
 const showFooter = ref(false);
 </script>
@@ -42,10 +69,10 @@ const showFooter = ref(false);
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 84px 1fr;
-  column-gap: 30px;
+  column-gap: 8px;
 
   @media (min-width: 1280px) {
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: 1fr auto;
     row-gap: 10px;
     padding: 15px 0;
   }
@@ -57,6 +84,11 @@ const showFooter = ref(false);
   @media (min-width: 1280px) {
     grid-template-rows: repeat(2, 1fr);
   }
+}
+
+.content-item.accent,
+.content-item.accent:nth-child(even) {
+  background-color: rgba(87, 232, 223, 0.4);
 }
 
 .content-item:nth-child(even) {
@@ -84,6 +116,11 @@ const showFooter = ref(false);
   .content-item:nth-child(4n + 3)::before {
     background-color: var(--gray-light);
     display: block;
+  }
+
+  .content-item.accent:nth-child(4n + 3)::before {
+    background-color: var(--gray-light);
+    left: 100%;
   }
 }
 
@@ -137,7 +174,7 @@ const showFooter = ref(false);
   grid-column-start: 1;
   grid-column-end: 3;
   background-color: var(--blue-light);
-  column-gap: 10px;
+  column-gap: 16px;
   line-height: 1;
 
   @media (min-width: 1280px) {
@@ -147,6 +184,12 @@ const showFooter = ref(false);
     padding: 0;
     height: auto;
   }
+}
+
+.item-footer > div {
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
 }
 
 .item-footer svg {
@@ -162,7 +205,7 @@ const showFooter = ref(false);
   font-size: 18px;
   color: var(--white);
   text-decoration: underline;
-  text-underline-offset: 3px;
+  text-underline-offset: 4px;
   font-weight: 700;
 
   @media (min-width: 1280px) {

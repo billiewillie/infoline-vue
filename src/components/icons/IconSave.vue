@@ -19,6 +19,5 @@ path {
 
 .marketing-materials-page path {
   stroke: var(--blue-light);
-
 }
 </style>

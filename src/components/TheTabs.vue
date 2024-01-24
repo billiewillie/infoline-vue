@@ -1,45 +1,47 @@
 <template>
   <div class="tabs">
     <div class="select-box" v-click-outside="handleClickOutside">
-      <div @click="isOpen = !isOpen" class="select-box__current shadow" tabindex="1">
+      <div
+        @click="isOpen = !isOpen"
+        class="select-box__current shadow" tabindex="1">
         <div class="select-box__value" v-for="tab in props.tabs" :key="tab">
           <input
-              class="select-box__input"
-              type="radio"
-              :id="tab"
-              :value="tab"
-              :checked="tab === activeTab"
-              @change="$emit('setActiveTab', $event.target.value)"
+            class="select-box__input"
+            type="radio"
+            :id="tab"
+            :value="tab"
+            :checked="tab === activeTab"
+            @change="$emit('setActiveTab', $event.target.value)"
           />
           <p class="select-box__input-text">{{ tab }}</p>
         </div>
         <div
-            class="arrow">
+          class="arrow">
           <div
-              class="icon"
-              :class="{active: isOpen}">
+            class="icon"
+            :class="{active: isOpen}">
             <IconArrow/>
           </div>
         </div>
       </div>
       <ul
-          v-show="isOpen"
-          class="select-box__list shadow rounded">
+        v-show="isOpen"
+        class="select-box__list shadow rounded">
         <li v-for="tab in props.tabs" :key="tab">
           <label
-              class="select-box__option"
-              :for="tab"
-              aria-hidden="true">{{ tab }}</label>
+            class="select-box__option"
+            :for="tab"
+            aria-hidden="true">{{ tab }}</label>
         </li>
       </ul>
     </div>
     <ul class="tabs__list shadow rounded">
       <li
-          v-for="tab in props.tabs"
-          :key="tab"
-          class="tabs__item"
-          :class="{ active: tab === props.activeTab }"
-          @click="$emit('setActiveTab', tab)">
+        v-for="tab in props.tabs"
+        :key="tab"
+        class="tabs__item"
+        :class="{ active: tab === props.activeTab }"
+        @click="$emit('setActiveTab', tab)">
         {{ tab }}
       </li>
     </ul>
@@ -84,6 +86,7 @@ const vClickOutside = {
 </script>
 
 <style scoped>
+
 .tabs {
   display: flex;
   justify-content: center;

@@ -166,7 +166,7 @@
                 :fallback="PlaceholderPerson"
                 :image="`https://users.trifonov.space/images/users/zarutsky/gallery_1.webp`"/>
             <h2 class="name title"><span class="surname">Заруцкий</span> Дмитрий Михайлович</h2>
-            <p class="position">Заместитель генерального директора по маркетингу и продажам БиоСистемы</p>
+            <p class="position">Технический директор</p>
           </router-link>
           <div class="department-group one-group">
             <router-link to="/locations/department-technical-service" class="department rounded">Служба технического сервиса</router-link>

@@ -34,7 +34,7 @@ const props = defineProps({
 const navList = ref([
   {
     title: 'Регламенты и положения',
-    path: '/docs',
+    path: '/docs?department=1',
     icon: 'IconDocs'
   },
   {
@@ -44,7 +44,7 @@ const navList = ref([
   },
   {
     title: 'Маркетинговые материалы',
-    path: '/marketing-materials',
+    path: '/marketing-materials?category=1',
     icon: 'IconMarketingMaterials'
   },
   {
