@@ -18,7 +18,7 @@
           download
           class="link"
           :href="`https://regulations.trifonov.space/documents/${props.doc.link}`"
-          :target="props.doc.ext === 'jpg' ? '_blank' : '_self'">скачать</a>
+          :target="props.doc.ext === 'jpg' ? '_blank' : '_self'">Скачать</a>
       </div>
       <div>
         <IconShare/>
