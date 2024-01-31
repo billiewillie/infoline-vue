@@ -11,7 +11,6 @@ env:
   SERVER_USER: root
   SERVER_PATH: /var/www/test_front
 
-
 jobs:
   print:
     runs-on: ubuntu-latest
