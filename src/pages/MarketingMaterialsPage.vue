@@ -1,5 +1,6 @@
 <template>
   <div class="basepage default-page marketing-materials-page">
+
     <h1 class="title">Маркетинговые материалы</h1>
 
     <div class="tabs">
@@ -133,6 +134,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </template>
 

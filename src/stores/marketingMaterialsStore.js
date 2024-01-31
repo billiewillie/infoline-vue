@@ -21,9 +21,11 @@ export const useRootStore = defineStore(
 
     const getActiveMaterials = (value) => {
       activeMaterials.value = materials.value
-        .find(item => {
-          return item.id === activeCategory.value.id
-        }).list;
+        .find(
+          item => {
+            return item.id === activeCategory.value.id
+          }
+        ).list;
     }
 
     const setActiveCategory = (tab) => {

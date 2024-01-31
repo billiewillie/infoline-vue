@@ -142,14 +142,13 @@ const submitHandler = async (credentials) => {
   await axios
       .post(url, formData)
       .then((response) => {
-        console.log(response);
-        // if (response.status === 200) {
-        //   setTimeout(() => {
-        //     router.push({
-        //       path: '/admin/marketing-materials'
-        //     })
-        //   }, 1000)
-        // }
+        if (response.status === 200) {
+          setTimeout(() => {
+            router.push({
+              path: '/admin/marketing-materials'
+            })
+          }, 1000)
+        }
       })
       .catch((error) => {
         console.log(error);

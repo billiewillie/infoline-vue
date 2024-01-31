@@ -1,0 +1,15 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Copy .env
+        run: php -r "file_exists('test1.txt') || copy('test2.txt', 'test1.txt');"

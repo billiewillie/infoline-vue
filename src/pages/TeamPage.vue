@@ -44,7 +44,7 @@
         </div>
         <div class="row row-above-multiple-employees">
           <router-link to="/users/solntseva" class="card shadow rounded">
-            <TheImage
+            <TheImagesddd
                 alt="Солнцева О. С."
                 :fallback="PlaceholderPerson"
                 :image="`https://users.trifonov.space/images/users/solntseva/gallery_1.webp`"/>
@@ -56,6 +56,7 @@
             <router-link to="/departments/flow-cytometry-in-oncology-and-hematology" class="department rounded">Отдел продукции для клеточных и молекулярных методов анализа</router-link>
             <router-link to="/departments/vichdep" class="department rounded">Отдел диагностики инфекционных заболеваний</router-link>
             <router-link to="/departments/ootmni" class="department rounded">Отдел оптической микроскопии, анализа изображений и спектрометрии в научных исследованиях</router-link>
+            <router-link to="/departments/flow-cytometry-in-immunology-research" class="department rounded">Отдел проточной цитометрии в клинических исследованиях</router-link>
           </div>
         </div>
         <div class="row row-inner no-departments">

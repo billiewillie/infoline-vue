@@ -56,7 +56,8 @@
                   <div class="icon">
                     <IconCalendarBlue/>
                   </div>
-                  <span class="text">{{
+                  <span class="text">
+                    {{
                       new Date(event.date_start).getDate()
                     }} {{
                       getMonthName(new Date(event.date_start).getMonth() + 1)
