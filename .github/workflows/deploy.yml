@@ -1,15 +1,11 @@
-name: Deploy
+name: demo workflow
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+on: workflow_dispatch
 
 jobs:
-  deploy:
+  print:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Copy .env
-        run: php -r "file_exists('test1.txt') || copy('test2.txt', 'test1.txt');"
+      - name: Print to console
+        run: echo "Hello, World!"
