@@ -1,6 +1,16 @@
 name: demo workflow
 
-on: workflow_dispatch
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  SERVER_HOST: 5.63.152.168
+  SERVER_USER: root
+  SERVER_PATH: /var/www/test_front
+
 
 jobs:
   print:
@@ -9,3 +19,13 @@ jobs:
     steps:
       - name: Print to console
         run: echo "Hello, World!"
+      # Install ssh key
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2.3.1
+        with:
+          key: "${{ secrets.MY_KEY }}"
+          known_hosts: "just-a-placeholder-so-we-dont-get-errors"
+      - name: Generate auth hosts
+        run: ssh-keyscan -H ${{ env.SERVER_HOST }} >> ~/.ssh/known_hosts
+      # Deploy
+      - run: rsync --archive --compress --progress . ${{ env.SERVER_USER }}@${{ env.SERVER_HOST }}:${{ env.SERVER_PATH }}
