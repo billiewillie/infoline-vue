@@ -44,7 +44,7 @@
         </div>
         <div class="row row-above-multiple-employees">
           <router-link to="/users/solntseva" class="card shadow rounded">
-            <TheImagesddd
+            <TheImage
                 alt="Солнцева О. С."
                 :fallback="PlaceholderPerson"
                 :image="`https://users.trifonov.space/images/users/solntseva/gallery_1.webp`"/>
