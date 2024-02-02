@@ -44,10 +44,10 @@
         </div>
         <div class="row row-above-multiple-employees">
           <router-link to="/users/solntseva" class="card shadow rounded">
-            <TheImage
-                alt="Солнцева О. С."
-                :fallback="PlaceholderPerson"
-                :image="`https://users.trifonov.space/images/users/solntseva/gallery_1.webp`"/>
+<!--            <TheImage-->
+<!--                alt="Солнцева О. С."-->
+<!--                :fallback="PlaceholderPerson"-->
+<!--                :image="`https://users.trifonov.space/images/users/solntseva/gallery_1.webp`"/>-->
             <h2 class="name title"><span class="surname">Солнцева</span> Ольга Станиславовна</h2>
             <p class="position">Заместитель генерального директора по маркетингу  и продажам БиоЛайна</p>
           </router-link>
