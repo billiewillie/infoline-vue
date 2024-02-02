@@ -49,7 +49,7 @@
                 :fallback="PlaceholderPerson"
                 :image="`https://users.trifonov.space/images/users/solntseva/gallery_1.webp`"/>
             <h2 class="name title"><span class="surname">Солнцева</span> Ольга Станиславовна</h2>
-            <p class="position">Заместитель генерального директора по маркетингу и продажам БиоЛайна</p>
+            <p class="position">Заместитель генерального директора по маркетингу  и продажам БиоЛайна</p>
           </router-link>
           <div class="department-group">
             <router-link to="/departments/blmanagers" class="department rounded">Отдел по работе с клиентами БЛ</router-link>
